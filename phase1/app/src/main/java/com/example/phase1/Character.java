@@ -3,7 +3,7 @@ package com.example.phase1;
 public class Character extends GameObject {
 
     boolean isAlive;
-    private int speed;
+    protected int speed;
 
 
     public Character(int x, int y) {  //NEED GameManager.getHealth()
@@ -17,11 +17,16 @@ public class Character extends GameObject {
     }
 
     public void moveRight(){
-        this.x += speed;
+        x += speed;
     }
+    public void moveLeft(){x-= speed;}
 
     public void update(){  //update image
     }
+    public void die(){
+
+    }
+
 
 
 
