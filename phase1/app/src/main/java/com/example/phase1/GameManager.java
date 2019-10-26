@@ -46,10 +46,11 @@ abstract class GameManager extends AppCompatActivity {
 
     return builder.toString();
   }
-  int getStat(int index){
+
+  int getStat(int index) {
     int indexOfButton = 0;
-    for (int i = 0; i < buttons.length; i++){
-      if (buttons[i] == currButton){
+    for (int i = 0; i < buttons.length; i++) {
+      if (buttons[i] == currButton) {
         indexOfButton = i;
       }
     }
@@ -64,6 +65,14 @@ abstract class GameManager extends AppCompatActivity {
 
   void setScore(int s) {
     score = s;
+  }
+
+  int getHealth() {
+    return getStat(1);
+  }
+
+  int getCoin() {
+    return getStat(2);
   }
 
   void test() {
