@@ -11,8 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Level2Activity"
+            android:name=".SetCharacterName"
+            android:parentActivityName=".SaveMenu"
             android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Level2Activity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".SaveMenu"
             android:parentActivityName=".MainActivity"
@@ -20,7 +24,7 @@
         <activity
             android:name=".DisplayMessageActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">

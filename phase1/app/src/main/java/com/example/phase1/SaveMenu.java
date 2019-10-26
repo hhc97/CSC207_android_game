@@ -1,5 +1,6 @@
 package com.example.phase1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,8 @@ public class SaveMenu extends GameManager {
   public void clickSave(View view) {
     String buttonName = ((Button) view).getText().toString();
     if (buttonName.equals("Empty save slot")) {
-      System.out.println("yes");
+      Intent intent = new Intent(this, SetCharacterName.class);
+      startActivity(intent);
     }
   }
 }
