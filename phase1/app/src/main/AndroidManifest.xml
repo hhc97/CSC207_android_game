@@ -22,10 +22,6 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".DisplayMessageActivity"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
