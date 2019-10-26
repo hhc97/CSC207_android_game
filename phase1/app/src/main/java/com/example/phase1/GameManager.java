@@ -1,6 +1,7 @@
 package com.example.phase1;
 
 import android.content.Context;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,8 @@ import java.util.Scanner;
 abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
   private int score = 0;
+  Button currButton;
+  Button[] buttons;
 
   private void writeToFile(String string) {
     PrintWriter out = null;
@@ -43,9 +46,20 @@ abstract class GameManager extends AppCompatActivity {
 
     return builder.toString();
   }
+  int getStat(int index){
+    int indexOfButton = 0;
+    for (int i = 0; i < buttons.length; i++){
+      if (buttons[i] == currButton){
+        indexOfButton = i;
+      }
+    }
+    String[] scores = readFromFile().split("\n");
+    String[] stats = scores[indexOfButton].split(",");
+    return Integer.parseInt(stats[index]);
+  }
 
   int getScore() {
-    return score;
+    return getStat(0);
   }
 
   void setScore(int s) {
@@ -57,11 +71,11 @@ abstract class GameManager extends AppCompatActivity {
   }
 
   void startFile() {
-    writeToFile("0");
-    writeToFile(readFromFile() + "0");
-    writeToFile(readFromFile() + "0");
-    writeToFile(readFromFile() + "2");
-    writeToFile(readFromFile() + "0");
-    writeToFile(readFromFile() + "0");
+    writeToFile("0,0,0");
+    writeToFile(readFromFile() + "0,0,0");
+    writeToFile(readFromFile() + "0,0,0");
+    writeToFile(readFromFile() + "1,253,30");
+    writeToFile(readFromFile() + "0,0,0");
+    writeToFile(readFromFile() + "9,50,26");
   }
 }
