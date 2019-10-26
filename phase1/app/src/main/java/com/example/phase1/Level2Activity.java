@@ -18,5 +18,7 @@ public class Level2Activity extends Activity {
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+    setContentView(R.layout.activity_level2);
   }
 }
