@@ -23,6 +23,7 @@ public class SaveMenu extends GameManager {
     for (String s : fileList()) {
       if (s.equals(STATS_FILE)) {
         has_file = true;
+        
       }
     }
     if (!has_file) {

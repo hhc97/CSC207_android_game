@@ -13,8 +13,9 @@ public class Level2Activity extends Activity {
     super.onCreate(savedInstanceState);
 
     // Set our window to fullscreen without the bar at the top.
-    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    this.getWindow()
+        .setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);

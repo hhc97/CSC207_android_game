@@ -15,6 +15,9 @@
             android:parentActivityName=".SaveMenu"
             android:screenOrientation="landscape"></activity>
         <activity
+            android:name=".Level1Activity"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".Level2Activity"
             android:screenOrientation="landscape" />
         <activity
