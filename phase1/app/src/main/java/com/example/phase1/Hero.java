@@ -15,12 +15,13 @@ public class Hero extends Character {
         super(x, y);
         this.isAttack = false;
     }
-    public void attack(){
-        isAttack = true;
+    public void attack(){ this.isAttack = true;
     }
     public boolean isAttack(){
         return isAttack;
     }
+    public void notAttack() {
+        this.isAttack = false;}
 
     public int[] getAttackRangeX(){
         return attackRangeX;
