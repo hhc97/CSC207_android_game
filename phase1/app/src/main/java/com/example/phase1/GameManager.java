@@ -59,20 +59,42 @@ abstract class GameManager extends AppCompatActivity {
     return Integer.parseInt(stats[index]);
   }
 
+  void setStat(int value, int index) {
+    int indexOfButton = 0;
+    for (int i = 0; i < buttons.length; i++) {
+      if (buttons[i] == currButton) {
+        indexOfButton = i;
+      }
+    }
+    String[] scores = readFromFile().split("\n");
+    String[] stats = scores[indexOfButton].split(",");
+    stats[index] = String.valueOf(value);
+    scores[indexOfButton] = String.join(",", stats);
+    writeToFile(String.join("\n", scores));
+  }
+
   int getScore() {
     return getStat(0);
   }
 
   void setScore(int s) {
-    score = s;
+    setStat(s, 0);
   }
 
   int getHealth() {
     return getStat(1);
   }
 
+  void setHealth(int h) {
+    setStat(h, 1);
+  }
+
   int getCoin() {
     return getStat(2);
+  }
+
+  void setCoin(int c) {
+    setStat(c, 2);
   }
 
   void test() {

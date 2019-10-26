@@ -29,15 +29,16 @@ public class Level2Activity extends GameManager {
     animator.setRepeatCount(ValueAnimator.INFINITE);
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(10000L);
-    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-      @Override
-      public void onAnimationUpdate(ValueAnimator animation) {
-        final float progress = (float) animation.getAnimatedValue();
-        final float width = backgroundOne.getWidth();
-        final float translationX = width * progress;
-        backgroundOne.setTranslationX(-translationX);
-      }
-    });
+    animator.addUpdateListener(
+        new ValueAnimator.AnimatorUpdateListener() {
+          @Override
+          public void onAnimationUpdate(ValueAnimator animation) {
+            final float progress = (float) animation.getAnimatedValue();
+            final float width = backgroundOne.getWidth();
+            final float translationX = width * progress;
+            backgroundOne.setTranslationX(-translationX);
+          }
+        });
     animator.start();
   }
 }
