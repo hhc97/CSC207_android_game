@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class SaveMenu extends GameManager {
+  private Button currButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,22 @@ public class SaveMenu extends GameManager {
   }
 
   public void clickSave(View view) {
-    String buttonName = ((Button) view).getText().toString();
+    Button b = (Button) view;
+    String buttonName = b.getText().toString();
     if (buttonName.equals("Empty save slot")) {
+      currButton = b;
       Intent intent = new Intent(this, SetCharacterName.class);
-      startActivity(intent);
+      startActivityForResult(intent, 1);
+    }
+  }
+
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == 1) {
+      if (resultCode == RESULT_OK) {
+        String userName = data.getStringExtra("com.example.phase1.SEND_NAME");
+        currButton.setText(userName);
+      }
     }
   }
 
