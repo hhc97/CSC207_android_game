@@ -24,6 +24,7 @@ public class Level2Activity extends GameManager {
     setContentView(R.layout.activity_level2);
 
     final ImageView backgroundOne = findViewById(R.id.imageView10);
+    final ImageView backgroundTwo = findViewById(R.id.imageView11);
 
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
@@ -37,6 +38,7 @@ public class Level2Activity extends GameManager {
             final float width = backgroundOne.getWidth();
             final float translationX = width * progress;
             backgroundOne.setTranslationX(-translationX);
+            backgroundTwo.setTranslationX(-translationX + width);
           }
         });
     animator.start();
