@@ -7,7 +7,7 @@
         android:background="@drawable/hills_layer_1">
 
     <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/mountains"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="0dp"
@@ -16,7 +16,7 @@
             app:srcCompat="@drawable/hills_layer_5" />
 
     <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/grass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"

@@ -23,8 +23,8 @@ public class Level2Activity extends GameManager {
 
     setContentView(R.layout.activity_level2);
 
-    final ImageView backgroundOne = findViewById(R.id.imageView10);
-    final ImageView backgroundTwo = findViewById(R.id.imageView11);
+    final ImageView backgroundOne = findViewById(R.id.grass);
+    final ImageView backgroundTwo = findViewById(R.id.mountains);
 
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
