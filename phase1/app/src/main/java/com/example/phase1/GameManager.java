@@ -1,7 +1,6 @@
 package com.example.phase1;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
