@@ -20,6 +20,10 @@ public class Character extends GameObject {
         this.x += speed;
     }
 
+    public void moveLeft(){
+        this.x -= speed;
+    }
+
     public void update(){  //update image
     }
 
