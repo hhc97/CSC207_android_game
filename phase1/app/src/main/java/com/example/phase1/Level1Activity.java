@@ -1,11 +1,10 @@
 package com.example.phase1;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Level1Activity extends Activity {
+public class Level1Activity extends GameManager {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
