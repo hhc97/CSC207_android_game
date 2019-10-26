@@ -14,8 +14,15 @@ public class Level1Manager {
 
     public Level1Manager(){
         player = new Hero(playerStartX, playerStartY);
-        isRun = true;
+        this.isRun = true;
+        Monsters.add(new Monster(20, groundHeight));
+        Monsters.add(new Monster(35, groundHeight));
     }
     public void draw(){}
-    public void update(){}
+    public void update(){
+        for(Monster monst : Monsters){
+            monst.update();
+        }
+        player.notAttack();
+    }
 }
