@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Phase1</string>
-    <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="game_start">Start game</string>
     <string name="empty_save">Empty save slot</string>
     <string name="save_slots">Save slots</string>
+    <string name="edit_name">Enter your desired username</string>
+    <string name="game_level2">Level 2</string>
 </resources>

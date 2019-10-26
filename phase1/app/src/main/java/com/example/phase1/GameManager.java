@@ -14,7 +14,7 @@ abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
   private int score = 0;
 
-  void writeToFile(String string) {
+  private void writeToFile(String string) {
     PrintWriter out = null;
 
     try {
@@ -58,7 +58,7 @@ abstract class GameManager extends AppCompatActivity {
 
   void startFile() {
     writeToFile("0");
-    writeToFile(readFromFile() + "5");
+    writeToFile(readFromFile() + "0");
     writeToFile(readFromFile() + "0");
     writeToFile(readFromFile() + "2");
     writeToFile(readFromFile() + "0");
