@@ -19,8 +19,6 @@ public class Character extends GameObject {
     public void moveRight(){
         x += speed;
     }
-    public void moveLeft(){x-= speed;}
-
     public void moveLeft(){
         this.x -= speed;
     }

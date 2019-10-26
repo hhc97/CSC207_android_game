@@ -19,4 +19,5 @@ public class Level1Activity extends GameManager {
 
     setContentView(R.layout.activity_level1);
   }
+
 }
