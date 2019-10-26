@@ -58,7 +58,7 @@ abstract class GameManager extends AppCompatActivity {
 
   void startFile() {
     writeToFile("0");
-    writeToFile(readFromFile() + "5");
+    writeToFile(readFromFile() + "0");
     writeToFile(readFromFile() + "0");
     writeToFile(readFromFile() + "2");
     writeToFile(readFromFile() + "0");
