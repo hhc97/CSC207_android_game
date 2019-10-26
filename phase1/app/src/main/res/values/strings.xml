@@ -5,4 +5,5 @@
     <string name="game_start">Start game</string>
     <string name="empty_save">Empty save slot</string>
     <string name="save_slots">Save slots</string>
+    <string name="edit_name">Enter your desired username</string>
 </resources>
