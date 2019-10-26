@@ -1,6 +1,7 @@
 package com.example.phase1;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 public class SaveMenu extends GameManager {
@@ -30,6 +31,13 @@ public class SaveMenu extends GameManager {
       if (!scores[i].equals("0")) {
         buttons[i].setText("Score: " + scores[i]);
       }
+    }
+  }
+
+  public void clickSave(View view) {
+    String buttonName = ((Button) view).getText().toString();
+    if (buttonName.equals("Empty save slot")) {
+      System.out.println("yes");
     }
   }
 }
