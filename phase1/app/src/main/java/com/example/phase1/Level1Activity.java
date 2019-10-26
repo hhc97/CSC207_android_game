@@ -1,8 +1,11 @@
 package com.example.phase1;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 public class Level1Activity extends GameManager {
 
@@ -18,5 +21,23 @@ public class Level1Activity extends GameManager {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     setContentView(R.layout.activity_level1);
+    final ImageView backgroundOne = findViewById(R.id.grass);
+
+    final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+    animator.setRepeatCount(ValueAnimator.INFINITE);
+    animator.setInterpolator(new LinearInterpolator());
+    animator.setDuration(10000L);
+    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+      @Override
+      public void onAnimationUpdate(ValueAnimator animation) {
+        final float progress = (float) animation.getAnimatedValue();
+        final float width = backgroundOne.getWidth();
+        final float translationX = progress*width;
+        backgroundOne.setTranslationX(-translationX);
+
+      }
+    });
+    animator.start();
+
   }
 }
