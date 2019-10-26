@@ -42,4 +42,9 @@ public class SaveMenu extends GameManager {
       startActivity(intent);
     }
   }
+
+  public void testLevel2(View view) {
+    Intent intent = new Intent(this, Level2Activity.class);
+    startActivity(intent);
+  }
 }
