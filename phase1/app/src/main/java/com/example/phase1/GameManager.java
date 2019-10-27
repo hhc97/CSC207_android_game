@@ -14,8 +14,7 @@ import java.util.Scanner;
 
 abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
-  private int score = 0;
-  //    score, health, coin, day/night, difficulty, character, current level, name
+  //    score, health, coin, day/night, difficulty, character, current level, player name
   String defaultScore = "0,0,0,0,0,0,1,NAME";
   Button currButton;
   Button[] buttons;

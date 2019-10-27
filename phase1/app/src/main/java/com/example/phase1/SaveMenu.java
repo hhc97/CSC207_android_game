@@ -9,7 +9,7 @@ public class SaveMenu extends GameManager {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    startFile(); // for testing
+    startFile(); // for testing, resets save file each time
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_save_menu);
     Button save1 = findViewById(R.id.button3);
