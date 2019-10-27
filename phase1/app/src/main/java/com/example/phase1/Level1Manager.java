@@ -25,4 +25,10 @@ public class Level1Manager {
         }
         player.notAttack();
     }
+    public void heroMoveLeft(){
+        player.moveLeft();
+    }
+    public void heroMoveRight(){
+        player.moveRight();
+    }
 }
