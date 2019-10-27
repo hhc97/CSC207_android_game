@@ -12,7 +12,7 @@ public class Level2Manager {
 
   public Level2Manager() {
     player = new Hero(playerStartX, playerStartY);
-    player.setAlive(true);
+    player.setStates(true);
     GameObject rock1 = new GameObject(50, groundHeight);
     GameObject rock2 = new GameObject(80, groundHeight);
     GameObject rock3 = new GameObject(120, groundHeight);
@@ -22,9 +22,11 @@ public class Level2Manager {
   }
 
   public void update() {
-    player.update();
     for (GameObject obstacle: Obstacles) {
       obstacle.update();
+      if (obstacle.getY() == player.getY()) {
+        player.update();
+      }
     }
   }
 }
