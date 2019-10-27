@@ -2,9 +2,11 @@ package com.example.phase1;
 
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class Level1Activity extends GameManager {
@@ -26,20 +28,52 @@ public class Level1Activity extends GameManager {
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
-    animator.setRepeatCount(ValueAnimator.INFINITE);
+    animator.setRepeatCount(1);
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(10000L);
-    animator.addUpdateListener(
-        new ValueAnimator.AnimatorUpdateListener() {
+
+    // Move Graphic Components Right if Left Button is Pressed
+    Button left = findViewById(R.id.left);
+    left.setOnClickListener(
+        new View.OnClickListener() {
           @Override
-          public void onAnimationUpdate(ValueAnimator animation) {
-            final float progress = (float) animation.getAnimatedValue();
-            final float width = backgroundOne.getWidth();
-            final float translationX = width * progress;
-            backgroundOne.setTranslationX(-translationX);
-            backgroundTwo.setTranslationX(-translationX + width);
+          public void onClick(View view) {
+
+            animator.addUpdateListener(
+                new ValueAnimator.AnimatorUpdateListener() {
+                  @Override
+                  public void onAnimationUpdate(ValueAnimator animation) {
+                    final float progress = (float) animation.getAnimatedValue();
+                    final float width = backgroundOne.getWidth();
+                    final float translationX = width * progress;
+                    backgroundOne.setTranslationX(translationX);
+                    backgroundTwo.setTranslationX(translationX - width);
+                  }
+                });
+            animator.start();
           }
         });
-    animator.start();
+
+    // Move Graphic Components Left if Right Button is Pressed
+    Button right = findViewById(R.id.right);
+    right.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+
+            animator.addUpdateListener(
+                new ValueAnimator.AnimatorUpdateListener() {
+                  @Override
+                  public void onAnimationUpdate(ValueAnimator animation) {
+                    final float progress = (float) animation.getAnimatedValue();
+                    final float width = backgroundOne.getWidth();
+                    final float translationX = width * progress;
+                    backgroundOne.setTranslationX(-translationX);
+                    backgroundTwo.setTranslationX(-translationX + width);
+                  }
+                });
+            animator.start();
+          }
+        });
   }
 }
