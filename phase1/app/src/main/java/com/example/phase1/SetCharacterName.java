@@ -19,6 +19,7 @@ public class SetCharacterName extends AppCompatActivity {
     Intent intent = new Intent();
     EditText editText = findViewById(R.id.editText2);
     String message = editText.getText().toString();
+    message = message.replace(",", "_");
     intent.putExtra("com.example.phase1.SEND_NAME", message);
     setResult(RESULT_OK, intent);
     finish();
