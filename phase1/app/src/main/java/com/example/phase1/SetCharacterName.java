@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/** A class to get the player name and send it back to SaveMenu. */
 public class SetCharacterName extends AppCompatActivity {
 
   @Override
@@ -15,6 +16,11 @@ public class SetCharacterName extends AppCompatActivity {
     setContentView(R.layout.activity_set_character_name);
   }
 
+  /**
+   * Puts the name String into an Intent and sends its back.
+   *
+   * @param view the button that is pressed.
+   */
   public void sendName(View view) {
     Intent intent = new Intent();
     EditText editText = findViewById(R.id.editText2);
