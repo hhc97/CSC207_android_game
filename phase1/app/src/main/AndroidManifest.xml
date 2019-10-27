@@ -10,10 +10,11 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Level3Activity"></activity>
         <activity
             android:name=".SetCharacterName"
             android:parentActivityName=".SaveMenu"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Level1Activity"
             android:screenOrientation="landscape" />
