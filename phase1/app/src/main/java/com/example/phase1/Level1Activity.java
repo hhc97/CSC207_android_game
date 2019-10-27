@@ -86,6 +86,13 @@ public class Level1Activity extends GameManager {
           }
         });
     Button attack = findViewById(R.id.attack);
+      attack.setOnClickListener(
+              new View.OnClickListener() {
+                  @Override
+                  public void onClick(View view) {
+                      hero.setImageResource(R.drawable.attack);
+                  }
+              });
 
     Button jump = findViewById(R.id.jump);
   }
