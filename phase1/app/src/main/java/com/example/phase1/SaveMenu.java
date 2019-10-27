@@ -1,9 +1,12 @@
 package com.example.phase1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * The activity responsible for displaying the save menu, where users can choose a slot to save, and
@@ -31,6 +34,7 @@ public class SaveMenu extends GameManager {
    * into that slot.
    */
   private void updateButtons() {
+    Button initialButton = currButton;
     boolean has_file = false;
     for (String s : fileList()) {
       if (s.equals(STATS_FILE)) {
@@ -47,9 +51,10 @@ public class SaveMenu extends GameManager {
         String name = getName();
         String score = String.valueOf(getScore());
         String display = name + ", Score: " + score;
-        buttons[i].setText(display);
+        currButton.setText(display);
       }
     }
+    currButton = initialButton;
   }
 
   /**
@@ -76,7 +81,25 @@ public class SaveMenu extends GameManager {
       if (resultCode == RESULT_OK) {
         String userName = data.getStringExtra("com.example.phase1.SEND_NAME");
         setName(userName);
-        updateButtons();
+
+        final String[] dayNight = {"Day", "Night"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Pick a color scheme");
+        builder.setItems(
+            dayNight,
+            new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                if (dayNight[which].equals("Night")) {
+                  setDayOrNight(0);
+                } else if (dayNight[which].equals("Day")) {
+                  setDayOrNight(1);
+                }
+                updateButtons();
+              }
+            });
+        builder.show();
       }
     }
   }
