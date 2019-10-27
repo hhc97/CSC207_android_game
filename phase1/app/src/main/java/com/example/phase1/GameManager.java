@@ -15,7 +15,7 @@ abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
   private int score = 0;
   //    score, health, coin, day/night, difficulty, character, current level, name
-  String defaultScore = "0,0,0,0,0,0,0,NAME";
+  String defaultScore = "0,0,0,0,0,0,1,NAME";
   Button currButton;
   Button[] buttons;
 
