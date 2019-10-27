@@ -78,17 +78,52 @@
         android:scaleType="fitXY"
         android:src="@drawable/hills_layer_5" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c1"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="225dp"
+        android:layout_marginTop="216dp"
+        android:src="@drawable/coin" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c2"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="595dp"
+        android:layout_marginTop="215dp"
+        android:src="@drawable/coin" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c3"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="698dp"
+        android:layout_marginTop="214dp"
+        android:src="@drawable/coin" />
+
     <ImageView
         android:id="@+id/grass1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-1dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/hills_layer_5" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/hero2"
+        android:id="@+id/hero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
