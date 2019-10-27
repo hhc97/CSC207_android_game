@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * The activity responsible for displaying the save menu, where users can choose a slot to save, and
+ * also resume previous saves.
+ */
 public class SaveMenu extends GameManager {
 
   @Override
@@ -22,6 +26,10 @@ public class SaveMenu extends GameManager {
     updateButtons();
   }
 
+  /**
+   * updates the names of the save slot buttons, depending on whether if there is any data saved
+   * into that slot.
+   */
   private void updateButtons() {
     boolean has_file = false;
     for (String s : fileList()) {
@@ -44,6 +52,12 @@ public class SaveMenu extends GameManager {
     }
   }
 
+  /**
+   * determines what do do when a save slot is clicked. either load the game if the slot has data,
+   * or allow the user to create a new account if the slot is empty.
+   *
+   * @param view the button that is clicked.
+   */
   public void clickSave(View view) {
     Button b = (Button) view;
     currButton = b;
