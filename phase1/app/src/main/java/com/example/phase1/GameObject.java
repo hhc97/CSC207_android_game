@@ -2,6 +2,8 @@ package com.example.phase1;
 
 import android.graphics.Bitmap;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class GameObject {
 
   protected final int WIDTH = 0; // temp value
@@ -9,7 +11,7 @@ public class GameObject {
   protected int x; // the x coordinate value
   protected int y; // the y coordinate value
   protected boolean states;
-  private Bitmap image;
+  private pl.droidsonroids.gif.GifImageView image;
 
   public GameObject(int x, int y) {
     this.x = x;
@@ -38,4 +40,8 @@ public class GameObject {
   public boolean getStates(){return this.states;}
 
   public void update(){}
+
+  public void setImage(GifImageView image){
+    this.image = image;
+  }
 }
