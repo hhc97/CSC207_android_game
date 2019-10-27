@@ -26,6 +26,8 @@ public class Level2Activity extends GameManager {
     // Move the two copies of the front background image, continuously.
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
+    final ImageView backgroundThree = findViewById(R.id.vegetation);
+    final ImageView backgroundFour = findViewById(R.id.vegetation2);
 
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
@@ -36,10 +38,14 @@ public class Level2Activity extends GameManager {
           @Override
           public void onAnimationUpdate(ValueAnimator animation) {
             final float progress = (float) animation.getAnimatedValue();
-            final float width = backgroundOne.getWidth();
-            final float translationX = width * progress;
-            backgroundOne.setTranslationX(-translationX);
-            backgroundTwo.setTranslationX(-translationX + width);
+            final float width1 = backgroundOne.getWidth();
+            final float width2 = backgroundThree.getWidth();
+            final float translationX1 = width1 * progress;
+            final float translationX2 = width2 * progress - 10;
+            backgroundOne.setTranslationX(-translationX1);
+            backgroundTwo.setTranslationX(-translationX1 + width1);
+            backgroundThree.setTranslationX(-translationX2);
+            backgroundFour.setTranslationX(-translationX2 + width2);
           }
         });
     animator.start();
