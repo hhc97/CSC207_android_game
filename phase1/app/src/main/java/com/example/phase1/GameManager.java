@@ -20,7 +20,7 @@ abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
   //    score, health, coin, day/night, difficulty, character, current level, player name
   String defaultScore = "0,0,0,0,0,0,1,NAME";
-  Button currButton;
+  int currPlayer;
   Button[] buttons;
 
   //  indexes of the player statistics
@@ -71,14 +71,9 @@ abstract class GameManager extends AppCompatActivity {
   }
 
   private String getStringStat(int index) {
-    int indexOfButton = 0;
-    for (int i = 0; i < buttons.length; i++) {
-      if (buttons[i] == currButton) {
-        indexOfButton = i;
-      }
-    }
+
     String[] scores = readFromFile().split("\n");
-    String[] stats = scores[indexOfButton].split(",");
+    String[] stats = scores[currPlayer].split(",");
     return stats[index];
   }
 
@@ -87,16 +82,11 @@ abstract class GameManager extends AppCompatActivity {
   }
 
   private void setStringStat(String value, int index) {
-    int indexOfButton = 0;
-    for (int i = 0; i < buttons.length; i++) {
-      if (buttons[i] == currButton) {
-        indexOfButton = i;
-      }
-    }
+
     String[] scores = readFromFile().split("\n");
-    String[] stats = scores[indexOfButton].split(",");
+    String[] stats = scores[currPlayer].split(",");
     stats[index] = value;
-    scores[indexOfButton] = String.join(",", stats);
+    scores[currPlayer] = String.join(",", stats);
     writeToFile(String.join("\n", scores));
   }
 

@@ -34,7 +34,7 @@ public class SaveMenu extends GameManager {
    * into that slot.
    */
   private void updateButtons() {
-    Button initialButton = currButton;
+    int initialPlayer = currPlayer;
     boolean has_file = false;
     for (String s : fileList()) {
       if (s.equals(STATS_FILE)) {
@@ -46,15 +46,16 @@ public class SaveMenu extends GameManager {
     }
     String[] scores = readFromFile().split("\n");
     for (int i = 0; i < scores.length; i++) {
-      currButton = buttons[i];
       if (!scores[i].equals(defaultScore)) {
+        currPlayer = i;
+        Button b = buttons[i];
         String name = getName();
         String score = String.valueOf(getScore());
         String display = name + ", Score: " + score;
-        currButton.setText(display);
+        b.setText(display);
       }
     }
-    currButton = initialButton;
+    currPlayer = initialPlayer;
   }
 
   /**
@@ -65,7 +66,11 @@ public class SaveMenu extends GameManager {
    */
   public void clickSave(View view) {
     Button b = (Button) view;
-    currButton = b;
+    for (int i = 0; i < buttons.length; i++) {
+      if (buttons[i] == b) {
+        currPlayer = i;
+      }
+    }
     String buttonName = b.getText().toString();
     if (buttonName.equals("Empty save slot")) {
       Intent intent = new Intent(this, SetCharacterName.class);
