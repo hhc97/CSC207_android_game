@@ -30,6 +30,7 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundTwo = findViewById(R.id.grass1);
     final ImageView backgroundThree = findViewById(R.id.vegetation);
     final ImageView backgroundFour = findViewById(R.id.vegetation2);
+    final ImageView obstacle = findViewById(R.id.rock_obstacle);
 
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
@@ -48,6 +49,7 @@ public class Level2Activity extends GameManager {
             backgroundTwo.setTranslationX(-translationX1 + width1);
             backgroundThree.setTranslationX(-translationX2);
             backgroundFour.setTranslationX(-translationX2 + width2);
+            obstacle.setTranslationX(-translationX1);
           }
         });
     animator.start();
