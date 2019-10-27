@@ -24,12 +24,12 @@ public class Level1Activity extends GameManager {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.n_activity_level1);
 
-
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
     final ImageView backgroundThree = findViewById(R.id.vegetation);
     final ImageView backgroundFour = findViewById(R.id.vegetation2);
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+    final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
     animator.setRepeatCount(1);
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(17000L);
@@ -86,7 +86,6 @@ public class Level1Activity extends GameManager {
           }
         });
     Button attack = findViewById(R.id.attack);
-
 
     Button jump = findViewById(R.id.jump);
   }
