@@ -23,6 +23,7 @@ public class Level2Activity extends GameManager {
 
     setContentView(R.layout.activity_level2);
 
+    // Move the two copies of the front background image, continuously.
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.mountains);
 

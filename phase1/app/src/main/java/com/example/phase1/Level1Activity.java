@@ -13,14 +13,16 @@ public class Level1Activity extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // Fullscreen Window Without Bar at the top
+    // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    // Remove the Title
+
+    // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     setContentView(R.layout.activity_level1);
+
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.mountains);
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
