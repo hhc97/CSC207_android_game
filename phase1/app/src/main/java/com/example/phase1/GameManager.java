@@ -166,12 +166,15 @@ abstract class GameManager extends AppCompatActivity {
     int level = getLevel();
     if (level == 1) {
       Intent intent = new Intent(this, Level1Activity.class);
+      intent.putExtra("com.example.phase1.SEND_PLAYER", currPlayer);
       startActivity(intent);
     } else if (level == 2) {
       Intent intent = new Intent(this, Level2Activity.class);
+      intent.putExtra("com.example.phase1.SEND_PLAYER", currPlayer);
       startActivity(intent);
     } else if (level == 3) {
       Intent intent = new Intent(this, Level3Activity.class);
+      intent.putExtra("com.example.phase1.SEND_PLAYER", currPlayer);
       startActivity(intent);
     }
   }

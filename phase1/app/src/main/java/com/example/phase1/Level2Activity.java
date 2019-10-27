@@ -2,6 +2,7 @@ package com.example.phase1;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -14,7 +15,8 @@ public class Level2Activity extends GameManager {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
+    Intent intent = getIntent();
+    currPlayer = intent.getIntExtra("com.example.phase1.SEND_PLAYER", 0);
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
@@ -59,11 +61,13 @@ public class Level2Activity extends GameManager {
   public void tapScreen(View view) {
     final ImageView heroCharacter = findViewById(R.id.hero);
 
-    final ObjectAnimator animationUp = ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -200f);
+    final ObjectAnimator animationUp =
+        ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -200f);
     animationUp.setDuration(2000L);
     animationUp.start();
 
-    final ObjectAnimator animationDown = ObjectAnimator.ofFloat(heroCharacter, "translationY", -200f, 0f);
+    final ObjectAnimator animationDown =
+        ObjectAnimator.ofFloat(heroCharacter, "translationY", -200f, 0f);
     animationDown.setDuration(2000L);
     animationDown.start();
   }
