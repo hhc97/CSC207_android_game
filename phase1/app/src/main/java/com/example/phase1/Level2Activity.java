@@ -1,7 +1,9 @@
 package com.example.phase1;
 
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
@@ -49,5 +51,18 @@ public class Level2Activity extends GameManager {
           }
         });
     animator.start();
+  }
+
+  // Visually show that the hero is jumping.
+  public void tapScreen(View view) {
+    final ImageView heroCharacter = findViewById(R.id.hero);
+
+    final ObjectAnimator animationUp = ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -200f);
+    animationUp.setDuration(2000L);
+    animationUp.start();
+
+    final ObjectAnimator animationDown = ObjectAnimator.ofFloat(heroCharacter, "translationY", -200f, 0f);
+    animationDown.setDuration(2000L);
+    animationDown.start();
   }
 }
