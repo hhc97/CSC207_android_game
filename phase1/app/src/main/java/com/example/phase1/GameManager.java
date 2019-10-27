@@ -153,9 +153,9 @@ abstract class GameManager extends AppCompatActivity {
   }
 
   void startFile() {
-    writeToFile(defaultScore);
-    writeToFile(readFromFile() + defaultScore);
-    writeToFile(readFromFile() + defaultScore);
+    writeToFile("0,0,0,0,0,0,1,LV1");
+    writeToFile(readFromFile() + "0,0,0,0,0,0,2,LV2");
+    writeToFile(readFromFile() + "0,0,0,0,0,0,3,LV3");
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
