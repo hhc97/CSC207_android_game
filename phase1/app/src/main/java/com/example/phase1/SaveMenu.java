@@ -81,26 +81,42 @@ public class SaveMenu extends GameManager {
       if (resultCode == RESULT_OK) {
         String userName = data.getStringExtra("com.example.phase1.SEND_NAME");
         setName(userName);
-
-        final String[] dayNight = {"Day", "Night"};
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Pick a color scheme");
-        builder.setItems(
-            dayNight,
-            new DialogInterface.OnClickListener() {
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-                if (dayNight[which].equals("Night")) {
-                  setDayOrNight(0);
-                } else if (dayNight[which].equals("Day")) {
-                  setDayOrNight(1);
-                }
-                updateButtons();
-              }
-            });
-        builder.show();
+        queryDayNight();
       }
     }
+  }
+
+  private void queryDayNight() {
+    final String[] dayNight = {"Night", "Day"};
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Pick a color scheme");
+    builder.setItems(
+        dayNight,
+        new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            setDayOrNight(which);
+            queryDifficulty();
+          }
+        });
+    builder.show();
+  }
+
+  private void queryDifficulty() {
+    final String[] difficulty = {"Easy", "Normal", "Hard"};
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Select a difficulty");
+    builder.setItems(
+        difficulty,
+        new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            setDifficulty(which + 1);
+            updateButtons();
+          }
+        });
+    builder.show();
   }
 }
