@@ -19,55 +19,59 @@ public class Monster extends Character {
     }
     super.update();
     traceHero();
-    if (isTouchHero()){
+    if (isTouchHero()) {
       player.damaged(getStrength());
     }
-
   }
 
   private boolean isGetHit() { // Check is the monster is get hit by Hero or not
     int[] xRange = player.getAttackRangeX(); // get the x coordinate range of AttackRange
     int[] yRange = player.getAttackRangeY(); // get y coordinate range of AttackRange
-    if ((x <= xRange[0] && xRange[0] <= (x + WIDTH))// Case 1, the Monster is bigger than attack range
+    if ((x <= xRange[0]
+            && xRange[0] <= (x + WIDTH)) // Case 1, the Monster is bigger than attack range
         || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {
       if ((y <= yRange[0] && yRange[0] <= (y + HEIGHT))
           || (y <= yRange[1] && yRange[1] <= (y + HEIGHT))) {
         return true;
       }
     }
-    if ((xRange[0] <= x && (x + WIDTH) <= xRange[0])// Case 2, the Monster is smaller than attack range
-            || (xRange[1] <= x && (x + WIDTH) <= xRange[1])) {
+    if ((xRange[0] <= x
+            && (x + WIDTH) <= xRange[0]) // Case 2, the Monster is smaller than attack range
+        || (xRange[1] <= x && (x + WIDTH) <= xRange[1])) {
       if ((yRange[0] <= y && (y + HEIGHT) <= yRange[0])
-              || (yRange[1] <= y && (y + HEIGHT) <= yRange[1])) {
+          || (yRange[1] <= y && (y + HEIGHT) <= yRange[1])) {
         return true;
       }
     }
     return false;
   }
-  private void traceHero(){
+
+  private void traceHero() {
     int playerX = player.getX();
-    if (playerX < this.x){
+    if (playerX < this.x) {
       moveLeft();
     }
-    if (playerX > this.x){
+    if (playerX > this.x) {
       moveRight();
     }
   }
 
   private boolean isTouchHero() {
-    int[] xRange= {player.getX(), player.getX()+player.WIDTH};
-    int[] yRange= {player.getY(), player.getY()+player.HEIGHT};
-    if ((x <= xRange[0] && xRange[0] <= (x + WIDTH))// Case 1, the Monster is bigger than attack range
-            || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {
+    int[] xRange = {player.getX(), player.getX() + player.WIDTH};
+    int[] yRange = {player.getY(), player.getY() + player.HEIGHT};
+    if ((x <= xRange[0]
+            && xRange[0] <= (x + WIDTH)) // Case 1, the Monster is bigger than attack range
+        || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {
       if ((y <= yRange[0] && yRange[0] <= (y + HEIGHT))
-              || (y <= yRange[1] && yRange[1] <= (y + HEIGHT))) {
+          || (y <= yRange[1] && yRange[1] <= (y + HEIGHT))) {
         return true;
       }
     }
-    if ((xRange[0] <= x && (x + WIDTH) <= xRange[0])// Case 2, the Monster is smaller than attack range
-            || (xRange[1] <= x && (x + WIDTH) <= xRange[1])) {
+    if ((xRange[0] <= x
+            && (x + WIDTH) <= xRange[0]) // Case 2, the Monster is smaller than attack range
+        || (xRange[1] <= x && (x + WIDTH) <= xRange[1])) {
       if ((yRange[0] <= y && (y + HEIGHT) <= yRange[0])
-              || (yRange[1] <= y && (y + HEIGHT) <= yRange[1])) {
+          || (yRange[1] <= y && (y + HEIGHT) <= yRange[1])) {
         return true;
       }
     }

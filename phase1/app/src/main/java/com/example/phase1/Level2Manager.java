@@ -22,7 +22,7 @@ public class Level2Manager {
   }
 
   public void update() {
-    for (GameObject obstacle: Obstacles) {
+    for (GameObject obstacle : Obstacles) {
       obstacle.update();
       if (obstacle.getY() == player.getY()) {
         player.update();

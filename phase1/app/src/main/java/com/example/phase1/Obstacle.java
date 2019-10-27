@@ -7,7 +7,7 @@ public class Obstacle extends GameObject {
   }
 
   @Override
-  public void update(){
+  public void update() {
     this.x -= 1;
 
     if (this.x <= 0) {
