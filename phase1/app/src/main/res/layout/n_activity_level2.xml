@@ -4,40 +4,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="@drawable/n_b">
-
-    <ImageView
-        android:id="@+id/forest"
-        android:layout_width="wrap_content"
-        android:layout_height="253dp"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="false"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/nback" />
+        android:background="@drawable/nbg">
 
     <ImageView
         android:id="@+id/vegetation"
         android:layout_width="match_parent"
-        android:layout_height="241dp"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/hills_layer_04" />
+        app:srcCompat="@drawable/forestd" />
 
     <ImageView
         android:id="@+id/vegetation2"
-        android:layout_width="match_parent"
-        android:layout_height="241dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/hills_layer_04" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/forestd" />
 
     <Button
         android:id="@+id/left"
