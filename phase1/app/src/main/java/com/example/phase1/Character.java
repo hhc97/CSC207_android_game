@@ -9,7 +9,7 @@ public class Character extends GameObject {
 
     public Character(int x, int y) {  //NEED GameManager.getHealth()
         super(x, y);
-        this.speed = 20; //temp value of speed
+        this.speed = 80; //temp value of speed
         this.strength = 1;// temp
         this.health = 1;// default
     }
@@ -20,9 +20,7 @@ public class Character extends GameObject {
     public void moveRight(){
         this.x += speed;
     }
-    public void moveLeft(){
-        this.x -= speed;
-    }
+    public void moveLeft(){ this.x -= 10+speed; }
 
     public void update(){  //if character's health is 0, then die
         if (this.health <= 0)

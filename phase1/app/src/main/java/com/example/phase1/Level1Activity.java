@@ -76,6 +76,8 @@ public class Level1Activity extends GameManager {
             switch (action) {
               case MotionEvent.ACTION_DOWN:
                 hero.setX(manager.heroMoveLeft());
+                hero.setScaleX(-1f);
+                hero.setImageResource(R.drawable.walk);
                 break;
               case MotionEvent.ACTION_UP:
                 break;
@@ -121,7 +123,9 @@ public class Level1Activity extends GameManager {
             int action = event.getActionMasked();
             switch (action) {
               case MotionEvent.ACTION_DOWN:
+                hero.setScaleX(1f);
                 hero.setX(manager.heroMoveRight());
+                hero.setImageResource(R.drawable.walk);
               case MotionEvent.ACTION_UP:
                 break;
             }
