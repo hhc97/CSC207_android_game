@@ -27,10 +27,12 @@ public class Level1Activity extends GameManager {
 
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
+    final ImageView backgroundThree = findViewById(R.id.vegetation);
+    final ImageView backgroundFour = findViewById(R.id.vegetation2);
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(1);
     animator.setInterpolator(new LinearInterpolator());
-    animator.setDuration(10000L);
+    animator.setDuration(17000L);
 
     // Move Graphic Components Right if Left Button is Pressed
     Button left = findViewById(R.id.left);
@@ -44,10 +46,14 @@ public class Level1Activity extends GameManager {
                   @Override
                   public void onAnimationUpdate(ValueAnimator animation) {
                     final float progress = (float) animation.getAnimatedValue();
-                    final float width = backgroundOne.getWidth();
-                    final float translationX = width * progress;
-                    backgroundOne.setTranslationX(translationX);
-                    backgroundTwo.setTranslationX(translationX - width);
+                    final float width1 = backgroundOne.getWidth();
+                    final float translationX1 = width1 * progress;
+                    final float width2 = backgroundThree.getWidth();
+                    final float translationX2 = width2 * progress - 10;
+                    backgroundOne.setTranslationX(translationX1);
+                    backgroundTwo.setTranslationX(translationX1 - width1);
+                    backgroundThree.setTranslationX(translationX2);
+                    backgroundFour.setTranslationX(translationX2 - width2);
                   }
                 });
             animator.start();
@@ -66,10 +72,14 @@ public class Level1Activity extends GameManager {
                   @Override
                   public void onAnimationUpdate(ValueAnimator animation) {
                     final float progress = (float) animation.getAnimatedValue();
-                    final float width = backgroundOne.getWidth();
-                    final float translationX = width * progress;
-                    backgroundOne.setTranslationX(-translationX);
-                    backgroundTwo.setTranslationX(-translationX + width);
+                    final float width1 = backgroundOne.getWidth();
+                    final float translationX1 = width1 * progress;
+                    final float width2 = backgroundThree.getWidth();
+                    final float translationX2 = width2 * progress - 10;
+                    backgroundOne.setTranslationX(-translationX1);
+                    backgroundTwo.setTranslationX(-translationX1 + width1);
+                    backgroundThree.setTranslationX(-translationX2);
+                    backgroundFour.setTranslationX(-translationX2 + width2);
                   }
                 });
             animator.start();
