@@ -50,6 +50,8 @@ public class SaveMenu extends GameManager {
     if (buttonName.equals("Empty save slot")) {
       Intent intent = new Intent(this, SetCharacterName.class);
       startActivityForResult(intent, 1);
+    } else {
+      startGame();
     }
   }
 
@@ -62,15 +64,5 @@ public class SaveMenu extends GameManager {
         updateButtons();
       }
     }
-  }
-
-  public void testLevel1(View view) {
-    Intent intent = new Intent(this, Level1Activity.class);
-    startActivity(intent);
-  }
-
-  public void testLevel2(View view) {
-    Intent intent = new Intent(this, Level2Activity.class);
-    startActivity(intent);
   }
 }

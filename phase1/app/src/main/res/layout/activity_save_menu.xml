@@ -7,23 +7,23 @@
     tools:context=".SaveMenu">
 
     <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="testLevel2"
-            android:text="@string/game_level2"
-            app:layout_constraintEnd_toStartOf="@+id/button4"
-            app:layout_constraintHorizontal_bias="0.325"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clickSave"
+        android:text="@string/empty_save"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
-        android:onClick="testLevel1"
-        android:text="Level 1"
+        android:onClick="clickSave"
+        android:text="@string/empty_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 

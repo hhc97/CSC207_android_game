@@ -1,6 +1,7 @@
 package com.example.phase1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -131,6 +132,25 @@ abstract class GameManager extends AppCompatActivity {
 
   void setCoin(int c) {
     setStat(c, 2);
+  }
+
+  int getLevel() {
+    return getStat(6);
+  }
+
+  void setLevel(int level) {
+    setStat(level, 6);
+  }
+
+  void startGame() {
+    int level = getLevel();
+    if (level == 1) {
+      Intent intent = new Intent(this, Level1Activity.class);
+      startActivity(intent);
+    } else if (level == 2) {
+      Intent intent = new Intent(this, Level2Activity.class);
+      startActivity(intent);
+    }
   }
 
   void startFile() {
