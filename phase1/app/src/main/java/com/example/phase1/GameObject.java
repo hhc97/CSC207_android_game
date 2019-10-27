@@ -8,14 +8,13 @@ public class GameObject {
   protected final int HEIGHT = 0; // temp value
   protected int x; // the x coordinate value
   protected int y; // the y coordinate value
+  protected boolean states;
   private Bitmap image;
 
   public GameObject(int x, int y) {
     this.x = x;
     this.y = y;
-  }
-
-  public void update() {
+    this.states = true;
   }
 
   public int getX() { // getter for x coordinate
@@ -33,4 +32,10 @@ public class GameObject {
   public int getWIDTH() { // getter for the calculated width value
     return this.WIDTH;
   }
+
+  public void setStates(boolean states) {this.states = states;}
+
+  public boolean getStates(){return this.states;}
+
+  public void update(){}
 }
