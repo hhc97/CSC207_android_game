@@ -1,11 +1,11 @@
 package com.example.phase1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SetCharacterName extends AppCompatActivity {
 
@@ -19,6 +19,9 @@ public class SetCharacterName extends AppCompatActivity {
     Intent intent = new Intent();
     EditText editText = findViewById(R.id.editText2);
     String message = editText.getText().toString();
+    if (message.equals("")) {
+      return;
+    }
     message = message.replace(",", "_");
     intent.putExtra("com.example.phase1.SEND_NAME", message);
     setResult(RESULT_OK, intent);
