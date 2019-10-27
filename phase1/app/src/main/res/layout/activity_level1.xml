@@ -7,22 +7,22 @@
         android:background="@drawable/hills_layer_1">
 
     <ImageView
-            android:id="@+id/mountains"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/hills_layer_5" />
+        android:id="@+id/grass1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/hills_layer_5" />
 
     <ImageView
-            android:id="@+id/grass"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/hills_layer_5" />
+        android:id="@+id/grass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/hills_layer_5" />
 
 </RelativeLayout>

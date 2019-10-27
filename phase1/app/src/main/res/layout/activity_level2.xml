@@ -7,7 +7,7 @@
         android:background="@drawable/hills_layer_1">
 
     <ImageView
-            android:id="@+id/mountains"
+            android:id="@+id/grass1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="0dp"
