@@ -102,4 +102,14 @@
             tools:visibility="invisible"
             android:background="@android:color/transparent"/>
 
+    <ImageView
+            android:id="@+id/rock_obstacle"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="197dp"
+            android:layout_marginEnd="34dp"
+            app:srcCompat="@drawable/transparent_obstacles" />
+
 </RelativeLayout>
