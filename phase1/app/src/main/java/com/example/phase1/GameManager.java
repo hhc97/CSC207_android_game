@@ -180,6 +180,9 @@ abstract class GameManager extends AppCompatActivity {
     } else if (level == 2) {
       Intent intent = new Intent(this, Level2Activity.class);
       startActivity(intent);
+    } else if (level == 3) {
+      Intent intent = new Intent(this, Level3Activity.class);
+      startActivity(intent);
     }
   }
 
