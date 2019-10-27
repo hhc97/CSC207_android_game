@@ -85,5 +85,9 @@ public class Level1Activity extends GameManager {
             animator.start();
           }
         });
+    Button attack = findViewById(R.id.attack);
+
+
+    Button jump = findViewById(R.id.jump);
   }
 }

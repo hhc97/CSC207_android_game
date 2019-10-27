@@ -15,13 +15,13 @@ public class Monster extends Character {
   public void update() {
     if (player.isAttack()) { // if player isAttack
       if (isGetHit()) { // if player hit the monster
-        damaged(player.getStrenght());
+        damaged(player.getStrength());
       }
     }
     super.update();
     traceHero();
     if (isTouchHero()){
-      player.damaged(getStrenght());
+      player.damaged(getStrength());
     }
 
   }
