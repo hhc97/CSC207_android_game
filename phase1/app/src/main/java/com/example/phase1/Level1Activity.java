@@ -23,7 +23,11 @@ public class Level1Activity extends GameManager {
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-    setContentView(R.layout.n_activity_level1);
+    if (this.getDayOrNight() == 0) {
+      setContentView(R.layout.n_activity_level1);
+    } else {
+      setContentView(R.layout.activity_level1);
+    }
 
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
