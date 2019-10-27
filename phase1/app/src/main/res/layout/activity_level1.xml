@@ -87,4 +87,15 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/hills_layer_5" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/hero2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="132dp"
+        android:src="@drawable/walk" />
+
 </RelativeLayout>

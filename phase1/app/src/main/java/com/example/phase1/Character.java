@@ -30,6 +30,7 @@ public class Character extends GameObject {
     }
     public void die(){ this.states = false; }
     public int getStrength(){return this.strength;}
+    public void setStrength(int strength){this.strength = strength;}
     public void damaged (int damage){
         this.health = this.health - damage;
     }
