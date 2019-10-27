@@ -21,7 +21,7 @@ public class Level2Activity extends GameManager {
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-    setContentView(R.layout.activity_level2);
+    setContentView(R.layout.n_activity_level2);
 
     // Move the two copies of the front background image, continuously.
     final ImageView backgroundOne = findViewById(R.id.grass);
