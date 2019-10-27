@@ -25,7 +25,7 @@ public class Level2Activity extends GameManager {
 
     // Move the two copies of the front background image, continuously.
     final ImageView backgroundOne = findViewById(R.id.grass);
-    final ImageView backgroundTwo = findViewById(R.id.mountains);
+    final ImageView backgroundTwo = findViewById(R.id.grass1);
 
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
