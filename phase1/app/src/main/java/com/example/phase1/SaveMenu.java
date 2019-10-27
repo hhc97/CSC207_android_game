@@ -11,13 +11,17 @@ public class SaveMenu extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_save_menu);
-    Button save1 = (Button) findViewById(R.id.button3);
-    Button save2 = (Button) findViewById(R.id.button4);
-    Button save3 = (Button) findViewById(R.id.button5);
-    Button save4 = (Button) findViewById(R.id.button6);
-    Button save5 = (Button) findViewById(R.id.button7);
-    Button save6 = (Button) findViewById(R.id.button8);
+    Button save1 = findViewById(R.id.button3);
+    Button save2 = findViewById(R.id.button4);
+    Button save3 = findViewById(R.id.button5);
+    Button save4 = findViewById(R.id.button6);
+    Button save5 = findViewById(R.id.button7);
+    Button save6 = findViewById(R.id.button8);
     buttons = new Button[] {save1, save2, save3, save4, save5, save6};
+    updateButtons();
+  }
+
+  private void updateButtons() {
     boolean has_file = false;
     for (String s : fileList()) {
       if (s.equals(STATS_FILE)) {
@@ -29,8 +33,12 @@ public class SaveMenu extends GameManager {
     }
     String[] scores = readFromFile().split("\n");
     for (int i = 0; i < scores.length; i++) {
-      if (!scores[i].equals("0,0,0")) {
-        buttons[i].setText("Score: " + scores[i]);
+      currButton = buttons[i];
+      if (!scores[i].equals(defaultScore)) {
+        String name = getName();
+        String score = String.valueOf(getScore());
+        String display = name + ", Score: " + score;
+        buttons[i].setText(display);
       }
     }
   }
@@ -50,7 +58,8 @@ public class SaveMenu extends GameManager {
     if (requestCode == 1) {
       if (resultCode == RESULT_OK) {
         String userName = data.getStringExtra("com.example.phase1.SEND_NAME");
-        currButton.setText(userName);
+        setName(userName);
+        updateButtons();
       }
     }
   }

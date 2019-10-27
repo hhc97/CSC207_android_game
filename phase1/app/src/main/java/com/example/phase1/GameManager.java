@@ -14,6 +14,8 @@ import java.util.Scanner;
 abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
   private int score = 0;
+  //    score, health, coin, day/night, difficulty, character, current level, name
+  String defaultScore = "0,0,0,0,0,0,0,NAME";
   Button currButton;
   Button[] buttons;
 
@@ -47,7 +49,7 @@ abstract class GameManager extends AppCompatActivity {
     return builder.toString();
   }
 
-  int getStat(int index) {
+  private int getStat(int index) {
     int indexOfButton = 0;
     for (int i = 0; i < buttons.length; i++) {
       if (buttons[i] == currButton) {
@@ -59,7 +61,7 @@ abstract class GameManager extends AppCompatActivity {
     return Integer.parseInt(stats[index]);
   }
 
-  void setStat(int value, int index) {
+  private void setStat(int value, int index) {
     int indexOfButton = 0;
     for (int i = 0; i < buttons.length; i++) {
       if (buttons[i] == currButton) {
@@ -71,6 +73,40 @@ abstract class GameManager extends AppCompatActivity {
     stats[index] = String.valueOf(value);
     scores[indexOfButton] = String.join(",", stats);
     writeToFile(String.join("\n", scores));
+  }
+
+  private String getStringStat(int index) {
+    int indexOfButton = 0;
+    for (int i = 0; i < buttons.length; i++) {
+      if (buttons[i] == currButton) {
+        indexOfButton = i;
+      }
+    }
+    String[] scores = readFromFile().split("\n");
+    String[] stats = scores[indexOfButton].split(",");
+    return stats[index];
+  }
+
+  private void setStat(String value, int index) {
+    int indexOfButton = 0;
+    for (int i = 0; i < buttons.length; i++) {
+      if (buttons[i] == currButton) {
+        indexOfButton = i;
+      }
+    }
+    String[] scores = readFromFile().split("\n");
+    String[] stats = scores[indexOfButton].split(",");
+    stats[index] = value;
+    scores[indexOfButton] = String.join(",", stats);
+    writeToFile(String.join("\n", scores));
+  }
+
+  void setName(String name) {
+    setStat(name, 7);
+  }
+
+  String getName() {
+    return getStringStat(7);
   }
 
   int getScore() {
@@ -97,16 +133,12 @@ abstract class GameManager extends AppCompatActivity {
     setStat(c, 2);
   }
 
-  void test() {
-    System.out.println(readFromFile());
-  }
-
   void startFile() {
-    writeToFile("0,0,0");
-    writeToFile(readFromFile() + "0,0,0");
-    writeToFile(readFromFile() + "0,0,0");
-    writeToFile(readFromFile() + "1,253,30");
-    writeToFile(readFromFile() + "0,0,0");
-    writeToFile(readFromFile() + "9,50,26");
+    writeToFile(defaultScore);
+    writeToFile(readFromFile() + defaultScore);
+    writeToFile(readFromFile() + defaultScore);
+    writeToFile(readFromFile() + defaultScore);
+    writeToFile(readFromFile() + defaultScore);
+    writeToFile(readFromFile() + defaultScore);
   }
 }
