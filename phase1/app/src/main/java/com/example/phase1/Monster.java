@@ -11,7 +11,6 @@ public class Monster extends Character {
     this.player = Level1Manager.player;
   }
 
-  @Override
   public void update() {
     if (player.isAttack()) { // if player isAttack
       if (isGetHit()) { // if player hit the monster

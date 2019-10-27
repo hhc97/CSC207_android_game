@@ -6,6 +6,7 @@ public class Hero extends Character {
     private int[] attackRangeX = new int[2];//(x, y) coordinate of top left of attack range
     private int[] attackRangeY = new int[2];//(x, y) coordinate of bottom right of attack range
     private int attackRange = WIDTH;//temp
+    private int coins = 0;
 
     public Hero (int x, int y){
         super(x, y);
@@ -39,4 +40,7 @@ public class Hero extends Character {
         attackRangeY[0] = y;
         attackRangeY[1] = y+HEIGHT;
     }
+    public int getCoins(){return coins;}
+    public void addCoins(){this.coins++;}
+    public void heal(int value){}
 }
