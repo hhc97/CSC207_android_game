@@ -26,6 +26,7 @@ public class Character extends GameObject {
         this.x -= speed;
     }
 
+    @Override
     public void update(){  //if character's health is 0, then die
         if (this.health <= 0)
             die();

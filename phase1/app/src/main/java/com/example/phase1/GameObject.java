@@ -15,6 +15,9 @@ public class GameObject {
     this.y = y;
   }
 
+  public void update() {
+  }
+
   public int getX() { // getter for x coordinate
     return this.x;
   }
