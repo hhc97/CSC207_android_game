@@ -18,8 +18,9 @@ import java.util.Scanner;
  */
 abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
+
   //    score, health, coin, day/night, difficulty, character, current level, player name
-  String defaultScore = "0,0,0,0,0,0,1,NAME";
+  String defaultScore = "0,0,0,0,1,0,1,NAME";
   int currPlayer;
   Button[] buttons;
 
@@ -40,7 +41,6 @@ abstract class GameManager extends AppCompatActivity {
    */
   private void writeToFile(String string) {
     PrintWriter out = null;
-
     try {
       OutputStream outStream = openFileOutput(STATS_FILE, Context.MODE_PRIVATE);
       out = new PrintWriter(outStream);
@@ -66,12 +66,10 @@ abstract class GameManager extends AppCompatActivity {
     } catch (IOException e) {
       assert true;
     }
-
     return builder.toString();
   }
 
   private String getStringStat(int index) {
-
     String[] scores = readFromFile().split("\n");
     String[] stats = scores[currPlayer].split(",");
     return stats[index];
@@ -82,7 +80,6 @@ abstract class GameManager extends AppCompatActivity {
   }
 
   private void setStringStat(String value, int index) {
-
     String[] scores = readFromFile().split("\n");
     String[] stats = scores[currPlayer].split(",");
     stats[index] = value;
@@ -93,6 +90,7 @@ abstract class GameManager extends AppCompatActivity {
   private void setStat(int value, int index) {
     setStringStat(String.valueOf(value), index);
   }
+
   // getters and setters for all the stats
   void setName(String name) {
     setStringStat(name, playerName);

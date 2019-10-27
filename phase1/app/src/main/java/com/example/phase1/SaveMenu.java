@@ -96,6 +96,7 @@ public class SaveMenu extends GameManager {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Pick a color scheme");
+    builder.setCancelable(false);
     builder.setItems(
         dayNight,
         new DialogInterface.OnClickListener() {
@@ -113,6 +114,7 @@ public class SaveMenu extends GameManager {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Select a difficulty");
+    builder.setCancelable(false);
     builder.setItems(
         difficulty,
         new DialogInterface.OnClickListener() {
