@@ -6,14 +6,45 @@
         android:orientation="horizontal"
         android:background="@drawable/hills_layer_1">
 
-    <ImageView
-        android:id="@+id/grass1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/hills_layer_5" />
+    <Button
+        android:id="@+id/left"
+        android:layout_width="41dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="51dp"
+        android:layout_marginBottom="41dp"
+        android:background="@drawable/lbut" />
+
+    <Button
+        android:id="@+id/right"
+        android:layout_width="41dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginBottom="42dp"
+        android:background="@drawable/rbut" />
+
+    <Button
+        android:id="@+id/jump"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="618dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/jbut" />
+
+    <Button
+        android:id="@+id/attack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="663dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/hbut" />
 
     <ImageView
         android:id="@+id/grass"
@@ -24,5 +55,14 @@
         android:layout_marginTop="0dp"
         android:scaleType="fitXY"
         android:src="@drawable/hills_layer_5" />
+
+    <ImageView
+        android:id="@+id/grass1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/hills_layer_5" />
 
 </RelativeLayout>
