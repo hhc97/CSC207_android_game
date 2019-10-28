@@ -36,6 +36,13 @@ public class Level1Activity extends GameManager {
     final ImageView backgroundFour = findViewById(R.id.vegetation2);
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
+
+    if (getCharacter() == 0) {
+      hero.setImageResource(R.drawable.hero1);
+    } else if (getCharacter() == 1) {
+      hero.setImageResource(R.drawable.knight);
+    }
+
     final Level1Manager manager = new Level1Manager();
     animator.setRepeatCount(1);
     animator.setInterpolator(new LinearInterpolator());
@@ -77,7 +84,11 @@ public class Level1Activity extends GameManager {
               case MotionEvent.ACTION_DOWN:
                 hero.setX(manager.heroMoveLeft());
                 hero.setScaleX(-1f);
-                hero.setImageResource(R.drawable.walk);
+                if (getCharacter() == 0) {
+                  hero.setImageResource(R.drawable.walk1);
+                } else if (getCharacter() == 1) {
+                  hero.setImageResource(R.drawable.walk);
+                }
                 break;
               case MotionEvent.ACTION_UP:
                 break;
@@ -125,7 +136,11 @@ public class Level1Activity extends GameManager {
               case MotionEvent.ACTION_DOWN:
                 hero.setScaleX(1f);
                 hero.setX(manager.heroMoveRight());
-                hero.setImageResource(R.drawable.walk);
+                if (getCharacter() == 0) {
+                  hero.setImageResource(R.drawable.walk1);
+                } else if (getCharacter() == 1) {
+                  hero.setImageResource(R.drawable.walk);
+                }
               case MotionEvent.ACTION_UP:
                 break;
             }
@@ -133,12 +148,17 @@ public class Level1Activity extends GameManager {
             return true;
           }
         });
+
     Button attack = findViewById(R.id.attack);
     attack.setOnClickListener(
         new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-            hero.setImageResource(R.drawable.attack);
+            if (getCharacter() == 0) {
+              hero.setImageResource(R.drawable.attack1);
+            } else if (getCharacter() == 1) {
+              hero.setImageResource(R.drawable.attack);
+            }
           }
         });
 
