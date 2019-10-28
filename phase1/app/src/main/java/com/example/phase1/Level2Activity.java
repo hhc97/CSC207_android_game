@@ -32,7 +32,12 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundTwo = findViewById(R.id.grass1);
     final ImageView backgroundThree = findViewById(R.id.vegetation);
     final ImageView backgroundFour = findViewById(R.id.vegetation2);
-    final ImageView obstacle = findViewById(R.id.rock_obstacle);
+    final ImageView backgroundFive = findViewById(R.id.tree);
+    final ImageView backgroundSix = findViewById(R.id.rock1);
+    final ImageView backgroundSeven = findViewById(R.id.tree2);
+    final ImageView backgroundEight = findViewById(R.id.tree1_c);
+    final ImageView backgroundNine = findViewById(R.id.rock1_c);
+    final ImageView backgroundTen = findViewById(R.id.tree2_c);
 
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
@@ -51,7 +56,12 @@ public class Level2Activity extends GameManager {
             backgroundTwo.setTranslationX(-translationX1 + width1);
             backgroundThree.setTranslationX(-translationX2);
             backgroundFour.setTranslationX(-translationX2 + width2);
-            obstacle.setTranslationX(-translationX1);
+            backgroundFive.setTranslationX(-translationX1);
+            backgroundSix.setTranslationX(-translationX1 + width1);
+            backgroundSeven.setTranslationX(-translationX2);
+            backgroundEight.setTranslationX(-translationX2 + width2);
+            backgroundNine.setTranslationX(-translationX1);
+            backgroundTen.setTranslationX(-translationX1 + width1);
           }
         });
     animator.start();
