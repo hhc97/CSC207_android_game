@@ -72,13 +72,9 @@ public class Level2Activity extends GameManager {
     final ImageView heroCharacter = findViewById(R.id.hero);
 
     final ObjectAnimator animationUp =
-        ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -200f);
-    animationUp.setDuration(2000L);
+        ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -180f, -200f, -180f, -100f, 0f);
+    animationUp.setStartDelay(50);
+    animationUp.setDuration(800L);
     animationUp.start();
-
-    final ObjectAnimator animationDown =
-        ObjectAnimator.ofFloat(heroCharacter, "translationY", -200f, 0f);
-    animationDown.setDuration(2000L);
-    animationDown.start();
   }
 }
