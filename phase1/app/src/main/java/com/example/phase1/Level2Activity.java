@@ -42,7 +42,7 @@ public class Level2Activity extends GameManager {
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
     animator.setInterpolator(new LinearInterpolator());
-    animator.setDuration(10000L);
+    animator.setDuration(5000L);
     animator.addUpdateListener(
         new ValueAnimator.AnimatorUpdateListener() {
           @Override
@@ -73,7 +73,6 @@ public class Level2Activity extends GameManager {
 
     final ObjectAnimator animationUp =
         ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -180f, -200f, -180f, -100f, 0f);
-    animationUp.setStartDelay(50);
     animationUp.setDuration(800L);
     animationUp.start();
   }
