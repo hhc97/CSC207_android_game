@@ -62,6 +62,70 @@
         android:background="@drawable/hbut" />
 
     <ImageView
+        android:id="@+id/tree1_c"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="431dp"
+        android:layout_marginTop="183dp"
+        app:srcCompat="@drawable/tree_2" />
+
+    <ImageView
+        android:id="@+id/tree"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="431dp"
+        android:layout_marginTop="183dp"
+        app:srcCompat="@drawable/tree_2" />
+
+    <ImageView
+        android:id="@+id/rock1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="209dp"
+        app:srcCompat="@drawable/rock2" />
+
+    <ImageView
+        android:id="@+id/rock1_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="209dp"
+        app:srcCompat="@drawable/rock2" />
+
+    <ImageView
+        android:id="@+id/tree2"
+        android:layout_width="93dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="608dp"
+        android:layout_marginTop="178dp"
+        app:srcCompat="@drawable/tree" />
+
+    <ImageView
+        android:id="@+id/tree2_c"
+        android:layout_width="93dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="608dp"
+        android:layout_marginTop="178dp"
+        app:srcCompat="@drawable/tree" />
+
+    <ImageView
         android:id="@+id/grass1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,24 +156,19 @@
         android:src="@drawable/run1" />
 
     <Button
-            android:id="@+id/jump_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:onClick="tapScreen"
-            android:scaleType="fitXY"
-            tools:visibility="invisible"
-            android:background="@android:color/transparent"/>
-
-    <ImageView
-            android:id="@+id/rock_obstacle"
-            android:layout_width="match_parent"
-            android:layout_height="67dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="197dp"
-            android:layout_marginEnd="34dp"
-            app:srcCompat="@drawable/transparent_obstacles" />
+        android:id="@+id/jump_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-6dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="-6dp"
+        android:background="@android:color/transparent"
+        android:onClick="tapScreen"
+        android:scaleType="fitXY"
+        tools:visibility="invisible" />
 
 </RelativeLayout>
