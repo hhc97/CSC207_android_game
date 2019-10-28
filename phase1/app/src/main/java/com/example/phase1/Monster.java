@@ -3,12 +3,13 @@ package com.example.phase1;
 import androidx.constraintlayout.solver.widgets.WidgetContainer;
 
 public class Monster extends Character {
-  private int damage = 5; // temp, how many damage can monster dill to the Hero.
+  private int damage = 5; // temp, how many damage can monster deal to the Hero.
   private Hero player;
 
   public Monster(int x, int y) {
     super(x, y);
     this.player = Level1Manager.player;
+    this.setSpeed(30);
   }
 
   public void update() {

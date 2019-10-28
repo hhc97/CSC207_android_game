@@ -13,9 +13,10 @@ public class Level1Manager {
 
   public Level1Manager() {
     player = new Hero(playerStartX, playerStartY);
-    Objects.add(new Monster(20, groundHeight));
-    Objects.add(new Monster(35, groundHeight));
-    Objects.add(new Coin(15, groundHeight));
+    Objects.add(new Monster(800, groundHeight));
+    Objects.add(new Coin(1000, groundHeight));
+    Objects.add(new Coin(1500, groundHeight));
+    Objects.add(new Coin(2000, groundHeight));
   }
 
   public void update() {

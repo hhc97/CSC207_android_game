@@ -11,6 +11,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class Level1Activity extends GameManager {
 
   @Override
@@ -36,6 +38,10 @@ public class Level1Activity extends GameManager {
     final ImageView backgroundFour = findViewById(R.id.vegetation2);
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
+    final GifImageView coin0 = findViewById(R.id.c1);
+    final GifImageView coin1 = findViewById(R.id.c2);
+    final GifImageView coin2 = findViewById(R.id.c3);
+    final GifImageView enemy = findViewById(R.id.enemy);
 
     if (getCharacter() == 0) {
       hero.setImageResource(R.drawable.hero1);
@@ -47,6 +53,11 @@ public class Level1Activity extends GameManager {
     animator.setRepeatCount(1);
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(17000L);
+
+    enemy.setX(manager.Objects.get(0).getX());
+    coin0.setX(manager.Objects.get(1).getX());
+    coin1.setX(manager.Objects.get(2).getX());
+    coin2.setX(manager.Objects.get(3).getX());
 
     // Move Graphic Components Right if Left Button is Pressed
     Button left = findViewById(R.id.left);
@@ -91,6 +102,19 @@ public class Level1Activity extends GameManager {
                 }
                 break;
               case MotionEvent.ACTION_UP:
+                manager.update();
+                enemy.setX(manager.Objects.get(0).getX());
+                coin0.setX(manager.Objects.get(1).getX());
+                coin1.setX(manager.Objects.get(2).getX());
+                coin2.setX(manager.Objects.get(3).getX());
+                if (!manager.Objects.get(0).getStates()){
+                  enemy.setVisibility(View.INVISIBLE);}
+                if (!manager.Objects.get(1).getStates()){
+                  coin0.setVisibility(View.INVISIBLE);}
+                if (!manager.Objects.get(2).getStates()){
+                  coin1.setVisibility(View.INVISIBLE);}
+                if (!manager.Objects.get(3).getStates()){
+                  coin2.setVisibility(View.INVISIBLE);}
                 break;
             }
             // ... Respond to touch events
@@ -142,6 +166,21 @@ public class Level1Activity extends GameManager {
                   hero.setImageResource(R.drawable.walk);
                 }
               case MotionEvent.ACTION_UP:
+                manager.update();
+                enemy.setX(manager.Objects.get(0).getX());
+                coin0.setX(manager.Objects.get(1).getX());
+                coin1.setX(manager.Objects.get(2).getX());
+                coin2.setX(manager.Objects.get(3).getX());
+                if (!manager.Objects.get(0).getStates()){
+                  enemy.setVisibility(View.INVISIBLE);
+                }
+                if (!manager.Objects.get(1).getStates()){
+                  coin0.setVisibility(View.INVISIBLE);}
+                if (!manager.Objects.get(2).getStates()){
+                  coin1.setVisibility(View.INVISIBLE);}
+                if (!manager.Objects.get(3).getStates()){
+                  coin2.setVisibility(View.INVISIBLE);}
+
                 break;
             }
             // ... Respond to touch events
@@ -154,11 +193,20 @@ public class Level1Activity extends GameManager {
         new View.OnClickListener() {
           @Override
           public void onClick(View view) {
+            manager.player.attack();
             if (getCharacter() == 0) {
               hero.setImageResource(R.drawable.attack1);
             } else if (getCharacter() == 1) {
               hero.setImageResource(R.drawable.attack);
             }
+            manager.update();
+            enemy.setX(manager.Objects.get(0).getX());
+            coin0.setX(manager.Objects.get(1).getX());
+            coin1.setX(manager.Objects.get(2).getX());
+            coin2.setX(manager.Objects.get(3).getX());
+            if (!manager.Objects.get(0).getStates()){
+              enemy.setVisibility(View.INVISIBLE);            }
+            manager.player.notAttack();
           }
         });
 

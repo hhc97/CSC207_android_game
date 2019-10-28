@@ -33,4 +33,5 @@ public class Character extends GameObject {
         this.health = this.health - damage;
     }
     public void heal(int value){this.health = this.health+value;}
+    public void setSpeed(int speed){this.speed = speed;}
 }

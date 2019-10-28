@@ -6,8 +6,8 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class GameObject {
 
-  protected final int WIDTH = 0; // temp value
-  protected final int HEIGHT = 0; // temp value
+  protected final int WIDTH = 20; // temp value
+  protected final int HEIGHT = 20; // temp value
   protected int x; // the x coordinate value
   protected int y; // the y coordinate value
   protected boolean states;
