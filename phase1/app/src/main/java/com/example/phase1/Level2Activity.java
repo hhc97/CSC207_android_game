@@ -27,6 +27,15 @@ public class Level2Activity extends GameManager {
 
     setContentView(R.layout.n_activity_level2);
 
+    //Change how hero component based on users choice
+    final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
+    if (getCharacter() == 0) {
+      hero.setImageResource(R.drawable.run2);
+    } else if (getCharacter() == 1) {
+      hero.setImageResource(R.drawable.run1);
+    }
+
+
     // Move the two copies of the front background image, continuously.
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
