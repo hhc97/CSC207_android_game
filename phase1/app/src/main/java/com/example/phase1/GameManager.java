@@ -37,7 +37,7 @@ abstract class GameManager extends AppCompatActivity {
   /**
    * Write to the file the string that's passed to it.
    *
-   * @param string the string that is to be written.
+   * @param string The string that is to be written.
    */
   private void writeToFile(String string) {
     PrintWriter out = null;
@@ -52,9 +52,9 @@ abstract class GameManager extends AppCompatActivity {
   }
 
   /**
-   * Reads from the save data file and returns what's stored.
+   * Reads from the saved data file and returns what's stored.
    *
-   * @return the string that is stored.
+   * @return The string that is stored.
    */
   String readFromFile() {
     StringBuilder builder = new StringBuilder();
@@ -69,16 +69,29 @@ abstract class GameManager extends AppCompatActivity {
     return builder.toString();
   }
 
+  /**
+   * Returns the requested stat of the current player in String form.
+   *
+   * @param index The index of the requested stat.
+   * @return A String that represents the stat.
+   */
   private String getStringStat(int index) {
     String[] scores = readFromFile().split("\n");
     String[] stats = scores[currPlayer].split(",");
     return stats[index];
   }
 
+  //  does the same as above except returns an int instead
   private int getStat(int index) {
     return Integer.parseInt(getStringStat(index));
   }
 
+  /**
+   * Takes in a string (which represents a stat), and writes it into the save file.
+   *
+   * @param value The value of the stat to be written.
+   * @param index The index which the stat is stored.
+   */
   private void setStringStat(String value, int index) {
     String[] scores = readFromFile().split("\n");
     String[] stats = scores[currPlayer].split(",");
@@ -87,6 +100,7 @@ abstract class GameManager extends AppCompatActivity {
     writeToFile(String.join("\n", scores));
   }
 
+  //  same as above except takes in an int
   private void setStat(int value, int index) {
     setStringStat(String.valueOf(value), index);
   }
