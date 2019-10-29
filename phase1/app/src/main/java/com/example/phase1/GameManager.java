@@ -2,7 +2,6 @@ package com.example.phase1;
 
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +21,6 @@ abstract class GameManager extends AppCompatActivity {
   //    score, health, coin, day/night, difficulty, character, current level, player name
   String defaultScore = "0,0,0,0,0,0,1,NAME";
   int currPlayer;
-  Button[] buttons;
 
   //  indexes of the player statistics
   private int score = 0;

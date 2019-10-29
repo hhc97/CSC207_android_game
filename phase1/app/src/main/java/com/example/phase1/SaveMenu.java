@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
  */
 public class SaveMenu extends GameManager {
   private String emptySlot = "Empty save slot";
+  private Button[] buttons;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
