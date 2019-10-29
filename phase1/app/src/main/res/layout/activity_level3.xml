@@ -7,43 +7,59 @@
     android:background="@drawable/lvl3d"
     tools:context=".Level3Activity">
 
-    <Button
-        android:id="@+id/b20"
-        android:layout_width="168dp"
-        android:layout_height="93dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="153dp"
-        android:layout_marginTop="82dp"
-        android:text="1" />
+    <ImageView
+        android:id="@+id/hero"
+        android:layout_width="146dp"
+        android:layout_height="144dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="103dp"
+        app:srcCompat="@drawable/hero1" />
 
     <Button
-        android:id="@+id/b21"
-        android:layout_width="168dp"
-        android:layout_height="93dp"
+        android:id="@+id/b28"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="409dp"
-        android:layout_marginTop="83dp"
-        android:text="2" />
+        android:layout_marginStart="209dp"
+        android:layout_marginTop="217dp"
+        android:background="@drawable/b3"
+        android:enabled="false" />
 
     <Button
-        android:id="@+id/b22"
-        android:layout_width="168dp"
-        android:layout_height="93dp"
+        android:id="@+id/b29"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="411dp"
-        android:layout_marginTop="220dp"
-        android:text="4" />
+        android:layout_marginStart="211dp"
+        android:layout_marginTop="78dp"
+        android:background="@drawable/b1"
+        android:enabled="false" />
 
     <Button
-        android:id="@+id/b23"
-        android:layout_width="168dp"
-        android:layout_height="93dp"
+        android:id="@+id/b30"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="221dp"
-        android:text="3" />
+        android:layout_marginStart="425dp"
+        android:layout_marginTop="216dp"
+        android:background="@drawable/b4"
+        android:enabled="false" />
+
+    <Button
+        android:id="@+id/b31"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="423dp"
+        android:layout_marginTop="79dp"
+        android:background="@drawable/b2"
+        android:enabled="false" />
+
 </RelativeLayout>
