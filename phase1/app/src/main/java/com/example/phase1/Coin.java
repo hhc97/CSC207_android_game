@@ -3,7 +3,7 @@ package com.example.phase1;
 public class Coin extends GameObject {
     private Hero player;
 
-    public Coin(int x, int y){
+    public Coin(float x, float y){
         super(x, y);
         this.player = Level1Manager.player;
     }
@@ -16,8 +16,8 @@ public class Coin extends GameObject {
     }
 
     private boolean isTouchHero() {
-        int[] xRange= {player.getX(), player.getX()+player.WIDTH};
-        int[] yRange= {player.getY(), player.getY()+player.HEIGHT};
+        float[] xRange= {player.getX(), player.getX()+player.WIDTH};
+        float[] yRange= {player.getY(), player.getY()+player.HEIGHT};
         if ((x <= xRange[0] && xRange[0] <= (x + WIDTH))// Case 1, the Monster is bigger than attack range
                 || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {
             if ((y <= yRange[0] && yRange[0] <= (y + HEIGHT))

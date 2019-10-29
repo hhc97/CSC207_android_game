@@ -6,7 +6,7 @@ public class Monster extends Character {
   private int damage = 5; // temp, how many damage can monster deal to the Hero.
   private Hero player;
 
-  public Monster(int x, int y) {
+  public Monster(float x, float y) {
     super(x, y);
     this.player = Level1Manager.player;
     this.setSpeed(30);
@@ -26,8 +26,8 @@ public class Monster extends Character {
   }
 
   private boolean isGetHit() { // Check is the monster is get hit by Hero or not
-    int[] xRange = player.getAttackRangeX(); // get the x coordinate range of AttackRange
-    int[] yRange = player.getAttackRangeY(); // get y coordinate range of AttackRange
+    float[] xRange = player.getAttackRangeX(); // get the x coordinate range of AttackRange
+    float[] yRange = player.getAttackRangeY(); // get y coordinate range of AttackRange
     if ((x <= xRange[0]
             && xRange[0] <= (x + WIDTH)) // Case 1, the Monster is bigger than attack range
         || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {
@@ -48,7 +48,7 @@ public class Monster extends Character {
   }
 
   private void traceHero() {
-    int playerX = player.getX();
+    float playerX = player.getX();
     if (playerX < this.x) {
       moveLeft();
     }
@@ -58,8 +58,8 @@ public class Monster extends Character {
   }
 
   private boolean isTouchHero() {
-    int[] xRange = {player.getX(), player.getX() + player.WIDTH};
-    int[] yRange = {player.getY(), player.getY() + player.HEIGHT};
+    float[] xRange = {player.getX(), player.getX() + player.WIDTH};
+    float[] yRange = {player.getY(), player.getY() + player.HEIGHT};
     if ((x <= xRange[0]
             && xRange[0] <= (x + WIDTH)) // Case 1, the Monster is bigger than attack range
         || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {

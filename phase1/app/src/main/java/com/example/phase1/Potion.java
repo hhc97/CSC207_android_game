@@ -4,7 +4,7 @@ public class Potion extends GameObject {
   private int value; // How much health does Hero heal when drinking this potion
   private Hero player;
 
-  public Potion(int x, int y) {
+  public Potion(float x, float y) {
     super(x, y);
     this.value = 5; // temp
   }
@@ -18,8 +18,8 @@ public class Potion extends GameObject {
   }
 
   private boolean isTouchHero() {
-    int[] xRange = {player.getX(), player.getX() + player.WIDTH};
-    int[] yRange = {player.getY(), player.getY() + player.HEIGHT};
+    float[] xRange = {player.getX(), player.getX() + player.WIDTH};
+    float[] yRange = {player.getY(), player.getY() + player.HEIGHT};
     if ((x <= xRange[0]
             && xRange[0] <= (x + WIDTH)) // Case 1, the Monster is bigger than attack range
         || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {

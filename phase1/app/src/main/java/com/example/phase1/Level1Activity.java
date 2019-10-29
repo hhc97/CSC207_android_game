@@ -59,6 +59,17 @@ public class Level1Activity extends GameManager {
     coin1.setX(manager.Objects.get(2).getX());
     coin2.setX(manager.Objects.get(3).getX());
 
+//    int[] location = new int[2];
+//    enemy.getLocationOnScreen(location);
+//    manager.Objects.get(0).setX(location[0]);
+//    coin0.getLocationOnScreen(location);
+//    manager.Objects.get(1).setX(location[0]);
+//    coin1.getLocationOnScreen(location);
+//    manager.Objects.get(2).setX(location[0]);
+//    coin2.getLocationOnScreen(location);
+//    manager.Objects.get(3).setX(location[0]);
+//    System.out.println(location);
+
     // Move Graphic Components Right if Left Button is Pressed
     Button left = findViewById(R.id.left);
     //        left.setOnClickListener(

@@ -7,7 +7,7 @@ public class Character extends GameObject {
     private int health;
 
 
-    public Character(int x, int y) {  //NEED GameManager.getHealth()
+    public Character(float x, float y) {  //NEED GameManager.getHealth()
         super(x, y);
         this.speed = 80; //temp value of speed
         this.strength = 1;// temp

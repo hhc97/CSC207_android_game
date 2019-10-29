@@ -6,25 +6,33 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class GameObject {
 
-  protected final int WIDTH = 20; // temp value
-  protected final int HEIGHT = 20; // temp value
-  protected int x; // the x coordinate value
-  protected int y; // the y coordinate value
+  protected final int WIDTH = 100; // temp value
+  protected final int HEIGHT = 100; // temp value
+  protected float x; // the x coordinate value
+  protected float y; // the y coordinate value
   protected boolean states;
   private pl.droidsonroids.gif.GifImageView image;
 
-  public GameObject(int x, int y) {
+  public GameObject(float x, float y) {
     this.x = x;
     this.y = y;
     this.states = true;
   }
 
-  public int getX() { // getter for x coordinate
+  public float getX() { // getter for x coordinate
     return this.x;
   }
 
-  public int getY() { // getter for y coordinate
+  public void setX(float x){
+    this.x = x;
+  }
+
+  public float getY() { // getter for y coordinate
     return this.y;
+  }
+
+  public void setY(float y){
+    this.y = y;
   }
 
   public int getHEIGHT() { // getter for the calculated Height value

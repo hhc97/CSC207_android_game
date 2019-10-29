@@ -3,12 +3,12 @@ package com.example.phase1;
 public class Hero extends Character {
 
     private boolean isAttack;
-    private int[] attackRangeX = new int[2];//(x, y) coordinate of top left of attack range
-    private int[] attackRangeY = new int[2];//(x, y) coordinate of bottom right of attack range
+    private float[] attackRangeX = new float[2];//(x, y) coordinate of top left of attack range
+    private float[] attackRangeY = new float[2];//(x, y) coordinate of bottom right of attack range
     private int attackRange = WIDTH;//temp
     private int coins = 0;
 
-    public Hero (int x, int y){
+    public Hero (float x, float y){
         super(x, y);
         this.isAttack = false;
     }
@@ -18,10 +18,10 @@ public class Hero extends Character {
     }
     public void notAttack() { this.isAttack = false;}
 
-    public int[] getAttackRangeX(){
+    public float[] getAttackRangeX(){
         return attackRangeX;
     }
-    public int[] getAttackRangeY(){
+    public float[] getAttackRangeY(){
         return attackRangeY;
     }
     @Override

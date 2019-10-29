@@ -7,9 +7,9 @@ import java.util.ArrayList;
 public class Level1Manager {
   List<GameObject> Objects = new ArrayList();
   static Hero player;
-  private int playerStartX = 50; // temp, the x coordinate of character
-  private int groundHeight = 20; // temp, the height of the ground
-  private int playerStartY = groundHeight;
+  private float playerStartX = 50; // temp, the x coordinate of character
+  private float groundHeight = 20; // temp, the height of the ground
+  private float playerStartY = groundHeight;
 
   public Level1Manager() {
     player = new Hero(playerStartX, playerStartY);
@@ -42,12 +42,12 @@ public class Level1Manager {
     }
   }
 
-  public int heroMoveLeft() {
+  public float heroMoveLeft() {
     player.moveLeft();
     return player.getX();
   }
 
-  public int heroMoveRight() {
+  public float heroMoveRight() {
     player.moveRight();
     return player.getX();
   }
