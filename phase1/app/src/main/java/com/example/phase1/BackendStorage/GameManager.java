@@ -24,7 +24,7 @@ public abstract class GameManager extends AppCompatActivity {
 
   //    score, health, coin, day/night, difficulty, character, current level, player name
   String defaultScore = "0,0,0,0,0,0,1,NAME";
-  public int currPlayer;
+  int currPlayer = -1;
 
   //  indexes of the player statistics
   private int score = 0;
@@ -115,6 +115,12 @@ public abstract class GameManager extends AppCompatActivity {
   }
 
   // getters and setters for all the stats
+  public void setCurrPlayer(int i) {
+    if (currPlayer == -1) {
+      currPlayer = i;
+    }
+  }
+
   void setName(String name) {
     setStringStat(name, playerName);
   }
