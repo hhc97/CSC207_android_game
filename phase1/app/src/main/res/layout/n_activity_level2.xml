@@ -156,19 +156,30 @@
         android:src="@drawable/run1" />
 
     <Button
-        android:id="@+id/jump_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-6dp"
-        android:layout_marginTop="-1dp"
-        android:layout_marginEnd="-6dp"
-        android:background="@android:color/transparent"
-        android:onClick="tapScreen"
-        android:scaleType="fitXY"
-        tools:visibility="invisible" />
+            android:id="@+id/jump_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="-2dp"
+            android:layout_marginEnd="-25dp"
+            android:background="@android:color/transparent"
+            android:onClick="tapScreen"
+            android:scaleType="fitXY"
+            tools:visibility="invisible" />
+
+    <EditText
+            android:id="@+id/score"
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Score:"
+            android:textColor="#3C3F41" />
 
 </RelativeLayout>
