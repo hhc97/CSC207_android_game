@@ -88,7 +88,7 @@ public class Level1Activity extends GameManager {
                   if (getCharacter() == 0) {
                     hero.setImageResource(R.drawable.hurt1);
                   } else if (getCharacter() == 1) {
-                    hero.setImageResource(R.drawable.hurt);
+                    hero.setImageResource(R.drawable.hurt2);
                   }
 
                 } else {
@@ -174,7 +174,7 @@ public class Level1Activity extends GameManager {
                   if (getCharacter() == 0) {
                     hero.setImageResource(R.drawable.hurt1);
                   } else if (getCharacter() == 1) {
-                    hero.setImageResource(R.drawable.hurt);
+                    hero.setImageResource(R.drawable.hurt2);
                   }
 
                 } else {
