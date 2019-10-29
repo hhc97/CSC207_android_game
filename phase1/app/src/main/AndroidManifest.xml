@@ -25,10 +25,10 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".BackendStorage.SaveMenu"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".BackendStorage.MainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name=".BackendStorage.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
