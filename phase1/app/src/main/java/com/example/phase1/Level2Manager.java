@@ -7,34 +7,41 @@ public class Level2Manager {
   private float dpHeight;
   private float dpWidth;
   private int groundHeight = 0;
-  List<GameObject> Obstacles = new ArrayList<>();
+  List<Obstacle> Obstacles = new ArrayList<>();
   private static Hero player;
-  private int playerStartX = 140;
+  private int playerStartX = 138;
   private int playerScore = 0;
 
   public Level2Manager() {
     player = new Hero(playerStartX, groundHeight);
     player.setStates(true);
 
-    Obstacle rock1 = new Obstacle(182, groundHeight);
-    Obstacle rock2 = new Obstacle(430, groundHeight);
-    Obstacle rock3 = new Obstacle(640, groundHeight);
+    Obstacle rock1 = new Obstacle(185, groundHeight);
+    Obstacle rock2 = new Obstacle(433, groundHeight);
+    Obstacle rock3 = new Obstacle(638, groundHeight);
 
     Obstacles.add(rock1);
     Obstacles.add(rock2);
     Obstacles.add(rock3);
   }
 
+//  public void setObstacleSpeed(int speed) {
+//    for (Obstacle obstacle: Obstacles) {
+//      obstacle.setSpeed(speed);
+//    }
+//  }
+
   public void update() {
-    for (GameObject obstacle : Obstacles) {
+    for (Obstacle obstacle : Obstacles) {
       obstacle.update();
-      if (obstacle.getX() <= this.playerStartX) {
+      if (obstacle.getX() <= this.playerStartX && !(obstacle.getPassed())) {
+        obstacle.setPassed(true);
         this.playerScore += 100;
       }
     }
   }
 
   public int getScore() {
-    return playerScore;
+    return this.playerScore;
   }
 }

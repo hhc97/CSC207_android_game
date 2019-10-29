@@ -73,15 +73,17 @@
         app:srcCompat="@drawable/tree_2" />
 
     <ImageView
-        android:id="@+id/tree"
-        android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="431dp"
-        android:layout_marginTop="183dp"
-        app:srcCompat="@drawable/tree_2" />
+            android:id="@+id/tree"
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_alignEnd="@+id/tree1_c"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="431dp"
+            android:layout_marginTop="183dp"
+            android:layout_marginEnd="0dp"
+            app:srcCompat="@drawable/tree_2" />
 
     <ImageView
         android:id="@+id/rock1"
@@ -97,35 +99,35 @@
             android:id="@+id/rock1_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/rock1"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginStart="182dp"
             android:layout_marginTop="209dp"
-            android:layout_marginEnd="523dp"
+            android:layout_marginEnd="0dp"
             app:srcCompat="@drawable/rock2" />
 
     <ImageView
-        android:id="@+id/tree2"
-        android:layout_width="93dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="608dp"
-        android:layout_marginTop="178dp"
-        app:srcCompat="@drawable/tree" />
+            android:id="@+id/tree2"
+            android:layout_width="93dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="608dp"
+            android:layout_marginTop="178dp"
+            app:srcCompat="@drawable/tree" />
 
     <ImageView
-        android:id="@+id/tree2_c"
-        android:layout_width="93dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="608dp"
-        android:layout_marginTop="178dp"
-        app:srcCompat="@drawable/tree" />
+            android:id="@+id/tree2_c"
+            android:layout_width="93dp"
+            android:layout_height="75dp"
+            android:layout_alignEnd="@+id/tree2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="608dp"
+            android:layout_marginTop="178dp"
+            android:layout_marginEnd="0dp"
+            app:srcCompat="@drawable/tree" />
 
     <ImageView
         android:id="@+id/grass1"
@@ -175,7 +177,7 @@
 
     <EditText
             android:id="@+id/score"
-            android:layout_width="84dp"
+            android:layout_width="116dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"

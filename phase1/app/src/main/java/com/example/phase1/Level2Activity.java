@@ -3,8 +3,10 @@ package com.example.phase1;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,12 +25,20 @@ public class Level2Activity extends GameManager {
   private Timer timer = new Timer();
   private TextView scoreLabel;
 
+  // Sizes. Note that in landscape, width > height.
+  private int screenWidth;
+  private int screenHeight;
+
+  // Speed
+  private int rockSpeed;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
     setCurrPlayer(intent.getIntExtra("com.example.phase1.SEND_PLAYER", 0));
+
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
@@ -39,30 +49,7 @@ public class Level2Activity extends GameManager {
 
     setContentView(R.layout.n_activity_level2);
 
-    //Change the hero's appearance based on the user's choice.
-    final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
-    if (getCharacter() == 0) {
-      hero.setImageResource(R.drawable.run2);
-    } else if (getCharacter() == 1) {
-      hero.setImageResource(R.drawable.run1);
-    }
-
-    // Update coordinates of the moving obstacles, as well as the score.
-    scoreLabel = (TextView) findViewById(R.id.score);
-    timer.schedule(new TimerTask() {
-      @Override
-      public void run() {
-        handler.post(new Runnable() {
-          @Override
-          public void run() {
-            level2Manager.update();
-            scoreLabel.setText("Score: " + level2Manager.getScore());
-          }
-        });
-      }
-    }, 0, 1000);
-
-    // Move the two copies of the front background image, continuously.
+    // Images in the layout for Level 2.
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
     final ImageView backgroundThree = findViewById(R.id.vegetation);
@@ -73,6 +60,29 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundEight = findViewById(R.id.tree1_c);
     final ImageView backgroundNine = findViewById(R.id.rock1_c);
     final ImageView backgroundTen = findViewById(R.id.tree2_c);
+
+    // Get screen size.
+    WindowManager wm = getWindowManager();
+    Display disp = wm.getDefaultDisplay();
+    Point size = new Point();
+    disp.getSize(size);
+
+    screenWidth = size.x;
+    screenHeight = size.y;
+
+    // Pixel 3 Width: 2160, Height: 1080.
+    // Speed of rock = 36
+    // rockSpeed = Math.round(screenWidth / 60);
+
+    //Change the hero's appearance based on the user's choice.
+    final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
+    if (getCharacter() == 0) {
+      hero.setImageResource(R.drawable.run2);
+    } else if (getCharacter() == 1) {
+      hero.setImageResource(R.drawable.run1);
+    }
+
+    // Move the two copies of the front background image, continuously.
 
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
@@ -100,6 +110,21 @@ public class Level2Activity extends GameManager {
           }
         });
     animator.start();
+
+    // Update coordinates of the moving obstacles, as well as the score.
+    scoreLabel = (TextView) findViewById(R.id.score);
+    timer.schedule(new TimerTask() {
+      @Override
+      public void run() {
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            level2Manager.update();
+            scoreLabel.setText("Score: " + level2Manager.getScore());
+          }
+        });
+      }
+    }, 0, 20);
   }
 
   // Visually show that the hero is jumping.
@@ -112,3 +137,4 @@ public class Level2Activity extends GameManager {
     animationUp.start();
   }
 }
+
