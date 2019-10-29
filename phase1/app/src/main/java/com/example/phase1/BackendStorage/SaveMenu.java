@@ -172,7 +172,6 @@ public class SaveMenu extends GameManager {
     } else {
       builder.setTitle("Would you like to resume your game?");
     }
-    builder.setCancelable(false);
     builder.setItems(
         choices,
         new DialogInterface.OnClickListener() {
@@ -194,7 +193,6 @@ public class SaveMenu extends GameManager {
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Would you like to delete this save slot?");
-    builder.setCancelable(false);
     builder.setItems(
         choices,
         new DialogInterface.OnClickListener() {
