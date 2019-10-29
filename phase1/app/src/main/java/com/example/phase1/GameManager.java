@@ -20,7 +20,7 @@ abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
 
   //    score, health, coin, day/night, difficulty, character, current level, player name
-  String defaultScore = "0,0,0,0,1,0,1,NAME";
+  String defaultScore = "0,0,0,0,0,0,1,NAME";
   int currPlayer;
   Button[] buttons;
 
@@ -103,6 +103,13 @@ abstract class GameManager extends AppCompatActivity {
   //  same as above except takes in an int
   private void setStat(int value, int index) {
     setStringStat(String.valueOf(value), index);
+  }
+
+  /** Deletes the save slot associated with the current player. */
+  void deleteSlot() {
+    String[] scores = readFromFile().split("\n");
+    scores[currPlayer] = defaultScore;
+    writeToFile(String.join("\n", scores));
   }
 
   // getters and setters for all the stats

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
  * also resume previous saves.
  */
 public class SaveMenu extends GameManager {
+  private String emptySlot = "Empty save slot";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +47,15 @@ public class SaveMenu extends GameManager {
     }
     String[] scores = readFromFile().split("\n");
     for (int i = 0; i < scores.length; i++) {
+      currPlayer = i;
+      Button b = buttons[i];
       if (!scores[i].equals(defaultScore)) {
-        currPlayer = i;
-        Button b = buttons[i];
         String name = getName();
         String score = String.valueOf(getScore());
         String display = name + ", Score: " + score;
         b.setText(display);
+      } else {
+        b.setText(emptySlot);
       }
     }
     currPlayer = initialPlayer;
@@ -72,11 +75,11 @@ public class SaveMenu extends GameManager {
       }
     }
     String buttonName = b.getText().toString();
-    if (buttonName.equals("Empty save slot")) {
+    if (buttonName.equals(emptySlot)) {
       Intent intent = new Intent(this, SetCharacterName.class);
       startActivityForResult(intent, 1);
     } else {
-      startGame();
+      queryResume();
     }
   }
 
@@ -140,6 +143,51 @@ public class SaveMenu extends GameManager {
           public void onClick(DialogInterface dialog, int which) {
             setCharacter(which);
             updateButtons();
+          }
+        });
+    builder.show();
+  }
+
+  private void queryResume() {
+    final String[] choices = {"Yes", "No"};
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    if (getScore() == 0) {
+      builder.setTitle("Would you like to start the game?");
+    } else {
+      builder.setTitle("Would you like to resume your game?");
+    }
+    builder.setCancelable(false);
+    builder.setItems(
+        choices,
+        new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            if (which == 0) {
+              startGame();
+            } else {
+              queryDelete();
+            }
+          }
+        });
+    builder.show();
+  }
+
+  private void queryDelete() {
+    final String[] choices = {"Yes", "No"};
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Would you like to delete this save slot?");
+    builder.setCancelable(false);
+    builder.setItems(
+        choices,
+        new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            if (which == 0) {
+              deleteSlot();
+              updateButtons();
+            }
           }
         });
     builder.show();
