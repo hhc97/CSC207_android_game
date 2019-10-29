@@ -11,7 +11,7 @@ public class GameObject {
   protected float x; // the x coordinate value
   protected float y; // the y coordinate value
   protected boolean states;
-  private pl.droidsonroids.gif.GifImageView image;
+  private GifImageView image;
 
   public GameObject(float x, float y) {
     this.x = x;
