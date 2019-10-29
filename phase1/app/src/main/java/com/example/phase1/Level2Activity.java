@@ -11,6 +11,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
 public class Level2Activity extends GameManager {
+  Level2Manager level2Manager;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,28 @@ public class Level2Activity extends GameManager {
           }
         });
     animator.start();
+
+    // Update coordinates of the moving obstacles.
+    Thread t = new Thread() {
+      @Override
+      public void run() {
+        while (!isInterrupted()) {
+          try {
+            Thread.sleep(1000);
+
+            runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+              // Update Manager here
+                level2Manager.update();
+              }
+            });
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    };
   }
 
   // Visually show that the hero is jumping.
