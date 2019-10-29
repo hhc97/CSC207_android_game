@@ -4,19 +4,28 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Level2Activity extends GameManager {
-  Level2Manager level2Manager;
+  Level2Manager level2Manager = new Level2Manager();
+  private Handler handler = new Handler();
+  private Timer timer = new Timer();
+  private TextView scoreLabel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
     setCurrPlayer(intent.getIntExtra("com.example.phase1.SEND_PLAYER", 0));
@@ -30,13 +39,28 @@ public class Level2Activity extends GameManager {
 
     setContentView(R.layout.n_activity_level2);
 
-    // Change how hero component based on users choice
+    //Change the hero's appearance based on the user's choice.
     final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
     if (getCharacter() == 0) {
       hero.setImageResource(R.drawable.run2);
     } else if (getCharacter() == 1) {
       hero.setImageResource(R.drawable.run1);
     }
+
+    // Update coordinates of the moving obstacles, as well as the score.
+    scoreLabel = (TextView) findViewById(R.id.score);
+    timer.schedule(new TimerTask() {
+      @Override
+      public void run() {
+        handler.post(new Runnable() {
+          @Override
+          public void run() {
+            level2Manager.update();
+            scoreLabel.setText("Score: " + level2Manager.getScore());
+          }
+        });
+      }
+    }, 0, 1000);
 
     // Move the two copies of the front background image, continuously.
     final ImageView backgroundOne = findViewById(R.id.grass);
@@ -76,30 +100,6 @@ public class Level2Activity extends GameManager {
           }
         });
     animator.start();
-
-    // Update coordinates of the moving obstacles.
-    Thread t =
-        new Thread() {
-          @Override
-          public void run() {
-            while (!isInterrupted()) {
-              try {
-                Thread.sleep(1000);
-
-                runOnUiThread(
-                    new Runnable() {
-                      @Override
-                      public void run() {
-                        // Update Manager here
-                        level2Manager.update();
-                      }
-                    });
-              } catch (InterruptedException e) {
-                e.printStackTrace();
-              }
-            }
-          }
-        };
   }
 
   // Visually show that the hero is jumping.

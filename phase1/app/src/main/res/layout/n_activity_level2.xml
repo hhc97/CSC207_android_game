@@ -94,14 +94,16 @@
         app:srcCompat="@drawable/rock2" />
 
     <ImageView
-        android:id="@+id/rock1_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="182dp"
-        android:layout_marginTop="209dp"
-        app:srcCompat="@drawable/rock2" />
+            android:id="@+id/rock1_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="182dp"
+            android:layout_marginTop="209dp"
+            android:layout_marginEnd="523dp"
+            app:srcCompat="@drawable/rock2" />
 
     <ImageView
         android:id="@+id/tree2"
@@ -179,7 +181,7 @@
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Score:"
-            android:textColor="#3C3F41" />
+            android:text="0"
+            android:textColor="#F8F7F7" />
 
 </RelativeLayout>
