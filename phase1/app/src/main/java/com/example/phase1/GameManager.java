@@ -128,7 +128,7 @@ abstract class GameManager extends AppCompatActivity {
     return getStat(currentLevel);
   }
 
-  void setLevel(int level) {
+  private void setLevel(int level) {
     setStat(level, currentLevel);
   }
 
@@ -174,6 +174,14 @@ abstract class GameManager extends AppCompatActivity {
       Intent intent = new Intent(this, Level3Activity.class);
       intent.putExtra("com.example.phase1.SEND_PLAYER", currPlayer);
       startActivity(intent);
+    }
+  }
+
+  /** Starts the next level, if current level is not the final level. */
+  void nextLevel() {
+    if (getLevel() < 3) {
+      setLevel(getLevel() + 1);
+      startGame();
     }
   }
 
