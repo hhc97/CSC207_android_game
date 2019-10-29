@@ -215,7 +215,7 @@ public abstract class GameManager extends AppCompatActivity {
   }
 
   /** Starts the next level, if current level is not the final level. */
-  void startNextLevel() {
+  public void startNextLevel() {
     if (getLevel() < 3) {
       setLevel(getLevel() + 1);
       startGame();
