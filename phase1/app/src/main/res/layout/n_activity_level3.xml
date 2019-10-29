@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lvl3d"
+    android:background="@drawable/lvl3n"
     tools:context=".Level3Activity">
 
     <Button
-        android:id="@+id/b20"
+        android:id="@+id/b1"
         android:layout_width="168dp"
         android:layout_height="93dp"
         android:layout_alignParentStart="true"
@@ -18,7 +18,7 @@
         android:text="1" />
 
     <Button
-        android:id="@+id/b21"
+        android:id="@+id/b2"
         android:layout_width="168dp"
         android:layout_height="93dp"
         android:layout_alignParentStart="true"
@@ -28,7 +28,7 @@
         android:text="2" />
 
     <Button
-        android:id="@+id/b22"
+        android:id="@+id/b4"
         android:layout_width="168dp"
         android:layout_height="93dp"
         android:layout_alignParentStart="true"
@@ -38,7 +38,7 @@
         android:text="4" />
 
     <Button
-        android:id="@+id/b23"
+        android:id="@+id/b3"
         android:layout_width="168dp"
         android:layout_height="93dp"
         android:layout_alignParentStart="true"
@@ -46,4 +46,7 @@
         android:layout_marginStart="151dp"
         android:layout_marginTop="221dp"
         android:text="3" />
+
+    x
+
 </RelativeLayout>
