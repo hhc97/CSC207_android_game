@@ -123,8 +123,16 @@ abstract class GameManager extends AppCompatActivity {
     return getStat(score);
   }
 
-  void setScore(int s) {
+  private void setScore(int s) {
     setStat(s, score);
+  }
+
+  void addScore(int s) {
+    setScore(getScore() + s);
+  }
+
+  void minusScore(int s) {
+    setScore(getScore() - s);
   }
 
   int getHealth() {
