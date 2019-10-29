@@ -42,7 +42,7 @@ public class Level1Activity extends GameManager {
     final GifImageView coin1 = findViewById(R.id.c2);
     final GifImageView coin2 = findViewById(R.id.c3);
     final GifImageView enemy = findViewById(R.id.enemy);
-
+    System.out.println(getCharacter());
     if (getCharacter() == 0) {
       hero.setImageResource(R.drawable.hero1);
     } else if (getCharacter() == 1) {
@@ -59,44 +59,8 @@ public class Level1Activity extends GameManager {
     coin1.setX(manager.Objects.get(2).getX());
     coin2.setX(manager.Objects.get(3).getX());
 
-//    int[] location = new int[2];
-//    enemy.getLocationOnScreen(location);
-//    manager.Objects.get(0).setX(location[0]);
-//    coin0.getLocationOnScreen(location);
-//    manager.Objects.get(1).setX(location[0]);
-//    coin1.getLocationOnScreen(location);
-//    manager.Objects.get(2).setX(location[0]);
-//    coin2.getLocationOnScreen(location);
-//    manager.Objects.get(3).setX(location[0]);
-//    System.out.println(location);
-
     // Move Graphic Components Right if Left Button is Pressed
     Button left = findViewById(R.id.left);
-    //        left.setOnClickListener(
-    //                new View.OnClickListener() {
-    //                    @Override
-    //                    public void onClick(View view) {
-    //
-    //                        animator.addUpdateListener(
-    //                                new ValueAnimator.AnimatorUpdateListener() {
-    //                                    @Override
-    //                                    public void onAnimationUpdate(ValueAnimator animation) {
-    //                                        final float progress = (float)
-    // animation.getAnimatedValue();
-    //                                        final float width1 = backgroundOne.getWidth();
-    //                                        final float translationX1 = width1 * progress;
-    //                                        final float width2 = backgroundThree.getWidth();
-    //                                        final float translationX2 = width2 * progress - 10;
-    //                                        backgroundOne.setTranslationX(translationX1);
-    //                                        backgroundTwo.setTranslationX(translationX1 - width1);
-    //                                        backgroundThree.setTranslationX(translationX2);
-    //                                        backgroundFour.setTranslationX(translationX2 -
-    // width2);
-    //                                    }
-    //                                });
-    //                        animator.start();
-    //                    }
-    //                });
 
     left.setOnTouchListener(
         new View.OnTouchListener() {
@@ -111,6 +75,31 @@ public class Level1Activity extends GameManager {
                 } else if (getCharacter() == 1) {
                   hero.setImageResource(R.drawable.walk);
                 }
+
+                if (!((Monster) manager.Objects.get(0)).isMoveLeft()) {
+                  enemy.setScaleX(1f);
+                } else {
+                  enemy.setScaleX(-1f);
+                }
+
+                if (((Monster) manager.Objects.get(0)).isAttack() && enemy.isShown()) {
+                  enemy.setImageResource(R.drawable.e_attack);
+
+                  if (getCharacter() == 0) {
+                    hero.setImageResource(R.drawable.hurt1);
+                  } else if (getCharacter() == 1) {
+                    hero.setImageResource(R.drawable.hurt);
+                  }
+
+                } else {
+                  enemy.setImageResource(R.drawable.walke);
+                  if (getCharacter() == 0) {
+                    hero.setImageResource(R.drawable.walk1);
+                  } else if (getCharacter() == 1) {
+                    hero.setImageResource(R.drawable.walk);
+                  }
+                }
+
                 break;
               case MotionEvent.ACTION_UP:
                 manager.update();
@@ -118,14 +107,18 @@ public class Level1Activity extends GameManager {
                 coin0.setX(manager.Objects.get(1).getX());
                 coin1.setX(manager.Objects.get(2).getX());
                 coin2.setX(manager.Objects.get(3).getX());
-                if (!manager.Objects.get(0).getStates()){
-                  enemy.setVisibility(View.INVISIBLE);}
-                if (!manager.Objects.get(1).getStates()){
-                  coin0.setVisibility(View.INVISIBLE);}
-                if (!manager.Objects.get(2).getStates()){
-                  coin1.setVisibility(View.INVISIBLE);}
-                if (!manager.Objects.get(3).getStates()){
-                  coin2.setVisibility(View.INVISIBLE);}
+                if (!manager.Objects.get(0).getStates()) {
+                  enemy.setVisibility(View.INVISIBLE);
+                }
+                if (!manager.Objects.get(1).getStates()) {
+                  coin0.setVisibility(View.INVISIBLE);
+                }
+                if (!manager.Objects.get(2).getStates()) {
+                  coin1.setVisibility(View.INVISIBLE);
+                }
+                if (!manager.Objects.get(3).getStates()) {
+                  coin2.setVisibility(View.INVISIBLE);
+                }
                 break;
             }
             // ... Respond to touch events
@@ -135,33 +128,6 @@ public class Level1Activity extends GameManager {
 
     // Move Graphic Components Left if Right Button is Pressed
     Button right = findViewById(R.id.right);
-    //        right.setOnClickListener(
-    //                new View.OnClickListener() {
-    //                    @Override
-    //                    public void onClick(View view) {
-    //
-    //                        animator.addUpdateListener(
-    //                                new ValueAnimator.AnimatorUpdateListener() {
-    //                                    @Override
-    //                                    public void onAnimationUpdate(ValueAnimator animation) {
-    //                                        final float progress = (float)
-    // animation.getAnimatedValue();
-    //                                        final float width1 = backgroundOne.getWidth();
-    //                                        final float translationX1 = width1 * progress;
-    //                                        final float width2 = backgroundThree.getWidth();
-    //                                        final float translationX2 = width2 * progress - 10;
-    //                                        backgroundOne.setTranslationX(-translationX1);
-    //                                        backgroundTwo.setTranslationX(-translationX1 +
-    // width1);
-    //                                        backgroundThree.setTranslationX(-translationX2);
-    //                                        backgroundFour.setTranslationX(-translationX2 +
-    // width2);
-    //                                        hero.setImageResource(R.drawable.walk);
-    //                                    }
-    //                                });
-    //                        animator.start();
-    //                    }
-    //                });
 
     right.setOnTouchListener(
         new View.OnTouchListener() {
@@ -176,22 +142,49 @@ public class Level1Activity extends GameManager {
                 } else if (getCharacter() == 1) {
                   hero.setImageResource(R.drawable.walk);
                 }
+
               case MotionEvent.ACTION_UP:
                 manager.update();
                 enemy.setX(manager.Objects.get(0).getX());
                 coin0.setX(manager.Objects.get(1).getX());
                 coin1.setX(manager.Objects.get(2).getX());
                 coin2.setX(manager.Objects.get(3).getX());
-                if (!manager.Objects.get(0).getStates()){
+                if (!manager.Objects.get(0).getStates()) {
                   enemy.setVisibility(View.INVISIBLE);
                 }
-                if (!manager.Objects.get(1).getStates()){
-                  coin0.setVisibility(View.INVISIBLE);}
-                if (!manager.Objects.get(2).getStates()){
-                  coin1.setVisibility(View.INVISIBLE);}
-                if (!manager.Objects.get(3).getStates()){
-                  coin2.setVisibility(View.INVISIBLE);}
+                if (!manager.Objects.get(1).getStates()) {
+                  coin0.setVisibility(View.INVISIBLE);
+                }
+                if (!manager.Objects.get(2).getStates()) {
+                  coin1.setVisibility(View.INVISIBLE);
+                }
+                if (!manager.Objects.get(3).getStates()) {
+                  coin2.setVisibility(View.INVISIBLE);
+                }
 
+                if (!((Monster) manager.Objects.get(0)).isMoveLeft()) {
+                  enemy.setScaleX(1f);
+                } else {
+                  enemy.setScaleX(-1f);
+                }
+
+                if (((Monster) manager.Objects.get(0)).isAttack() && enemy.isShown()) {
+                  enemy.setImageResource(R.drawable.e_attack);
+
+                  if (getCharacter() == 0) {
+                    hero.setImageResource(R.drawable.hurt1);
+                  } else if (getCharacter() == 1) {
+                    hero.setImageResource(R.drawable.hurt);
+                  }
+
+                } else {
+                  enemy.setImageResource(R.drawable.walke);
+                  if (getCharacter() == 0) {
+                    hero.setImageResource(R.drawable.walk1);
+                  } else if (getCharacter() == 1) {
+                    hero.setImageResource(R.drawable.walk);
+                  }
+                }
                 break;
             }
             // ... Respond to touch events
@@ -215,12 +208,11 @@ public class Level1Activity extends GameManager {
             coin0.setX(manager.Objects.get(1).getX());
             coin1.setX(manager.Objects.get(2).getX());
             coin2.setX(manager.Objects.get(3).getX());
-            if (!manager.Objects.get(0).getStates()){
-              enemy.setVisibility(View.INVISIBLE);            }
+            if (!manager.Objects.get(0).getStates()) {
+              enemy.setVisibility(View.INVISIBLE);
+            }
             manager.player.notAttack();
           }
         });
-
-    Button jump = findViewById(R.id.jump);
   }
 }
