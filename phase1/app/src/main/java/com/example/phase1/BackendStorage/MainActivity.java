@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.BackendStorage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.phase1.BackendStorage.SaveMenu;
+import com.example.phase1.R;
 
 public class MainActivity extends AppCompatActivity {
 
