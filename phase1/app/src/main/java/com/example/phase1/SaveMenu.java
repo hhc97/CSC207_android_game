@@ -121,6 +121,24 @@ public class SaveMenu extends GameManager {
           @Override
           public void onClick(DialogInterface dialog, int which) {
             setDifficulty(which + 1);
+            queryCharacter();
+          }
+        });
+    builder.show();
+  }
+
+  private void queryCharacter() {
+    final String[] characters = {"Rogue", "Knight"};
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Pick a character");
+    builder.setCancelable(false);
+    builder.setItems(
+        characters,
+        new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            setCharacter(which);
             updateButtons();
           }
         });
