@@ -31,7 +31,7 @@ public class SaveMenu extends GameManager {
   }
 
   /**
-   * updates the names of the save slot buttons, depending on whether if there is any data saved
+   * Updates the names of the save slot buttons, depending on whether if there is any data saved
    * into that slot.
    */
   private void updateButtons() {
@@ -62,8 +62,8 @@ public class SaveMenu extends GameManager {
   }
 
   /**
-   * determines what do do when a save slot is clicked. either load the game if the slot has data,
-   * or allow the user to create a new account if the slot is empty.
+   * Determines what do do when a save slot is clicked. Either ask the user if they want to load the
+   * game/delete the save slot, or allow the user to create a new account if the slot is empty.
    *
    * @param view the button that is clicked.
    */
@@ -83,6 +83,14 @@ public class SaveMenu extends GameManager {
     }
   }
 
+  /**
+   * Handles the info when a user submits a name. Calls additional method to prompt user to
+   * personalize their settings.
+   *
+   * @param requestCode The requestCode that the request was sent out with.
+   * @param resultCode Whether the request was successful or not.
+   * @param data The Intent that the data was sent back in.
+   */
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 1) {
@@ -94,6 +102,7 @@ public class SaveMenu extends GameManager {
     }
   }
 
+  /** Prompts the user to select day or night. */
   private void queryDayNight() {
     final String[] dayNight = {"Night", "Day"};
 
@@ -112,6 +121,7 @@ public class SaveMenu extends GameManager {
     builder.show();
   }
 
+  /** Prompts the user to select the game difficulty. */
   private void queryDifficulty() {
     final String[] difficulty = {"Easy", "Normal", "Hard"};
 
@@ -130,6 +140,7 @@ public class SaveMenu extends GameManager {
     builder.show();
   }
 
+  /** Prompts the user to select the character they want to play as. */
   private void queryCharacter() {
     final String[] characters = {"Rogue", "Knight"};
 
@@ -148,6 +159,7 @@ public class SaveMenu extends GameManager {
     builder.show();
   }
 
+  /** Asks the user if they want to start the game, or resume the game that they were playing. */
   private void queryResume() {
     final String[] choices = {"Yes", "No"};
 
@@ -173,6 +185,7 @@ public class SaveMenu extends GameManager {
     builder.show();
   }
 
+  /** If the user does not want to start the game, ask if the user wants to delete the save slot. */
   private void queryDelete() {
     final String[] choices = {"Yes", "No"};
 
