@@ -14,7 +14,7 @@
             android:name=".Level3Activity"
             android:screenOrientation="landscape"></activity>
         <activity
-            android:name=".SetCharacterName"
+            android:name=".BackendStorage.SetCharacterName"
             android:parentActivityName=".BackendStorage.SaveMenu"
             android:screenOrientation="landscape" />
         <activity

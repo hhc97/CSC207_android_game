@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.BackendStorage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.phase1.R;
 
 /** A class to get the player name and send it back to SaveMenu. */
 public class SetCharacterName extends AppCompatActivity {
@@ -19,7 +21,7 @@ public class SetCharacterName extends AppCompatActivity {
   /**
    * Puts the name String into an Intent and sends its back.
    *
-   * @param view the button that is pressed.
+   * @param view The button that is pressed.
    */
   public void sendName(View view) {
     Intent intent = new Intent();

@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.phase1.R;
-import com.example.phase1.SetCharacterName;
 
 /**
  * The activity responsible for displaying the save menu, where users can choose a slot to save, and
