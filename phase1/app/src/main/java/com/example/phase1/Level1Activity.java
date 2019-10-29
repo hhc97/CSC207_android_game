@@ -42,7 +42,6 @@ public class Level1Activity extends GameManager {
     final GifImageView coin1 = findViewById(R.id.c2);
     final GifImageView coin2 = findViewById(R.id.c3);
     final GifImageView enemy = findViewById(R.id.enemy);
-    System.out.println(getCharacter());
     if (getCharacter() == 0) {
       hero.setImageResource(R.drawable.hero1);
     } else if (getCharacter() == 1) {
