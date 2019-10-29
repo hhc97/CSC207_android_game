@@ -1,9 +1,9 @@
 package com.example.phase1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.phase1.BackendStorage.GameManager;
 
 public class Level3Activity extends GameManager {
 

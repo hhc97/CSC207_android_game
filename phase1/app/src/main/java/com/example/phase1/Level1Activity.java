@@ -11,6 +11,8 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.phase1.BackendStorage.GameManager;
+
 import pl.droidsonroids.gif.GifImageView;
 
 public class Level1Activity extends GameManager {

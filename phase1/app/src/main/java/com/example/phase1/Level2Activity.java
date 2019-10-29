@@ -10,6 +10,8 @@ import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
+import com.example.phase1.BackendStorage.GameManager;
+
 public class Level2Activity extends GameManager {
   Level2Manager level2Manager;
 

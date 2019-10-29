@@ -1,9 +1,13 @@
-package com.example.phase1;
+package com.example.phase1.BackendStorage;
 
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.phase1.Level1Activity;
+import com.example.phase1.Level2Activity;
+import com.example.phase1.Level3Activity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,12 +19,12 @@ import java.util.Scanner;
  * This class is responsible for storing all stats into a local file, so as to be able to resume
  * games, and track statistics. As a result, all activities in this game will extend this class.
  */
-abstract class GameManager extends AppCompatActivity {
+public abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
 
   //    score, health, coin, day/night, difficulty, character, current level, player name
   String defaultScore = "0,0,0,0,0,0,1,NAME";
-  int currPlayer;
+  public int currPlayer;
 
   //  indexes of the player statistics
   private int score = 0;
@@ -127,27 +131,27 @@ abstract class GameManager extends AppCompatActivity {
     setStat(s, score);
   }
 
-  void addScore(int s) {
+  public void addScore(int s) {
     setScore(getScore() + s);
   }
 
-  void minusScore(int s) {
+  public void minusScore(int s) {
     setScore(getScore() - s);
   }
 
-  int getHealth() {
+  public int getHealth() {
     return getStat(health);
   }
 
-  void setHealth(int h) {
+  public void setHealth(int h) {
     setStat(h, health);
   }
 
-  int getCoin() {
+  public int getCoin() {
     return getStat(coin);
   }
 
-  void setCoin(int c) {
+  public void setCoin(int c) {
     setStat(c, coin);
   }
 
@@ -159,7 +163,7 @@ abstract class GameManager extends AppCompatActivity {
     setStat(level, currentLevel);
   }
 
-  int getDayOrNight() {
+  public int getDayOrNight() {
     return getStat(dayOrNight);
   }
 
@@ -167,7 +171,7 @@ abstract class GameManager extends AppCompatActivity {
     setStat(day, dayOrNight);
   }
 
-  int getDifficulty() {
+  public int getDifficulty() {
     return getStat(difficulty);
   }
 
@@ -175,7 +179,7 @@ abstract class GameManager extends AppCompatActivity {
     setStat(d, difficulty);
   }
 
-  int getCharacter() {
+  public int getCharacter() {
     return getStat(character);
   }
 
