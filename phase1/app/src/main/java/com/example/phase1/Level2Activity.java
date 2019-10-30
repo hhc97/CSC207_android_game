@@ -4,10 +4,8 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -39,7 +37,7 @@ public class Level2Activity extends GameManager {
 
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
-    setCurrPlayer(intent.getIntExtra("com.example.phase1.SEND_PLAYER", 0));
+    setCurrPlayer(intent.getIntExtra(sendString, 0));
 
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()

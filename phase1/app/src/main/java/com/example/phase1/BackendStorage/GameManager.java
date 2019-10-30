@@ -21,6 +21,7 @@ import java.util.Scanner;
  */
 public abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
+  public static final String sendString = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
   //    score, health, coin, day/night, difficulty, character, current level, player name
   String defaultScore = "0,0,0,0,0,0,1,NAME";
@@ -225,15 +226,15 @@ public abstract class GameManager extends AppCompatActivity {
     int level = getLevel();
     if (level == 1) {
       Intent intent = new Intent(this, Level1Activity.class);
-      intent.putExtra("com.example.phase1.SEND_PLAYER", currPlayer);
+      intent.putExtra(sendString, currPlayer);
       startActivity(intent);
     } else if (level == 2) {
       Intent intent = new Intent(this, Level2Activity.class);
-      intent.putExtra("com.example.phase1.SEND_PLAYER", currPlayer);
+      intent.putExtra(sendString, currPlayer);
       startActivity(intent);
     } else if (level == 3) {
       Intent intent = new Intent(this, Level3Activity.class);
-      intent.putExtra("com.example.phase1.SEND_PLAYER", currPlayer);
+      intent.putExtra(sendString, currPlayer);
       startActivity(intent);
     }
   }
