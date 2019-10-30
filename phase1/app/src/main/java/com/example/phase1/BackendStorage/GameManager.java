@@ -149,16 +149,32 @@ public abstract class GameManager extends AppCompatActivity {
     return getStat(health);
   }
 
-  public void setHealth(int h) {
+  private void setHealth(int h) {
     setStat(h, health);
+  }
+
+  public void addHealth(int h) {
+    setHealth(getHealth() + h);
+  }
+
+  public void deductHealth(int h) {
+    setHealth(getHealth() - h);
   }
 
   public int getCoin() {
     return getStat(coin);
   }
 
-  public void setCoin(int c) {
+  private void setCoin(int c) {
     setStat(c, coin);
+  }
+
+  public void addCoin(int c) {
+    setCoin(getCoin() + c);
+  }
+
+  public void deductCoin(int c) {
+    setCoin(getCoin() - c);
   }
 
   private int getLevel() {
