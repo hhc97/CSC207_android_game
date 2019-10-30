@@ -63,13 +63,13 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundTen = findViewById(R.id.tree2_c);
 
     // Get screen size.
-//    WindowManager wm = getWindowManager();
-//    Display disp = wm.getDefaultDisplay();
-//    Point size = new Point();
-//    disp.getSize(size);
+    //    WindowManager wm = getWindowManager();
+    //    Display disp = wm.getDefaultDisplay();
+    //    Point size = new Point();
+    //    disp.getSize(size);
 
-//    screenWidth = size.x;
-//    screenHeight = size.y;
+    //    screenWidth = size.x;
+    //    screenHeight = size.y;
 
     // Pixel 3 Width: 2160, Height: 1080.
     // Speed of rock = 36
@@ -134,33 +134,43 @@ public class Level2Activity extends GameManager {
 
   // Visually show that the hero is jumping.
   public void tapScreen(View view) {
+    preventTwoClick(view);
     final ImageView heroCharacter = findViewById(R.id.hero);
-
     final ObjectAnimator animationUp =
-        ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -100, -200f, -250f, -200f, -100f, 0f);
+        ObjectAnimator.ofFloat(
+            heroCharacter, "translationY", 0f, -100, -200f, -250f, -200f, -100f, 0f);
     animationUp.setDuration(1200L);
 
-
     // Add a listener that checks if the hero is jumping, and tells the Level2Manager.
-    animationUp.addListener(new Animator.AnimatorListener(){
-      @Override
-      public void onAnimationStart(Animator animationUp){
-        level2Manager.playerJump(true);
-      }
+    animationUp.addListener(
+        new Animator.AnimatorListener() {
+          @Override
+          public void onAnimationStart(Animator animationUp) {
+            level2Manager.playerJump(true);
+          }
 
-      @Override
-      public void onAnimationEnd(Animator animationUp){
-        level2Manager.playerJump(false);
-      }
+          @Override
+          public void onAnimationEnd(Animator animationUp) {
+            level2Manager.playerJump(false);
+          }
 
-      @Override
-      public void onAnimationRepeat(Animator animationUp){
-      }
+          @Override
+          public void onAnimationRepeat(Animator animationUp) {}
 
-      @Override
-      public void onAnimationCancel(Animator animationUp){
-      }
-    });
+          @Override
+          public void onAnimationCancel(Animator animationUp) {}
+        });
     animationUp.start();
+  }
+
+  private void preventTwoClick(final View view) {
+    view.setEnabled(false);
+    view.postDelayed(
+        new Runnable() {
+          public void run() {
+            view.setEnabled(true);
+          }
+        },
+        900);
   }
 }
