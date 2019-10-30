@@ -10,7 +10,8 @@ import android.widget.ImageView;
 
 import com.example.phase1.BackendStorage.GameManager;
 
-public class Level3Activity extends GameManager {
+public class Level3Activity extends GameManager implements View.OnClickListener {
+    public static Level3Manager Level3 = new Level3Manager();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,4 +55,10 @@ public class Level3Activity extends GameManager {
       Button b4 = findViewById(R.id.b31);
     }
   }
+
+
+    @Override
+    public void onClick(View v) {
+        Level3.onClick(v);
+    }
 }

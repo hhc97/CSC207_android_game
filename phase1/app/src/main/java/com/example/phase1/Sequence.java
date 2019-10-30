@@ -5,7 +5,7 @@ import java.util.Random;
 
 class Sequence {
 
-  private static Random random;
+    private static Random random = new Random();
 
   public Sequence() {
     random = new Random();
