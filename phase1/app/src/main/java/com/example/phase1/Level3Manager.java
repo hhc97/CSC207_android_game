@@ -1,5 +1,7 @@
 package com.example.phase1;
 
+import android.view.View;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -7,14 +9,15 @@ import java.util.Iterator;
  * This class is responsible for comparing the user input sequence to the actual sequence for stage
  * 3 of the game.
  */
-public class Level3Manager {
+public class Level3Manager implements View.OnClickListener {
 
   private ArrayList<Integer> sequence;
-  private ArrayList<Integer> input;
+    private ArrayList<Integer> input = new ArrayList<>();
   /* private int attempts = 0; */
 
   public Level3Manager() {
     sequence = Sequence.getSequence();
+      displaySequence();
   }
 
   /**
@@ -24,9 +27,10 @@ public class Level3Manager {
    */
   public Level3Manager(int difficulty) {
     sequence = Sequence.getSequence(difficulty);
+      displaySequence();
   }
 
-  public void getuserinput(int pressed) {
+    public void getUserInput(int pressed) {
     input.add(pressed);
     if (this.checkWin()) {
       /*Do something when game has been completed*/
@@ -74,4 +78,34 @@ public class Level3Manager {
     }
     return false;
   }
+
+    private void displaySequence() {
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.b1:
+            case R.id.b28:
+                getUserInput(0);
+                break;
+
+            case R.id.b2:
+            case R.id.b29:
+                getUserInput(1);
+                break;
+
+            case R.id.b3:
+            case R.id.b30:
+                getUserInput(2);
+                break;
+
+            case R.id.b4:
+            case R.id.b31:
+                getUserInput(3);
+                break;
+
+            default:
+                throw new RuntimeException("Unknown button ID");
+        }
+    }
 }

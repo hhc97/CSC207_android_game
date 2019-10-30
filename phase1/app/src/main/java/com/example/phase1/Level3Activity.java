@@ -47,7 +47,7 @@ public class Level3Activity extends GameManager {
       Button b2 = findViewById(R.id.b2);
       Button b3 = findViewById(R.id.b3);
       Button b4 = findViewById(R.id.b4);
-    } else if (getDayOrNight() == 1) {
+    } else {
       Button b1 = findViewById(R.id.b28);
       Button b2 = findViewById(R.id.b29);
       Button b3 = findViewById(R.id.b30);
