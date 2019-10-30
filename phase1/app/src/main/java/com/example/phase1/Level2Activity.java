@@ -84,16 +84,16 @@ public class Level2Activity extends GameManager {
       hero.setImageResource(R.drawable.run1);
     }
 
-//    // Change health depending on the chosen difficulty level.
-//    if (getDifficulty() == 0) {
-//      level2Manager.setHealth(3);
-//    }
-//    else if (getDifficulty() == 1) {
-//      level2Manager.setHealth(2);
-//    }
-//    else if (getDifficulty() == 2) {
-//      level2Manager.setHealth(1);
-//    }
+    //    // Change health depending on the chosen difficulty level.
+    //    if (getDifficulty() == 0) {
+    //      level2Manager.setHealth(3);
+    //    }
+    //    else if (getDifficulty() == 1) {
+    //      level2Manager.setHealth(2);
+    //    }
+    //    else if (getDifficulty() == 2) {
+    //      level2Manager.setHealth(1);
+    //    }
 
     // Move the two copies of the front background image, continuously.
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -140,11 +140,13 @@ public class Level2Activity extends GameManager {
                     level2Manager.update();
                     scoreLabel.setText("Score: " + level2Manager.getScore());
                     healthLabel.setText("Health: " + level2Manager.getHealth());
-
-                    if (level2Manager.getHealth() == 0)  {
-                      levelOver.setText("You lost :( Your score was " + level2Manager.getScore() + ". " + "Tap anywhere to return to the menu.");
-                      levelOver.setVisibility(View.VISIBLE);
-                    }
+                    addScore(1); // for demonstration
+                    // comment out for presentation
+                    //                    if (level2Manager.getHealth() == 0)  {
+                    //                      levelOver.setText("You lost :( Your score was " +
+                    // level2Manager.getScore() + ". " + "Tap anywhere to return to the menu.");
+                    //                      levelOver.setVisibility(View.VISIBLE);
+                    //                    }
                   }
                 });
           }
@@ -193,7 +195,7 @@ public class Level2Activity extends GameManager {
             view.setEnabled(true);
           }
         },
-        300);
+        900);
   }
 
   // Takes the user back to the main menu.

@@ -41,10 +41,9 @@ public class Level2Manager extends GameManager {
 
         if (playerStartY == 1) {
           this.playerScore += 100;
-        }
-        else {
+        } else {
           this.playerHealth -= 1;
-//          deductHealth(1);
+          //          deductHealth(1);
         }
       }
     }

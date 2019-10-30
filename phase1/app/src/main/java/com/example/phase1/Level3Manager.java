@@ -12,16 +12,16 @@ import java.util.Iterator;
 public class Level3Manager implements View.OnClickListener {
 
   private ArrayList<Integer> sequence;
-    private ArrayList<Integer> input = new ArrayList<>();
+  private ArrayList<Integer> input = new ArrayList<>();
   /* private int attempts = 0; */
 
   public Level3Manager() {
     sequence = Sequence.getSequence();
   }
 
-    public ArrayList<Integer> getSequence() {
-        return sequence;
-    }
+  public ArrayList<Integer> getSequence() {
+    return sequence;
+  }
   /**
    * An alternative constructor with a specified difficulty level for future use.
    *
@@ -31,7 +31,7 @@ public class Level3Manager implements View.OnClickListener {
     sequence = Sequence.getSequence(difficulty);
   }
 
-    public void getUserInput(int pressed) {
+  public void getUserInput(int pressed) {
     input.add(pressed);
     if (this.checkWin()) {
       /*Do something when game has been completed*/
@@ -80,30 +80,30 @@ public class Level3Manager implements View.OnClickListener {
     return false;
   }
 
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.b1:
-            case R.id.b28:
-                getUserInput(0);
-                break;
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.b1:
+      case R.id.b28:
+        getUserInput(0);
+        break;
 
-            case R.id.b2:
-            case R.id.b29:
-                getUserInput(1);
-                break;
+      case R.id.b2:
+      case R.id.b29:
+        getUserInput(1);
+        break;
 
-            case R.id.b3:
-            case R.id.b30:
-                getUserInput(2);
-                break;
+      case R.id.b3:
+      case R.id.b30:
+        getUserInput(2);
+        break;
 
-            case R.id.b4:
-            case R.id.b31:
-                getUserInput(3);
-                break;
+      case R.id.b4:
+      case R.id.b31:
+        getUserInput(3);
+        break;
 
-            default:
-                throw new RuntimeException("Unknown button ID");
-        }
+      default:
+        throw new RuntimeException("Unknown button ID");
     }
+  }
 }

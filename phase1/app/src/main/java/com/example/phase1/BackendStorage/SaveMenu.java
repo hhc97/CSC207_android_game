@@ -20,7 +20,7 @@ public class SaveMenu extends GameManager {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    startFile(); // for testing, resets save file each time
+    //        startFile(); // for testing, resets save file each time
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_save_menu);
     Button save1 = findViewById(R.id.button3);
@@ -205,5 +205,12 @@ public class SaveMenu extends GameManager {
           }
         });
     builder.show();
+  }
+
+  /** Updates the buttons to show the correct score when back button is pressed. */
+  @Override
+  public void onResume() {
+    super.onResume();
+    updateButtons();
   }
 }
