@@ -9,7 +9,7 @@ public class Monster extends Character {
   public Monster(float x, float y) {
     super(x, y);
     this.player = Level1Manager.player;
-    this.setSpeed(30);
+    this.setSpeed(10);
   }
 
   public void update() {

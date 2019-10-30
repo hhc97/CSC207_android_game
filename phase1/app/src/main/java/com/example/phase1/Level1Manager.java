@@ -24,7 +24,6 @@ public class Level1Manager {
     for (GameObject obj : Objects) {
       obj.update();
     }
-    player.notAttack();
   }
 
   public void onLoop() {

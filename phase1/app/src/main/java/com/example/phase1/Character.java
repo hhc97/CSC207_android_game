@@ -9,7 +9,7 @@ public class Character extends GameObject {
 
     public Character(float x, float y) {  //NEED GameManager.getHealth()
         super(x, y);
-        this.speed = 80; //temp value of speed
+        this.speed = 50; //temp value of speed
         this.strength = 1;// temp
         this.health = 1;// default
     }
