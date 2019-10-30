@@ -121,6 +121,7 @@ public abstract class GameManager extends AppCompatActivity {
     }
   }
 
+  // for name
   void setName(String name) {
     setStringStat(name, playerName);
   }
@@ -129,6 +130,7 @@ public abstract class GameManager extends AppCompatActivity {
     return getStringStat(playerName);
   }
 
+  // for score
   public int getScore() {
     return getStat(score);
   }
@@ -145,6 +147,7 @@ public abstract class GameManager extends AppCompatActivity {
     setScore(getScore() - s);
   }
 
+  // for health
   public int getHealth() {
     return getStat(health);
   }
@@ -161,6 +164,7 @@ public abstract class GameManager extends AppCompatActivity {
     setHealth(getHealth() - h);
   }
 
+  // for coin
   public int getCoin() {
     return getStat(coin);
   }
@@ -177,6 +181,7 @@ public abstract class GameManager extends AppCompatActivity {
     setCoin(getCoin() - c);
   }
 
+  // for level
   private int getLevel() {
     return getStat(currentLevel);
   }
@@ -185,6 +190,7 @@ public abstract class GameManager extends AppCompatActivity {
     setStat(level, currentLevel);
   }
 
+  // for day or night
   public int getDayOrNight() {
     return getStat(dayOrNight);
   }
@@ -193,6 +199,7 @@ public abstract class GameManager extends AppCompatActivity {
     setStat(day, dayOrNight);
   }
 
+  // for difficulty
   public int getDifficulty() {
     return getStat(difficulty);
   }
@@ -201,6 +208,7 @@ public abstract class GameManager extends AppCompatActivity {
     setStat(d, difficulty);
   }
 
+  // for character
   public int getCharacter() {
     return getStat(character);
   }
