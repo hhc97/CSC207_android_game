@@ -129,7 +129,7 @@ public abstract class GameManager extends AppCompatActivity {
     return getStringStat(playerName);
   }
 
-  int getScore() {
+  public int getScore() {
     return getStat(score);
   }
 
@@ -141,7 +141,7 @@ public abstract class GameManager extends AppCompatActivity {
     setScore(getScore() + s);
   }
 
-  public void minusScore(int s) {
+  public void deductScore(int s) {
     setScore(getScore() - s);
   }
 

@@ -22,10 +22,10 @@
         android:id="@+id/b28"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="209dp"
-        android:layout_marginTop="217dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="200dp"
         android:background="@drawable/b3"
         android:enabled="false" />
 
@@ -33,10 +33,10 @@
         android:id="@+id/b29"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="211dp"
-        android:layout_marginTop="78dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/b1"
         android:enabled="false" />
 
@@ -45,9 +45,9 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="425dp"
-        android:layout_marginTop="216dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/b4"
         android:enabled="false" />
 
@@ -57,8 +57,8 @@
         android:layout_height="100dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="423dp"
-        android:layout_marginTop="79dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/b2"
         android:enabled="false" />
 

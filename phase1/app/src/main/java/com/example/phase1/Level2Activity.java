@@ -75,7 +75,7 @@ public class Level2Activity extends GameManager {
     // Speed of rock = 36
     // rockSpeed = Math.round(screenWidth / 60);
 
-    //Change the hero's appearance based on the user's choice.
+    // Change the hero's appearance based on the user's choice.
     final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
     if (getCharacter() == 0) {
       hero.setImageResource(R.drawable.run2);
@@ -114,18 +114,22 @@ public class Level2Activity extends GameManager {
 
     // Update coordinates of the moving obstacles, as well as the score.
     scoreLabel = (TextView) findViewById(R.id.score);
-    timer.schedule(new TimerTask() {
-      @Override
-      public void run() {
-        handler.post(new Runnable() {
+    timer.schedule(
+        new TimerTask() {
           @Override
           public void run() {
-            level2Manager.update();
-            scoreLabel.setText("Score: " + level2Manager.getScore());
+            handler.post(
+                new Runnable() {
+                  @Override
+                  public void run() {
+                    level2Manager.update();
+                    scoreLabel.setText("Score: " + level2Manager.getScore());
+                  }
+                });
           }
-        });
-      }
-    }, 0, 20);
+        },
+        0,
+        20);
   }
 
   // Visually show that the hero is jumping.
@@ -160,4 +164,3 @@ public class Level2Activity extends GameManager {
     animationUp.start();
   }
 }
-
