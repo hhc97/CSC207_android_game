@@ -25,11 +25,11 @@ public class Level2Manager {
     Obstacles.add(rock3);
   }
 
-//  public void setObstacleSpeed(int speed) {
-//    for (Obstacle obstacle: Obstacles) {
-//      obstacle.setSpeed(speed);
-//    }
-//  }
+  //  public void setObstacleSpeed(int speed) {
+  //    for (Obstacle obstacle: Obstacles) {
+  //      obstacle.setSpeed(speed);
+  //    }
+  //  }
 
   public void update() {
     for (Obstacle obstacle : Obstacles) {
