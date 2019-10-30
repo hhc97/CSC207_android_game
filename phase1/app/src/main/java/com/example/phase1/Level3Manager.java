@@ -17,9 +17,11 @@ public class Level3Manager implements View.OnClickListener {
 
   public Level3Manager() {
     sequence = Sequence.getSequence();
-      displaySequence();
   }
 
+    public ArrayList<Integer> getSequence() {
+        return sequence;
+    }
   /**
    * An alternative constructor with a specified difficulty level for future use.
    *
@@ -27,7 +29,6 @@ public class Level3Manager implements View.OnClickListener {
    */
   public Level3Manager(int difficulty) {
     sequence = Sequence.getSequence(difficulty);
-      displaySequence();
   }
 
     public void getUserInput(int pressed) {
@@ -78,9 +79,6 @@ public class Level3Manager implements View.OnClickListener {
     }
     return false;
   }
-
-    private void displaySequence() {
-    }
 
     public void onClick(View v) {
         switch (v.getId()) {

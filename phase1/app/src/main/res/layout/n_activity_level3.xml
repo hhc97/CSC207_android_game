@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/n_activity3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/lvl3n"
@@ -27,7 +28,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginBottom="70dp"
         android:background="@drawable/b3"
-        android:enabled="false" />
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/b1"
@@ -38,7 +39,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="200dp"
         android:background="@drawable/b1"
-        android:enabled="false" />
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/b4"
@@ -49,7 +50,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/b4"
-        android:enabled="false" />
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/b2"
@@ -60,7 +61,7 @@
         android:layout_marginEnd="200dp"
         android:layout_marginBottom="70dp"
         android:background="@drawable/b2"
-        android:enabled="false" />
+        android:visibility="visible" />
 
     x
 
