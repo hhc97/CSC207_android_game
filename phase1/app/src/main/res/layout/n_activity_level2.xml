@@ -22,45 +22,45 @@
         app:srcCompat="@drawable/forestd" />
 
     <Button
-            android:id="@+id/left"
-            android:layout_width="75dp"
-            android:layout_height="43dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="51dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/lbut" />
+        android:id="@+id/left"
+        android:layout_width="56dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="51dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/lbut" />
 
     <Button
-            android:id="@+id/right"
-            android:layout_width="75dp"
-            android:layout_height="43dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="133dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/rbut" />
+        android:id="@+id/right"
+        android:layout_width="56dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/rbut" />
 
     <Button
-            android:id="@+id/jump"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="585dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/jbut"
-            android:onClick="tapScreen" />
+        android:id="@+id/jump"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="580dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/jbut"
+        android:onClick="tapScreen" />
 
     <Button
-            android:id="@+id/attack"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="667dp"
-            android:layout_marginBottom="22dp"
-            android:background="@drawable/hbut" />
+        android:id="@+id/attack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="667dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/hbut" />
 
     <ImageView
         android:id="@+id/tree1_c"
