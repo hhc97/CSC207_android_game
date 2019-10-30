@@ -1,16 +1,18 @@
 package com.example.phase1;
 
+import com.example.phase1.BackendStorage.GameManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level2Manager {
+public class Level2Manager extends GameManager {
   public static final int GROUND_HEIGHT = 0;
   List<Obstacle> Obstacles = new ArrayList<>();
   private static Hero player;
   private int playerStartX = 138;
   private int playerScore = 0;
   private int playerStartY = GROUND_HEIGHT;
-  private int playerHealth = 3;
+  private int playerHealth = 4;
 
   public Level2Manager() {
     player = new Hero(playerStartX, GROUND_HEIGHT);
@@ -42,20 +44,27 @@ public class Level2Manager {
         }
         else {
           this.playerHealth -= 1;
+//          deductHealth(1);
         }
       }
     }
   }
 
+  @Override
   public int getScore() {
     return this.playerScore;
   }
 
+  @Override
   public int getHealth() {
     return this.playerHealth;
   }
 
-  public void playerJump(boolean jump) {
+  void setHealth(int health) {
+    this.playerHealth = health + 1;
+  }
+
+  void playerJump(boolean jump) {
     if (jump) {
       this.playerStartY = 1;
     } else {

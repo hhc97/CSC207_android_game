@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.BackendStorage.SaveMenu;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -82,8 +84,18 @@ public class Level2Activity extends GameManager {
       hero.setImageResource(R.drawable.run1);
     }
 
-    // Move the two copies of the front background image, continuously.
+//    // Change health depending on the chosen difficulty level.
+//    if (getDifficulty() == 0) {
+//      level2Manager.setHealth(3);
+//    }
+//    else if (getDifficulty() == 1) {
+//      level2Manager.setHealth(2);
+//    }
+//    else if (getDifficulty() == 2) {
+//      level2Manager.setHealth(1);
+//    }
 
+    // Move the two copies of the front background image, continuously.
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     animator.setRepeatCount(ValueAnimator.INFINITE);
     animator.setInterpolator(new LinearInterpolator());
@@ -115,6 +127,8 @@ public class Level2Activity extends GameManager {
     scoreLabel = (TextView) findViewById(R.id.score);
     healthLabel = (TextView) findViewById(R.id.health);
 
+    final Button levelOver = findViewById(R.id.end_button);
+
     timer.schedule(
         new TimerTask() {
           @Override
@@ -126,6 +140,11 @@ public class Level2Activity extends GameManager {
                     level2Manager.update();
                     scoreLabel.setText("Score: " + level2Manager.getScore());
                     healthLabel.setText("Health: " + level2Manager.getHealth());
+
+                    if (level2Manager.getHealth() == 0)  {
+                      levelOver.setText("Your score was " + level2Manager.getScore() + ". " + "Tap anywhere to return to the menu.");
+                      levelOver.setVisibility(View.VISIBLE);
+                    }
                   }
                 });
           }
@@ -165,6 +184,7 @@ public class Level2Activity extends GameManager {
     animationUp.start();
   }
 
+  // Method to avoid double/spam tapping to jump.
   private void preventTwoClick(final View view) {
     view.setEnabled(false);
     view.postDelayed(
@@ -174,5 +194,11 @@ public class Level2Activity extends GameManager {
           }
         },
         300);
+  }
+
+  // Takes the user back to the main menu.
+  public void backMainMenu(View view) {
+    Intent intent = new Intent(this, SaveMenu.class);
+    startActivity(intent);
   }
 }
