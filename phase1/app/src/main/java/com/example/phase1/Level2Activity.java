@@ -1,5 +1,6 @@
 package com.example.phase1;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -62,13 +63,13 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundTen = findViewById(R.id.tree2_c);
 
     // Get screen size.
-    WindowManager wm = getWindowManager();
-    Display disp = wm.getDefaultDisplay();
-    Point size = new Point();
-    disp.getSize(size);
+//    WindowManager wm = getWindowManager();
+//    Display disp = wm.getDefaultDisplay();
+//    Point size = new Point();
+//    disp.getSize(size);
 
-    screenWidth = size.x;
-    screenHeight = size.y;
+//    screenWidth = size.x;
+//    screenHeight = size.y;
 
     // Pixel 3 Width: 2160, Height: 1080.
     // Speed of rock = 36
@@ -132,8 +133,30 @@ public class Level2Activity extends GameManager {
     final ImageView heroCharacter = findViewById(R.id.hero);
 
     final ObjectAnimator animationUp =
-        ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -180f, -200f, -180f, -100f, 0f);
-    animationUp.setDuration(800L);
+        ObjectAnimator.ofFloat(heroCharacter, "translationY", 0f, -100, -200f, -250f, -200f, -100f, 0f);
+    animationUp.setDuration(1200L);
+
+
+    // Add a listener that checks if the hero is jumping, and tells the Level2Manager.
+    animationUp.addListener(new Animator.AnimatorListener(){
+      @Override
+      public void onAnimationStart(Animator animationUp){
+        level2Manager.playerJump(true);
+      }
+
+      @Override
+      public void onAnimationEnd(Animator animationUp){
+        level2Manager.playerJump(false);
+      }
+
+      @Override
+      public void onAnimationRepeat(Animator animationUp){
+      }
+
+      @Override
+      public void onAnimationCancel(Animator animationUp){
+      }
+    });
     animationUp.start();
   }
 }
