@@ -142,7 +142,7 @@ public class Level2Activity extends GameManager {
                     healthLabel.setText("Health: " + level2Manager.getHealth());
 
                     if (level2Manager.getHealth() == 0)  {
-                      levelOver.setText("Your score was " + level2Manager.getScore() + ". " + "Tap anywhere to return to the menu.");
+                      levelOver.setText("You lost :( Your score was " + level2Manager.getScore() + ". " + "Tap anywhere to return to the menu.");
                       levelOver.setVisibility(View.VISIBLE);
                     }
                   }
