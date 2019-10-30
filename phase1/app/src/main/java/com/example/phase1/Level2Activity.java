@@ -25,6 +25,7 @@ public class Level2Activity extends GameManager {
   private Handler handler = new Handler();
   private Timer timer = new Timer();
   private TextView scoreLabel;
+  private TextView healthLabel;
 
   // Sizes. Note that in landscape, width > height.
   private int screenWidth;
@@ -114,6 +115,8 @@ public class Level2Activity extends GameManager {
 
     // Update coordinates of the moving obstacles, as well as the score.
     scoreLabel = (TextView) findViewById(R.id.score);
+    healthLabel = (TextView) findViewById(R.id.health);
+
     timer.schedule(
         new TimerTask() {
           @Override
@@ -124,7 +127,7 @@ public class Level2Activity extends GameManager {
                   public void run() {
                     level2Manager.update();
                     scoreLabel.setText("Score: " + level2Manager.getScore());
-                    scoreLabel.setText("Helath: " + level2Manager.getHealth());
+                    healthLabel.setText("Health: " + level2Manager.getHealth());
                   }
                 });
           }
@@ -172,6 +175,6 @@ public class Level2Activity extends GameManager {
             view.setEnabled(true);
           }
         },
-        900);
+        300);
   }
 }
