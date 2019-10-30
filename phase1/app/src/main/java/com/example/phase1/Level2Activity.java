@@ -124,6 +124,7 @@ public class Level2Activity extends GameManager {
                   public void run() {
                     level2Manager.update();
                     scoreLabel.setText("Score: " + level2Manager.getScore());
+                    scoreLabel.setText("Helath: " + level2Manager.getHealth());
                   }
                 });
           }

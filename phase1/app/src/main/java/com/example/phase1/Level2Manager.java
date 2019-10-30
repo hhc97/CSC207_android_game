@@ -10,6 +10,7 @@ public class Level2Manager {
   private int playerStartX = 138;
   private int playerScore = 0;
   private int playerStartY = GROUND_HEIGHT;
+  private int playerHealth = 3;
 
   public Level2Manager() {
     player = new Hero(playerStartX, GROUND_HEIGHT);
@@ -39,12 +40,19 @@ public class Level2Manager {
         if (playerStartY == 1) {
           this.playerScore += 100;
         }
+        else {
+          this.playerHealth -= 1;
+        }
       }
     }
   }
 
   public int getScore() {
     return this.playerScore;
+  }
+
+  public int getHealth() {
+    return this.playerHealth;
   }
 
   public void playerJump(boolean jump) {
