@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
-import com.example.phase1.BackendStorage.SaveMenu;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -40,7 +39,7 @@ public class Level2Activity extends GameManager {
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
     setCurrPlayer(intent.getIntExtra(sendString, 0));
-
+    level2Manager.setParent(this);
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
@@ -138,15 +137,16 @@ public class Level2Activity extends GameManager {
                   @Override
                   public void run() {
                     level2Manager.update();
-                    scoreLabel.setText("Score: " + level2Manager.getScore());
-                    healthLabel.setText("Health: " + level2Manager.getHealth());
-                    addScore(1); // for demonstration
-                    // comment out for presentation
-                    //                    if (level2Manager.getHealth() == 0)  {
-                    //                      levelOver.setText("You lost :( Your score was " +
-                    // level2Manager.getScore() + ". " + "Tap anywhere to return to the menu.");
-                    //                      levelOver.setVisibility(View.VISIBLE);
-                    //                    }
+                    scoreLabel.setText("Score: " + getScore());
+                    healthLabel.setText("Health: " + getHealth());
+                    if (getHealth() == 0) {
+                      levelOver.setText(
+                          "You lost :( Your score was "
+                              + getScore()
+                              + ". "
+                              + "Tap anywhere to return to the menu.");
+                      levelOver.setVisibility(View.VISIBLE);
+                    }
                   }
                 });
           }
@@ -195,12 +195,11 @@ public class Level2Activity extends GameManager {
             view.setEnabled(true);
           }
         },
-        900);
+        500);
   }
 
   // Takes the user back to the main menu.
   public void backMainMenu(View view) {
-    Intent intent = new Intent(this, SaveMenu.class);
-    startActivity(intent);
+    finish();
   }
 }
