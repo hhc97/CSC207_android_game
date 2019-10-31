@@ -44,10 +44,10 @@ public class Level1Activity extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
+    setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
     this.isAttack = false;
     this.isMoveRight = false;
     this.isMoveLeft = false;
-    setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(

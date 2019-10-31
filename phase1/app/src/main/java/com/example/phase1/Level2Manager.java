@@ -9,7 +9,7 @@ public class Level2Manager {
   private static Hero player;
   private int playerStartX = 138;
   private int playerStartY = GROUND_HEIGHT;
-  Level2Activity parent;
+  private Level2Activity parent;
 
   public Level2Manager() {
     player = new Hero(playerStartX, GROUND_HEIGHT);
