@@ -16,7 +16,6 @@ import com.example.phase1.BackendStorage.GameManager;
 
 import java.lang.reflect.Array;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -216,7 +215,7 @@ public class Level1Activity extends GameManager {
     enemy.setScaleX(1f);
   }
 
-  private void imageInvisable(GifImageView image) {
+  private void imageInvisible(GifImageView image) {
     image.setVisibility(View.INVISIBLE);
   }
 
@@ -295,16 +294,16 @@ public class Level1Activity extends GameManager {
     coin1.setX(manager.Objects.get(2).getX());
     coin2.setX(manager.Objects.get(3).getX());
     if (!manager.Objects.get(0).getStates()) {
-      imageInvisable(enemy);
+      imageInvisible(enemy);
     }
     if (!manager.Objects.get(1).getStates()) {
-      imageInvisable(coin0);
+      imageInvisible(coin0);
     }
     if (!manager.Objects.get(2).getStates()) {
-      imageInvisable(coin1);
+      imageInvisible(coin1);
     }
     if (!manager.Objects.get(3).getStates()) {
-      imageInvisable(coin2);
+      imageInvisible(coin2);
     }
     System.out.println("rightWorking");
 
@@ -349,16 +348,16 @@ public class Level1Activity extends GameManager {
     coin1.setX(manager.Objects.get(2).getX());
     coin2.setX(manager.Objects.get(3).getX());
     if (!manager.Objects.get(0).getStates()) {
-      imageInvisable(enemy);
+      imageInvisible(enemy);
     }
     if (!manager.Objects.get(1).getStates()) {
-      imageInvisable(coin0);
+      imageInvisible(coin0);
     }
     if (!manager.Objects.get(2).getStates()) {
-      imageInvisable(coin1);
+      imageInvisible(coin1);
     }
     if (!manager.Objects.get(3).getStates()) {
-      imageInvisable(coin2);
+      imageInvisible(coin2);
     }
   }
 
@@ -372,7 +371,7 @@ public class Level1Activity extends GameManager {
     coin2.setX(manager.Objects.get(3).getX());
     if (!manager.Objects.get(0).getStates()) {
       enemyHurtAnimation();
-      imageInvisable(enemy);
+      imageInvisible(enemy);
     }
     manager.player.notAttack();
     System.out.println("AttackWorking");
@@ -400,16 +399,16 @@ public class Level1Activity extends GameManager {
     coin1.setX(manager.Objects.get(2).getX());
     coin2.setX(manager.Objects.get(3).getX());
     if (!manager.Objects.get(0).getStates()) {
-      imageInvisable(enemy);
+      imageInvisible(enemy);
     }
     if (!manager.Objects.get(1).getStates()) {
-      imageInvisable(coin0);
+      imageInvisible(coin0);
     }
     if (!manager.Objects.get(2).getStates()) {
-      imageInvisable(coin1);
+      imageInvisible(coin1);
     }
     if (!manager.Objects.get(3).getStates()) {
-      imageInvisable(coin2);
+      imageInvisible(coin2);
     }
   }
 }
