@@ -136,7 +136,7 @@ public class SaveMenu extends GameManager {
         new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            setDifficulty(which + 1);
+            setDifficulty(which);
             queryCharacter();
           }
         });

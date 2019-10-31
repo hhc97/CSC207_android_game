@@ -83,16 +83,14 @@ public class Level2Activity extends GameManager {
       hero.setImageResource(R.drawable.run1);
     }
 
-    //    // Change health depending on the chosen difficulty level.
-    //    if (getDifficulty() == 0) {
-    //      level2Manager.setHealth(3);
-    //    }
-    //    else if (getDifficulty() == 1) {
-    //      level2Manager.setHealth(2);
-    //    }
-    //    else if (getDifficulty() == 2) {
-    //      level2Manager.setHealth(1);
-    //    }
+    // Change health depending on the chosen difficulty level.
+    if (getDifficulty() == 0) {
+      addHealth(3);
+    } else if (getDifficulty() == 1) {
+      addHealth(2);
+    } else if (getDifficulty() == 2) {
+      addHealth(1);
+    }
 
     // Move the two copies of the front background image, continuously.
     final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
