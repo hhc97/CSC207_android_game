@@ -47,7 +47,7 @@ public class Level1Activity extends GameManager {
     this.isAttack = false;
     this.isMoveRight = false;
     this.isMoveLeft = false;
-    setCurrPlayer(intent.getIntExtra(sendString, 0));
+    setCurrPlayer(intent.getIntExtra(sendCharacter, 0));
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
