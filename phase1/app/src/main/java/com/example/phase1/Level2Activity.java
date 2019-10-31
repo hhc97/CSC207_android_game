@@ -38,7 +38,7 @@ public class Level2Activity extends GameManager {
 
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
-    setCurrPlayer(intent.getIntExtra(sendCharacter, 0));
+    setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
     level2Manager.setParent(this);
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()

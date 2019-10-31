@@ -22,7 +22,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
-    setCurrPlayer(intent.getIntExtra(sendCharacter, 0));
+    setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
 
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()

@@ -17,6 +17,7 @@ import com.example.phase1.R;
 public class SaveMenu extends GameManager {
   private String emptySlot = "Empty save slot";
   private Button[] buttons;
+  static String sendName = "com.example.phase1.BackendStorage.SEND_NAME";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +99,7 @@ public class SaveMenu extends GameManager {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 1) {
       if (resultCode == RESULT_OK) {
-        String userName = data.getStringExtra("com.example.phase1.SEND_NAME");
+        String userName = data.getStringExtra(sendName);
         setName(userName);
         queryDayNight();
       }

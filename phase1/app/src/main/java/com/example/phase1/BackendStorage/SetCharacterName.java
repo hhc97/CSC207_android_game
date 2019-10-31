@@ -31,7 +31,7 @@ public class SetCharacterName extends AppCompatActivity {
       return;
     }
     message = message.replace(",", "_");
-    intent.putExtra("com.example.phase1.SEND_NAME", message);
+    intent.putExtra(SaveMenu.sendName, message);
     setResult(RESULT_OK, intent);
     finish();
   }
