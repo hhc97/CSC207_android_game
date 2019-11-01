@@ -52,4 +52,5 @@ public class GameObject {
   public void setImage(GifImageView image){
     this.image = image;
   }
+  public GifImageView getImage(){return this.image;}
 }

@@ -14,8 +14,6 @@ public class Character extends GameObject {
         this.health = 1;// default
     }
 
-    public void updateHealth(){//might be use when update and save the health
-    }
 
     public void moveRight(){
         this.x += speed;
@@ -29,9 +27,12 @@ public class Character extends GameObject {
     public void die(){ this.states = false; }
     public int getStrength(){return this.strength;}
     public void setStrength(int strength){this.strength = strength;}
+    public int getStrenght(){return this.strength;}
     public void damaged (int damage){
         this.health = this.health - damage;
     }
     public void heal(int value){this.health = this.health+value;}
     public void setSpeed(int speed){this.speed = speed;}
+    public void setHealth(int health){this.health=health;}
+    public int getHealth(){return this.health;}
 }

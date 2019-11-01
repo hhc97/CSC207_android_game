@@ -95,6 +95,7 @@ public class Level1Activity extends GameManager {
         new Thread() {
           public void run() {
             while (manager.player.getStates()) {
+              updateHealthToGameManager();
               manager.update();
               nullAction();
               if (isAttack) {
@@ -129,6 +130,7 @@ public class Level1Activity extends GameManager {
               } catch (InterruptedException e) {
                 e.printStackTrace();
               }
+              updateHealthToGameManager();
               System.out.println("loop working");
             }
           }
@@ -219,6 +221,10 @@ public class Level1Activity extends GameManager {
     image.setVisibility(View.INVISIBLE);
   }
 
+
+  private void updateHealthToGameManager(){
+    setHealth(manager.player.getHealth());
+  }
   private void setLeftButton() {
     Button left = findViewById(R.id.left);
     left.setOnTouchListener(
@@ -297,12 +303,15 @@ public class Level1Activity extends GameManager {
       imageInvisible(enemy);
     }
     if (!manager.Objects.get(1).getStates()) {
+      addCoin(1);
       imageInvisible(coin0);
     }
     if (!manager.Objects.get(2).getStates()) {
+      addCoin(1);
       imageInvisible(coin1);
     }
     if (!manager.Objects.get(3).getStates()) {
+      addCoin(1);
       imageInvisible(coin2);
     }
     System.out.println("rightWorking");
@@ -351,12 +360,15 @@ public class Level1Activity extends GameManager {
       imageInvisible(enemy);
     }
     if (!manager.Objects.get(1).getStates()) {
+      addCoin(1);
       imageInvisible(coin0);
     }
     if (!manager.Objects.get(2).getStates()) {
+      addCoin(1);
       imageInvisible(coin1);
     }
     if (!manager.Objects.get(3).getStates()) {
+      addCoin(1);
       imageInvisible(coin2);
     }
   }
