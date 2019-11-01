@@ -2,6 +2,7 @@ package com.example.phase1;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 class Sequence {
 
@@ -13,8 +14,16 @@ class Sequence {
 
   public static ArrayList<Integer> getSequence() {
     ArrayList<Integer> sequence = new ArrayList<Integer>();
+    ArrayList<Integer> x = new ArrayList<>();
+    x.add(0);
+    x.add(1);
+    x.add(2);
+    x.add(3);
     for (int i = 0; i < 4; i++) {
-      sequence.add(random.nextInt(4));
+      int item = x.get(ThreadLocalRandom.current().nextInt(x.size()));
+      sequence.add(item);
+      x.remove((Integer) item);
+//      sequence.add(random.nextInt(i));
     }
 
     return sequence;
