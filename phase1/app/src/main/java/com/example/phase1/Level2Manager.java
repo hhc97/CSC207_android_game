@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level2Manager {
-  public static final int GROUND_HEIGHT = 0;
-  List<Obstacle> Obstacles = new ArrayList<>();
+  private static final int GROUND_HEIGHT = 0;
+  private List<Obstacle> Obstacles = new ArrayList<>();
   private static Hero player;
   private int playerStartX = 138;
   private int playerStartY = GROUND_HEIGHT;
@@ -31,6 +31,7 @@ public class Level2Manager {
     parent = p;
   }
 
+  // COMMENTED OUT AS WE WILL BE USING THESE IN PHASE 2
   //  public void setObstacleSpeed(int speed) {
   //    for (Obstacle obstacle: Obstacles) {
   //      obstacle.setSpeed(speed);

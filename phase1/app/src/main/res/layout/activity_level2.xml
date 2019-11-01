@@ -49,14 +49,15 @@
         android:onClick="tapScreen" />
 
     <Button
-        android:id="@+id/attack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="666dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/hbut" />
+            android:id="@+id/attack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="666dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/hbut"
+            android:onClick="tapScreen" />
 
     <ImageView
         android:id="@+id/tree1_c"
@@ -175,17 +176,5 @@
             android:text="Health"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
-
-    <Button
-            android:id="@+id/end_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerHorizontal="true"
-            android:onClick="backMainMenu"
-            android:scaleType="fitXY"
-            android:visibility="gone" />
 
 </RelativeLayout>
