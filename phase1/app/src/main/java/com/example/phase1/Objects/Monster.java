@@ -77,12 +77,13 @@ public class Monster extends Character {
     }
     return false;
   }
-  public boolean isAttack(){
+
+  public boolean isAttack() {
     return isTouchHero();
   }
-  public boolean isMoveLeft(){
-    if(player.getX()< this.x)
-      return true;
+
+  public boolean isMoveLeft() {
+    if (player.getX() < this.x) return true;
     return false;
   }
 }
