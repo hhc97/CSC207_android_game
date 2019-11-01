@@ -64,9 +64,12 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
       buttons[2] = findViewById(R.id.b30);
       buttons[3] = findViewById(R.id.b31);
     }
-      displaySequence();
   }
 
+    protected void onStart() {
+        super.onStart();
+        displaySequence();
+    }
     public void displaySequence() {
         final Iterator<Integer> sequence = Level3.getSequence().iterator();
         buttons[0].setVisibility(View.VISIBLE);
