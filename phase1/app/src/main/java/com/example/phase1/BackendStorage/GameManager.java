@@ -153,7 +153,7 @@ public abstract class GameManager extends AppCompatActivity {
     return getStat(health);
   }
 
-  private void setHealth(int h) {
+  public void setHealth(int h) {
     setStat(h, health);
   }
 
