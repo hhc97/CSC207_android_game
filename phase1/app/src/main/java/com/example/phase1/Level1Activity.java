@@ -71,6 +71,7 @@ public class Level1Activity extends GameManager {
     manager = new Level1Manager();
 
     setHeroAction();
+    setHeroHealth();
     setEnemyAction();
     heroStandAnimation();
 
@@ -221,10 +222,14 @@ public class Level1Activity extends GameManager {
     image.setVisibility(View.INVISIBLE);
   }
 
+  private void setHeroHealth() {
+    manager.player.setHealth(getHealth());
+  }
 
-  private void updateHealthToGameManager(){
+  private void updateHealthToGameManager() {
     setHealth(manager.player.getHealth());
   }
+
   private void setLeftButton() {
     Button left = findViewById(R.id.left);
     left.setOnTouchListener(
@@ -330,6 +335,7 @@ public class Level1Activity extends GameManager {
       enemyWalkAnimation();
       heroWalkAnimation();
     }
+    checkIsWinning();
   }
 
   private void leftAction() {
@@ -371,6 +377,7 @@ public class Level1Activity extends GameManager {
       addCoin(1);
       imageInvisible(coin2);
     }
+    checkIsWinning();
   }
 
   private void attackAction() {
@@ -384,8 +391,10 @@ public class Level1Activity extends GameManager {
     if (!manager.Objects.get(0).getStates()) {
       enemyHurtAnimation();
       imageInvisible(enemy);
+      addScore(manager.getPoint());
     }
     manager.player.notAttack();
+    checkIsWinning();
     System.out.println("AttackWorking");
   }
 
@@ -422,5 +431,14 @@ public class Level1Activity extends GameManager {
     if (!manager.Objects.get(3).getStates()) {
       imageInvisible(coin2);
     }
+    checkIsWinning();
+  }
+
+  private void checkIsWinning() {
+    boolean isWin = true;
+    for (GameObject obj : manager.Objects) {
+      if (obj.getStates()) isWin = false;
+    }
+    if (isWin) startNextLevel();
   }
 }
