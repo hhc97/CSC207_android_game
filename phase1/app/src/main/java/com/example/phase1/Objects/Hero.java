@@ -59,5 +59,8 @@ public class Hero extends Character {
     this.coins++;
   }
 
+  public void setCoins(int coins){
+      this.coins = coins;
+  }
   public void heal(int value) {}
 }

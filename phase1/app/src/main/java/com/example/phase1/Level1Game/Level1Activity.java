@@ -1,16 +1,12 @@
 package com.example.phase1.Level1Game;
 
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.LinearInterpolator;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.Objects.GameObject;
@@ -18,27 +14,19 @@ import com.example.phase1.Objects.Monster;
 import com.example.phase1.R;
 
 import java.lang.reflect.Array;
-import java.util.Timer;
 
 import pl.droidsonroids.gif.GifImageView;
 
 public class Level1Activity extends GameManager {
-  ImageView backgroundOne;
-  ImageView backgroundTwo;
-  ImageView backgroundThree;
-  ImageView backgroundFour;
-  ValueAnimator animator;
-  GifImageView hero;
-  GifImageView coin0;
-  GifImageView coin1;
-  GifImageView coin2;
-  GifImageView enemy;
-  Level1Manager manager;
-  int activityLevel; // Day or Night background
-  int[] heroAction = new int[4]; // animations for hero, stand, walk, hurt and attack
-  int[] enemyAction = new int[4]; // animations for enemy, stand, walk, hurt and attack
-  private Handler handler = new Handler();
-  private Timer timer = new Timer();
+  private GifImageView hero;
+  private GifImageView coin0;
+  private GifImageView coin1;
+  private GifImageView coin2;
+  private GifImageView enemy;
+  private Level1Manager manager;
+  private int activityLevel; // Day or Night background
+  private int[] heroAction = new int[4]; // animations for hero, stand, walk, hurt and attack
+  private int[] enemyAction = new int[4]; // animations for enemy, stand, walk, hurt and attack
   boolean isAttack = false;
   boolean isMoveRight = false;
   boolean isMoveLeft = false;
@@ -60,12 +48,6 @@ public class Level1Activity extends GameManager {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     setActivityLevel();
     setContentView(activityLevel);
-
-    backgroundOne = findViewById(R.id.grass);
-    backgroundTwo = findViewById(R.id.grass1);
-    backgroundThree = findViewById(R.id.vegetation);
-    backgroundFour = findViewById(R.id.vegetation2);
-    animator = ValueAnimator.ofFloat(0.0f, 1.0f);
     hero = findViewById(R.id.hero);
     coin0 = findViewById(R.id.c1);
     coin1 = findViewById(R.id.c2);
@@ -74,13 +56,9 @@ public class Level1Activity extends GameManager {
     manager = new Level1Manager();
 
     setHeroAction();
-    setHeroHealth();
+    setHeroStatus();
     setEnemyAction();
     heroStandAnimation();
-
-    animator.setRepeatCount(1);
-    animator.setInterpolator(new LinearInterpolator());
-    animator.setDuration(17000L);
 
     enemy.setX(manager.Objects.get(0).getX());
     coin0.setX(manager.Objects.get(1).getX());
@@ -98,7 +76,7 @@ public class Level1Activity extends GameManager {
     Thread t =
         new Thread() {
           public void run() {
-            while (manager.player.getStates()) {
+            while (manager.player.getStates() && !checkIsWinning()) {
               checkIsWinning();
               updateHealthToGameManager();
               manager.update();
@@ -226,12 +204,14 @@ public class Level1Activity extends GameManager {
     image.setVisibility(View.INVISIBLE);
   }
 
-  private void setHeroHealth() {
+  private void setHeroStatus() {
     manager.player.setHealth(getHealth());
+    manager.player.setCoins(getCoin());
   }
 
   private void updateHealthToGameManager() {
     setHealth(manager.player.getHealth());
+    setCoin(manager.player.getCoins());
   }
 
   private void setLeftButton() {
@@ -303,110 +283,32 @@ public class Level1Activity extends GameManager {
     heroFacingRight();
     hero.setX(manager.heroMoveRight());
     heroWalkAnimation();
-    manager.update();
-    enemy.setX(manager.Objects.get(0).getX());
-    coin0.setX(manager.Objects.get(1).getX());
-    coin1.setX(manager.Objects.get(2).getX());
-    coin2.setX(manager.Objects.get(3).getX());
-    if (!manager.Objects.get(0).getStates()) {
-      imageInvisible(enemy);
-    }
-    if (!manager.Objects.get(1).getStates()) {
-      addCoin(1);
-      imageInvisible(coin0);
-    }
-    if (!manager.Objects.get(2).getStates()) {
-      addCoin(1);
-      imageInvisible(coin1);
-    }
-    if (!manager.Objects.get(3).getStates()) {
-      addCoin(1);
-      imageInvisible(coin2);
-    }
-    if (((Monster) manager.Objects.get(0)).isMoveLeft()) {
-      enemyFacingLeft();
-    } else {
-      enemyFacingRight();
-    }
-
-    if (((Monster) manager.Objects.get(0)).isAttack() && enemy.isShown()) {
-      enemyAttackAnimation();
-      heroHurtAnimation();
-
-    } else {
-      enemyWalkAnimation();
-      heroWalkAnimation();
-    }
-    checkIsWinning();
+    nullAction();
   }
 
   private void leftAction() {
     hero.setX(manager.heroMoveLeft());
     heroFacingLeft();
     heroWalkAnimation();
-
-    if (((Monster) manager.Objects.get(0)).isMoveLeft()) {
-      enemyFacingLeft();
-    } else {
-      enemyFacingRight();
-    }
-
-    if (((Monster) manager.Objects.get(0)).isAttack() && enemy.isShown()) {
-      enemyAttackAnimation();
-      heroHurtAnimation();
-    } else {
-      enemyWalkAnimation();
-      heroWalkAnimation();
-    }
-    manager.update();
-    enemy.setX(manager.Objects.get(0).getX());
-    coin0.setX(manager.Objects.get(1).getX());
-    coin1.setX(manager.Objects.get(2).getX());
-    coin2.setX(manager.Objects.get(3).getX());
-    if (!manager.Objects.get(0).getStates()) {
-      imageInvisible(enemy);
-    }
-    if (!manager.Objects.get(1).getStates()) {
-      addCoin(1);
-      imageInvisible(coin0);
-    }
-    if (!manager.Objects.get(2).getStates()) {
-      addCoin(1);
-      imageInvisible(coin1);
-    }
-    if (!manager.Objects.get(3).getStates()) {
-      addCoin(1);
-      imageInvisible(coin2);
-    }
-    checkIsWinning();
+    nullAction();
   }
 
   private void attackAction() {
     manager.player.attack();
-    heroAttackAnimation();
     manager.update();
-    enemy.setX(manager.Objects.get(0).getX());
-    coin0.setX(manager.Objects.get(1).getX());
-    coin1.setX(manager.Objects.get(2).getX());
-    coin2.setX(manager.Objects.get(3).getX());
-    if (!manager.Objects.get(0).getStates()) {
-      enemyHurtAnimation();
-      imageInvisible(enemy);
-      addScore(manager.getPoint());
-    }
-    manager.player.notAttack();
-    checkIsWinning();
+    nullAction();
+    heroAttackAnimation();
   }
 
   private void nullAction() {
 
+      manager.update();
     if (((Monster) manager.Objects.get(0)).isMoveLeft()) {
       enemyFacingLeft();
     } else {
       enemyFacingRight();
     }
 
-    System.out.println("LeftWorking");
     if (((Monster) manager.Objects.get(0)).isAttack() && enemy.isShown()) {
       enemyAttackAnimation();
       heroHurtAnimation();
@@ -434,11 +336,11 @@ public class Level1Activity extends GameManager {
     checkIsWinning();
   }
 
-  private void checkIsWinning() {
-    boolean isWin = true;
+  private boolean checkIsWinning() {
     for (GameObject obj : manager.Objects) {
-      if (obj.getStates()) isWin = false;
+      if (obj.getStates()) return false;
     }
-    if (isWin) startNextLevel();
+    super.startNextLevel();
+    return true;
   }
 }

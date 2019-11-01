@@ -170,7 +170,7 @@ public abstract class GameManager extends AppCompatActivity {
     return getStat(coin);
   }
 
-  private void setCoin(int c) {
+  public void setCoin(int c) {
     setStat(c, coin);
   }
 

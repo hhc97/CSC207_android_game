@@ -4,7 +4,6 @@ import com.example.phase1.Level1Game.Level1Manager;
 
 public class Coin extends GameObject {
   private Hero player;
-
   public Coin(float x, float y) {
     super(x, y);
     this.player = Level1Manager.getPlayer();
