@@ -99,13 +99,14 @@ public class Level1Activity extends GameManager {
         new Thread() {
           public void run() {
             while (manager.player.getStates()) {
+              checkIsWinning();
               updateHealthToGameManager();
               manager.update();
               nullAction();
               if (isAttack) {
                 attackAction();
                 try {
-                  currentThread().sleep(100);
+                  sleep(100);
                 } catch (InterruptedException e) {
                   e.printStackTrace();
                 }
@@ -114,7 +115,7 @@ public class Level1Activity extends GameManager {
               if (isMoveLeft) {
                 leftAction();
                 try {
-                  currentThread().sleep(100);
+                  sleep(100);
                 } catch (InterruptedException e) {
                   e.printStackTrace();
                 }
@@ -123,14 +124,14 @@ public class Level1Activity extends GameManager {
               if (isMoveRight) {
                 rightAction();
                 try {
-                  currentThread().sleep(100);
+                  sleep(100);
                 } catch (InterruptedException e) {
                   e.printStackTrace();
                 }
                 break;
               }
               try {
-                currentThread().sleep(250);
+                sleep(250);
               } catch (InterruptedException e) {
                 e.printStackTrace();
               }
@@ -322,8 +323,6 @@ public class Level1Activity extends GameManager {
       addCoin(1);
       imageInvisible(coin2);
     }
-    System.out.println("rightWorking");
-
     if (((Monster) manager.Objects.get(0)).isMoveLeft()) {
       enemyFacingLeft();
     } else {
@@ -352,7 +351,6 @@ public class Level1Activity extends GameManager {
       enemyFacingRight();
     }
 
-    System.out.println("LeftWorking");
     if (((Monster) manager.Objects.get(0)).isAttack() && enemy.isShown()) {
       enemyAttackAnimation();
       heroHurtAnimation();
@@ -398,7 +396,6 @@ public class Level1Activity extends GameManager {
     }
     manager.player.notAttack();
     checkIsWinning();
-    System.out.println("AttackWorking");
   }
 
   private void nullAction() {

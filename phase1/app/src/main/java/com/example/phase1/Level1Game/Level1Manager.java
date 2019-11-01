@@ -19,6 +19,7 @@ public class Level1Manager {
   public Level1Manager() {
     player = new Hero(playerStartX, playerStartY);
     Objects.add(new Monster(800, groundHeight));
+    ((com.example.phase1.Objects.Character) Objects.get(0)).setStrength(0);
     Objects.add(new Coin(1000, groundHeight));
     Objects.add(new Coin(1500, groundHeight));
     Objects.add(new Coin(1750, groundHeight));
