@@ -1,14 +1,13 @@
-package com.example.phase1;
+package com.example.phase1.Objects;
 
-import androidx.constraintlayout.solver.widgets.WidgetContainer;
+import com.example.phase1.Level1Game.Level1Manager;
 
 public class Monster extends Character {
-  private int damage = 5; // temp, how many damage can monster deal to the Hero.
   private Hero player;
 
   public Monster(float x, float y) {
     super(x, y);
-    this.player = Level1Manager.player;
+    this.player = Level1Manager.getPlayer();
     this.setSpeed(10);
   }
 

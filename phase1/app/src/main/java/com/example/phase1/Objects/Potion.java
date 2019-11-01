@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Objects;
 
 public class Potion extends GameObject {
   private int value; // How much health does Hero heal when drinking this potion

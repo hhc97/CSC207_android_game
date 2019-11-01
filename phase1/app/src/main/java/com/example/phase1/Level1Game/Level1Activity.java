@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Level1Game;
 
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.Objects.GameObject;
+import com.example.phase1.Objects.Monster;
+import com.example.phase1.R;
 
 import java.lang.reflect.Array;
 import java.util.Timer;

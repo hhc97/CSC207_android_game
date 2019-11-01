@@ -1,5 +1,8 @@
 package com.example.phase1;
 
+import com.example.phase1.Objects.Hero;
+import com.example.phase1.Objects.Obstacle;
+
 import java.util.ArrayList;
 import java.util.List;
 

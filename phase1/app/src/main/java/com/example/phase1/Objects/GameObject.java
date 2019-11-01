@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Objects;
 
 import android.graphics.Bitmap;
 

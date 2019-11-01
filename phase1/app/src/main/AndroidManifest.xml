@@ -18,7 +18,7 @@
             android:parentActivityName=".BackendStorage.SaveMenu"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Level1Activity"
+            android:name=".Level1Game.Level1Activity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Level2Activity"

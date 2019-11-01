@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.phase1.Level1Activity;
+import com.example.phase1.Level1Game.Level1Activity;
 import com.example.phase1.Level2Activity;
 import com.example.phase1.Level3Activity;
 
