@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.Objects.GameObject;
@@ -27,18 +28,14 @@ public class Level1Activity extends GameManager {
   private int activityLevel; // Day or Night background
   private int[] heroAction = new int[4]; // animations for hero, stand, walk, hurt and attack
   private int[] enemyAction = new int[4]; // animations for enemy, stand, walk, hurt and attack
-  boolean isAttack = false;
-  boolean isMoveRight = false;
-  boolean isMoveLeft = false;
+  private TextView scoreLabel;
+  private TextView healthLabel;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
     setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
-    this.isAttack = false;
-    this.isMoveRight = false;
-    this.isMoveLeft = false;
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
@@ -46,79 +43,12 @@ public class Level1Activity extends GameManager {
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-    setActivityLevel();
-    setContentView(activityLevel);
-    hero = findViewById(R.id.hero);
-    coin0 = findViewById(R.id.c1);
-    coin1 = findViewById(R.id.c2);
-    coin2 = findViewById(R.id.c3);
-    enemy = findViewById(R.id.enemy);
-    manager = new Level1Manager();
 
-    setHeroAction();
-    setHeroStatus();
-    setEnemyAction();
-    heroStandAnimation();
-
-    enemy.setX(manager.Objects.get(0).getX());
-    coin0.setX(manager.Objects.get(1).getX());
-    coin1.setX(manager.Objects.get(2).getX());
-    coin2.setX(manager.Objects.get(3).getX());
-
-    // Move Graphic Components Right if Left Button is Pressed
+    setup();
+    nullAction();
     setLeftButton();
-
-    // Move Graphic Components Left if Right Button is Pressed
     setRightButton();
-
     setAttackButton();
-
-    Thread t =
-        new Thread() {
-          public void run() {
-            while (manager.player.getStates() && !checkIsWinning()) {
-              checkIsWinning();
-              updateHealthToGameManager();
-              manager.update();
-              nullAction();
-              if (isAttack) {
-                attackAction();
-                try {
-                  sleep(100);
-                } catch (InterruptedException e) {
-                  e.printStackTrace();
-                }
-                break;
-              }
-              if (isMoveLeft) {
-                leftAction();
-                try {
-                  sleep(100);
-                } catch (InterruptedException e) {
-                  e.printStackTrace();
-                }
-                break;
-              }
-              if (isMoveRight) {
-                rightAction();
-                try {
-                  sleep(100);
-                } catch (InterruptedException e) {
-                  e.printStackTrace();
-                }
-                break;
-              }
-              try {
-                sleep(250);
-              } catch (InterruptedException e) {
-                e.printStackTrace();
-              }
-              updateHealthToGameManager();
-              System.out.println("loop working");
-            }
-          }
-        };
-    t.start();
   }
 
   private void setActivityLevel() {
@@ -209,7 +139,7 @@ public class Level1Activity extends GameManager {
     manager.player.setCoins(getCoin());
   }
 
-  private void updateHealthToGameManager() {
+  private void updateStatesToGameManager() {
     setHealth(manager.player.getHealth());
     setCoin(manager.player.getCoins());
   }
@@ -223,9 +153,7 @@ public class Level1Activity extends GameManager {
             switch (action) {
               case MotionEvent.ACTION_DOWN:
                 leftAction();
-                isMoveLeft = true;
               case MotionEvent.ACTION_UP:
-                isMoveLeft = false;
             }
             // ... Respond to touch events
             return true;
@@ -241,10 +169,8 @@ public class Level1Activity extends GameManager {
             int action = event.getActionMasked();
             switch (action) {
               case MotionEvent.ACTION_DOWN:
-                isMoveRight = true;
                 rightAction();
               case MotionEvent.ACTION_UP:
-                isMoveRight = false;
             }
             // ... Respond to touch events
             return true;
@@ -260,7 +186,6 @@ public class Level1Activity extends GameManager {
             int action = event.getActionMasked();
             switch (action) {
               case MotionEvent.ACTION_DOWN:
-                isAttack = true;
                 attackAction();
               case MotionEvent.ACTION_UP:
                 try {
@@ -268,7 +193,6 @@ public class Level1Activity extends GameManager {
                 } catch (InterruptedException e) {
                   e.printStackTrace();
                 }
-                isAttack = false;
                 manager.player.notAttack();
             }
             // ... Respond to touch events
@@ -296,13 +220,15 @@ public class Level1Activity extends GameManager {
   private void attackAction() {
     manager.player.attack();
     manager.update();
+    if (!manager.Objects.get(0).getStates()){
+      addScore(manager.getPoint());
+    }
     nullAction();
     heroAttackAnimation();
   }
 
   private void nullAction() {
-
-      manager.update();
+    manager.update();
     if (((Monster) manager.Objects.get(0)).isMoveLeft()) {
       enemyFacingLeft();
     } else {
@@ -317,30 +243,50 @@ public class Level1Activity extends GameManager {
       heroWalkAnimation();
     }
     manager.update();
-    enemy.setX(manager.Objects.get(0).getX());
-    coin0.setX(manager.Objects.get(1).getX());
-    coin1.setX(manager.Objects.get(2).getX());
-    coin2.setX(manager.Objects.get(3).getX());
-    if (!manager.Objects.get(0).getStates()) {
-      imageInvisible(enemy);
-    }
-    if (!manager.Objects.get(1).getStates()) {
-      imageInvisible(coin0);
-    }
-    if (!manager.Objects.get(2).getStates()) {
-      imageInvisible(coin1);
-    }
-    if (!manager.Objects.get(3).getStates()) {
-      imageInvisible(coin2);
-    }
+    updateImage();
+    updateStatesToGameManager();
     checkIsWinning();
   }
 
-  private boolean checkIsWinning() {
+  private void checkIsWinning() {
+    boolean isWon = true;
     for (GameObject obj : manager.Objects) {
-      if (obj.getStates()) return false;
+      if (obj.getStates()) isWon = false;
     }
-    super.startNextLevel();
-    return true;
+    if(isWon) startNextLevel();
+  }
+
+  private void updateImage() {
+    scoreLabel.setText("Score: " + getScore());
+    healthLabel.setText("Health: " + getHealth());
+    for (GameObject obj : manager.Objects) {
+      obj.getImage().setX(obj.getX());
+      if (!obj.getStates()) {
+        imageInvisible(obj.getImage());
+      }
+    }
+  }
+
+  private void setup() {
+    setActivityLevel();
+    setContentView(activityLevel);
+    manager = new Level1Manager();
+    hero = findViewById(R.id.hero);
+    manager.player.setImage(hero);
+    enemy = findViewById(R.id.enemy);
+    manager.Objects.get(0).setImage(enemy);
+    coin0 = findViewById(R.id.c1);
+    manager.Objects.get(1).setImage(coin0);
+    coin1 = findViewById(R.id.c2);
+    manager.Objects.get(2).setImage(coin1);
+    coin2 = findViewById(R.id.c3);
+    manager.Objects.get(3).setImage(coin2);
+    scoreLabel = (TextView) findViewById(R.id.score2);
+    healthLabel = (TextView) findViewById(R.id.health2);
+    setHeroAction();
+    setHeroStatus();
+    setEnemyAction();
+    scoreLabel.setText("Score: " + getScore());
+    healthLabel.setText("Health: " + getHealth());
   }
 }

@@ -121,8 +121,8 @@ public class Level2Activity extends GameManager {
     animator.start();
 
     // Update coordinates of the moving obstacles, as well as the score.
-    scoreLabel = (TextView) findViewById(R.id.score);
-    healthLabel = (TextView) findViewById(R.id.health);
+    scoreLabel = findViewById(R.id.score);
+    healthLabel = findViewById(R.id.health);
     final TextView levelOver = findViewById(R.id.end);
 
     timer.schedule(
@@ -138,6 +138,8 @@ public class Level2Activity extends GameManager {
                     healthLabel.setText("Health: " + getHealth());
                     if (getHealth() == 0) {
                       levelOver.setVisibility(View.VISIBLE);
+                      animator.cancel();
+                      timer.cancel();
                     }
                   }
                 });
@@ -188,10 +190,5 @@ public class Level2Activity extends GameManager {
           }
         },
         500);
-  }
-
-  // Takes the user back to the main menu.
-  public void backMainMenu(View view) {
-    finish();
   }
 }
