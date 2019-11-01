@@ -17,6 +17,17 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/hills_layer_04" />
 
+    <ImageView
+        android:id="@+id/vegetation2"
+        android:layout_width="match_parent"
+        android:layout_height="241dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/hills_layer_04" />
+
     <Button
         android:id="@+id/left"
         android:layout_width="56dp"
@@ -49,15 +60,14 @@
         android:onClick="tapScreen" />
 
     <Button
-            android:id="@+id/attack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="666dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/hbut"
-            android:onClick="tapScreen" />
+        android:id="@+id/attack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="666dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/hbut" />
 
     <ImageView
         android:id="@+id/tree1_c"
@@ -71,7 +81,7 @@
         app:srcCompat="@drawable/tree_2" />
 
     <ImageView
-        android:id="@+id/tree1"
+        android:id="@+id/tree"
         android:layout_width="wrap_content"
         android:layout_height="63dp"
         android:layout_alignParentStart="true"
@@ -176,5 +186,17 @@
             android:text="Health"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="323dp"
+        android:layout_marginBottom="48dp"
+        android:text="GAME OVER"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="invisible" />
 
 </RelativeLayout>

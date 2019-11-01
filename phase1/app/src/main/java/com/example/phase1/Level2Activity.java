@@ -26,14 +26,12 @@ public class Level2Activity extends GameManager {
   private TextView scoreLabel;
   private TextView healthLabel;
 
+  // Sizes. Note that in landscape, width > height.
+  private int screenWidth;
+  private int screenHeight;
 
-// COMMENTED OUT AS WE WILL BE USING THESE IN PHASE 2
-//  // Sizes. Note that in landscape, width > height.
-//  private int screenWidth;
-//  private int screenHeight;
-//
-//  // Speed
-//  private int rockSpeed;
+  // Speed
+  private int rockSpeed;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +62,6 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundNine = findViewById(R.id.rock1_c);
     final ImageView backgroundTen = findViewById(R.id.tree2_c);
 
-
-
-    // COMMENTED OUT AS WE WILL BE USING THESE IN PHASE 2
     // Get screen size.
     //    WindowManager wm = getWindowManager();
     //    Display disp = wm.getDefaultDisplay();
@@ -88,7 +83,7 @@ public class Level2Activity extends GameManager {
       hero.setImageResource(R.drawable.run1);
     }
 
-    // Change the health depending on the chosen difficulty level.
+    // Change health depending on the chosen difficulty level.
     if (getDifficulty() == 0) {
       addHealth(3);
     } else if (getDifficulty() == 1) {
@@ -128,8 +123,7 @@ public class Level2Activity extends GameManager {
     // Update coordinates of the moving obstacles, as well as the score.
     scoreLabel = (TextView) findViewById(R.id.score);
     healthLabel = (TextView) findViewById(R.id.health);
-
-//    final Button levelOver = findViewById(R.id.end_button);
+    final TextView levelOver = findViewById(R.id.end);
 
     timer.schedule(
         new TimerTask() {
@@ -142,14 +136,9 @@ public class Level2Activity extends GameManager {
                     level2Manager.update();
                     scoreLabel.setText("Score: " + getScore());
                     healthLabel.setText("Health: " + getHealth());
-//                    if (getHealth() == 0) {
-//                      levelOver.setText(
-//                          "Good try! Your score was "
-//                              + getScore()
-//                              + ". "
-//                              + "Tap anywhere to continue.");
-//                      levelOver.setVisibility(View.VISIBLE);
-//                    }
+                    if (getHealth() == 0) {
+                      levelOver.setVisibility(View.VISIBLE);
+                    }
                   }
                 });
           }
