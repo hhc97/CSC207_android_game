@@ -27,6 +27,7 @@ public class Level1Manager {
 
   public void update() {
     player.update();
+    //for every object in the arraylist, update
     for (GameObject obj : Objects) {
       obj.update();
     }

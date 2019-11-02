@@ -2,8 +2,10 @@ package com.example.phase1.Objects;
 
 public class Character extends GameObject {
 
-  private int speed; // how fast the character moves
-  private int strength; // how strong is the character, how many damage it can deal
+  private int speed;
+  // how fast the character moves
+  private int strength;
+  // how strong is the character, how many damage it can deal
   private int health;
 
   public Character(float x, float y) { // NEED GameManager.getHealth()

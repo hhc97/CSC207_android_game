@@ -45,6 +45,7 @@ public class Level1Activity extends GameManager {
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+    //calling initial setup methods
     setup();
     nullAction();
     setLeftButton();
@@ -245,10 +246,10 @@ public class Level1Activity extends GameManager {
 
   private void checkIsWinning() {
     boolean isWon = true;
-    for (GameObject obj : manager.Objects) {
-      if (obj.getStates()) isWon = false;
+    for (GameObject obj : manager.Objects) {  //if all the GameObjects are dead
+      if (obj.getStates()) isWon = false; //if any of them isn't, isWon = false
     }
-    if (isWon) startNextLevel();
+    if(isWon) startNextLevel();
   }
 
   private void updateImage() {

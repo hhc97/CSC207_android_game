@@ -5,8 +5,8 @@ import com.example.phase1.Level1Game.Level1Manager;
 public class Monster extends Character {
   private Hero player;
   private int worth = 100;
-  // temp, how many point the monster worth (how many point the player could get when they kill this
-  // monster)
+  // temp, how many point the monster worth
+  // (how many point the player could get when they kill this monster)
   private boolean heroHadGotPoint = false;
   // track is the player had already get the point from this monster or not;
 
@@ -34,10 +34,13 @@ public class Monster extends Character {
   }
 
   private boolean isGetHit() { // Check is the monster is get hit by Hero or not
-    float[] xRange = player.getAttackRangeX(); // get the x coordinate range of AttackRange
-    float[] yRange = player.getAttackRangeY(); // get y coordinate range of AttackRange
+    float[] xRange = player.getAttackRangeX();
+    // get the x coordinate range of AttackRange
+    float[] yRange = player.getAttackRangeY();
+    // get y coordinate range of AttackRange
     if ((x <= xRange[0]
-            && xRange[0] <= (x + WIDTH)) // Case 1, the Monster is bigger than attack range
+            && xRange[0] <= (x + WIDTH))
+            // Case 1, the Monster is bigger than attack range
         || (x <= xRange[1] && xRange[1] <= (x + WIDTH))) {
       if ((y <= yRange[0] && yRange[0] <= (y + HEIGHT))
           || (y <= yRange[1] && yRange[1] <= (y + HEIGHT))) {
@@ -45,7 +48,8 @@ public class Monster extends Character {
       }
     }
     if ((xRange[0] <= x
-            && (x + WIDTH) <= xRange[0]) // Case 2, the Monster is smaller than attack range
+            && (x + WIDTH) <= xRange[0])
+            // Case 2, the Monster is smaller than attack range
         || (xRange[1] <= x && (x + WIDTH) <= xRange[1])) {
       if ((yRange[0] <= y && (y + HEIGHT) <= yRange[0])
           || (yRange[1] <= y && (y + HEIGHT) <= yRange[1])) {
