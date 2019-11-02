@@ -1,5 +1,6 @@
 package com.example.phase1.Level1Game;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -26,8 +27,10 @@ public class Level1Activity extends GameManager {
   private GifImageView enemy;
   private Level1Manager manager;
   private int activityLevel; // Day or Night background
-  private int[] heroAction = new int[4]; // animations for hero, stand, walk, hurt and attack
-  private int[] enemyAction = new int[4]; // animations for enemy, stand, walk, hurt and attack
+  private int[] heroAction = new int[4];
+  // animations for hero, stand, walk, hurt and attack
+  private int[] enemyAction = new int[4];
+  // animations for enemy, stand, walk, hurt and attack
   private TextView scoreLabel;
   private TextView healthLabel;
   private int difficulty = 0;
@@ -40,7 +43,8 @@ public class Level1Activity extends GameManager {
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -75,7 +79,8 @@ public class Level1Activity extends GameManager {
   }
 
   private void setEnemyAction() {
-    int enemyType = 0; // default, since we only have one type of enemy right now
+    int enemyType = 0;
+    // default, since we only have one type of enemy right now
     if (enemyType == 0) {
       Array.set(enemyAction, 0, R.drawable.mage); // stand/unmoved
       Array.set(enemyAction, 1, R.drawable.walke); // walk animation
@@ -137,16 +142,17 @@ public class Level1Activity extends GameManager {
   }
 
   private void setHeroStatus() {
-    manager.player.setHealth(getHealth());
-    manager.player.setCoins(getCoin());
+    Level1Manager.getPlayer().setHealth(getHealth());
+    Level1Manager.getPlayer().setCoins(getCoin());
   }
 
   private void updateStatesToGameManager() {
-    setHealth(manager.player.getHealth());
-    setCoin(manager.player.getCoins());
-    setScore(manager.player.getScore());
+    setHealth(Level1Manager.getPlayer().getHealth());
+    setCoin(Level1Manager.getPlayer().getCoins());
+    setScore(Level1Manager.getPlayer().getScore());
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setLeftButton() {
     Button left = findViewById(R.id.left);
     left.setOnTouchListener(
@@ -164,6 +170,7 @@ public class Level1Activity extends GameManager {
         });
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setRightButton() {
     Button right = findViewById(R.id.right);
     right.setOnTouchListener(
@@ -181,6 +188,7 @@ public class Level1Activity extends GameManager {
         });
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setAttackButton() {
     Button attack = findViewById(R.id.attack);
     attack.setOnTouchListener(
@@ -191,7 +199,7 @@ public class Level1Activity extends GameManager {
               case MotionEvent.ACTION_DOWN:
                 attackAction();
               case MotionEvent.ACTION_UP:
-                manager.player.notAttack();
+                Level1Manager.getPlayer().notAttack();
             }
             // ... Respond to touch events
             return true;
@@ -246,8 +254,10 @@ public class Level1Activity extends GameManager {
 
   private void checkIsWinning() {
     boolean isWon = true;
-    for (GameObject obj : manager.Objects) {  //if all the GameObjects are dead
-      if (obj.getStates()) isWon = false; //if any of them isn't, isWon = false
+    for (GameObject obj : manager.Objects) {
+      //if all the GameObjects are dead
+      if (obj.getStates()) isWon = false;
+      //if any of them isn't, isWon = false
     }
     if(isWon) startNextLevel();
   }
@@ -268,7 +278,7 @@ public class Level1Activity extends GameManager {
     setContentView(activityLevel);
     manager = new Level1Manager();
     hero = findViewById(R.id.hero);
-    manager.player.setImage(hero);
+    Level1Manager.getPlayer().setImage(hero);
     enemy = findViewById(R.id.enemy);
     manager.Objects.get(0).setImage(enemy);
     coin0 = findViewById(R.id.c1);
