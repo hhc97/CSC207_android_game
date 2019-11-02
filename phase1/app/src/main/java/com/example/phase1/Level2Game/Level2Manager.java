@@ -30,13 +30,6 @@ public class Level2Manager {
     parent = p;
   }
 
-  // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
-  //  public void setObstacleSpeed(int speed) {
-  //    for (Obstacle obstacle: Obstacles) {
-  //      obstacle.setSpeed(speed);
-  //    }
-  //  }
-
   // Updates player's health and score based on interactions with obstacles.
   public void update() {
     for (Obstacle obstacle : Obstacles) {
