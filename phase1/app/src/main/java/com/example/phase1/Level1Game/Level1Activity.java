@@ -54,12 +54,14 @@ public class Level1Activity extends GameManager {
     setAttackButton();
   }
 
+  // Set the day or night layout depending on user choice from Game Manager
   private void setActivityLevel() {
     int DayOrNight = getDayOrNight();
     if (DayOrNight == 0) activityLevel = R.layout.n_activity_level1;
     else if (DayOrNight == 1) activityLevel = R.layout.activity_level1;
   }
 
+  // Set the hero sprites based on user choice from Game Manager
   private void setHeroAction() {
     int heroType = getCharacter();
     if (heroType == 0) {
@@ -75,6 +77,7 @@ public class Level1Activity extends GameManager {
     }
   }
 
+  // Set the walking and attacking actions for the enemy sprite
   private void setEnemyAction() {
     int enemyType = 0; // default, since we only have one type of enemy right now
     if (enemyType == 0) {
@@ -85,69 +88,83 @@ public class Level1Activity extends GameManager {
     }
   }
 
+  // Set the default standing animation for the hero
   private void heroStandAnimation() {
     hero.setImageResource(heroAction[0]);
   }
 
+  // Set the walking animation for hero sprite
   private void heroWalkAnimation() {
     hero.setImageResource(heroAction[1]);
   }
 
+  // Show hero being hurt when it is attacked by enemy
   private void heroHurtAnimation() {
     hero.setImageResource(heroAction[2]);
   }
 
+  // Show the hero move his weapon when attacking
   private void heroAttackAnimation() {
     hero.setImageResource(heroAction[3]);
   }
 
+  // Flip the hero sprite left
   private void heroFacingLeft() {
     hero.setScaleX(-1f);
   }
 
+  // Flip the hero sprite right
   private void heroFacingRight() {
     hero.setScaleX(1f);
   }
 
+  // Set default standing animation for the Enemy
   private void enemyStandAnimation() {
     enemy.setImageResource(enemyAction[0]);
   }
 
+  // Set the walking animation for enemy sprite
   private void enemyWalkAnimation() {
     enemy.setImageResource(enemyAction[1]);
   }
 
+  // Show enemy getting hurt when hit by enemy
   private void enemyHurtAnimation() {
     enemy.setImageResource(enemyAction[2]);
   }
 
+  // Show enemy moving weapon and attacking hero
   private void enemyAttackAnimation() {
     enemy.setImageResource(enemyAction[3]);
   }
 
+  // Flip enemy sprite left
   private void enemyFacingLeft() {
     enemy.setScaleX(-1f);
   }
-
+  // Flip enemy sprite right
   private void enemyFacingRight() {
     enemy.setScaleX(1f);
   }
-
+  // Set gif to invisible
   private void imageInvisible(GifImageView image) {
     image.setVisibility(View.INVISIBLE);
   }
 
+  // Set health and coin statistics for the hero
   private void setHeroStatus() {
     Level1Manager.getPlayer().setHealth(getHealth());
     Level1Manager.getPlayer().setCoins(getCoin());
   }
 
+  // Update states in Game Manager Class
   private void updateStatesToGameManager() {
     setHealth(Level1Manager.getPlayer().getHealth());
     setCoin(Level1Manager.getPlayer().getCoins());
     setScore(Level1Manager.getPlayer().getScore());
   }
 
+  // Create and set event listener for left button
   @SuppressLint("ClickableViewAccessibility")
   private void setLeftButton() {
     Button left = findViewById(R.id.left);
@@ -166,6 +183,7 @@ public class Level1Activity extends GameManager {
         });
   }
 
+  // Create and set event listener for right button
   @SuppressLint("ClickableViewAccessibility")
   private void setRightButton() {
     Button right = findViewById(R.id.right);
@@ -183,7 +201,7 @@ public class Level1Activity extends GameManager {
           }
         });
   }
-
+  // Create and set event listener for attack button
   @SuppressLint("ClickableViewAccessibility")
   private void setAttackButton() {
     Button attack = findViewById(R.id.attack);
@@ -195,7 +213,7 @@ public class Level1Activity extends GameManager {
               case MotionEvent.ACTION_DOWN:
                 attackAction();
               case MotionEvent.ACTION_UP:
-               Level1Manager.getPlayer().notAttack();
+                Level1Manager.getPlayer().notAttack();
             }
             // ... Respond to touch events
             return true;
@@ -205,6 +223,7 @@ public class Level1Activity extends GameManager {
 
   private void setJumpButton() {}
 
+  // Move right when right button pressed
   private void rightAction() {
     heroFacingRight();
     hero.setX(manager.heroMoveRight());
@@ -212,6 +231,7 @@ public class Level1Activity extends GameManager {
     nullAction();
   }
 
+  // Move left when left button pressed
   private void leftAction() {
     hero.setX(manager.heroMoveLeft());
     heroFacingLeft();
@@ -219,6 +239,7 @@ public class Level1Activity extends GameManager {
     nullAction();
   }
 
+  // Attack when attack button is pressed
   private void attackAction() {
     Level1Manager.getPlayer().attack();
     manager.update();
@@ -248,6 +269,7 @@ public class Level1Activity extends GameManager {
     checkIsWinning();
   }
 
+  // Check if user is winning the game
   private void checkIsWinning() {
     boolean isWon = true;
     for (GameObject obj : manager.Objects) { // if all the GameObjects are dead
@@ -267,6 +289,7 @@ public class Level1Activity extends GameManager {
     }
   }
 
+  // Reference to all front end objects from back
   private void setup() {
     setActivityLevel();
     setContentView(activityLevel);
@@ -291,6 +314,7 @@ public class Level1Activity extends GameManager {
     healthLabel.setText("Health: " + getHealth());
   }
 
+  // Setting the level difficulty
   private void setLevelDifficulty() {
     this.difficulty = getDifficulty();
     if (this.difficulty == 0) {
