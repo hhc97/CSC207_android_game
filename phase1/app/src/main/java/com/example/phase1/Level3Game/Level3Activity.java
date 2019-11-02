@@ -120,7 +120,6 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    *
    * @param v Any button that is clicked
    */
-  @SuppressLint("SetTextI18n")
   @Override
   public void onClick(View v) {
     if (v.getId() == buttons[0].getId()) { // Top left button clicked
@@ -138,8 +137,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     if (Level3.checkError()) { // User did not input correct sequence
       if (Level3.attempts == 3) { // User made 3 attempts (out of attempts)
         deductHealth(1); // deduct a life
-        out.setText("Incorrect Pattern! You ran out of attempts, -1 lives");
-        out.setVisibility(View.VISIBLE);
+          set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
         Level3.attempts = 0;
         new Handler()
             .postDelayed(
@@ -156,9 +154,8 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                 5000); // 5000ms = 5 seconds
 
       } else { // User input incorrect sequence but still has remaining attempts
-        out.setText(
+          set_text(
             "Incorrect Pattern! " + (3 - Level3.attempts) + " remaining! " + "Displaying Sequence");
-        out.setVisibility(View.VISIBLE);
         Level3.clearInput(); // clear input for next attempt
         disable_buttons();
         new Handler()
@@ -174,8 +171,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     }
     if (Level3.checkWin()) { // User successfully inputs correct sequence
       disable_buttons();
-      out.setText("Correct Pattern!, You win! Returning to the Main Menu");
-      out.setVisibility(View.VISIBLE);
+        set_text("Correct Pattern!, You win! Returning to the Main Menu");
       new Handler()
           .postDelayed(
               new Runnable() { // delay the task by 5 seconds
@@ -188,10 +184,9 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     }
   }
 
-
     /**
      * Set all Button.Enabled and Clickable properties to true
-     **/
+     */
     private void enable_buttons() {
         runOnUiThread(
                 new Runnable() { // force task to run on UI Thread
@@ -205,7 +200,9 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                 });
     }
 
-    /**Set all Button.Visible properties to INVISIBLE**/
+    /**
+     * Set all Button.Visible properties to INVISIBLE*
+     */
     private void set_buttons_invisible() {
         runOnUiThread(
                 new Runnable() { // force task to run on UI Thread
@@ -218,26 +215,27 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                 });
     }
 
-    /**Set all Button.Visible properties to VISIBLE**/
-    private void set_buttons_visible() {
+  /** Set all Button.Enabled and Clickable properties to false* */
+  private void disable_buttons() {
+      for (Button button : buttons) {
+          button.setEnabled(false);
+          button.setClickable(false);
+      }
+  }
+
+    /**
+     * Set Text for Textview out and change Textview out.Visible property to VISIBLE*
+     */
+    private void set_text(final String s) {
         runOnUiThread(
                 new Runnable() { // force task to run on UI Thread
                     @Override
                     public void run() {
-                        for (Button button : buttons) {
-                            button.setVisibility(View.VISIBLE);
-                        }
+                        out.setText(s);
+                        out.setVisibility(View.VISIBLE);
                     }
                 });
     }
-
-  /** Set all Button.Enabled and Clickable properties to false* */
-  private void disable_buttons() {
-    for (Button button : buttons) {
-      button.setEnabled(false);
-      button.setClickable(false);
-    }
-  }
 
   public void onStop() {
     super.onStop();
