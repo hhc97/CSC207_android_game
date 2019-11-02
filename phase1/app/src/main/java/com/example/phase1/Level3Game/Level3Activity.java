@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.BackendStorage.MainActivity;
 import com.example.phase1.R;
 
 import java.util.Iterator;
@@ -85,7 +86,12 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
      * Get the sequence from the current level and displays it with a 1 second delay
      * between each button.
      */
+    @SuppressLint("SetTextI18n")
     public void displaySequence() {
+        disable_buttons();  //disable the buttons while the sequence is displaying
+        set_buttons_invisible();
+        out.setText("Wait for the sequence to display");
+        out.invalidate();
         final Iterator<Integer> sequence = Level3.getSequence().iterator();
 
         TimerTask task = new TimerTask() {  //create TimerTask
@@ -110,6 +116,8 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
         long period = 1000L;
         long delay = 1000L;
         timer.schedule(task, delay, period);
+        enable_buttons();   //enable buttons after sequence is displayed
+        out.setText("Start!");
     }
 
     /**
@@ -137,6 +145,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                 deductHealth(1);  //deduct a life
                 out.setText("Incorrect Pattern! You ran out of attempts, -1 lives");
                 out.setVisibility(View.VISIBLE);
+                Level3.attempts = 0;
                 new Handler().postDelayed(new Runnable() {    //delay the task by 5 seconds
                     @Override
                     public void run() {
@@ -144,20 +153,59 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                         {
                             startAgain();
                         }
-                        recreate();   //restart level if they still have lives remaining
+                        onStart();   //restart level if they still have lives remaining
                     }
                 }, 5000); //5000ms = 5 seconds
 
-            } else {
+            } else {    //User input incorrect sequence but still has remaining attempts
                 out.setText("Incorrect Pattern! " + (3 - Level3.attempts) + " remaining!");
                 out.setVisibility(View.VISIBLE);
                 Level3.clearInput();  //clear input for next attempt
+                displaySequence();
             }
         }
         if (Level3.checkWin()) {  //User successfully inputs correct sequence
-            out.setText("Correct Pattern!");
+            disable_buttons();
+            out.setText("Correct Pattern!, You win! Returning to the Main Menu");
             out.setVisibility(View.VISIBLE);
-            Level3.clearInput();  //Clear input
+            new Handler().postDelayed(new Runnable() {    //delay the task by 5 seconds
+                @Override
+                public void run() {
+                    onStop();
+                }
+            }, 5000); //5000ms = 5 seconds
         }
+    }
+
+    private void enable_buttons() {
+        for (Button button : buttons) {
+            button.setEnabled(true);
+            button.setClickable(true);
+        }
+    }
+
+    private void set_buttons_invisible() {
+        for (Button button : buttons) {
+            button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void set_buttons_visible() {
+        for (Button button : buttons) {
+            button.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void disable_buttons() {
+        for (Button button : buttons) {
+            button.setEnabled(false);
+            button.setClickable(false);
+        }
+    }
+
+    public void onStop() {
+        super.onStop();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
