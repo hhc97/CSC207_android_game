@@ -17,11 +17,11 @@ public class Level3Manager implements View.OnClickListener {
   private ArrayList<Integer> input = new ArrayList<>();
   /* private int attempts = 0; */
 
-  public Level3Manager() {
+    Level3Manager() {
     sequence = Sequence.getSequence();
   }
 
-  public ArrayList<Integer> getSequence() {
+    ArrayList<Integer> getSequence() {
     return sequence;
   }
   /**
