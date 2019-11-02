@@ -1,6 +1,8 @@
-package com.example.phase1;
+package com.example.phase1.Level3Game;
 
 import android.view.View;
+
+import com.example.phase1.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;

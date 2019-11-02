@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Level3Game;
 
 import java.util.ArrayList;
 import java.util.Random;
