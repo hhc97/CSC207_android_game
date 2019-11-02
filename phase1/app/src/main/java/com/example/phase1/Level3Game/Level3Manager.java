@@ -7,30 +7,46 @@ import java.util.Iterator;
  * This class is responsible for comparing the user input sequence to the actual sequence for stage
  * 3 of the game.
  */
-public class Level3Manager {
+class Level3Manager {
 
   private ArrayList<Integer> sequence;
+  int attempts = 0;
+  //button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
   private ArrayList<Integer> input = new ArrayList<>();
-  /* private int attempts = 0; */
 
+  /**
+   * Constructor initializes sequence.
+   */
   Level3Manager() {
-    sequence = Sequence.getSequence();
+    sequence = Sequence.getSequence();  //get a new Sequence from Sequence class
   }
 
+  /**
+   * Getter for ArrayList sequence.
+   * @return The stored sequence
+   */
   ArrayList<Integer> getSequence() {
     return sequence;
   }
+//  /**
+//   * An alternative constructor with a specified difficulty level for future use.
+//   *
+//   * @param difficulty Difficulty level of current game
+//   */
+//  public Level3Manager(int difficulty) {
+//    sequence = Sequence.getSequence(difficulty);
+//  }
+
   /**
-   * An alternative constructor with a specified difficulty level for future use.
-   *
-   * @param difficulty
+   * add a user input to ArrayList input
+   * @param pressed the button which was pressed
    */
-  public Level3Manager(int difficulty) {
-    sequence = Sequence.getSequence(difficulty);
+  void setUserInput(int pressed) {
+    input.add(pressed);
   }
 
-  public void getUserInput(int pressed) {
-    input.add(pressed);
+  void clearInput() {
+    input.clear();
   }
 
   /**
@@ -38,7 +54,7 @@ public class Level3Manager {
    *
    * @return true if the user input does not match the sequence
    */
-  public boolean checkError() {
+  boolean checkError() {
     Iterator<Integer> seq = sequence.iterator();
     Iterator<Integer> in = input.iterator();
 
@@ -46,6 +62,7 @@ public class Level3Manager {
       int a = seq.next();
       int b = in.next();
       if (a != b) {
+        attempts++;
         return true;
       }
     }
@@ -57,7 +74,7 @@ public class Level3Manager {
    *
    * @return true if user input does not match sequence
    */
-  public boolean checkWin() {
+  boolean checkWin() {
     Iterator<Integer> seq = sequence.iterator();
     Iterator<Integer> in = input.iterator();
 
