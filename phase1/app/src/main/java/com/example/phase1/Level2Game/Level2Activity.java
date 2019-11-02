@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.Level3Game.Level3Activity;
 import com.example.phase1.R;
 
 import java.util.Timer;
@@ -166,6 +167,7 @@ public class Level2Activity extends GameManager {
                               levelOver.setVisibility(View.VISIBLE);
                               animator.cancel();
                               timer.cancel();
+                              levelEndDelay();
                             }
                           }
                         });
@@ -219,5 +221,21 @@ public class Level2Activity extends GameManager {
           }
         },
         500);
+  }
+
+  // Starts the activity for Level 3.
+  private void goToLevel3() {
+    Intent intent = new Intent(this, Level3Activity.class);
+    startActivity(intent);
+  }
+
+  // A 3 second delay before starting Level 3.
+  private void levelEndDelay() {
+    handler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        goToLevel3();
+      }
+    }, 3000);
   }
 }
