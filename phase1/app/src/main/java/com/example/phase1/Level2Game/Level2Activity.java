@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.Level3Game.Level3Activity;
 import com.example.phase1.R;
 
 import java.util.Timer;
@@ -70,20 +71,6 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundEight = findViewById(R.id.tree1_c);
     final ImageView backgroundNine = findViewById(R.id.rock1_c);
     final ImageView backgroundTen = findViewById(R.id.tree2_c);
-
-    // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
-    // Get screen size.
-    //    WindowManager wm = getWindowManager();
-    //    Display disp = wm.getDefaultDisplay();
-    //    Point size = new Point();
-    //    disp.getSize(size);
-
-    //    screenWidth = size.x;
-    //    screenHeight = size.y;
-
-    // Pixel 3 Width: 2160, Height: 1080.
-    // Speed of rock = 36
-    // rockSpeed = Math.round(screenWidth / 60);
 
     // Change the hero's appearance based on the user's choice.
     final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
@@ -166,6 +153,7 @@ public class Level2Activity extends GameManager {
                               levelOver.setVisibility(View.VISIBLE);
                               animator.cancel();
                               timer.cancel();
+                              levelEndDelay();
                             }
                           }
                         });
@@ -219,5 +207,15 @@ public class Level2Activity extends GameManager {
           }
         },
         500);
+  }
+
+  // A 3 second delay before starting Level 3.
+  private void levelEndDelay() {
+    handler.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        startNextLevel();
+      }
+    }, 3000);
   }
 }
