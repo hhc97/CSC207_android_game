@@ -33,14 +33,6 @@ public class Level1Manager {
     }
   }
 
-  // Remove objects that have disappeared.
-  public void onLoop() {
-    while (player.getStates()) {
-      update();
-      removeDisappearedObjects();
-    }
-  }
-
   private void removeDisappearedObjects() {
     for (GameObject obj : Objects) {
       if (!obj.getStates()) {
