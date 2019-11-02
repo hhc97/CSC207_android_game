@@ -250,6 +250,14 @@ public abstract class GameManager extends AppCompatActivity {
     }
   }
 
+  /** Starts the game again, if the player loses all their lives. */
+  public void startAgain() {
+    setLevel(1);
+    setScore(0);
+    setHealth(3);
+    startGame();
+  }
+
   /** If no save file exists, create a new one with default values. */
   void startFile() {
     writeToFile("1,3,0,0,2,0,1,LV1");
