@@ -184,25 +184,42 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
      * Set all Button.Enabled and Clickable properties to true
      **/
     private void enable_buttons() {
-        for (Button button : buttons) {
-            button.setEnabled(true);
-            button.setClickable(true);
-        }
+        runOnUiThread(
+                new Runnable() { // force task to run on UI Thread
+                    @Override
+                    public void run() {
+                        for (Button button : buttons) {
+                            button.setEnabled(true);
+                            button.setClickable(true);
+                        }
+                    }
+                });
     }
 
     /**Set all Button.Visible properties to INVISIBLE**/
     private void set_buttons_invisible() {
-        for (Button button : buttons) {
-            button.setVisibility(View.INVISIBLE);
-        }
+        runOnUiThread(
+                new Runnable() { // force task to run on UI Thread
+                    @Override
+                    public void run() {
+                        for (Button button : buttons) {
+                            button.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
     }
 
     /**Set all Button.Visible properties to VISIBLE**/
     private void set_buttons_visible() {
-        for (Button button : buttons) {
-            button.setVisibility(View.VISIBLE);
-        }
-
+        runOnUiThread(
+                new Runnable() { // force task to run on UI Thread
+                    @Override
+                    public void run() {
+                        for (Button button : buttons) {
+                            button.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
     }
 
     /**Set all Button.Enabled and Clickable properties to false**/
