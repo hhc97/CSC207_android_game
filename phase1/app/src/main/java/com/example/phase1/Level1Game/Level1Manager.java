@@ -10,12 +10,10 @@ import java.util.ArrayList;
 
 public class Level1Manager {
   List<GameObject> Objects = new ArrayList();
-  static Hero player;
+  private static Hero player;
   private float playerStartX = 50; // temp, the x coordinate of character
   private float groundHeight = 20; // temp, the height of the ground
   private float playerStartY = groundHeight;
-  private int point = 100;
-  // temp, the point that player get when monster be killed
 
   public Level1Manager() {
     player = new Hero(playerStartX, playerStartY);
@@ -28,7 +26,7 @@ public class Level1Manager {
 
   public void update() {
     player.update();
-    // for every object in the arraylist, update
+    //for every object in the arraylist, update
     for (GameObject obj : Objects) {
       obj.update();
     }
@@ -58,12 +56,5 @@ public class Level1Manager {
     player.moveRight();
     return player.getX();
   }
-
-  public int getPoint() {
-    return this.point;
-  }
-
-  public static Hero getPlayer() {
-    return player;
-  }
+  public static Hero getPlayer(){return player;}
 }

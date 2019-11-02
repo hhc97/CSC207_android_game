@@ -13,7 +13,7 @@ public class Level2Manager {
   private int playerStartY = GROUND_HEIGHT;
   private Level2Activity parent;
 
-  public Level2Manager() {
+  Level2Manager() {
     Hero player = new Hero(playerStartX, GROUND_HEIGHT);
     player.setStates(true);
 
@@ -30,13 +30,14 @@ public class Level2Manager {
     parent = p;
   }
 
-  // COMMENTED OUT AS WE WILL BE USING THESE IN PHASE 2
+  // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
   //  public void setObstacleSpeed(int speed) {
   //    for (Obstacle obstacle: Obstacles) {
   //      obstacle.setSpeed(speed);
   //    }
   //  }
 
+  // Updates player's health and score based on interactions with obstacles.
   public void update() {
     for (Obstacle obstacle : Obstacles) {
       obstacle.update();
@@ -52,6 +53,7 @@ public class Level2Manager {
     }
   }
 
+  // Checks if this player is currently jumping in the air.
   void playerJump(boolean jump) {
     if (jump) {
       this.playerStartY = 1;

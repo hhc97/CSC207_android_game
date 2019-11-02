@@ -1,1 +1,10 @@
-Need to clean up interaction between Level2Activity, Level2Manager, and GameManager.
+1. Press the Start Game button to start the game.
+
+2. Once you reach the save slot screen, you can create a new character by specifying a name, and you
+ will be prompted to select your customizations. After that, you can press start game to start
+ playing the game.
+
+3. When multiple save slots are populated, you can click on them and the information associated
+with them will be displayed on the screen.
+
+4. You can double click on any saved slot to reconfigure preferences, or delete the slot.

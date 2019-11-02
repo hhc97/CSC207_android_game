@@ -25,7 +25,10 @@ public class Level2Activity extends GameManager {
   private Timer timer = new Timer();
   private TextView scoreLabel;
   private TextView healthLabel;
+  private TextView levelStart;
+  private TextView levelOver;
 
+  // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
   //  // Sizes. Note that in landscape, width > height.
   //  private int screenWidth;
   //  private int screenHeight;
@@ -40,6 +43,7 @@ public class Level2Activity extends GameManager {
     Intent intent = getIntent();
     setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
     level2Manager.setParent(this);
+
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
@@ -67,6 +71,7 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundNine = findViewById(R.id.rock1_c);
     final ImageView backgroundTen = findViewById(R.id.tree2_c);
 
+    // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
     // Get screen size.
     //    WindowManager wm = getWindowManager();
     //    Display disp = wm.getDefaultDisplay();
@@ -123,37 +128,54 @@ public class Level2Activity extends GameManager {
             backgroundTen.setTranslationX(-translationX1 + width1);
           }
         });
-    animator.start();
 
-    // Update coordinates of the moving obstacles, as well as the score.
+    // Text with instructions before the game starts.
+    levelStart = findViewById(R.id.Level2Start);
+
+    // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
-    final TextView levelOver = findViewById(R.id.end);
 
-    timer.schedule(
-        new TimerTask() {
+    // Text with message when game ends.
+    levelOver = findViewById(R.id.end);
+
+    handler.postDelayed(
+        new Runnable() {
           @Override
           public void run() {
-            handler.post(
-                new Runnable() {
+            // After 5s delay, remove the instructions text and start the animation.
+            levelStart.setVisibility(View.INVISIBLE);
+            animator.start();
+
+            timer.schedule(
+                new TimerTask() {
                   @Override
                   public void run() {
-                    level2Manager.update();
-                    scoreLabel.setText("Score: " + getScore());
-                    healthLabel.setText("Health: " + getHealth());
+                    handler.post(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            // Update coordinates of the moving obstacles, as well as the score.
+                            level2Manager.update();
+                            scoreLabel.setText("Score: " + getScore());
+                            healthLabel.setText("Health: " + getHealth());
 
-                    // The level is over, so pause the auto-update to check collision and animation.
-                    if (getHealth() == 0) {
-                      levelOver.setVisibility(View.VISIBLE);
-                      animator.cancel();
-                      timer.cancel();
-                    }
+                            // The level is over, so pause the auto-update to check collision and
+                            // animation.
+                            if (getHealth() == 0) {
+                              levelOver.setVisibility(View.VISIBLE);
+                              animator.cancel();
+                              timer.cancel();
+                            }
+                          }
+                        });
                   }
-                });
+                },
+                0,
+                20);
           }
         },
-        0,
-        20);
+        5000);
   }
 
   // Visually show that the hero is jumping.
