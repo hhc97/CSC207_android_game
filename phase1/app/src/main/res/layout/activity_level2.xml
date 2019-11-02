@@ -199,4 +199,15 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="invisible" />
 
+    <TextView
+            android:id="@+id/Level2Start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Tap the up arrow to jump. The game will start in 5 seconds."
+            android:textColor="@android:color/black"
+            android:textSize="22sp" />
+
 </RelativeLayout>
