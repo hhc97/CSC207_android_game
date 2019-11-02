@@ -11,34 +11,34 @@ class Level3Manager {
 
   private ArrayList<Integer> sequence;
   int attempts = 0;
-  //button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
+  // button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
   private ArrayList<Integer> input = new ArrayList<>();
 
-  /**
-   * Constructor initializes sequence.
-   */
+  /** Constructor initializes sequence. */
   Level3Manager() {
-    sequence = Sequence.getSequence();  //get a new Sequence from Sequence class
+    sequence = Sequence.getSequence(); // get a new Sequence from Sequence class
   }
 
   /**
    * Getter for ArrayList sequence.
+   *
    * @return The stored sequence
    */
   ArrayList<Integer> getSequence() {
     return sequence;
   }
-//  /**
-//   * An alternative constructor with a specified difficulty level for future use.
-//   *
-//   * @param difficulty Difficulty level of current game
-//   */
-//  public Level3Manager(int difficulty) {
-//    sequence = Sequence.getSequence(difficulty);
-//  }
+  //  /**
+  //   * An alternative constructor with a specified difficulty level for future use.
+  //   *
+  //   * @param difficulty Difficulty level of current game
+  //   */
+  //  public Level3Manager(int difficulty) {
+  //    sequence = Sequence.getSequence(difficulty);
+  //  }
 
   /**
    * add a user input to ArrayList input
+   *
    * @param pressed the button which was pressed
    */
   void setUserInput(int pressed) {

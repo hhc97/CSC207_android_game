@@ -26,12 +26,12 @@ public class Level2Activity extends GameManager {
   private TextView scoreLabel;
   private TextView healthLabel;
 
-//  // Sizes. Note that in landscape, width > height.
-//  private int screenWidth;
-//  private int screenHeight;
-//
-//  // Speed
-//  private int rockSpeed;
+  //  // Sizes. Note that in landscape, width > height.
+  //  private int screenWidth;
+  //  private int screenHeight;
+  //
+  //  // Speed
+  //  private int rockSpeed;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class Level2Activity extends GameManager {
       setContentView(R.layout.n_activity_level2);
     } else if (getDayOrNight() == 1) {
       setContentView(R.layout.activity_level2);
-      }
+    }
 
     // Images in the layout for Level 2.
     final ImageView backgroundOne = findViewById(R.id.grass);
