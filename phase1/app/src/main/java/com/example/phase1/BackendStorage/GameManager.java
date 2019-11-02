@@ -6,7 +6,7 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1.Level1Game.Level1Activity;
-import com.example.phase1.Level2Activity;
+import com.example.phase1.Level2Game.Level2Activity;
 import com.example.phase1.Level3Game.Level3Activity;
 
 import java.io.FileNotFoundException;

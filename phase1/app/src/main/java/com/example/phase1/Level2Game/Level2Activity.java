@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Level2Game;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

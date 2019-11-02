@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Level2Game;
 
 import com.example.phase1.Objects.Hero;
 import com.example.phase1.Objects.Obstacle;

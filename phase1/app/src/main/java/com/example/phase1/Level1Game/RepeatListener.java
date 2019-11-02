@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Level1Game;
 
 import android.os.Handler;
 import android.view.MotionEvent;
