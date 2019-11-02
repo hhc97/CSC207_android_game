@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.R;
@@ -56,7 +57,6 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
       buttons[1] = findViewById(R.id.b2);
       buttons[2] = findViewById(R.id.b3);
       buttons[3] = findViewById(R.id.b4);
-
     } else {
       buttons[0] = findViewById(R.id.b28);
       buttons[1] = findViewById(R.id.b29);
@@ -68,34 +68,34 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     protected void onStart() {
         super.onStart();
         displaySequence();
+        System.out.println("Success");
     }
     public void displaySequence() {
         final Iterator<Integer> sequence = Level3.getSequence().iterator();
-//        buttons[0].setVisibility(View.VISIBLE);
-//        buttons[1].setVisibility(View.VISIBLE);
-//        buttons[2].setVisibility(View.VISIBLE);
-//        buttons[3].setVisibility(View.VISIBLE);
 
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 if (sequence.hasNext()) {
                     final int i = sequence.next();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            buttons[i].setVisibility(View.VISIBLE);
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                    {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                buttons[i].setVisibility(View.VISIBLE);
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
 
-
+                } else {
+                    cancel();
                 }
-      }
+            }
         };
         long period = 1000L;
         long delay = 1000L;
@@ -104,6 +104,26 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
 
   @Override
   public void onClick(View v) {
-    Level3.onClick(v);
+      if (v.getId() == buttons[0].getId()) {
+          Level3.getUserInput(0);
+      }
+      if (v.getId() == buttons[1].getId()) {
+          Level3.getUserInput(1);
+      }
+      if (v.getId() == buttons[2].getId()) {
+          Level3.getUserInput(2);
+      }
+      if (v.getId() == buttons[3].getId()) {
+          Level3.getUserInput(3);
+      }
+      if (Level3.checkError()) {
+          TextView out = findViewById(R.id.pstat);
+          out.setVisibility(View.VISIBLE);
+      }
+      if (Level3.checkWin()) {
+          TextView out = findViewById(R.id.pstat);
+          out.setText("Correct Pattern!");
+          out.setVisibility(View.VISIBLE);
+      }
   }
 }

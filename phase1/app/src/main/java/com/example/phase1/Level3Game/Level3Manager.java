@@ -1,9 +1,5 @@
 package com.example.phase1.Level3Game;
 
-import android.view.View;
-
-import com.example.phase1.R;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -11,17 +7,17 @@ import java.util.Iterator;
  * This class is responsible for comparing the user input sequence to the actual sequence for stage
  * 3 of the game.
  */
-public class Level3Manager implements View.OnClickListener {
+public class Level3Manager {
 
   private ArrayList<Integer> sequence;
   private ArrayList<Integer> input = new ArrayList<>();
   /* private int attempts = 0; */
 
-    Level3Manager() {
+  Level3Manager() {
     sequence = Sequence.getSequence();
   }
 
-    ArrayList<Integer> getSequence() {
+  ArrayList<Integer> getSequence() {
     return sequence;
   }
   /**
@@ -35,13 +31,6 @@ public class Level3Manager implements View.OnClickListener {
 
   public void getUserInput(int pressed) {
     input.add(pressed);
-    if (this.checkWin()) {
-      /*Do something when game has been completed*/
-    }
-    if (checkIn()) {
-      /* Implement a pop-up that prompts the user to either reload a previous checkpoint
-       * or end the game after 3 failed attempts at the sequence(They lost).*/
-    }
   }
 
   /**
@@ -49,7 +38,7 @@ public class Level3Manager implements View.OnClickListener {
    *
    * @return true if the user input does not match the sequence
    */
-  private boolean checkIn() {
+  public boolean checkError() {
     Iterator<Integer> seq = sequence.iterator();
     Iterator<Integer> in = input.iterator();
 
@@ -68,7 +57,7 @@ public class Level3Manager implements View.OnClickListener {
    *
    * @return true if user input does not match sequence
    */
-  private boolean checkWin() {
+  public boolean checkWin() {
     Iterator<Integer> seq = sequence.iterator();
     Iterator<Integer> in = input.iterator();
 
@@ -80,32 +69,5 @@ public class Level3Manager implements View.OnClickListener {
       }
     }
     return false;
-  }
-
-  public void onClick(View v) {
-    switch (v.getId()) {
-      case R.id.b1:
-      case R.id.b28:
-        getUserInput(0);
-        break;
-
-      case R.id.b2:
-      case R.id.b29:
-        getUserInput(1);
-        break;
-
-      case R.id.b3:
-      case R.id.b30:
-        getUserInput(2);
-        break;
-
-      case R.id.b4:
-      case R.id.b31:
-        getUserInput(3);
-        break;
-
-      default:
-        throw new RuntimeException("Unknown button ID");
-    }
   }
 }
