@@ -16,6 +16,7 @@ public class Obstacle extends GameObject {
       this.hasPassed = false;
     }
   }
+
   public void setPassed(boolean pass) {
     this.hasPassed = pass;
   }

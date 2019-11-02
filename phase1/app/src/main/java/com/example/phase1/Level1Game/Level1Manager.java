@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Level1Manager {
-  List<GameObject> Objects = new ArrayList();
+  List<GameObject> Objects = new ArrayList<>();
   private static Hero player;
-  private float playerStartX = 50; // temp, the x coordinate of character
-  private float groundHeight = 20; // temp, the height of the ground
+  private float playerStartX = 50; // temp, the x coordinate of character.
+  private float groundHeight = 20; // temp, the height of the ground.
   private float playerStartY = groundHeight;
 
   public Level1Manager() {
@@ -24,16 +24,16 @@ public class Level1Manager {
     Objects.add(new Coin(1750, groundHeight));
   }
 
-  // Update every object in the array list
+  // Update every object in the array list.
   public void update() {
     player.update();
-    // for every object in the array list, update
+    // Update every object in the array list.
     for (GameObject obj : Objects) {
       obj.update();
     }
   }
 
-  // Remove disappeared objects
+  // Remove objects that have disappeared.
   public void onLoop() {
     while (player.getStates()) {
       update();
@@ -49,13 +49,13 @@ public class Level1Manager {
     }
   }
 
-  // Update hero's X Coordinate and Move left
+  // Update hero's x Coordinate and move left.
   public float heroMoveLeft() {
     player.moveLeft();
     return player.getX();
   }
 
-  // Update hero's X Coordinate and Move right
+  // Update hero's x Coordinate and move right.
   public float heroMoveRight() {
     player.moveRight();
     return player.getX();
