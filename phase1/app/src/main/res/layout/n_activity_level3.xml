@@ -28,7 +28,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginBottom="70dp"
         android:background="@drawable/b3"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/b1"
@@ -39,7 +39,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="200dp"
         android:background="@drawable/b1"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/b4"
@@ -50,7 +50,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/b4"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/b2"
@@ -61,7 +61,7 @@
         android:layout_marginEnd="200dp"
         android:layout_marginBottom="70dp"
         android:background="@drawable/b2"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     x
 
