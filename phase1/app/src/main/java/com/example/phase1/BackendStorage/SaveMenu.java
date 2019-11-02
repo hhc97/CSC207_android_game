@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -15,9 +16,9 @@ import com.example.phase1.R;
  * also resume previous saves.
  */
 public class SaveMenu extends GameManager {
-  private String emptySlot = "Empty save slot";
   private Button[] buttons;
-  static String sendName = "com.example.phase1.BackendStorage.SEND_NAME";
+  private final String emptySlot = "Empty save slot";
+  static final String sendName = "com.example.phase1.BackendStorage.SEND_NAME";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,9 @@ public class SaveMenu extends GameManager {
   }
 
   /**
-   * Determines what do do when a save slot is clicked. Either ask the user if they want to load the
-   * game/delete the save slot, or allow the user to create a new account if the slot is empty.
+   * Determines what do do when a save slot is clicked. First loads up the clicked save slot's
+   * stats, then asks if the user wants to delete the account if the same button is clicked again,
+   * or allow the user to create a new account if the slot is empty.
    *
    * @param view the button that is clicked.
    */
@@ -75,7 +77,11 @@ public class SaveMenu extends GameManager {
     Button b = (Button) view;
     for (int i = 0; i < buttons.length; i++) {
       if (buttons[i] == b) {
-        currPlayer = i;
+        if (currPlayer == i) {
+          queryEdit();
+        } else {
+          currPlayer = i;
+        }
       }
     }
     String buttonName = b.getText().toString();
@@ -83,7 +89,32 @@ public class SaveMenu extends GameManager {
       Intent intent = new Intent(this, SetCharacterName.class);
       startActivityForResult(intent, 1);
     } else {
-      queryResume();
+      updatePlayerInfo();
+    }
+  }
+
+  /**
+   * Asks the player if they want to resume/start the level once the start game button is clicked.
+   *
+   * @param view The button that is clicked.
+   */
+  public void startLevel(View view) {
+    queryResume();
+  }
+
+  /** Updates the TextView with the stats of the current player. */
+  private void updatePlayerInfo() {
+    TextView display = findViewById(R.id.textView);
+    if (currPlayer != -1 && getDayOrNight() != 3) {
+      int score = getScore();
+      int health = getHealth();
+      int coin = getCoin();
+      String name = getName();
+      String stats =
+          "Player name: " + name + "\nScore: " + score + "\nHealth: " + health + "\nCoin: " + coin;
+      display.setText(stats);
+    } else {
+      display.setText(R.string.no_player);
     }
   }
 
@@ -157,6 +188,7 @@ public class SaveMenu extends GameManager {
           @Override
           public void onClick(DialogInterface dialog, int which) {
             setCharacter(which);
+            updatePlayerInfo();
             updateButtons();
           }
         });
@@ -165,6 +197,9 @@ public class SaveMenu extends GameManager {
 
   /** Asks the user if they want to start the game, or resume the game that they were playing. */
   private void queryResume() {
+    if (currPlayer == -1) {
+      return;
+    }
     final String[] choices = {"Yes", "No"};
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -180,8 +215,6 @@ public class SaveMenu extends GameManager {
           public void onClick(DialogInterface dialog, int which) {
             if (which == 0) {
               startGame();
-            } else {
-              queryDelete();
             }
           }
         });
@@ -202,6 +235,28 @@ public class SaveMenu extends GameManager {
             if (which == 0) {
               deleteSlot();
               updateButtons();
+              updatePlayerInfo();
+            }
+          }
+        });
+    builder.show();
+  }
+
+  /** Asks the player if they would like to reconfigure their preferences. */
+  private void queryEdit() {
+    final String[] choices = {"Yes", "No"};
+
+    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    builder.setTitle("Would you like to edit your preferences?");
+    builder.setItems(
+        choices,
+        new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            if (which == 0) {
+              queryDayNight();
+            } else {
+              queryDelete();
             }
           }
         });
@@ -213,5 +268,6 @@ public class SaveMenu extends GameManager {
   public void onResume() {
     super.onResume();
     updateButtons();
+    updatePlayerInfo();
   }
 }

@@ -8,4 +8,5 @@
     <string name="game_level2">Level 2</string>
     <string name="player_health">Health: %1$s</string >
     <string name="player_score">Score: %1$s</string >
+    <string name="no_player">No player selected</string>
 </resources>

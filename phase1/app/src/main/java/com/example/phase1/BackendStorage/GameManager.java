@@ -24,7 +24,7 @@ public abstract class GameManager extends AppCompatActivity {
   public static final String sendPlayer = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
   //    score, health, coin, day/night, difficulty, character, current level, player name
-  String defaultScore = "0,0,0,0,0,0,1,NAME";
+  String defaultScore = "0,3,0,3,0,0,1,NAME";
   int currPlayer = -1;
 
   //  indexes of the player statistics
@@ -113,6 +113,7 @@ public abstract class GameManager extends AppCompatActivity {
     String[] scores = readFromFile().split("\n");
     scores[currPlayer] = defaultScore;
     writeToFile(String.join("\n", scores));
+    currPlayer = -1;
   }
 
   // getters and setters for all the stats
