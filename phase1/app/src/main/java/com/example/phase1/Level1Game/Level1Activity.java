@@ -30,6 +30,7 @@ public class Level1Activity extends GameManager {
   private int[] enemyAction = new int[4]; // animations for enemy, stand, walk, hurt and attack
   private TextView scoreLabel;
   private TextView healthLabel;
+  private int difficulty = 0;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +143,7 @@ public class Level1Activity extends GameManager {
   private void updateStatesToGameManager() {
     setHealth(manager.player.getHealth());
     setCoin(manager.player.getCoins());
+    setScore(manager.player.getScore());
   }
 
   private void setLeftButton() {
@@ -220,11 +222,9 @@ public class Level1Activity extends GameManager {
   private void attackAction() {
     manager.player.attack();
     manager.update();
-    if (!manager.Objects.get(0).getStates()){
-      addScore(manager.getPoint());
-    }
     nullAction();
     heroAttackAnimation();
+    enemyHurtAnimation();
   }
 
   private void nullAction() {
@@ -253,7 +253,7 @@ public class Level1Activity extends GameManager {
     for (GameObject obj : manager.Objects) {
       if (obj.getStates()) isWon = false;
     }
-    if(isWon) startNextLevel();
+    if (isWon) startNextLevel();
   }
 
   private void updateImage() {
@@ -286,7 +286,23 @@ public class Level1Activity extends GameManager {
     setHeroAction();
     setHeroStatus();
     setEnemyAction();
+    setLevelDifficulty();
     scoreLabel.setText("Score: " + getScore());
     healthLabel.setText("Health: " + getHealth());
+  }
+
+  private void setLevelDifficulty() {
+    this.difficulty = getDifficulty();
+    System.out.println("difficulty : " + difficulty);
+    if (this.difficulty == 0) {
+      ((Monster) manager.Objects.get(0)).setHealth(1);
+      ((Monster) manager.Objects.get(0)).setWorth(100);
+    } else if (this.difficulty == 1) {
+      ((Monster) manager.Objects.get(0)).setHealth(5);
+      ((Monster) manager.Objects.get(0)).setWorth(200);
+    } else if (this.difficulty == 2) {
+      ((Monster) manager.Objects.get(0)).setHealth(10);
+      ((Monster) manager.Objects.get(0)).setWorth(500);
+    }
   }
 }

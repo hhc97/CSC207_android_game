@@ -4,6 +4,11 @@ import com.example.phase1.Level1Game.Level1Manager;
 
 public class Monster extends Character {
   private Hero player;
+  private int worth = 100;
+  // temp, how many point the monster worth (how many point the player could get when they kill this
+  // monster)
+  private boolean heroHadGotPoint = false;
+  // track is the player had already get the point from this monster or not;
 
   public Monster(float x, float y) {
     super(x, y);
@@ -18,6 +23,10 @@ public class Monster extends Character {
       }
     }
     super.update();
+    if ((!heroHadGotPoint) && (!states)) {
+      player.addScore(this.worth);
+      heroHadGotPoint = true;
+    }
     traceHero();
     if (isTouchHero()) {
       player.damaged(getStrength());
@@ -85,5 +94,9 @@ public class Monster extends Character {
   public boolean isMoveLeft() {
     if (player.getX() < this.x) return true;
     return false;
+  }
+
+  public void setWorth(int worth) {
+    this.worth = worth;
   }
 }

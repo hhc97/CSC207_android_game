@@ -7,6 +7,7 @@ public class Hero extends Character {
   private float[] attackRangeY = new float[2]; // (x, y) coordinate of bottom right of attack range
   private int attackRange = WIDTH; // temp
   private int coins = 0;
+  private int score = 0;
 
   public Hero(float x, float y) {
     super(x, y);
@@ -59,8 +60,17 @@ public class Hero extends Character {
     this.coins++;
   }
 
-  public void setCoins(int coins){
-      this.coins = coins;
+  public void setCoins(int coins) {
+    this.coins = coins;
   }
+
   public void heal(int value) {}
+
+  public void addScore(int score) {
+    this.score += score;
+  }
+
+  public int getScore() {
+    return this.score;
+  }
 }

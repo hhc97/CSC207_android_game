@@ -137,7 +137,7 @@ public abstract class GameManager extends AppCompatActivity {
     return getStat(score);
   }
 
-  private void setScore(int s) {
+  public void setScore(int s) {
     setStat(s, score);
   }
 
