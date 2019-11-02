@@ -63,6 +63,17 @@
         android:background="@drawable/b2"
         android:visibility="invisible" />
 
+    <TextView
+        android:id="@+id/pstat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:text="Incorrect Pattern !"
+        android:textColor="#FFFFFF"
+        tools:visibility="invisible" />
+
     x
 
 </RelativeLayout>
