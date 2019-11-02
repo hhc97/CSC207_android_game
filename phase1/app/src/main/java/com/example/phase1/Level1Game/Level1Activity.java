@@ -1,5 +1,6 @@
 package com.example.phase1.Level1Game;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -137,16 +138,17 @@ public class Level1Activity extends GameManager {
   }
 
   private void setHeroStatus() {
-    manager.player.setHealth(getHealth());
-    manager.player.setCoins(getCoin());
+    Level1Manager.getPlayer().setHealth(getHealth());
+    Level1Manager.getPlayer().setCoins(getCoin());
   }
 
   private void updateStatesToGameManager() {
-    setHealth(manager.getPlayer().getHealth());
-    setCoin(manager.getPlayer().getCoins());
-    setScore(manager.getPlayer().getScore());
+    setHealth(Level1Manager.getPlayer().getHealth());
+    setCoin(Level1Manager.getPlayer().getCoins());
+    setScore(Level1Manager.getPlayer().getScore());
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setLeftButton() {
     Button left = findViewById(R.id.left);
     left.setOnTouchListener(
@@ -164,6 +166,7 @@ public class Level1Activity extends GameManager {
         });
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setRightButton() {
     Button right = findViewById(R.id.right);
     right.setOnTouchListener(
@@ -181,6 +184,7 @@ public class Level1Activity extends GameManager {
         });
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setAttackButton() {
     Button attack = findViewById(R.id.attack);
     attack.setOnTouchListener(
@@ -191,7 +195,7 @@ public class Level1Activity extends GameManager {
               case MotionEvent.ACTION_DOWN:
                 attackAction();
               case MotionEvent.ACTION_UP:
-                manager.player.notAttack();
+               Level1Manager.getPlayer().notAttack();
             }
             // ... Respond to touch events
             return true;
@@ -216,7 +220,7 @@ public class Level1Activity extends GameManager {
   }
 
   private void attackAction() {
-    manager.getPlayer().attack();
+    Level1Manager.getPlayer().attack();
     manager.update();
     nullAction();
     heroAttackAnimation();
@@ -268,7 +272,7 @@ public class Level1Activity extends GameManager {
     setContentView(activityLevel);
     manager = new Level1Manager();
     hero = findViewById(R.id.hero);
-    manager.getPlayer().setImage(hero);
+    Level1Manager.getPlayer().setImage(hero);
     enemy = findViewById(R.id.enemy);
     manager.Objects.get(0).setImage(enemy);
     coin0 = findViewById(R.id.c1);
