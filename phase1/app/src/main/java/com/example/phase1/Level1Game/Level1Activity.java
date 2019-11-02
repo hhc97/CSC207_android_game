@@ -1,6 +1,5 @@
 package com.example.phase1.Level1Game;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -41,13 +40,12 @@ public class Level1Activity extends GameManager {
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-    //calling initial setup methods
+    // calling initial setup methods
     setup();
     nullAction();
     setLeftButton();
@@ -77,8 +75,7 @@ public class Level1Activity extends GameManager {
   }
 
   private void setEnemyAction() {
-    int enemyType = 0;
-    // default, since we only have one type of enemy right now
+    int enemyType = 0; // default, since we only have one type of enemy right now
     if (enemyType == 0) {
       Array.set(enemyAction, 0, R.drawable.mage); // stand/unmoved
       Array.set(enemyAction, 1, R.drawable.walke); // walk animation
@@ -140,17 +137,16 @@ public class Level1Activity extends GameManager {
   }
 
   private void setHeroStatus() {
-    Level1Manager.getPlayer().setHealth(getHealth());
-    Level1Manager.getPlayer().setCoins(getCoin());
+    manager.player.setHealth(getHealth());
+    manager.player.setCoins(getCoin());
   }
 
   private void updateStatesToGameManager() {
-    setHealth(Level1Manager.getPlayer().getHealth());
-    setCoin(Level1Manager.getPlayer().getCoins());
-    setScore(Level1Manager.getPlayer().getScore());
+    setHealth(manager.getPlayer().getHealth());
+    setCoin(manager.getPlayer().getCoins());
+    setScore(manager.getPlayer().getScore());
   }
 
-  @SuppressLint("ClickableViewAccessibility")
   private void setLeftButton() {
     Button left = findViewById(R.id.left);
     left.setOnTouchListener(
@@ -168,7 +164,6 @@ public class Level1Activity extends GameManager {
         });
   }
 
-  @SuppressLint("ClickableViewAccessibility")
   private void setRightButton() {
     Button right = findViewById(R.id.right);
     right.setOnTouchListener(
@@ -186,7 +181,6 @@ public class Level1Activity extends GameManager {
         });
   }
 
-  @SuppressLint("ClickableViewAccessibility")
   private void setAttackButton() {
     Button attack = findViewById(R.id.attack);
     attack.setOnTouchListener(
@@ -197,7 +191,7 @@ public class Level1Activity extends GameManager {
               case MotionEvent.ACTION_DOWN:
                 attackAction();
               case MotionEvent.ACTION_UP:
-                Level1Manager.getPlayer().notAttack();
+                manager.player.notAttack();
             }
             // ... Respond to touch events
             return true;
@@ -222,7 +216,7 @@ public class Level1Activity extends GameManager {
   }
 
   private void attackAction() {
-    manager.player.attack();
+    manager.getPlayer().attack();
     manager.update();
     nullAction();
     heroAttackAnimation();
@@ -252,10 +246,8 @@ public class Level1Activity extends GameManager {
 
   private void checkIsWinning() {
     boolean isWon = true;
-    for (GameObject obj : manager.Objects) {
-      //if all the GameObjects are dead
-      if (obj.getStates()) isWon = false;
-      //if any of them isn't, isWon = false
+    for (GameObject obj : manager.Objects) { // if all the GameObjects are dead
+      if (obj.getStates()) isWon = false; // if any of them isn't, isWon = false
     }
     if (isWon) startNextLevel();
   }
@@ -276,7 +268,7 @@ public class Level1Activity extends GameManager {
     setContentView(activityLevel);
     manager = new Level1Manager();
     hero = findViewById(R.id.hero);
-    Level1Manager.getPlayer().setImage(hero);
+    manager.getPlayer().setImage(hero);
     enemy = findViewById(R.id.enemy);
     manager.Objects.get(0).setImage(enemy);
     coin0 = findViewById(R.id.c1);
@@ -297,7 +289,6 @@ public class Level1Activity extends GameManager {
 
   private void setLevelDifficulty() {
     this.difficulty = getDifficulty();
-    System.out.println("difficulty : " + difficulty);
     if (this.difficulty == 0) {
       ((Monster) manager.Objects.get(0)).setHealth(1);
       ((Monster) manager.Objects.get(0)).setWorth(100);
