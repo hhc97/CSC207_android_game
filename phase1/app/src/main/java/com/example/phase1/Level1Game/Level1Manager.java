@@ -24,14 +24,16 @@ public class Level1Manager {
     Objects.add(new Coin(1750, groundHeight));
   }
 
+  // Update every object in the array list
   public void update() {
     player.update();
-    // for every object in the arraylist, update
+    // for every object in the array list, update
     for (GameObject obj : Objects) {
       obj.update();
     }
   }
 
+  // Remove disappeared objects
   public void onLoop() {
     while (player.getStates()) {
       update();
@@ -47,11 +49,13 @@ public class Level1Manager {
     }
   }
 
+  // Update hero's X Coordinate and Move left
   public float heroMoveLeft() {
     player.moveLeft();
     return player.getX();
   }
 
+  // Update hero's X Coordinate and Move right
   public float heroMoveRight() {
     player.moveRight();
     return player.getX();
