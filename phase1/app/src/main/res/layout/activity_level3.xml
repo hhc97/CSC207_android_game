@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/lvl3d"
-    tools:context=".Level3Activity">
+    tools:context=".Level3Game.Level3Activity">
 
     <TextView
         android:id="@+id/pstat"

@@ -1,4 +1,4 @@
-package com.example.phase1;
+package com.example.phase1.Level3Game;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.R;
 
 import java.util.Iterator;
 import java.util.Timer;
@@ -19,10 +20,8 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
   private static Level3Manager Level3 = new Level3Manager();
   private Button[] buttons = new Button[4];
     private Timer timer = new Timer("Timer");
-    private long delay = 1000L;
-    private long period = 1000L;
 
-  @Override
+    @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     Intent intent = getIntent();
@@ -72,26 +71,34 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     }
     public void displaySequence() {
         final Iterator<Integer> sequence = Level3.getSequence().iterator();
-        buttons[0].setVisibility(View.VISIBLE);
-        buttons[1].setVisibility(View.VISIBLE);
-        buttons[2].setVisibility(View.VISIBLE);
-        buttons[3].setVisibility(View.VISIBLE);
+//        buttons[0].setVisibility(View.VISIBLE);
+//        buttons[1].setVisibility(View.VISIBLE);
+//        buttons[2].setVisibility(View.VISIBLE);
+//        buttons[3].setVisibility(View.VISIBLE);
 
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 if (sequence.hasNext()) {
-                    int i = sequence.next();
-                    buttons[i].setVisibility(View.INVISIBLE);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    final int i = sequence.next();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            buttons[i].setVisibility(View.VISIBLE);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
 
                 }
       }
         };
+        long period = 1000L;
+        long delay = 1000L;
         timer.schedule(task, delay, period);
     }
 

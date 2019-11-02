@@ -1,6 +1,8 @@
-package com.example.phase1;
+package com.example.phase1.Level3Game;
 
 import android.view.View;
+
+import com.example.phase1.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,11 +17,11 @@ public class Level3Manager implements View.OnClickListener {
   private ArrayList<Integer> input = new ArrayList<>();
   /* private int attempts = 0; */
 
-  public Level3Manager() {
+    Level3Manager() {
     sequence = Sequence.getSequence();
   }
 
-  public ArrayList<Integer> getSequence() {
+    ArrayList<Integer> getSequence() {
     return sequence;
   }
   /**

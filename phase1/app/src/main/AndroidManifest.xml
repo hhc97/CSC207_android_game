@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Level3Activity"
+            android:name=".Level3Game.Level3Activity"
             android:screenOrientation="landscape"></activity>
         <activity
             android:name=".BackendStorage.SetCharacterName"

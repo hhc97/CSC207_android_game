@@ -9,13 +9,12 @@ import java.util.List;
 public class Level2Manager {
   private static final int GROUND_HEIGHT = 0;
   private List<Obstacle> Obstacles = new ArrayList<>();
-  private static Hero player;
   private int playerStartX = 138;
   private int playerStartY = GROUND_HEIGHT;
   private Level2Activity parent;
 
   public Level2Manager() {
-    player = new Hero(playerStartX, GROUND_HEIGHT);
+    Hero player = new Hero(playerStartX, GROUND_HEIGHT);
     player.setStates(true);
 
     Obstacle rock1 = new Obstacle(185, GROUND_HEIGHT);
