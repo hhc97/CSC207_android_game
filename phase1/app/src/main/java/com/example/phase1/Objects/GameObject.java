@@ -23,7 +23,7 @@ public class GameObject {
     return this.x;
   }
 
-  public void setX(float x){
+  public void setX(float x) {
     this.x = x;
   }
 
@@ -31,7 +31,7 @@ public class GameObject {
     return this.y;
   }
 
-  public void setY(float y){
+  public void setY(float y) {
     this.y = y;
   }
 
@@ -43,14 +43,21 @@ public class GameObject {
     return this.WIDTH;
   }
 
-  public void setStates(boolean states) {this.states = states;}
+  public void setStates(boolean states) {
+    this.states = states;
+  }
 
-  public boolean getStates(){return this.states;}
+  public boolean getStates() {
+    return this.states;
+  }
 
-  public void update(){}
+  public void update() {}
 
-  public void setImage(GifImageView image){
+  public void setImage(GifImageView image) {
     this.image = image;
   }
-  public GifImageView getImage(){return this.image;}
+
+  public GifImageView getImage() {
+    return this.image;
+  }
 }
