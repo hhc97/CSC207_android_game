@@ -72,22 +72,28 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     }
     public void displaySequence() {
         final Iterator<Integer> sequence = Level3.getSequence().iterator();
-        buttons[0].setVisibility(View.VISIBLE);
-        buttons[1].setVisibility(View.VISIBLE);
-        buttons[2].setVisibility(View.VISIBLE);
-        buttons[3].setVisibility(View.VISIBLE);
+//        buttons[0].setVisibility(View.VISIBLE);
+//        buttons[1].setVisibility(View.VISIBLE);
+//        buttons[2].setVisibility(View.VISIBLE);
+//        buttons[3].setVisibility(View.VISIBLE);
 
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
                 if (sequence.hasNext()) {
-                    int i = sequence.next();
-                    buttons[i].setVisibility(View.INVISIBLE);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    final int i = sequence.next();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            buttons[i].setVisibility(View.VISIBLE);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
 
                 }
       }
