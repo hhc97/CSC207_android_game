@@ -45,7 +45,7 @@ public class Level1Activity extends GameManager {
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-    //calling initial setup methods
+    // calling initial setup methods
     setup();
     nullAction();
     setLeftButton();
@@ -142,9 +142,9 @@ public class Level1Activity extends GameManager {
   }
 
   private void updateStatesToGameManager() {
-    setHealth(manager.player.getHealth());
-    setCoin(manager.player.getCoins());
-    setScore(manager.player.getScore());
+    setHealth(manager.getPlayer().getHealth());
+    setCoin(manager.getPlayer().getCoins());
+    setScore(manager.getPlayer().getScore());
   }
 
   private void setLeftButton() {
@@ -216,7 +216,7 @@ public class Level1Activity extends GameManager {
   }
 
   private void attackAction() {
-    manager.player.attack();
+    manager.getPlayer().attack();
     manager.update();
     nullAction();
     heroAttackAnimation();
@@ -246,10 +246,10 @@ public class Level1Activity extends GameManager {
 
   private void checkIsWinning() {
     boolean isWon = true;
-    for (GameObject obj : manager.Objects) {  //if all the GameObjects are dead
-      if (obj.getStates()) isWon = false; //if any of them isn't, isWon = false
+    for (GameObject obj : manager.Objects) { // if all the GameObjects are dead
+      if (obj.getStates()) isWon = false; // if any of them isn't, isWon = false
     }
-    if(isWon) startNextLevel();
+    if (isWon) startNextLevel();
   }
 
   private void updateImage() {
@@ -268,7 +268,7 @@ public class Level1Activity extends GameManager {
     setContentView(activityLevel);
     manager = new Level1Manager();
     hero = findViewById(R.id.hero);
-    manager.player.setImage(hero);
+    manager.getPlayer().setImage(hero);
     enemy = findViewById(R.id.enemy);
     manager.Objects.get(0).setImage(enemy);
     coin0 = findViewById(R.id.c1);
@@ -289,7 +289,6 @@ public class Level1Activity extends GameManager {
 
   private void setLevelDifficulty() {
     this.difficulty = getDifficulty();
-    System.out.println("difficulty : " + difficulty);
     if (this.difficulty == 0) {
       ((Monster) manager.Objects.get(0)).setHealth(1);
       ((Monster) manager.Objects.get(0)).setWorth(100);
