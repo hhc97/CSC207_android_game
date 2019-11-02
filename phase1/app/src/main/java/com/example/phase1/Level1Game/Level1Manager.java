@@ -26,7 +26,7 @@ public class Level1Manager {
 
   public void update() {
     player.update();
-    //for every object in the arraylist, update
+    // for every object in the arraylist, update
     for (GameObject obj : Objects) {
       obj.update();
     }
@@ -56,5 +56,8 @@ public class Level1Manager {
     player.moveRight();
     return player.getX();
   }
-  public static Hero getPlayer(){return player;}
+
+  public static Hero getPlayer() {
+    return player;
+  }
 }
