@@ -18,6 +18,8 @@ import java.util.Scanner;
 /**
  * This class is responsible for storing all stats into a local file, so as to be able to resume
  * games, and track statistics. As a result, all activities in this game will extend this class.
+ *
+ * @author Haocheng Hu
  */
 public abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";

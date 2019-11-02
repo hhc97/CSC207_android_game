@@ -14,6 +14,8 @@ import com.example.phase1.R;
 /**
  * The activity responsible for displaying the save menu, where users can choose a slot to save, and
  * also resume previous saves.
+ *
+ * @author Haocheng Hu
  */
 public class SaveMenu extends GameManager {
   private Button[] buttons;
