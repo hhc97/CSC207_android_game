@@ -27,6 +27,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     private Level3Manager Level3 = new Level3Manager(); //Current level
     private Button[] buttons = new Button[4]; //Array of buttons for the current layout
     private Timer timer = new Timer("Timer"); //Timer
+    private TextView out;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             buttons[2] = findViewById(R.id.b30);
             buttons[3] = findViewById(R.id.b31);
         }
+        out = findViewById(R.id.pstat);
     }
 
     /**
@@ -131,7 +133,6 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             Level3.setUserInput(3);
         }
         if (Level3.checkError()) {    //User did not input correct sequence
-            TextView out = findViewById(R.id.pstat);
             if (Level3.attempts == 3) {    //User made 3 attempts (out of attempts)
                 deductHealth(1);  //deduct a life
                 out.setText("Incorrect Pattern! You ran out of attempts, -1 lives");
@@ -141,7 +142,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                     public void run() {
                         if (getHealth() == 0)    //restart game if they run out of lives
                         {
-//                  startAgain();
+                            startAgain();
                         }
                         recreate();   //restart level if they still have lives remaining
                     }
@@ -154,7 +155,6 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             }
         }
         if (Level3.checkWin()) {  //User successfully inputs correct sequence
-            TextView out = findViewById(R.id.pstat);
             out.setText("Correct Pattern!");
             out.setVisibility(View.VISIBLE);
             Level3.clearInput();  //Clear input
