@@ -123,37 +123,51 @@ public class Level2Activity extends GameManager {
             backgroundTen.setTranslationX(-translationX1 + width1);
           }
         });
-    animator.start();
+
+    // Text with instructions before the game starts.
+    final TextView levelStart = findViewById(R.id.Level2Start);
 
     // Update coordinates of the moving obstacles, as well as the score.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
     final TextView levelOver = findViewById(R.id.end);
 
-    timer.schedule(
-        new TimerTask() {
+    handler.postDelayed(
+        new Runnable() {
           @Override
           public void run() {
-            handler.post(
-                new Runnable() {
+            // Do something after 5s
+            levelStart.setVisibility(View.INVISIBLE);
+            animator.start();
+
+            timer.schedule(
+                new TimerTask() {
                   @Override
                   public void run() {
-                    level2Manager.update();
-                    scoreLabel.setText("Score: " + getScore());
-                    healthLabel.setText("Health: " + getHealth());
+                    handler.post(
+                        new Runnable() {
+                          @Override
+                          public void run() {
+                            level2Manager.update();
+                            scoreLabel.setText("Score: " + getScore());
+                            healthLabel.setText("Health: " + getHealth());
 
-                    // The level is over, so pause the auto-update to check collision and animation.
-                    if (getHealth() == 0) {
-                      levelOver.setVisibility(View.VISIBLE);
-                      animator.cancel();
-                      timer.cancel();
-                    }
+                            // The level is over, so pause the auto-update to check collision and
+                            // animation.
+                            if (getHealth() == 0) {
+                              levelOver.setVisibility(View.VISIBLE);
+                              animator.cancel();
+                              timer.cancel();
+                            }
+                          }
+                        });
                   }
-                });
+                },
+                0,
+                20);
           }
         },
-        0,
-        20);
+        5000);
   }
 
   // Visually show that the hero is jumping.
