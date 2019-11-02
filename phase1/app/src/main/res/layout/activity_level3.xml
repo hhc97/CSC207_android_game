@@ -17,7 +17,7 @@
         android:layout_marginBottom="53dp"
         android:text="Incorrect Pattern !"
         android:textColor="#000000"
-        tools:visibility="invisible" />
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/hero"
@@ -39,6 +39,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="200dp"
         android:background="@drawable/b3"
+        android:enabled="true"
         android:visibility="invisible" />
 
     <Button
@@ -50,6 +51,7 @@
         android:layout_marginEnd="200dp"
         android:layout_marginBottom="70dp"
         android:background="@drawable/b1"
+        android:enabled="true"
         android:visibility="invisible" />
 
     <Button
@@ -61,6 +63,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginBottom="70dp"
         android:background="@drawable/b4"
+        android:enabled="true"
         android:visibility="invisible" />
 
     <Button
@@ -72,6 +75,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="70dp"
         android:background="@drawable/b2"
+        android:enabled="true"
         android:visibility="invisible" />
 
 </RelativeLayout>

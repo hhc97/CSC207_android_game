@@ -190,11 +190,6 @@ public class Level1Activity extends GameManager {
               case MotionEvent.ACTION_DOWN:
                 attackAction();
               case MotionEvent.ACTION_UP:
-                try {
-                  Thread.sleep(50);
-                } catch (InterruptedException e) {
-                  e.printStackTrace();
-                }
                 manager.player.notAttack();
             }
             // ... Respond to touch events

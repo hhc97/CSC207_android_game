@@ -9,7 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1.R;
 
-/** A class to get the player name and send it back to SaveMenu. */
+/**
+ * A class to get the player name and send it back to SaveMenu.
+ *
+ * @author Haocheng Hu
+ */
 public class SetCharacterName extends AppCompatActivity {
 
   @Override

@@ -6,7 +6,7 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1.Level1Game.Level1Activity;
-import com.example.phase1.Level2Activity;
+import com.example.phase1.Level2Game.Level2Activity;
 import com.example.phase1.Level3Game.Level3Activity;
 
 import java.io.FileNotFoundException;
@@ -18,6 +18,8 @@ import java.util.Scanner;
 /**
  * This class is responsible for storing all stats into a local file, so as to be able to resume
  * games, and track statistics. As a result, all activities in this game will extend this class.
+ *
+ * @author Haocheng Hu
  */
 public abstract class GameManager extends AppCompatActivity {
   static final String STATS_FILE = "stats.txt";
@@ -246,6 +248,14 @@ public abstract class GameManager extends AppCompatActivity {
       setLevel(getLevel() + 1);
       startGame();
     }
+  }
+
+  /** Starts the game again, if the player loses all their lives. */
+  public void startAgain() {
+    setLevel(1);
+    setScore(0);
+    setHealth(3);
+    startGame();
   }
 
   /** If no save file exists, create a new one with default values. */
