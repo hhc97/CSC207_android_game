@@ -77,17 +77,17 @@ public class SaveMenu extends GameManager {
    */
   public void clickSave(View view) {
     Button b = (Button) view;
+    boolean isEmptySlot = b.getText().toString().equals(emptySlot);
     for (int i = 0; i < buttons.length; i++) {
       if (buttons[i] == b) {
-        if (currPlayer == i) {
+        if (currPlayer == i && !isEmptySlot) {
           queryEdit();
         } else {
           currPlayer = i;
         }
       }
     }
-    String buttonName = b.getText().toString();
-    if (buttonName.equals(emptySlot)) {
+    if (isEmptySlot) {
       Intent intent = new Intent(this, SetCharacterName.class);
       startActivityForResult(intent, 1);
     } else {
