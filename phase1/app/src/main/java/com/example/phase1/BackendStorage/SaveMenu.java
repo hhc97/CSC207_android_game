@@ -109,9 +109,47 @@ public class SaveMenu extends GameManager {
       int score = getScore();
       int health = getHealth();
       int coin = getCoin();
+
+      String character;
+      if (getCharacter() == 0) {
+        character = "Rogue";
+      } else {
+        character = "Knight";
+      }
+
+      String nightDay;
+      if (getDayOrNight() == 0) {
+        nightDay = "Night";
+      } else {
+        nightDay = "Day";
+      }
+
+      String difficulty;
+      if (getDifficulty() == 0) {
+        difficulty = "Easy";
+      } else if (getDifficulty() == 1) {
+        difficulty = "Normal";
+      } else {
+        difficulty = "Hard";
+      }
+
       String name = getName();
       String stats =
-          "Player name: " + name + "\nScore: " + score + "\nHealth: " + health + "\nCoin: " + coin;
+          "Player: "
+              + name
+              + "\nScore: "
+              + score
+              + "\nHealth: "
+              + health
+              + "\nCoin: "
+              + coin
+              + "\n\nCustomizations:"
+              + "\nScene: "
+              + nightDay
+              + "\nDifficulty: "
+              + difficulty
+              + "\nCharacter: "
+              + character;
       display.setText(stats);
     } else {
       display.setText(R.string.no_player);
