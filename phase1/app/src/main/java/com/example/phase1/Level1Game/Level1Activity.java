@@ -27,10 +27,8 @@ public class Level1Activity extends GameManager {
   private GifImageView enemy;
   private Level1Manager manager;
   private int activityLevel; // Day or Night background
-  private int[] heroAction = new int[4];
-  // animations for hero, stand, walk, hurt and attack
-  private int[] enemyAction = new int[4];
-  // animations for enemy, stand, walk, hurt and attack
+  private int[] heroAction = new int[4]; // animations for hero, stand, walk, hurt and attack
+  private int[] enemyAction = new int[4]; // animations for enemy, stand, walk, hurt and attack
   private TextView scoreLabel;
   private TextView healthLabel;
   private int difficulty = 0;
@@ -259,7 +257,7 @@ public class Level1Activity extends GameManager {
       if (obj.getStates()) isWon = false;
       //if any of them isn't, isWon = false
     }
-    if(isWon) startNextLevel();
+    if (isWon) startNextLevel();
   }
 
   private void updateImage() {
