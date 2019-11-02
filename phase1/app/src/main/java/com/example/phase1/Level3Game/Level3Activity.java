@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.BackendStorage.MainActivity;
 import com.example.phase1.R;
 
 import java.util.Iterator;
@@ -76,12 +77,17 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     displaySequence();
   }
 
-  /**
-   * Get the sequence from the current level and displays it with a 1 second delay between each
-   * button.
-   */
-  public void displaySequence() {
-    final Iterator<Integer> sequence = Level3.getSequence().iterator();
+    /**
+     * Get the sequence from the current level and displays it with a 1 second delay
+     * between each button.
+     */
+    @SuppressLint("SetTextI18n")
+    public void displaySequence() {
+        disable_buttons();  //disable the buttons while the sequence is displaying
+        set_buttons_invisible();
+        out.setText("Wait for the sequence to display");
+        out.invalidate();
+        final Iterator<Integer> sequence = Level3.getSequence().iterator();
 
     TimerTask task = new TimerTask() { // create TimerTask
           @Override
@@ -103,60 +109,99 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             }
           }
         };
-    long period = 1000L;
-    long delay = 1000L;
-    timer.schedule(task, delay, period);
-  }
+        long period = 1000L;
+        long delay = 1000L;
+        timer.schedule(task, delay, period);
+        enable_buttons();   //enable buttons after sequence is displayed
+        out.setText("Start!");
+    }
 
-  /**
-   * Sends user input to the Level3Manager. Executes error and win conditional tasks.
-   *
-   * @param v Any button that is clicked
-   */
-  @SuppressLint("SetTextI18n")
-  @Override
-  public void onClick(View v) {
-    if (v.getId() == buttons[0].getId()) { // Top left button clicked
-      Level3.setUserInput(0);
-    }
-    if (v.getId() == buttons[1].getId()) { // Bottom left button clicked
-      Level3.setUserInput(1);
-    }
-    if (v.getId() == buttons[2].getId()) { // Bottom right button clicked
-      Level3.setUserInput(2);
-    }
-    if (v.getId() == buttons[3].getId()) { // Top right button clicked
-      Level3.setUserInput(3);
-    }
-    if (Level3.checkError()) { // User did not input correct sequence
-      if (Level3.attempts == 3) { // User made 3 attempts (out of attempts)
-        deductHealth(1); // deduct a life
-        out.setText("Incorrect Pattern! You ran out of attempts, -1 lives");
-        out.setVisibility(View.VISIBLE);
-        new Handler()
-            .postDelayed(
-                new Runnable() { // delay the task by 5 seconds
-                  @Override
-                  public void run() {
-                    if (getHealth() == 0) // restart game if they run out of lives
-                    {
-                      startAgain();
+    /**
+     * Sends user input to the Level3Manager. Executes error and win conditional tasks.
+     *
+     * @param v Any button that is clicked
+     */
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == buttons[0].getId()) {    //Top left button clicked
+            Level3.setUserInput(0);
+        }
+        if (v.getId() == buttons[1].getId()) {    //Bottom left button clicked
+            Level3.setUserInput(1);
+        }
+        if (v.getId() == buttons[2].getId()) {    //Bottom right button clicked
+            Level3.setUserInput(2);
+        }
+        if (v.getId() == buttons[3].getId()) {    //Top right button clicked
+            Level3.setUserInput(3);
+        }
+        if (Level3.checkError()) {    //User did not input correct sequence
+            if (Level3.attempts == 3) {    //User made 3 attempts (out of attempts)
+                deductHealth(1);  //deduct a life
+                out.setText("Incorrect Pattern! You ran out of attempts, -1 lives");
+                out.setVisibility(View.VISIBLE);
+                Level3.attempts = 0;
+                new Handler().postDelayed(new Runnable() {    //delay the task by 5 seconds
+                    @Override
+                    public void run() {
+                        if (getHealth() == 0)    //restart game if they run out of lives
+                        {
+                            startAgain();
+                        }
+                        onStart();   //restart level if they still have lives remaining
                     }
-                    recreate(); // restart level if they still have lives remaining
-                  }
-                },
-                5000); // 5000ms = 5 seconds
+                }, 5000); //5000ms = 5 seconds
 
-      } else {
-        out.setText("Incorrect Pattern! " + (3 - Level3.attempts) + " remaining!");
-        out.setVisibility(View.VISIBLE);
-        Level3.clearInput(); // clear input for next attempt
-      }
+            } else {    //User input incorrect sequence but still has remaining attempts
+                out.setText("Incorrect Pattern! " + (3 - Level3.attempts) + " remaining!");
+                out.setVisibility(View.VISIBLE);
+                Level3.clearInput();  //clear input for next attempt
+                displaySequence();
+            }
+        }
+        if (Level3.checkWin()) {  //User successfully inputs correct sequence
+            disable_buttons();
+            out.setText("Correct Pattern!, You win! Returning to the Main Menu");
+            out.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {    //delay the task by 5 seconds
+                @Override
+                public void run() {
+                    onStop();
+                }
+            }, 5000); //5000ms = 5 seconds
+        }
     }
-    if (Level3.checkWin()) { // User successfully inputs correct sequence
-      out.setText("Correct Pattern!");
-      out.setVisibility(View.VISIBLE);
-      Level3.clearInput(); // Clear input
+
+    private void enable_buttons() {
+        for (Button button : buttons) {
+            button.setEnabled(true);
+            button.setClickable(true);
+        }
     }
-  }
+
+    private void set_buttons_invisible() {
+        for (Button button : buttons) {
+            button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void set_buttons_visible() {
+        for (Button button : buttons) {
+            button.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private void disable_buttons() {
+        for (Button button : buttons) {
+            button.setEnabled(false);
+            button.setClickable(false);
+        }
+    }
+
+    public void onStop() {
+        super.onStop();
+        startActivity(new Intent(this, MainActivity.class));
+    }
 }
