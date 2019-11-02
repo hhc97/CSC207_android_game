@@ -10,6 +10,7 @@ public class Coin extends GameObject {
     this.player = Level1Manager.getPlayer();
   }
 
+  //Update the hero's status
   public void update() {
     if (isTouchHero() && states) {
       player.addCoins();
@@ -17,6 +18,7 @@ public class Coin extends GameObject {
     }
   }
 
+  //When in contact with hero, attack
   private boolean isTouchHero() {
     float[] xRange = {player.getX(), player.getX() + player.WIDTH};
     float[] yRange = {player.getY(), player.getY() + player.HEIGHT};
