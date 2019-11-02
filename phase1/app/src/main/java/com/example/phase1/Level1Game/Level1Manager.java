@@ -14,7 +14,8 @@ public class Level1Manager {
   private float playerStartX = 50; // temp, the x coordinate of character
   private float groundHeight = 20; // temp, the height of the ground
   private float playerStartY = groundHeight;
-  private int point=100;//temp, the point that player get when monster be killed
+  private int point=100;
+  //temp, the point that player get when monster be killed
 
   public Level1Manager() {
     player = new Hero(playerStartX, playerStartY);
