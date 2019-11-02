@@ -26,12 +26,12 @@ public class Level2Activity extends GameManager {
   private TextView scoreLabel;
   private TextView healthLabel;
 
-  // Sizes. Note that in landscape, width > height.
-  private int screenWidth;
-  private int screenHeight;
-
-  // Speed
-  private int rockSpeed;
+//  // Sizes. Note that in landscape, width > height.
+//  private int screenWidth;
+//  private int screenHeight;
+//
+//  // Speed
+//  private int rockSpeed;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,12 @@ public class Level2Activity extends GameManager {
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-    setContentView(R.layout.n_activity_level2);
+    // Change the background theme to either day or night based on the user's choice.
+    if (getDayOrNight() == 0) {
+      setContentView(R.layout.n_activity_level2);
+    } else if (getDayOrNight() == 1) {
+      setContentView(R.layout.activity_level2);
+      }
 
     // Images in the layout for Level 2.
     final ImageView backgroundOne = findViewById(R.id.grass);
@@ -136,6 +141,8 @@ public class Level2Activity extends GameManager {
                     level2Manager.update();
                     scoreLabel.setText("Score: " + getScore());
                     healthLabel.setText("Health: " + getHealth());
+
+                    // The level is over, so pause the auto-update to check collision and animation.
                     if (getHealth() == 0) {
                       levelOver.setVisibility(View.VISIBLE);
                       animator.cancel();
