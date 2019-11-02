@@ -260,9 +260,9 @@ public abstract class GameManager extends AppCompatActivity {
 
   /** If no save file exists, create a new one with default values. */
   void startFile() {
-    writeToFile("1,3,0,0,2,0,1,LV1");
-    writeToFile(readFromFile() + "1,3,0,0,2,0,2,LV2");
-    writeToFile(readFromFile() + "1,3,0,0,2,0,3,LV3");
+    writeToFile("0,3,0,0,2,0,1,Level 1");
+    writeToFile(readFromFile() + "0,3,0,0,2,0,2,Level 2");
+    writeToFile(readFromFile() + "0,3,0,0,2,0,3,Level 3");
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
