@@ -25,13 +25,16 @@ public class Level2Activity extends GameManager {
   private Timer timer = new Timer();
   private TextView scoreLabel;
   private TextView healthLabel;
+  private TextView levelStart;
+  private TextView levelOver;
 
-//  // Sizes. Note that in landscape, width > height.
-//  private int screenWidth;
-//  private int screenHeight;
-//
-//  // Speed
-//  private int rockSpeed;
+  // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
+  //  // Sizes. Note that in landscape, width > height.
+  //  private int screenWidth;
+  //  private int screenHeight;
+  //
+  //  // Speed
+  //  private int rockSpeed;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class Level2Activity extends GameManager {
     Intent intent = getIntent();
     setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
     level2Manager.setParent(this);
+
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
@@ -53,7 +57,7 @@ public class Level2Activity extends GameManager {
       setContentView(R.layout.n_activity_level2);
     } else if (getDayOrNight() == 1) {
       setContentView(R.layout.activity_level2);
-      }
+    }
 
     // Images in the layout for Level 2.
     final ImageView backgroundOne = findViewById(R.id.grass);
@@ -67,6 +71,7 @@ public class Level2Activity extends GameManager {
     final ImageView backgroundNine = findViewById(R.id.rock1_c);
     final ImageView backgroundTen = findViewById(R.id.tree2_c);
 
+    // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
     // Get screen size.
     //    WindowManager wm = getWindowManager();
     //    Display disp = wm.getDefaultDisplay();
@@ -125,18 +130,20 @@ public class Level2Activity extends GameManager {
         });
 
     // Text with instructions before the game starts.
-    final TextView levelStart = findViewById(R.id.Level2Start);
+    levelStart = findViewById(R.id.Level2Start);
 
-    // Update coordinates of the moving obstacles, as well as the score.
+    // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
-    final TextView levelOver = findViewById(R.id.end);
+
+    // Text with message when game ends.
+    levelOver = findViewById(R.id.end);
 
     handler.postDelayed(
         new Runnable() {
           @Override
           public void run() {
-            // Do something after 5s
+            // After 5s delay, remove the instructions text and start the animation.
             levelStart.setVisibility(View.INVISIBLE);
             animator.start();
 
@@ -148,6 +155,7 @@ public class Level2Activity extends GameManager {
                         new Runnable() {
                           @Override
                           public void run() {
+                            // Update coordinates of the moving obstacles, as well as the score.
                             level2Manager.update();
                             scoreLabel.setText("Score: " + getScore());
                             healthLabel.setText("Health: " + getHealth());
