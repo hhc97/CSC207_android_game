@@ -86,10 +86,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
         disable_buttons();  //disable the buttons while the sequence is displaying
         set_buttons_invisible();
         out.setText("Wait for the sequence to display");
-        out.invalidate();
+        out.setVisibility(View.VISIBLE);
         final Iterator<Integer> sequence = Level3.getSequence().iterator();
 
-    TimerTask task = new TimerTask() { // create TimerTask
+        TimerTask task = new TimerTask() { // create TimerTask
           @Override
           public void run() {
             if (sequence.hasNext()) { // check that the iterator has more items.
@@ -109,11 +109,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             }
           }
         };
-        long period = 1000L;
-        long delay = 1000L;
-        timer.schedule(task, delay, period);
+        timer.schedule(task, 1000L, 1000L); //schedule the task to execute every second
         enable_buttons();   //enable buttons after sequence is displayed
         out.setText("Start!");
+        out.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -154,10 +153,17 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                 }, 5000); //5000ms = 5 seconds
 
             } else {    //User input incorrect sequence but still has remaining attempts
-                out.setText("Incorrect Pattern! " + (3 - Level3.attempts) + " remaining!");
+                out.setText("Incorrect Pattern! " + (3 - Level3.attempts) + " remaining! " +
+                        "Displaying Sequence");
                 out.setVisibility(View.VISIBLE);
                 Level3.clearInput();  //clear input for next attempt
-                displaySequence();
+                disable_buttons();
+                new Handler().postDelayed(new Runnable() {    //delay the task by 5 seconds
+                    @Override
+                    public void run() {
+                        displaySequence();
+                    }
+                }, 2000); //2000ms = 2 seconds
             }
         }
         if (Level3.checkWin()) {  //User successfully inputs correct sequence
@@ -173,6 +179,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
         }
     }
 
+
+    /**
+     * Set all Button.Enabled and Clickable properties to true
+     **/
     private void enable_buttons() {
         for (Button button : buttons) {
             button.setEnabled(true);
@@ -180,12 +190,14 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
         }
     }
 
+    /**Set all Button.Visible properties to INVISIBLE**/
     private void set_buttons_invisible() {
         for (Button button : buttons) {
             button.setVisibility(View.INVISIBLE);
         }
     }
 
+    /**Set all Button.Visible properties to VISIBLE**/
     private void set_buttons_visible() {
         for (Button button : buttons) {
             button.setVisibility(View.VISIBLE);
@@ -193,6 +205,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
 
     }
 
+    /**Set all Button.Enabled and Clickable properties to false**/
     private void disable_buttons() {
         for (Button button : buttons) {
             button.setEnabled(false);
