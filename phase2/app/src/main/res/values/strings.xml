@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Phase1, Group_0586</string>
+    <string name="button_send">Confirm</string>
+    <string name="game_start">Start game</string>
+    <string name="empty_save">Empty save slot</string>
+    <string name="save_slots">Save slots</string>
+    <string name="edit_name">Enter your desired username</string>
+    <string name="game_level2">Level 2</string>
+    <string name="player_health">Health: %1$s</string>
+    <string name="player_score">Score: %1$s</string>
+    <string name="no_player">No player selected</string>
+    <string name="save_view_instructions">Click twice on a save slot to edit your preferences or delete the save slot</string>
+</resources>
