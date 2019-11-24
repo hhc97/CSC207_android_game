@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
-import com.example.phase1.BackendStorage.MainActivity;
+import com.example.phase1.MainActivity;
 import com.example.phase1.R;
 
 import java.util.Iterator;
