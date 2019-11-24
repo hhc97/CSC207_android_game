@@ -17,7 +17,7 @@ public abstract class GameManager extends FileReadWriter {
   public static final String sendPlayer = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
   //    score, health, coin, day/night, difficulty, character, current level, player name
-  String defaultScore = "0,3,0,3,0,0,1,NAME";
+  final String defaultScore = "0,3,0,0,0,0,1,NAME";
   int currPlayer = -1;
 
   //  indexes of the player statistics

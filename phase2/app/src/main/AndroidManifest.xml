@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".BackendStorage.PreferenceEditor"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".Level3Game.Level3Activity"
             android:screenOrientation="landscape" />
         <activity

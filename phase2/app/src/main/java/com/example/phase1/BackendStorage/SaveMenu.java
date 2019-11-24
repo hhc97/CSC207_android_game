@@ -123,10 +123,14 @@ public class SaveMenu extends GameManager {
     queryResume();
   }
 
+  public void clickEdit(View view) {
+    setPreferences();
+  }
+
   /** Updates the TextView with the stats of the current player. */
   private void updatePlayerInfo() {
     TextView display = findViewById(R.id.textView);
-    if (currPlayer != -1 && getDayOrNight() != 3) {
+    if (currPlayer != -1 && !getName().equals("NAME")) {
       int score = getScore();
       int health = getHealth();
       int coin = getCoin();
@@ -191,9 +195,15 @@ public class SaveMenu extends GameManager {
       if (resultCode == RESULT_OK) {
         String userName = data.getStringExtra(sendName);
         setName(userName);
-        queryDayNight();
+        setPreferences();
       }
     }
+  }
+
+  private void setPreferences() {
+    Intent intent = new Intent(this, PreferenceEditor.class);
+    intent.putExtra(sendPlayer, currPlayer);
+    startActivity(intent);
   }
 
   /** Prompts the user to select day or night. */

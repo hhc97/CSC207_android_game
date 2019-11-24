@@ -12,4 +12,12 @@
     <string name="save_view_instructions">Click twice on a save slot to edit your preferences or delete the save slot</string>
     <string name="edit_slot">Edit preferences</string>
     <string name="delete_slot">Delete slot</string>
+    <string name="set_hard">Hard</string>
+    <string name="set_normal">Normal</string>
+    <string name="set_easy">Easy</string>
+    <string name="set_knight">Knight</string>
+    <string name="set_rogue">Rogue</string>
+    <string name="set_day">Day</string>
+    <string name="set_night">Night</string>
+    <string name="finish_key">Finish</string>
 </resources>
