@@ -214,6 +214,7 @@ public class Level2Activity extends GameManager {
       @Override
       public void run() {
         startNextLevel();
+        finish();
       }
     }, 3000);
   }
