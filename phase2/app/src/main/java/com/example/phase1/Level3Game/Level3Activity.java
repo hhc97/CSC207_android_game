@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
-import com.example.phase1.MainActivity;
 import com.example.phase1.R;
 
 import java.util.Iterator;
@@ -137,7 +136,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     if (Level3.checkError()) { // User did not input correct sequence
       if (Level3.attempts == 3) { // User made 3 attempts (out of attempts)
         deductHealth(1); // deduct a life
-          set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
+        set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
         Level3.attempts = 0;
         new Handler()
             .postDelayed(
@@ -154,13 +153,13 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                 5000); // 5000ms = 5 seconds
 
       } else { // User input incorrect sequence but still has remaining attempts
-          set_text(
+        set_text(
             "Incorrect Pattern! " + (3 - Level3.attempts) + " remaining! " + "Displaying Sequence");
         Level3.clearInput(); // clear input for next attempt
         disable_buttons();
         new Handler()
             .postDelayed(
-                new Runnable() { // delay the task by 5 seconds
+                new Runnable() { // delay the task by 2 seconds
                   @Override
                   public void run() {
                     displaySequence();
@@ -171,74 +170,63 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     }
     if (Level3.checkWin()) { // User successfully inputs correct sequence
       disable_buttons();
-        set_text("Correct Pattern!, You win! Returning to the Main Menu");
+      set_text("Correct Pattern!, You win! Returning to the Save Menu");
       new Handler()
           .postDelayed(
-              new Runnable() { // delay the task by 5 seconds
+              new Runnable() { // delay the task by 3 seconds
                 @Override
                 public void run() {
                   finish();
                 }
               },
-              5000); // 5000ms = 5 seconds
+              3000); // 3000ms = 3 seconds
     }
   }
 
-    /**
-     * Set all Button.Enabled and Clickable properties to true
-     */
-    private void enable_buttons() {
-        runOnUiThread(
-                new Runnable() { // force task to run on UI Thread
-                    @Override
-                    public void run() {
-                        for (Button button : buttons) {
-                            button.setEnabled(true);
-                            button.setClickable(true);
-                        }
-                    }
-                });
-    }
+  /** Set all Button.Enabled and Clickable properties to true */
+  private void enable_buttons() {
+    runOnUiThread(
+        new Runnable() { // force task to run on UI Thread
+          @Override
+          public void run() {
+            for (Button button : buttons) {
+              button.setEnabled(true);
+              button.setClickable(true);
+            }
+          }
+        });
+  }
 
-    /**
-     * Set all Button.Visible properties to INVISIBLE*
-     */
-    private void set_buttons_invisible() {
-        runOnUiThread(
-                new Runnable() { // force task to run on UI Thread
-                    @Override
-                    public void run() {
-                        for (Button button : buttons) {
-                            button.setVisibility(View.INVISIBLE);
-                        }
-                    }
-                });
-    }
+  /** Set all Button.Visible properties to INVISIBLE* */
+  private void set_buttons_invisible() {
+    runOnUiThread(
+        new Runnable() { // force task to run on UI Thread
+          @Override
+          public void run() {
+            for (Button button : buttons) {
+              button.setVisibility(View.INVISIBLE);
+            }
+          }
+        });
+  }
 
   /** Set all Button.Enabled and Clickable properties to false* */
   private void disable_buttons() {
-      for (Button button : buttons) {
-          button.setEnabled(false);
-          button.setClickable(false);
-      }
+    for (Button button : buttons) {
+      button.setEnabled(false);
+      button.setClickable(false);
+    }
   }
 
-    /**
-     * Set Text for Textview out and change Textview out.Visible property to VISIBLE*
-     */
-    private void set_text(final String s) {
-        runOnUiThread(
-                new Runnable() { // force task to run on UI Thread
-                    @Override
-                    public void run() {
-                        out.setText(s);
-                        out.setVisibility(View.VISIBLE);
-                    }
-                });
-    }
-
-  public void onStop() {
-    super.onStop();
-    startActivity(new Intent(this, MainActivity.class));
+  /** Set Text for Textview out and change Textview out.Visible property to VISIBLE* */
+  private void set_text(final String s) {
+    runOnUiThread(
+        new Runnable() { // force task to run on UI Thread
+          @Override
+          public void run() {
+            out.setText(s);
+            out.setVisibility(View.VISIBLE);
+          }
+        });
   }
 }
