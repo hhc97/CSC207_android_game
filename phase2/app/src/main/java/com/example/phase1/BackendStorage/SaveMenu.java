@@ -72,7 +72,7 @@ public class SaveMenu extends GameManager {
    * stats, then asks if the user wants to delete the account if the same button is clicked again,
    * or allow the user to create a new account if the slot is empty.
    *
-   * @param view the button that is clicked.
+   * @param view The button that is clicked.
    */
   public void clickSave(View view) {
     Button b = (Button) view;

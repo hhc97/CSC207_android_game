@@ -10,6 +10,7 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".BackendStorage.FileReadWriter" />
         <activity
             android:name=".Level3Game.Level3Activity"
             android:screenOrientation="landscape" />
