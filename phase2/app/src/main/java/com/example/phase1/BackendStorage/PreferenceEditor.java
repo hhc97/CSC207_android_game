@@ -6,6 +6,11 @@ import android.widget.TextView;
 
 import com.example.phase1.R;
 
+/**
+ * An activity that has buttons to allow users to customize their preferences.
+ *
+ * @author Haocheng Hu
+ */
 public class PreferenceEditor extends GameManager {
 
   @Override
@@ -19,45 +24,44 @@ public class PreferenceEditor extends GameManager {
     updatePlayerInfo();
   }
 
+  /** Updates the textView in the activity to show current preferences. */
   private void updatePlayerInfo() {
     TextView display = findViewById(R.id.textView4);
-    if (currPlayer != -1 && !getName().equals("NAME")) {
-      String character;
-      if (getCharacter() == 0) {
-        character = "Rogue";
-      } else {
-        character = "Knight";
-      }
 
-      String nightDay;
-      if (getDayOrNight() == 0) {
-        nightDay = "Night";
-      } else {
-        nightDay = "Day";
-      }
-
-      String difficulty;
-      if (getDifficulty() == 0) {
-        difficulty = "Easy";
-      } else if (getDifficulty() == 1) {
-        difficulty = "Normal";
-      } else {
-        difficulty = "Hard";
-      }
-      String stats =
-          "Current preferences:"
-              + "\nScene: "
-              + nightDay
-              + "\nDifficulty: "
-              + difficulty
-              + "\nCharacter: "
-              + character;
-      display.setText(stats);
+    String character;
+    if (getCharacter() == 0) {
+      character = "Rogue";
     } else {
-      display.setText(R.string.no_player);
+      character = "Knight";
     }
+
+    String nightDay;
+    if (getDayOrNight() == 0) {
+      nightDay = "Night";
+    } else {
+      nightDay = "Day";
+    }
+
+    String difficulty;
+    if (getDifficulty() == 0) {
+      difficulty = "Easy";
+    } else if (getDifficulty() == 1) {
+      difficulty = "Normal";
+    } else {
+      difficulty = "Hard";
+    }
+    String stats =
+        "Current preferences:"
+            + "\nScene: "
+            + nightDay
+            + "\nDifficulty: "
+            + difficulty
+            + "\nCharacter: "
+            + character;
+    display.setText(stats);
   }
 
+  // setters for each button
   public void clickDay(View view) {
     setDayOrNight(1);
     updatePlayerInfo();
@@ -93,6 +97,11 @@ public class PreferenceEditor extends GameManager {
     updatePlayerInfo();
   }
 
+  /**
+   * Exits the activity when the finish button is clicked.
+   *
+   * @param view The finish button.
+   */
   public void clickFinish(View view) {
     finish();
   }
