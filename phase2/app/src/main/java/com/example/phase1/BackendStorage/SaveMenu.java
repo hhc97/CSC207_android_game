@@ -26,7 +26,7 @@ public class SaveMenu extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     startFile(); // for testing, resets save activity each time app is launched. Comment it out to
-                 // test save functionality.
+    // test save functionality.
     setContentView(R.layout.activity_save_menu);
     Button save1 = findViewById(R.id.button3);
     Button save2 = findViewById(R.id.button4);
@@ -70,25 +70,19 @@ public class SaveMenu extends GameManager {
   }
 
   /**
-   * Determines what do do when a save slot is clicked. First loads up the clicked save slot's
-   * stats, then asks if the user wants to delete the account if the same button is clicked again,
-   * or allow the user to create a new account if the slot is empty.
+   * Sets the current player to the save slot being clicked, or open up character configuration if
+   * an empty save slot is clicked.
    *
    * @param view The button that is clicked.
    */
   public void clickSave(View view) {
     Button b = (Button) view;
-    boolean isEmptySlot = b.getText().toString().equals(emptySlot);
     for (int i = 0; i < buttons.length; i++) {
       if (buttons[i] == b) {
-        if (currPlayer == i && !isEmptySlot) {
-          queryEdit();
-        } else {
-          currPlayer = i;
-        }
+        currPlayer = i;
       }
     }
-    if (isEmptySlot) {
+    if (b.getText().toString().equals(emptySlot)) {
       Intent intent = new Intent(this, SetCharacterName.class);
       startActivityForResult(intent, 1);
     } else {
@@ -97,11 +91,35 @@ public class SaveMenu extends GameManager {
   }
 
   /**
+   * Checks if the current selected save slot has any data saved.
+   *
+   * @return Returns true if the save slot contains data, false otherwise.
+   */
+  private boolean canEdit() {
+    if (currPlayer == -1) {
+      return false;
+    }
+    return !buttons[currPlayer].getText().toString().equals(emptySlot);
+  }
+
+  /**
+   * Calls the method to ask whether the user wants to delete the current slot when the delete
+   * button is clicked.
+   *
+   * @param view The delete button.
+   */
+  public void clickDelete(View view) {
+    if (canEdit()) {
+      queryDelete();
+    }
+  }
+
+  /**
    * Asks the player if they want to resume/start the level once the start game button is clicked.
    *
    * @param view The button that is clicked.
    */
-  public void startLevel(View view) {
+  public void clickStart(View view) {
     queryResume();
   }
 
@@ -267,7 +285,8 @@ public class SaveMenu extends GameManager {
     final String[] choices = {"Yes", "No"};
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Would you like to delete this save slot?");
+    String prompt = "Would you like to delete \"" + getName() + "\"?";
+    builder.setTitle(prompt);
     builder.setItems(
         choices,
         new DialogInterface.OnClickListener() {

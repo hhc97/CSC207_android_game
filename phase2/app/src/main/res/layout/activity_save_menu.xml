@@ -58,10 +58,9 @@
         android:id="@+id/button7"
         android:layout_width="147dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
         android:onClick="clickSave"
         android:text="@string/empty_save"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toStartOf="@+id/button8"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,10 +70,9 @@
         android:id="@+id/button8"
         android:layout_width="147dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="72dp"
         android:onClick="clickSave"
         android:text="@string/empty_save"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintEnd_toStartOf="@+id/button10"
         app:layout_constraintStart_toEndOf="@+id/button7"
         app:layout_constraintTop_toBottomOf="@+id/button6" />
@@ -98,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="72dp"
-        android:onClick="startLevel"
+        android:onClick="clickStart"
         android:text="@string/game_start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,16 +121,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.081" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <Button
+        android:id="@+id/button11"
         android:layout_width="wrap_content"
-        android:layout_height="17dp"
-        android:text="@string/save_view_instructions"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:onClick="clickDelete"
+        android:text="@string/delete_slot"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8"
-        app:layout_constraintVertical_bias="0.45" />
+        app:layout_constraintEnd_toStartOf="@+id/button10"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/edit_slot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button11"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
