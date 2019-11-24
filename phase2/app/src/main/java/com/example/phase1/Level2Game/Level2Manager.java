@@ -1,25 +1,31 @@
 package com.example.phase1.Level2Game;
 
 import com.example.phase1.Objects.Hero;
+import com.example.phase1.Objects.ObjectBuilder;
 import com.example.phase1.Objects.Obstacle;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Level2Manager {
-  private static final int GROUND_HEIGHT = 0;
+  private static final float GROUND_HEIGHT = 0;
   private List<Obstacle> Obstacles = new ArrayList<>();
-  private int playerStartX = 138;
-  private int playerStartY = GROUND_HEIGHT;
+  private float playerStartX = 138;
+  private float playerStartY = GROUND_HEIGHT;
   private Level2Activity parent;
+  private ObjectBuilder builder;
 
   Level2Manager() {
-    Hero player = new Hero(playerStartX, GROUND_HEIGHT);
-    player.setStates(true);
+    builder = new ObjectBuilder();
+    Hero player = (Hero) builder.createObject("Hero");
+    player.setPosition(playerStartX, playerStartY);
 
-    Obstacle rock1 = new Obstacle(185, GROUND_HEIGHT);
-    Obstacle rock2 = new Obstacle(433, GROUND_HEIGHT);
-    Obstacle rock3 = new Obstacle(638, GROUND_HEIGHT);
+    Obstacle rock1 = (Obstacle) builder.createObject("Obstacle");
+    rock1.setPosition(185, GROUND_HEIGHT);
+    Obstacle rock2 = (Obstacle) builder.createObject("Obstacle");
+    rock2.setPosition(433, GROUND_HEIGHT);
+    Obstacle rock3 = (Obstacle) builder.createObject("Obstacle");
+    rock3.setPosition(638, GROUND_HEIGHT);
 
     Obstacles.add(rock1);
     Obstacles.add(rock2);

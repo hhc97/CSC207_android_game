@@ -4,8 +4,8 @@ public class Potion extends GameObject {
   private int value; // How much health does Hero heal when drinking this potion
   private Hero player;
 
-  public Potion(float x, float y) {
-    super(x, y);
+  public Potion() {
+    super();
     this.value = 5; // temp
   }
 

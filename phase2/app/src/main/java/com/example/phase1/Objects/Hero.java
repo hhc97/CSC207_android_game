@@ -9,8 +9,8 @@ public class Hero extends Character {
   private int coins = 0;
   private int score = 0;
 
-  public Hero(float x, float y) {
-    super(x, y);
+  public Hero() {
+    super();
     this.isAttack = false;
   }
 

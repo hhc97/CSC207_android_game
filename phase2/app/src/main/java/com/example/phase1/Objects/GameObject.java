@@ -8,14 +8,12 @@ public class GameObject {
 
   protected final int WIDTH = 100; // temp value
   protected final int HEIGHT = 100; // temp value
-  protected float x; // the x coordinate value
-  protected float y; // the y coordinate value
+  protected float x=0; // the x coordinate value
+  protected float y=0; // the y coordinate value
   protected boolean states;
   private GifImageView image;
 
-  public GameObject(float x, float y) {
-    this.x = x;
-    this.y = y;
+  public GameObject() {
     this.states = true;
   }
 
@@ -33,6 +31,11 @@ public class GameObject {
 
   public void setY(float y) {
     this.y = y;
+  }
+
+  public void setPosition(float x, float y){
+    setX(x);
+    setY(y);
   }
 
   public int getHEIGHT() { // getter for the calculated Height value

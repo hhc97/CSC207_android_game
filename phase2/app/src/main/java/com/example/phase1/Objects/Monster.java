@@ -10,8 +10,8 @@ public class Monster extends Character {
   private boolean heroHadGotPoint = false;
   // track is the player had already get the point from this monster or not;
 
-  public Monster(float x, float y) {
-    super(x, y);
+  public Monster() {
+    super();
     this.player = Level1Manager.getPlayer();
     this.setSpeed(10);
   }

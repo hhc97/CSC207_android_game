@@ -3,8 +3,8 @@ package com.example.phase1.Objects;
 public class Obstacle extends GameObject {
   private boolean hasPassed = false;
 
-  public Obstacle(float x, float y) {
-    super(x, y);
+  public Obstacle() {
+    super();
   }
 
   @Override

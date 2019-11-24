@@ -8,8 +8,8 @@ public class Character extends GameObject {
   // how strong is the character, how many damage it can deal
   private int health;
 
-  public Character(float x, float y) { // NEED GameManager.getHealth()
-    super(x, y);
+  public Character() { // NEED GameManager.getHealth()
+    super();
     this.speed = 50; // temp value of speed
     this.strength = 1; // temp
     this.health = 1; // default
