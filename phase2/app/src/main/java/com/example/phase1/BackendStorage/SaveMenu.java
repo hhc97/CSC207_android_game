@@ -58,10 +58,7 @@ public class SaveMenu extends GameManager {
       currPlayer = i;
       Button b = buttons[i];
       if (!scores[i].equals(defaultScore)) {
-        String name = getName();
-        String score = String.valueOf(getScore());
-        String display = name + ", Score: " + score;
-        b.setText(display);
+        b.setText(getName());
       } else {
         b.setText(emptySlot);
       }
@@ -123,8 +120,16 @@ public class SaveMenu extends GameManager {
     queryResume();
   }
 
+  /**
+   * Allows the user to edit the preferences of the current save slot when the edit preferences
+   * button is clicked.
+   *
+   * @param view The edit preferences button.
+   */
   public void clickEdit(View view) {
-    setPreferences();
+    if (canEdit()) {
+      setPreferences();
+    }
   }
 
   /** Updates the TextView with the stats of the current player. */
@@ -200,68 +205,11 @@ public class SaveMenu extends GameManager {
     }
   }
 
+  /** Starts a new activity to allow users to set their preferences. */
   private void setPreferences() {
     Intent intent = new Intent(this, PreferenceEditor.class);
     intent.putExtra(sendPlayer, currPlayer);
     startActivity(intent);
-  }
-
-  /** Prompts the user to select day or night. */
-  private void queryDayNight() {
-    final String[] dayNight = {"Night", "Day"};
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Pick a color scheme");
-    builder.setCancelable(false);
-    builder.setItems(
-        dayNight,
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            setDayOrNight(which);
-            queryDifficulty();
-          }
-        });
-    builder.show();
-  }
-
-  /** Prompts the user to select the game difficulty. */
-  private void queryDifficulty() {
-    final String[] difficulty = {"Easy", "Normal", "Hard"};
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Select a difficulty");
-    builder.setCancelable(false);
-    builder.setItems(
-        difficulty,
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            setDifficulty(which);
-            queryCharacter();
-          }
-        });
-    builder.show();
-  }
-
-  /** Prompts the user to select the character they want to play as. */
-  private void queryCharacter() {
-    final String[] characters = {"Rogue", "Knight"};
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Pick a character");
-    builder.setCancelable(false);
-    builder.setItems(
-        characters,
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            setCharacter(which);
-            updatePlayerInfo();
-            updateButtons();
-          }
-        });
-    builder.show();
   }
 
   /** Asks the user if they want to start the game, or resume the game that they were playing. */
@@ -306,27 +254,6 @@ public class SaveMenu extends GameManager {
               deleteSlot();
               updateButtons();
               updatePlayerInfo();
-            }
-          }
-        });
-    builder.show();
-  }
-
-  /** Asks the player if they would like to reconfigure their preferences. */
-  private void queryEdit() {
-    final String[] choices = {"Yes", "No"};
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Would you like to edit your preferences?");
-    builder.setItems(
-        choices,
-        new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            if (which == 0) {
-              queryDayNight();
-            } else {
-              queryDelete();
             }
           }
         });
