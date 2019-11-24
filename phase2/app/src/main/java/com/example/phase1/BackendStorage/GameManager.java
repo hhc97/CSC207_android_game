@@ -1,28 +1,19 @@
 package com.example.phase1.BackendStorage;
 
-import android.content.Context;
 import android.content.Intent;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.phase1.Level1Game.Level1Activity;
 import com.example.phase1.Level2Game.Level2Activity;
 import com.example.phase1.Level3Game.Level3Activity;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.Scanner;
-
 /**
- * This class is responsible for storing all stats into a local file, so as to be able to resume
- * games, and track statistics. As a result, all activities in this game will extend this class.
+ * This class extends FileReadWriter, and is responsible for retrieving and manipulating the data
+ * that is stored. Individual activities will extend this class to gain access to its methods for
+ * storing stats.
  *
  * @author Haocheng Hu
  */
-public abstract class GameManager extends AppCompatActivity {
-  static final String STATS_FILE = "stats.txt";
+public abstract class GameManager extends FileReadWriter {
   public static final String sendPlayer = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
   //    score, health, coin, day/night, difficulty, character, current level, player name
@@ -38,41 +29,6 @@ public abstract class GameManager extends AppCompatActivity {
   private int character = 5;
   private int currentLevel = 6;
   private int playerName = 7;
-
-  /**
-   * Write to the file the string that's passed to it.
-   *
-   * @param string The string that is to be written.
-   */
-  private void writeToFile(String string) {
-    PrintWriter out = null;
-    try {
-      OutputStream outStream = openFileOutput(STATS_FILE, Context.MODE_PRIVATE);
-      out = new PrintWriter(outStream);
-    } catch (FileNotFoundException e) {
-      assert true;
-    }
-    out.println(string);
-    out.close();
-  }
-
-  /**
-   * Reads from the saved data file and returns what's stored.
-   *
-   * @return The string that is stored.
-   */
-  String readFromFile() {
-    StringBuilder builder = new StringBuilder();
-    try (Scanner scanner = new Scanner(openFileInput(STATS_FILE))) {
-      while (scanner.hasNextLine()) {
-        String line = scanner.nextLine();
-        builder.append(line).append('\n');
-      }
-    } catch (IOException e) {
-      assert true;
-    }
-    return builder.toString();
-  }
 
   /**
    * Returns the requested stat of the current player in String form.

@@ -11,12 +11,12 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
- * This class reads and writes to and from a save file.
+ * This class reads and writes to and from a local save file for an activity.
  *
  * @author Haocheng Hu
  */
-final class FileReadWriter extends AppCompatActivity {
-  private final String STATS_FILE = "stats.txt";
+abstract class FileReadWriter extends AppCompatActivity {
+  static final String STATS_FILE = "stats.txt";
 
   /**
    * Write to the file the string that's passed to it.
