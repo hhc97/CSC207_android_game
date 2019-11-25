@@ -18,7 +18,6 @@ public class Level1Manager {
   private float playerStartY = groundHeight;
   private int difficulty = 0; // default difficulty
   private int dayOrNight = 0;//default background
-  private Presenter presenter;
 
   public Level1Manager() {
     ObjectBuilder builder = new ObjectBuilder(this.difficulty);
@@ -39,31 +38,25 @@ public class Level1Manager {
     Objects.add(c2);
     Objects.add(c3);
 
-    presenter = new Presenter(this.difficulty, this.dayOrNight);
-    presenter.setObjects(Objects);
   }
 
   public void rightButtomPress() {
     player.moveRight();
     update();
-    presenter.rightAction();
   }
 
   public void leftButtomPress() {
     player.moveLeft();
     update();
-    presenter.leftAction();
   }
 
   public void attackButtomPress() {
     player.attack();
     update();
-    presenter.attackAction();
     player.notAttack();
   }
 
   public void jumpButtomPress() {
-    presenter.jumpAction();
   }
 
   public boolean isWinning() {
@@ -87,4 +80,5 @@ public class Level1Manager {
 
   public void setDifficulty(int difficulty){this.difficulty = difficulty;}
   public void setDayOrNight(int dayOrNight){this.dayOrNight = dayOrNight;}
+  public ArrayList getObjects(){return this.Objects;}
 }
