@@ -1,59 +1,90 @@
 package com.example.phase1.Level1Game;
 
+import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.Objects.Coin;
 import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Hero;
 import com.example.phase1.Objects.Monster;
+import com.example.phase1.Objects.ObjectBuilder;
 
 import java.util.List;
 import java.util.ArrayList;
 
 public class Level1Manager {
-  List<GameObject> Objects = new ArrayList<>();
+  ArrayList<GameObject> Objects = new ArrayList<>();
   private static Hero player;
   private float playerStartX = 50; // temp, the x coordinate of character.
   private float groundHeight = 20; // temp, the height of the ground.
   private float playerStartY = groundHeight;
+  private int difficulty = 0; // default difficulty
+  private int dayOrNight = 0;//default background
+  private Presenter presenter;
 
   public Level1Manager() {
-    player = new Hero(playerStartX, playerStartY);
-    Objects.add(new Monster(800, groundHeight));
-    ((com.example.phase1.Objects.Character) Objects.get(0)).setStrength(0);
-    Objects.add(new Coin(1000, groundHeight));
-    Objects.add(new Coin(1500, groundHeight));
-    Objects.add(new Coin(1750, groundHeight));
+    ObjectBuilder builder = new ObjectBuilder(this.difficulty);
+    player = (Hero) builder.createObject("Hero");
+    player.setPosition(playerStartX, playerStartY);
+    Monster m1 = (Monster) builder.createObject("Monster");
+    m1.setPosition(800, groundHeight);
+    m1.setStrength(0);
+    Coin c1 = (Coin) builder.createObject("Coin");
+    c1.setPosition(1000, groundHeight);
+    Coin c2 = (Coin) builder.createObject("Coin");
+    c2.setPosition(1500, groundHeight);
+    Coin c3 = (Coin) builder.createObject("Coin");
+    c3.setPosition(1750, groundHeight);
+    Objects.add(player);
+    Objects.add(m1);
+    Objects.add(c1);
+    Objects.add(c2);
+    Objects.add(c3);
+
+    presenter = new Presenter(this.difficulty, this.dayOrNight);
+    presenter.setObjects(Objects);
   }
 
+  public void rightButtomPress() {
+    player.moveRight();
+    update();
+    presenter.rightAction();
+  }
+
+  public void leftButtomPress() {
+    player.moveLeft();
+    update();
+    presenter.leftAction();
+  }
+
+  public void attackButtomPress() {
+    player.attack();
+    update();
+    presenter.attackAction();
+    player.notAttack();
+  }
+
+  public void jumpButtomPress() {
+    presenter.jumpAction();
+  }
+
+  public boolean isWinning() {
+    boolean isWon = true;
+    for (int i = 1; i < Objects.size(); i++) { // if all the GameObjects are dead
+      if (Objects.get(i).getStates()) isWon = false; // if any of them isn't, isWon = false
+    }
+    return isWon;
+  }
   // Update every object in the array list.
-  public void update() {
-    player.update();
+  private void update() {
     // Update every object in the array list.
     for (GameObject obj : Objects) {
       obj.update();
     }
   }
 
-  private void removeDisappearedObjects() {
-    for (GameObject obj : Objects) {
-      if (!obj.getStates()) {
-        Objects.remove(obj);
-      }
-    }
-  }
-
-  // Update hero's x Coordinate and move left.
-  public float heroMoveLeft() {
-    player.moveLeft();
-    return player.getX();
-  }
-
-  // Update hero's x Coordinate and move right.
-  public float heroMoveRight() {
-    player.moveRight();
-    return player.getX();
-  }
-
   public static Hero getPlayer() {
     return player;
   }
+
+  public void setDifficulty(int difficulty){this.difficulty = difficulty;}
+  public void setDayOrNight(int dayOrNight){this.dayOrNight = dayOrNight;}
 }
