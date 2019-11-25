@@ -275,7 +275,10 @@ public class Level1Activity extends GameManager {
     for (GameObject obj : manager.Objects) { // if all the GameObjects are dead
       if (obj.getStates()) isWon = false; // if any of them isn't, isWon = false
     }
-    if (isWon) startNextLevel();
+    if (isWon) {
+      startNextLevel();
+      finish();
+    }
   }
 
   private void updateImage() {
