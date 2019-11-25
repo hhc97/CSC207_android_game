@@ -1,13 +1,11 @@
 package com.example.phase1.Level1Game;
 
-import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.Objects.Coin;
 import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Hero;
 import com.example.phase1.Objects.Monster;
 import com.example.phase1.Objects.ObjectBuilder;
 
-import java.util.List;
 import java.util.ArrayList;
 
 public class Level1Manager {
@@ -17,7 +15,7 @@ public class Level1Manager {
   private float groundHeight = 20; // temp, the height of the ground.
   private float playerStartY = groundHeight;
   private int difficulty = 0; // default difficulty
-  private int dayOrNight = 0;//default background
+  private int dayOrNight = 0; // default background
 
   public Level1Manager() {
     ObjectBuilder builder = new ObjectBuilder(this.difficulty);
@@ -37,7 +35,6 @@ public class Level1Manager {
     Objects.add(c1);
     Objects.add(c2);
     Objects.add(c3);
-
   }
 
   public void rightButtomPress() {
@@ -56,8 +53,7 @@ public class Level1Manager {
     player.notAttack();
   }
 
-  public void jumpButtomPress() {
-  }
+  public void jumpButtomPress() {}
 
   public boolean isWinning() {
     boolean isWon = true;
@@ -78,7 +74,15 @@ public class Level1Manager {
     return player;
   }
 
-  public void setDifficulty(int difficulty){this.difficulty = difficulty;}
-  public void setDayOrNight(int dayOrNight){this.dayOrNight = dayOrNight;}
-  public ArrayList getObjects(){return this.Objects;}
+  public void setDifficulty(int difficulty) {
+    this.difficulty = difficulty;
+  }
+
+  public void setDayOrNight(int dayOrNight) {
+    this.dayOrNight = dayOrNight;
+  }
+
+  public ArrayList getObjects() {
+    return this.Objects;
+  }
 }
