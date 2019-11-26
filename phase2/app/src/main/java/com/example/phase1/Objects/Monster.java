@@ -2,6 +2,8 @@ package com.example.phase1.Objects;
 
 import com.example.phase1.Level1Game.Level1Manager;
 
+import java.util.Random;
+
 public class Monster extends Character {
   private Hero player;
   private int worth = 100;
@@ -9,9 +11,18 @@ public class Monster extends Character {
   // (how many point the player could get when they kill this monster)
   private boolean heroHadGotPoint = false;
   // track is the player had already get the point from this monster or not;
+  private boolean tracingHero = true;
+  // Is the Monster tracingHero or move randomly
+  private Random random;
+  private int maxMoveLength = 15;
+  private int moveLength = 0;
+  // How many the monster will move (for moveRandomly)
+  private int currentLength = 0;
+  // how many does Monster moved already (for moveRandomly)
 
   public Monster() {
     super();
+    random = new Random();
     this.setSpeed(10);
   }
 
@@ -21,16 +32,17 @@ public class Monster extends Character {
 
   public void update() {
     if (player.isAttack()) { // if player isAttack
-      if (isGetHit()) { // if player hit the monster
+      if (isGetHit() && getStates()) { // if player hit the monster
         damaged(player.getStrength());
       }
     }
     super.update();
-    if ((!heroHadGotPoint) && (!states)) {
+    if ((!heroHadGotPoint) && (!getStates())) {
       player.addScore(this.worth);
       heroHadGotPoint = true;
     }
-    traceHero();
+    if (tracingHero == true) traceHero();
+    else moveRandomly();
     if (isTouchHero()) {
       player.damaged(getStrength());
     }
@@ -97,11 +109,34 @@ public class Monster extends Character {
   }
 
   public boolean isMoveLeft() {
-    if (player.getX() < this.x) return true;
+    if (tracingHero) {
+      if (player.getX() < this.x) return true;
+    } else {
+      if (currentLength > moveLength) return true;
+    }
     return false;
   }
 
   public void setWorth(int worth) {
     this.worth = worth;
+  }
+
+  public void setTracingHero(boolean isTracing) {
+    this.tracingHero = isTracing;
+  }
+
+  private void moveRandomly() {
+    if (moveLength == currentLength) {
+      moveLength = random.nextInt(maxMoveLength * 2 + 1) - maxMoveLength;
+      currentLength = 0;
+    } else {
+      if (moveLength > currentLength) {
+        currentLength++;
+        moveRight();
+      } else {
+        currentLength--;
+        moveLeft();
+      }
+    }
   }
 }

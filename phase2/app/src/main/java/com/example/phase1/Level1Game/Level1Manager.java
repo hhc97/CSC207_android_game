@@ -34,15 +34,17 @@ public class Level1Manager {
     Monster m1 = (Monster) builder.createObject("Monster");
     m1.setPosition(800, groundHeight);
     m1.setStrength(0);
-    m1.setSpeed(10);
+    m1.setSpeed(20);
     Monster m2 = (Monster) builder.createObject("Monster");
     m2.setPosition(1250, groundHeight);
     m2.setStrength(0);
     m2.setSpeed(20);
+    m2.setTracingHero(false);
     Monster m3 = (Monster) builder.createObject("Monster");
     m3.setPosition(1750, groundHeight);
     m3.setStrength(0);
     m3.setSpeed(30);
+    m3.setTracingHero(false);
     Coin c1 = (Coin) builder.createObject("Coin");
     c1.setPosition(1000, groundHeight);
     Coin c2 = (Coin) builder.createObject("Coin");
@@ -70,23 +72,25 @@ public class Level1Manager {
 
   public void setMaxFrameSize(float x) {
     this.maxFrameSize = x;
+    for (GameObject obj: Objects){
+        obj.setMaxFrameSize(this.maxFrameSize);
+    }
   }
 
   public void setMinFrameSize(float x) {
     this.minFrameSize = x;
+    for(GameObject obj: Objects){
+        obj.setMinFrameSize(this.minFrameSize);
+    }
   }
 
   public void rightButtonPress() {
-    if (player.getX() < this.maxFrameSize) {
-      player.moveRight();
-    }
+    player.moveRight();
     update();
   }
 
   public void leftButtonPress() {
-    if (player.getX() > this.minFrameSize) {
-      player.moveLeft();
-    }
+    player.moveLeft();
     update();
   }
 

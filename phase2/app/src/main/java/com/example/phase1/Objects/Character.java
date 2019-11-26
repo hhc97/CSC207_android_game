@@ -16,11 +16,11 @@ public class Character extends GameObject {
   }
 
   public void moveRight() {
-    this.x += speed;
+    if (this.x < maxFrameSize) this.x += speed;
   }
 
   public void moveLeft() {
-    this.x -= 10 + speed;
+    if (this.x > minFrameSize) this.x -= 10 + speed;
   }
 
   public void update() { // if character's health is 0, then die
@@ -45,10 +45,6 @@ public class Character extends GameObject {
 
   public void damaged(int damage) {
     this.health = this.health - damage;
-  }
-
-  public void heal(int value) {
-    this.health = this.health + value;
   }
 
   public void setSpeed(int speed) {

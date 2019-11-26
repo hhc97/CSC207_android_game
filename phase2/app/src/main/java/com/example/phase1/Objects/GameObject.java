@@ -8,10 +8,12 @@ public class GameObject {
 
   protected final int WIDTH = 100; // temp value
   protected final int HEIGHT = 100; // temp value
-  protected float x=0; // the x coordinate value
-  protected float y=0; // the y coordinate value
+  protected float x = 0; // the x coordinate value
+  protected float y = 0; // the y coordinate value
   protected boolean states;
   private GifImageView image;
+  protected float maxFrameSize = 1800; // default
+  protected float minFrameSize = -50; // default, prevent character goes off the screen
 
   public GameObject() {
     this.states = true;
@@ -33,7 +35,7 @@ public class GameObject {
     this.y = y;
   }
 
-  public void setPosition(float x, float y){
+  public void setPosition(float x, float y) {
     setX(x);
     setY(y);
   }
@@ -62,5 +64,13 @@ public class GameObject {
 
   public GifImageView getImage() {
     return this.image;
+  }
+
+  public void setMaxFrameSize(float maxFrameSize) {
+    this.maxFrameSize = maxFrameSize;
+  }
+
+  public void setMinFrameSize(float minFrameSize) {
+    this.minFrameSize = minFrameSize;
   }
 }
