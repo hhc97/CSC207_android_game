@@ -9,15 +9,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Monster;
 import com.example.phase1.R;
-
 import java.lang.reflect.Array;
+import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
-
+import java.util.concurrent.TimeUnit;
+import java.util.Timer;
 import pl.droidsonroids.gif.GifImageView;
 
 public class Level1Activity extends GameManager {
@@ -36,7 +36,7 @@ public class Level1Activity extends GameManager {
   private int difficulty = 0; // default difficulty
   private int dayOrNight = 0; // default difficulty
   private ArrayList<GameObject> Objects;
-
+  private Timer timer;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -78,21 +78,18 @@ public class Level1Activity extends GameManager {
   private void setLeftButton() {
     Button left = findViewById(R.id.left);
     left.setOnTouchListener(
-        new View.OnTouchListener() {
-          public boolean onTouch(View v, MotionEvent event) {
-            int action = event.getActionMasked();
-            switch (action) {
-              case MotionEvent.ACTION_DOWN:
-                manager.leftButtomPress();
+        new RepeatListener(
+            400,
+            100,
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                manager.leftButtonPress();
                 leftAction();
                 updateStatesToGameManager();
                 checkIsWinning();
-              case MotionEvent.ACTION_UP:
-            }
-            // Respond to touch events.
-            return true;
-          }
-        });
+              }
+            }));
   }
 
   // Create and set event listener for right button
@@ -100,21 +97,19 @@ public class Level1Activity extends GameManager {
   private void setRightButton() {
     Button right = findViewById(R.id.right);
     right.setOnTouchListener(
-        new View.OnTouchListener() {
-          public boolean onTouch(View v, MotionEvent event) {
-            int action = event.getActionMasked();
-            switch (action) {
-              case MotionEvent.ACTION_DOWN:
-                manager.rightButtomPress();
+        new RepeatListener(
+            400,
+            100,
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                // the code to execute repeatedly
+                manager.rightButtonPress();
                 rightAction();
                 updateStatesToGameManager();
                 checkIsWinning();
-              case MotionEvent.ACTION_UP:
-            }
-            // ... Respond to touch events
-            return true;
-          }
-        });
+              }
+            }));
   }
   // Create and set event listener for attack button
   @SuppressLint("ClickableViewAccessibility")
@@ -126,7 +121,7 @@ public class Level1Activity extends GameManager {
             int action = event.getActionMasked();
             switch (action) {
               case MotionEvent.ACTION_DOWN:
-                manager.attackButtomPress();
+                manager.attackButtonPress();
                 attackAction();
                 updateStatesToGameManager();
                 checkIsWinning();
@@ -174,7 +169,7 @@ public class Level1Activity extends GameManager {
   public void jumpAction() {}
 
   private void nullAction() {
-    heroStandAnimation();
+
     if (((Monster) Objects.get(1)).isMoveLeft()) {
       enemyFacingLeft();
     } else {
@@ -205,6 +200,7 @@ public class Level1Activity extends GameManager {
     this.Objects = manager.getObjects();
     this.difficulty = getDifficulty();
     this.dayOrNight = getDayOrNight();
+    timer = new Timer();
     manager.setDayOrNight(this.dayOrNight);
     manager.setDifficulty(this.difficulty);
     setActivityLevel();
@@ -225,6 +221,8 @@ public class Level1Activity extends GameManager {
     setEnemyAction();
     scoreLabel.setText("Score: " + getScore());
     healthLabel.setText("Health: " + getHealth());
+    heroStandAnimation();
+    enemyStandAnimation();
   }
 
   // Set the day or night layout depending on user choice from Game Manager.

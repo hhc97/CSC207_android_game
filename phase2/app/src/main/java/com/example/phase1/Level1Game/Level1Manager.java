@@ -37,23 +37,23 @@ public class Level1Manager {
     Objects.add(c3);
   }
 
-  public void rightButtomPress() {
+  public void rightButtonPress() {
     player.moveRight();
     update();
   }
 
-  public void leftButtomPress() {
+  public void leftButtonPress() {
     player.moveLeft();
     update();
   }
 
-  public void attackButtomPress() {
+  public void attackButtonPress() {
     player.attack();
     update();
     player.notAttack();
   }
 
-  public void jumpButtomPress() {}
+  public void jumpButtonPress() {}
 
   public boolean isWinning() {
     boolean isWon = true;
