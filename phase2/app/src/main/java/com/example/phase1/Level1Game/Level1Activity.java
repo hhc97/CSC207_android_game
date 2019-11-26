@@ -1,7 +1,6 @@
 package com.example.phase1.Level1Game;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.example.phase1.Objects.Monster;
 import com.example.phase1.R;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -41,8 +39,7 @@ public class Level1Activity extends GameManager {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Intent intent = getIntent();
-    setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
+    setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(

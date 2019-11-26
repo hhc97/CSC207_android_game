@@ -6,7 +6,6 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -43,8 +42,7 @@ public class Level2Activity extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
 
     super.onCreate(savedInstanceState);
-    Intent intent = getIntent();
-    setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
+    setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
     level2Manager.setParent(this);
 
     // Set our window to fullscreen without the bar at the top.
@@ -88,41 +86,39 @@ public class Level2Activity extends GameManager {
 
     // Text with message when game ends.
     levelOver = findViewById(R.id.end);
-
-}
+  }
 
   // Runs the game.
   public void gameRun() {
-      backgroundAnimate();
-      timer.schedule(
+    backgroundAnimate();
+    timer.schedule(
         new TimerTask() {
           @Override
           public void run() {
             handler.post(
-              new Runnable() {
-                @Override
-                public void run() {
-                  // Update coordinates of the moving obstacles, as well as the score.
-                  level2Manager.update();
-                  scoreLabel.setText("Score: " + getScore());
-                  healthLabel.setText("Health: " + getHealth());
+                new Runnable() {
+                  @Override
+                  public void run() {
+                    // Update coordinates of the moving obstacles, as well as the score.
+                    level2Manager.update();
+                    scoreLabel.setText("Score: " + getScore());
+                    healthLabel.setText("Health: " + getHealth());
 
-                  // The level is over, so pause the auto-update to check collision and
-                  // animation.
-                  if (getHealth() == 0) {
-                    levelOver.setVisibility(View.VISIBLE);
-                    animator.cancel();
-                    timer.cancel();
-                    levelEndDelay();
+                    // The level is over, so pause the auto-update to check collision and
+                    // animation.
+                    if (getHealth() == 0) {
+                      levelOver.setVisibility(View.VISIBLE);
+                      animator.cancel();
+                      timer.cancel();
+                      levelEndDelay();
+                    }
                   }
-                }
-              });
+                });
           }
         },
-              0,
-              20);
-    }
-
+        0,
+        20);
+  }
 
   public void backgroundAnimate() {
 
@@ -144,26 +140,26 @@ public class Level2Activity extends GameManager {
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(5000L);
     animator.addUpdateListener(
-            new ValueAnimator.AnimatorUpdateListener() {
-              @Override
-              public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width1 = backgroundOne.getWidth();
-                final float width2 = backgroundThree.getWidth();
-                final float translationX1 = width1 * progress;
-                final float translationX2 = width2 * progress - 10;
-                backgroundOne.setTranslationX(-translationX1);
-                backgroundTwo.setTranslationX(-translationX1 + width1);
-                backgroundThree.setTranslationX(-translationX2);
-                backgroundFour.setTranslationX(-translationX2 + width2);
-                backgroundFive.setTranslationX(-translationX1);
-                backgroundSix.setTranslationX(-translationX1 + width1);
-                backgroundSeven.setTranslationX(-translationX2);
-                backgroundEight.setTranslationX(-translationX2 + width2);
-                backgroundNine.setTranslationX(-translationX1);
-                backgroundTen.setTranslationX(-translationX1 + width1);
-              }
-            });
+        new ValueAnimator.AnimatorUpdateListener() {
+          @Override
+          public void onAnimationUpdate(ValueAnimator animation) {
+            final float progress = (float) animation.getAnimatedValue();
+            final float width1 = backgroundOne.getWidth();
+            final float width2 = backgroundThree.getWidth();
+            final float translationX1 = width1 * progress;
+            final float translationX2 = width2 * progress - 10;
+            backgroundOne.setTranslationX(-translationX1);
+            backgroundTwo.setTranslationX(-translationX1 + width1);
+            backgroundThree.setTranslationX(-translationX2);
+            backgroundFour.setTranslationX(-translationX2 + width2);
+            backgroundFive.setTranslationX(-translationX1);
+            backgroundSix.setTranslationX(-translationX1 + width1);
+            backgroundSeven.setTranslationX(-translationX2);
+            backgroundEight.setTranslationX(-translationX2 + width2);
+            backgroundNine.setTranslationX(-translationX1);
+            backgroundTen.setTranslationX(-translationX1 + width1);
+          }
+        });
     animator.start();
   }
 
@@ -221,12 +217,14 @@ public class Level2Activity extends GameManager {
 
   // A 3 second delay before starting Level 3.
   private void levelEndDelay() {
-    handler.postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        startNextLevel();
-        finish();
-      }
-    }, 3000);
+    handler.postDelayed(
+        new Runnable() {
+          @Override
+          public void run() {
+            startNextLevel();
+            finish();
+          }
+        },
+        3000);
   }
 }

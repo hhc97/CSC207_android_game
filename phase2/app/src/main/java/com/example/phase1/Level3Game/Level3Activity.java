@@ -1,7 +1,6 @@
 package com.example.phase1.Level3Game;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -29,8 +28,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Intent intent = getIntent();
-    setCurrPlayer(intent.getIntExtra(sendPlayer, 0));
+    setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
 
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()

@@ -88,13 +88,13 @@ public class PreferenceEditor extends GameManager {
     TextView ch = findViewById(R.id.cname);
 
     if (getCharacter() == 0) {
-        hero.setImageResource(R.drawable.run1);
-        ch.setText("Knight");
-        setCharacter(1);
-    } else{
-        hero.setImageResource(R.drawable.run2);
-        ch.setText("Rogue");
-        setCharacter(0);
+      hero.setImageResource(R.drawable.run1);
+      ch.setText("Knight");
+      setCharacter(1);
+    } else {
+      hero.setImageResource(R.drawable.run2);
+      ch.setText("Rogue");
+      setCharacter(0);
     }
   }
 
@@ -152,12 +152,13 @@ public class PreferenceEditor extends GameManager {
     }
 
     if (getCharacter() == 1) {
-        cswitch.setChecked(true);
+      cswitch.setChecked(true);
       hero.setImageResource(R.drawable.run1);
       ch.setText("Knight");
+    } else {
+      cswitch.setChecked(false);
+      hero.setImageResource(R.drawable.run2);
+      ch.setText("Rogue");
     }
-    else{cswitch.setChecked(false);
-        hero.setImageResource(R.drawable.run2);
-        ch.setText("Rogue");}
   }
 }
