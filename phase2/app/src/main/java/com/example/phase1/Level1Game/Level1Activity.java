@@ -263,7 +263,7 @@ public class Level1Activity extends GameManager {
     if (enemyType == 0) {
       Array.set(enemyAction, 0, R.drawable.mage); // stand/unmoved
       Array.set(enemyAction, 1, R.drawable.walke); // walk animation
-      Array.set(enemyAction, 2, R.drawable.walke); // get hurt animation
+      Array.set(enemyAction, 2, R.drawable.e_hurt); // get hurt animation
       Array.set(enemyAction, 3, R.drawable.e_attack); // attack animation
     }
   }
