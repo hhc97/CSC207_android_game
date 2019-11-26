@@ -14,7 +14,7 @@ import com.example.phase1.R;
 /**
  * An activity that has buttons to allow users to customize their preferences.
  *
- * @author Haocheng Hu
+ * @author Haocheng Hu, Nayan Saxena
  */
 public class PreferenceEditor extends GameManager {
 
@@ -30,46 +30,14 @@ public class PreferenceEditor extends GameManager {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.activity_preference_editor);
     currPlayer = getIntent().getIntExtra(sendPlayer, 0);
-    updatePlayerInfo();
     restoreState();
   }
 
-  /** Updates the textView in the activity to show current preferences. */
-  private void updatePlayerInfo() {
-
-    String character;
-    if (getCharacter() == 0) {
-      character = "Rogue";
-    } else {
-      character = "Knight";
-    }
-
-    String nightDay;
-    if (getDayOrNight() == 0) {
-      nightDay = "Night";
-    } else {
-      nightDay = "Day";
-    }
-
-    String difficulty;
-    if (getDifficulty() == 0) {
-      difficulty = "Easy";
-    } else if (getDifficulty() == 1) {
-      difficulty = "Normal";
-    } else {
-      difficulty = "Hard";
-    }
-    String stats =
-        "Current preferences:"
-            + "\nScene: "
-            + nightDay
-            + "\nDifficulty: "
-            + difficulty
-            + "\nCharacter: "
-            + character;
-  }
-
-  // setters for each button
+  /**
+   * Toggles and sets the background between Day and Night when the button is clicked.
+   *
+   * @param view The button that is clicked.
+   */
   public void clickDaySwitch(View view) {
     if (getDayOrNight() == 0) {
       findViewById(R.id.day).setVisibility(View.VISIBLE);
@@ -82,40 +50,37 @@ public class PreferenceEditor extends GameManager {
     }
   }
 
+  /**
+   * Toggles and sets the character between Knight and Rogue when the button is clicked.
+   *
+   * @param view The button that is clicked.
+   */
   public void clickCharSwitch(View view) {
-
     ImageView hero = findViewById(R.id.hero);
-    TextView ch = findViewById(R.id.cname);
+    TextView charText = findViewById(R.id.cname);
 
     if (getCharacter() == 0) {
       hero.setImageResource(R.drawable.run1);
-      ch.setText("Knight");
+      charText.setText(R.string.set_knight);
       setCharacter(1);
     } else {
       hero.setImageResource(R.drawable.run2);
-      ch.setText("Rogue");
+      charText.setText(R.string.set_rogue);
       setCharacter(0);
     }
   }
 
-  public void clickRogue(View view) {
-    setCharacter(0);
-    updatePlayerInfo();
-  }
-
+  // setters for difficulty
   public void clickEasy(View view) {
     setDifficulty(0);
-    updatePlayerInfo();
   }
 
   public void clickNormal(View view) {
     setDifficulty(1);
-    updatePlayerInfo();
   }
 
   public void clickHard(View view) {
     setDifficulty(2);
-    updatePlayerInfo();
   }
 
   /**
@@ -127,18 +92,18 @@ public class PreferenceEditor extends GameManager {
     finish();
   }
 
-  /** Restores to the previous state of switches and backgrounds based on users old preference */
-  public void restoreState() {
-    Switch daynightswitch = findViewById(R.id.daynight);
+  /** Restores the state of the switches and backgrounds based on current user preferences. */
+  private void restoreState() {
+    Switch dayNightSwitch = findViewById(R.id.daynight);
     RadioButton easy = findViewById(R.id.easy);
     RadioButton normal = findViewById(R.id.normal);
     RadioButton hard = findViewById(R.id.hard);
     ImageView hero = findViewById(R.id.hero);
-    TextView ch = findViewById(R.id.cname);
-    Switch cswitch = findViewById(R.id.cswitch);
+    TextView charText = findViewById(R.id.cname);
+    Switch cSwitch = findViewById(R.id.cswitch);
 
     if (getDayOrNight() == 1) {
-      daynightswitch.setChecked(true);
+      dayNightSwitch.setChecked(true);
       findViewById(R.id.day).setVisibility(View.VISIBLE);
       findViewById(R.id.night).setVisibility(View.INVISIBLE);
     }
@@ -152,13 +117,10 @@ public class PreferenceEditor extends GameManager {
     }
 
     if (getCharacter() == 1) {
-      cswitch.setChecked(true);
-      hero.setImageResource(R.drawable.run1);
-      ch.setText("Knight");
+      cSwitch.setChecked(true);
     } else {
-      cswitch.setChecked(false);
       hero.setImageResource(R.drawable.run2);
-      ch.setText("Rogue");
+      charText.setText(R.string.set_rogue);
     }
   }
 }

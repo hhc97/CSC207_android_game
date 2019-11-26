@@ -16,7 +16,7 @@ import com.example.phase1.Level3Game.Level3Activity;
 public abstract class GameManager extends FileReadWriter {
   public static final String sendPlayer = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
-  //    score, health, coin, day/night, difficulty, character, current level, player name, status
+  //    score, health, coin, night/day, difficulty, character, current level, player name, status
   final String defaultScore = "0,3,0,0,0,0,1,NAME,0";
   int currPlayer = -1;
 
