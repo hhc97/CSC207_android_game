@@ -2,6 +2,8 @@ package com.example.phase1.BackendStorage;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -75,8 +77,12 @@ public class SaveMenu extends GameManager {
   public void clickSave(View view) {
     Button b = (Button) view;
     for (int i = 0; i < buttons.length; i++) {
-      if (buttons[i] == b) {
+      Button currButton = buttons[i];
+      if (currButton == b) {
         currPlayer = i;
+        currButton.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+      } else {
+        currButton.getBackground().clearColorFilter();
       }
     }
     if (b.getText().toString().equals(emptySlot)) {
