@@ -16,6 +16,8 @@ public class Level1Manager {
   private float playerStartY = groundHeight;
   private int difficulty = 0; // default difficulty
   private int dayOrNight = 0; // default background
+  private float maxframesize = 1800;
+  private float minframesize = -50;
 
   public Level1Manager() {
     ObjectBuilder builder = new ObjectBuilder(this.difficulty);
@@ -37,13 +39,26 @@ public class Level1Manager {
     Objects.add(c3);
   }
 
+
+  public void setmaxFramesize(float x){
+    this.maxframesize = x;
+  }
+
+  public void setMinframesize(float x){
+    this.minframesize = x;
+  }
+
   public void rightButtonPress() {
-    player.moveRight();
+    if (player.getX() < this.maxframesize) {
+      player.moveRight();
+    }
     update();
   }
 
   public void leftButtonPress() {
-    player.moveLeft();
+    if (player.getX() > this.minframesize) {
+      player.moveLeft();
+    }
     update();
   }
 
