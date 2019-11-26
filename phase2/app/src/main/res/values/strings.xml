@@ -23,4 +23,6 @@
     <string name="text_scene">Scene:</string>
     <string name="text_difficulty">Difficulty:</string>
     <string name="text_character">Character:</string>
+    <string name="toggle_scene">Toggle Between Night/Day:</string>
+    <string name="toggle_character">Toggle Between Characters:</string>
 </resources>
