@@ -133,7 +133,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     if (v.getId() == buttons[3].getId()) { // Top right button clicked
       Level3.setUserInput(3);
     }
-    if (Level3.checkError()) { // User did not input correct sequence
+    if (Level3.checkWin() == 1) { // User did not input correct sequence
       if (Level3.attempts == 3) { // User made 3 attempts (out of attempts)
         deductHealth(1); // deduct a life
         set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
@@ -168,7 +168,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                 2000); // 2000ms = 2 seconds
       }
     }
-    if (Level3.checkWin()) { // User successfully inputs correct sequence
+    if (Level3.checkWin() == 2) { // User successfully inputs correct sequence
       disable_buttons();
       set_text("Correct Pattern!, You win! Returning to the Save Menu");
       new Handler()
