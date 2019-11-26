@@ -42,29 +42,25 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
 
     if (getDayOrNight() == 0) {
       setContentView(R.layout.n_activity_level3);
-    } else if (getDayOrNight() == 1) {
+    }
+    else{
       setContentView(R.layout.activity_level3);
     }
     // Set static hero near door
     final ImageView hero = findViewById(R.id.hero);
     if (getCharacter() == 0) {
       hero.setVisibility(View.VISIBLE);
-    } else {
+    }
+    else {
       hero.setVisibility(View.INVISIBLE);
     }
 
     // initialise button components
-    if (getDayOrNight() == 0) {
-      buttons[0] = findViewById(R.id.b1);
-      buttons[1] = findViewById(R.id.b2);
-      buttons[2] = findViewById(R.id.b3);
-      buttons[3] = findViewById(R.id.b4);
-    } else {
-      buttons[0] = findViewById(R.id.b28);
-      buttons[1] = findViewById(R.id.b29);
-      buttons[2] = findViewById(R.id.b30);
-      buttons[3] = findViewById(R.id.b31);
-    }
+    buttons[0] = findViewById(R.id.b1);
+    buttons[1] = findViewById(R.id.b2);
+    buttons[2] = findViewById(R.id.b3);
+    buttons[3] = findViewById(R.id.b4);
+
     out = findViewById(R.id.pstat);
   }
 
