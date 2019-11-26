@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@drawable/nbg">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:background="@drawable/nbg">
 
     <ImageView
         android:id="@+id/vegetation"
@@ -69,6 +70,19 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/hills_layer_5" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/potion"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="405dp"
+        android:layout_marginTop="212dp"
+        android:src="@drawable/potion"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/grass"
         android:layout_width="match_parent"
@@ -90,6 +104,31 @@
         android:text="Health"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/potions"
+        android:layout_width="98dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="61dp"
+        android:text="Potions"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/potion3"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="405dp"
+        android:layout_marginTop="212dp"
+        android:src="@drawable/potion"
+        android:visibility="visible"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/score2"

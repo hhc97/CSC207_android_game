@@ -69,6 +69,19 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/hbut" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/potion"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="405dp"
+        android:layout_marginTop="212dp"
+        android:src="@drawable/potion"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/grass"
         android:layout_width="match_parent"
@@ -135,6 +148,18 @@
         android:text="Health"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/potions"
+        android:layout_width="98dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="61dp"
+        android:text="Potions"
+        android:textColor="#000000"
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/grass1"
