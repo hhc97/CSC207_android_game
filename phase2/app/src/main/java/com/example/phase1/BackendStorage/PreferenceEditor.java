@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.phase1.R;
@@ -28,6 +29,7 @@ public class PreferenceEditor extends GameManager {
     setContentView(R.layout.activity_preference_editor);
     currPlayer = getIntent().getIntExtra(sendPlayer, 0);
     updatePlayerInfo();
+    restoreState();
   }
 
   /** Updates the textView in the activity to show current preferences. */
@@ -67,7 +69,6 @@ public class PreferenceEditor extends GameManager {
 
   // setters for each button
   public void clickDaySwitch(View view) {
-
     if (getDayOrNight() == 0) {
       findViewById(R.id.day).setVisibility(View.VISIBLE);
       findViewById(R.id.night).setVisibility(View.INVISIBLE);
@@ -112,4 +113,15 @@ public class PreferenceEditor extends GameManager {
   public void clickFinish(View view) {
     finish();
   }
+
+  /** Restores to the previous state of switches and backgrounds based on users old preference */
+  public void restoreState() {
+    Switch daynightswitch= findViewById(R.id.daynight);
+    if (getDayOrNight() == 1) {
+      daynightswitch.setChecked(true);
+      findViewById(R.id.day).setVisibility(View.VISIBLE);
+      findViewById(R.id.night).setVisibility(View.INVISIBLE);
+      }
+  }
+
 }
