@@ -42,25 +42,26 @@
         android:background="@drawable/rbut" />
 
     <Button
-        android:id="@+id/jump"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="580dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/jbut"
-        android:onClick="tapScreen" />
+            android:id="@+id/jump"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="580dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/jbut"
+            android:onClick="tapScreen" />
 
     <Button
-        android:id="@+id/attack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="667dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/hbut" />
+            android:id="@+id/attack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="667dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/hbut"
+            android:onClick="tapStart" />
 
     <ImageView
         android:id="@+id/tree1_c"
@@ -160,42 +161,29 @@
         android:layout_marginTop="132dp"
         android:src="@drawable/run1" />
 
-<!--    <Button-->
-<!--            android:id="@+id/jump_button"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_alignParentStart="true"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_marginStart="13dp"-->
-<!--            android:layout_marginTop="-2dp"-->
-<!--            android:layout_marginEnd="-25dp"-->
-<!--            android:background="@android:color/transparent"-->
-<!--            android:onClick="tapScreen"-->
-<!--            android:scaleType="fitXY"-->
-<!--            tools:visibility="invisible" />-->
-
-    <EditText
+    <TextView
             android:id="@+id/score"
             android:layout_width="116dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:layout_marginTop="20dp"
             android:text="Score"
+            android:textSize="16sp"
             android:textColor="#F8F7F7" />
 
-    <EditText
+    <TextView
             android:id="@+id/health"
             android:layout_width="116dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:text="Health"
-            android:textColor="#F8F7F7" />
+            android:textColor="#F8F7F7"
+            android:textSize="16sp" />
 
     <TextView
         android:id="@+id/end"
@@ -218,7 +206,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="53dp"
-            android:text="Tap the up arrow to jump. The game will start in 5 seconds."
+            android:text="Tap the up arrow to jump. Tap the screen to begin."
             android:textColor="#FFFFFF"
             android:textSize="22sp" />
 

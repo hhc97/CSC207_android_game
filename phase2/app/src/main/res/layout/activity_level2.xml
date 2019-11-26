@@ -60,14 +60,15 @@
         android:onClick="tapScreen" />
 
     <Button
-        android:id="@+id/attack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="666dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/hbut" />
+            android:id="@+id/attack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="666dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/hbut"
+            android:onClick="tapStart" />
 
     <ImageView
         android:id="@+id/tree1_c"
@@ -206,7 +207,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:text="Tap the up arrow to jump. The game will start in 5 seconds."
+            android:text="Tap the up arrow to jump. Tap the screen to begin."
             android:textColor="@android:color/black"
             android:textSize="22sp" />
 

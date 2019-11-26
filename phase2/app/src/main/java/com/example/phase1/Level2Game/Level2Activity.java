@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +28,8 @@ public class Level2Activity extends GameManager {
   private TextView healthLabel;
   private TextView levelStart;
   private TextView levelOver;
+
+  ValueAnimator animator;
 
   // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
   //  // Sizes. Note that in landscape, width > height.
@@ -59,18 +62,6 @@ public class Level2Activity extends GameManager {
       setContentView(R.layout.activity_level2);
     }
 
-    // Images in the layout for Level 2.
-    final ImageView backgroundOne = findViewById(R.id.grass);
-    final ImageView backgroundTwo = findViewById(R.id.grass1);
-    final ImageView backgroundThree = findViewById(R.id.vegetation);
-    final ImageView backgroundFour = findViewById(R.id.vegetation2);
-    final ImageView backgroundFive = findViewById(R.id.tree);
-    final ImageView backgroundSix = findViewById(R.id.rock1);
-    final ImageView backgroundSeven = findViewById(R.id.tree2);
-    final ImageView backgroundEight = findViewById(R.id.tree1_c);
-    final ImageView backgroundNine = findViewById(R.id.rock1_c);
-    final ImageView backgroundTen = findViewById(R.id.tree2_c);
-
     // Change the hero's appearance based on the user's choice.
     final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
     if (getCharacter() == 0) {
@@ -88,33 +79,6 @@ public class Level2Activity extends GameManager {
       addHealth(1);
     }
 
-    // Move the two copies of the front background image, continuously.
-    final ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
-    animator.setRepeatCount(ValueAnimator.INFINITE);
-    animator.setInterpolator(new LinearInterpolator());
-    animator.setDuration(5000L);
-    animator.addUpdateListener(
-        new ValueAnimator.AnimatorUpdateListener() {
-          @Override
-          public void onAnimationUpdate(ValueAnimator animation) {
-            final float progress = (float) animation.getAnimatedValue();
-            final float width1 = backgroundOne.getWidth();
-            final float width2 = backgroundThree.getWidth();
-            final float translationX1 = width1 * progress;
-            final float translationX2 = width2 * progress - 10;
-            backgroundOne.setTranslationX(-translationX1);
-            backgroundTwo.setTranslationX(-translationX1 + width1);
-            backgroundThree.setTranslationX(-translationX2);
-            backgroundFour.setTranslationX(-translationX2 + width2);
-            backgroundFive.setTranslationX(-translationX1);
-            backgroundSix.setTranslationX(-translationX1 + width1);
-            backgroundSeven.setTranslationX(-translationX2);
-            backgroundEight.setTranslationX(-translationX2 + width2);
-            backgroundNine.setTranslationX(-translationX1);
-            backgroundTen.setTranslationX(-translationX1 + width1);
-          }
-        });
-
     // Text with instructions before the game starts.
     levelStart = findViewById(R.id.Level2Start);
 
@@ -125,48 +89,87 @@ public class Level2Activity extends GameManager {
     // Text with message when game ends.
     levelOver = findViewById(R.id.end);
 
-    handler.postDelayed(
-        new Runnable() {
+}
+
+  // Runs the game.
+  public void gameRun() {
+      backgroundAnimate();
+      timer.schedule(
+        new TimerTask() {
           @Override
           public void run() {
-            // After 5s delay, remove the instructions text and start the animation.
-            levelStart.setVisibility(View.INVISIBLE);
-            animator.start();
+            handler.post(
+              new Runnable() {
+                @Override
+                public void run() {
+                  // Update coordinates of the moving obstacles, as well as the score.
+                  level2Manager.update();
+                  scoreLabel.setText("Score: " + getScore());
+                  healthLabel.setText("Health: " + getHealth());
 
-            timer.schedule(
-                new TimerTask() {
-                  @Override
-                  public void run() {
-                    handler.post(
-                        new Runnable() {
-                          @Override
-                          public void run() {
-                            // Update coordinates of the moving obstacles, as well as the score.
-                            level2Manager.update();
-                            scoreLabel.setText("Score: " + getScore());
-                            healthLabel.setText("Health: " + getHealth());
-
-                            // The level is over, so pause the auto-update to check collision and
-                            // animation.
-                            if (getHealth() == 0) {
-                              levelOver.setVisibility(View.VISIBLE);
-                              animator.cancel();
-                              timer.cancel();
-                              levelEndDelay();
-                            }
-                          }
-                        });
+                  // The level is over, so pause the auto-update to check collision and
+                  // animation.
+                  if (getHealth() == 0) {
+                    levelOver.setVisibility(View.VISIBLE);
+                    animator.cancel();
+                    timer.cancel();
+                    levelEndDelay();
                   }
-                },
-                0,
-                20);
+                }
+              });
           }
         },
-        5000);
+              0,
+              20);
+    }
+
+
+  public void backgroundAnimate() {
+
+    // Images in the layout for Level 2.
+    final ImageView backgroundOne = findViewById(R.id.grass);
+    final ImageView backgroundTwo = findViewById(R.id.grass1);
+    final ImageView backgroundThree = findViewById(R.id.vegetation);
+    final ImageView backgroundFour = findViewById(R.id.vegetation2);
+    final ImageView backgroundFive = findViewById(R.id.tree);
+    final ImageView backgroundSix = findViewById(R.id.rock1);
+    final ImageView backgroundSeven = findViewById(R.id.tree2);
+    final ImageView backgroundEight = findViewById(R.id.tree1_c);
+    final ImageView backgroundNine = findViewById(R.id.rock1_c);
+    final ImageView backgroundTen = findViewById(R.id.tree2_c);
+
+    // Move the two copies of the front background image, continuously.
+    animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+    animator.setRepeatCount(ValueAnimator.INFINITE);
+    animator.setInterpolator(new LinearInterpolator());
+    animator.setDuration(5000L);
+    animator.addUpdateListener(
+            new ValueAnimator.AnimatorUpdateListener() {
+              @Override
+              public void onAnimationUpdate(ValueAnimator animation) {
+                final float progress = (float) animation.getAnimatedValue();
+                final float width1 = backgroundOne.getWidth();
+                final float width2 = backgroundThree.getWidth();
+                final float translationX1 = width1 * progress;
+                final float translationX2 = width2 * progress - 10;
+                backgroundOne.setTranslationX(-translationX1);
+                backgroundTwo.setTranslationX(-translationX1 + width1);
+                backgroundThree.setTranslationX(-translationX2);
+                backgroundFour.setTranslationX(-translationX2 + width2);
+                backgroundFive.setTranslationX(-translationX1);
+                backgroundSix.setTranslationX(-translationX1 + width1);
+                backgroundSeven.setTranslationX(-translationX2);
+                backgroundEight.setTranslationX(-translationX2 + width2);
+                backgroundNine.setTranslationX(-translationX1);
+                backgroundTen.setTranslationX(-translationX1 + width1);
+              }
+            });
+    animator.start();
   }
 
   // Visually show that the hero is jumping.
   public void tapScreen(View view) {
+    System.out.println("i just jumped");
     preventTwoClick(view);
     final ImageView heroCharacter = findViewById(R.id.hero);
     final ObjectAnimator animationUp =
@@ -206,6 +209,14 @@ public class Level2Activity extends GameManager {
           }
         },
         500);
+  }
+
+  // Starts the actual game for Level 2.
+  public void tapStart(View view) {
+    System.out.println("clicked");
+    backgroundAnimate();
+    gameRun();
+    view.setClickable(false);
   }
 
   // A 3 second delay before starting Level 3.
