@@ -131,55 +131,14 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     if (v.getId() == buttons[3].getId()) { // Top right button clicked
       Level3.setUserInput(3);
     }
-    if (Level3.checkWin() == 1) { // User did not input correct sequence
-      if (Level3.attempts == 3) { // User made 3 attempts (out of attempts)
-        deductHealth(1); // deduct a life
-        set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
-        Level3.attempts = 0;
-        new Handler()
-            .postDelayed(
-                new Runnable() { // delay the task by 5 seconds
-                  @Override
-                  public void run() {
-                    if (getHealth() == 0) // restart game if they run out of lives
-                    {
-                      startAgain();
-                    }
-                    onStart(); // restart level if they still have lives remaining
-                  }
-                },
-                5000); // 5000ms = 5 seconds
-
-      } else { // User input incorrect sequence but still has remaining attempts
-        set_text(
-            "Incorrect Pattern! " + (3 - Level3.attempts) + " remaining! " + "Displaying Sequence");
-        Level3.clearInput(); // clear input for next attempt
-        disable_buttons();
-        new Handler()
-            .postDelayed(
-                new Runnable() { // delay the task by 2 seconds
-                  @Override
-                  public void run() {
-                    displaySequence();
-                  }
-                },
-                2000); // 2000ms = 2 seconds
-      }
+    if (Level3.checkConditions() == 1) { // User did not input correct sequence
+      on_bad_input();
     }
-    if (Level3.checkWin() == 2) { // User successfully inputs correct sequence
-      disable_buttons();
-      set_text("Correct Pattern!, You win! Returning to the Save Menu");
-      new Handler()
-          .postDelayed(
-              new Runnable() { // delay the task by 3 seconds
-                @Override
-                public void run() {
-                  finish();
-                }
-              },
-              3000); // 3000ms = 3 seconds
+    if (Level3.checkConditions() == 2) { // User successfully inputs correct sequence
+      on_win();
     }
   }
+
 
   /** Set all Button.Enabled and Clickable properties to true */
   private void enable_buttons() {
@@ -226,5 +185,62 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             out.setVisibility(View.VISIBLE);
           }
         });
+  }
+
+  /**
+   * To be called when a sequence is incorrectly inputted. Deducts lives and displays sequence again
+   * if the player has any remaining lives, else it restarts the game.
+   */
+  private void on_bad_input(){
+    if (Level3.attempts == 3) { // User made 3 attempts (out of attempts)
+      deductHealth(1); // deduct a life
+      set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
+      Level3.attempts = 0;
+      new Handler()
+              .postDelayed(
+                      new Runnable() { // delay the task by 5 seconds
+                        @Override
+                        public void run() {
+                          if (getHealth() == 0) // restart game if they run out of lives
+                          {
+                            startAgain();
+                          }
+                          onStart(); // restart level if they still have lives remaining
+                        }
+                      },
+                      5000); // 5000ms = 5 seconds
+
+    } else { // User input incorrect sequence but still has remaining attempts
+      set_text(
+              "Incorrect Pattern! " + (3 - Level3.attempts) + " remaining! " + "Displaying Sequence");
+      Level3.clearInput(); // clear input for next attempt
+      disable_buttons();
+      new Handler()
+              .postDelayed(
+                      new Runnable() { // delay the task by 2 seconds
+                        @Override
+                        public void run() {
+                          displaySequence();
+                        }
+                      },
+                      2000); // 2000ms = 2 seconds
+    }
+  }
+
+  /**
+   * To be called when the correct sequence has been inputted. Displays a message and ends the game.
+   */
+  private void on_win() {
+    disable_buttons();
+    set_text("Correct Pattern!, You win! Returning to the Save Menu");
+    new Handler()
+            .postDelayed(
+                    new Runnable() { // delay the task by 3 seconds
+                      @Override
+                      public void run() {
+                        finish();
+                      }
+                    },
+                    3000); // 3000ms = 3 seconds
   }
 }

@@ -49,32 +49,12 @@ class Level3Manager {
     input.clear();
   }
 
-//  /**
-//   * Check if the user has made an error in the input of the sequence
-//   *
-//   * @return true if the user input does not match the sequence
-//   */
-//  boolean checkError() {
-//    Iterator<Integer> seq = sequence.iterator();
-//    Iterator<Integer> in = input.iterator();
-//
-//    while (seq.hasNext() && in.hasNext()) {
-//      int a = seq.next();
-//      int b = in.next();
-//      if (a != b) {
-//        attempts++;
-//        return true;
-//      }
-//    }
-//    return false;
-//  }
-
   /**
    * Check if the user has won or inputted the wrong sequence
    *
    * @return 1 if user input does not match sequence, 2 if the user has won, else 0
    */
-  int checkWin() {
+  int checkConditions() {
     Iterator<Integer> seq = sequence.iterator();
     Iterator<Integer> in = input.iterator();
 
