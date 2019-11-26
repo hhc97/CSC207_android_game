@@ -1,18 +1,22 @@
 package com.example.phase1.Objects;
 
+import com.example.phase1.Level1Game.Level1Manager;
+
 public class Potion extends GameObject {
-  private int value; // How much health does Hero heal when drinking this potion
   private Hero player;
 
   public Potion() {
     super();
-    this.value = 5; // temp
+  }
+
+  public void setPlayer(Hero player) {
+    this.player = player;
   }
 
   @Override
   public void update() {
-    if (isTouchHero()) {
-      player.heal(value);
+    if (isTouchHero() && getStates()) {
+      player.addPotion();
       setStates(false);
     }
   }

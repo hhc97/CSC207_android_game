@@ -4,6 +4,7 @@ public class ObjectBuilder {
   private int difficulty = 0; // default difficulty
   private int monsterHealth = 1; // default health
   private int monsterWorth = 100; // default point when player get a kill
+  private Hero player;
 
   public ObjectBuilder(int difficulty) {
     this.difficulty = difficulty;
@@ -19,7 +20,11 @@ public class ObjectBuilder {
     }
   }
 
-  public ObjectBuilder() {//Overloading
+  public void setPlayer(Hero player) {
+    this.player = player;
+  }
+
+  public ObjectBuilder() { // Overloading
     if (this.difficulty == 0) {
       this.monsterHealth = 1;
       this.monsterWorth = 100;
@@ -48,13 +53,16 @@ public class ObjectBuilder {
   }
 
   private Object createHero() {
-    return new Hero();
+    Hero hero = new Hero();
+    this.player = hero;
+    return hero;
   }
 
   private Object createMonster() {
     Monster monster = new Monster();
     monster.setWorth(this.monsterWorth);
     monster.setHealth(this.monsterHealth);
+    monster.setPlayer(this.player);
     return monster;
   }
 
@@ -63,10 +71,14 @@ public class ObjectBuilder {
   }
 
   private Object createPotion() {
-    return new Potion();
+    Potion potion = new Potion();
+    potion.setPlayer(this.player);
+    return potion;
   }
 
   private Object createCoin() {
-    return new Coin();
+    Coin coin = new Coin();
+    coin.setPlayer(this.player);
+    return coin;
   }
 }

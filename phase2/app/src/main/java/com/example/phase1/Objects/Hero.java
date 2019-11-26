@@ -8,6 +8,7 @@ public class Hero extends Character {
   private int attackRange = WIDTH; // temp
   private int coins = 0;
   private int score = 0;
+  private int potion = 0;
 
   public Hero() {
     super();
@@ -64,7 +65,17 @@ public class Hero extends Character {
     this.coins = coins;
   }
 
-  public void heal(int value) {}
+  public int getPotion() {
+    return this.potion;
+  }
+
+  public void setPotion(int extraHealth) {
+    this.potion = extraHealth;
+  }
+
+  public void addPotion() {
+    this.potion++;
+  }
 
   public void addScore(int score) {
     this.score += score;

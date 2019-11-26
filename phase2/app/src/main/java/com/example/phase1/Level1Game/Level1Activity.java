@@ -27,6 +27,7 @@ public class Level1Activity extends GameManager {
   private GifImageView enemy0;
   private GifImageView enemy1;
   private GifImageView enemy2;
+  private GifImageView potion;
   private int activityLevel; // Day or Night background.
   private int[] heroAction = new int[4]; // Animations for hero, stand, walk, hurt and attack.
   private int[] enemyAction = new int[4]; // Animations for enemy, stand, walk, hurt and attack.
@@ -220,6 +221,8 @@ public class Level1Activity extends GameManager {
     Objects.get(5).setImage(coin1);
     coin2 = findViewById(R.id.c3);
     Objects.get(6).setImage(coin2);
+    potion = findViewById(R.id.potion);
+    Objects.get(7).setImage(potion);
     scoreLabel = (TextView) findViewById(R.id.score2);
     healthLabel = (TextView) findViewById(R.id.health2);
     setHeroAction();

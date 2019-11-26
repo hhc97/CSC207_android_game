@@ -1,10 +1,6 @@
 package com.example.phase1.Level1Game;
 
-import com.example.phase1.Objects.Coin;
-import com.example.phase1.Objects.GameObject;
-import com.example.phase1.Objects.Hero;
-import com.example.phase1.Objects.Monster;
-import com.example.phase1.Objects.ObjectBuilder;
+import com.example.phase1.Objects.*;
 
 import java.util.ArrayList;
 
@@ -16,8 +12,8 @@ public class Level1Manager {
   private float playerStartY = groundHeight;
   private int difficulty = 0; // default difficulty
   private int dayOrNight = 0; // default background
-  private float maxframesize = 1800;
-  private float minframesize = -50;
+  private float maxFrameSize = 1800;
+  private float minFrameSize = -50;
   private ObjectBuilder builder;
 
   public Level1Manager(int difficulty) {
@@ -34,6 +30,7 @@ public class Level1Manager {
   private void setupObjects() {
     player = (Hero) builder.createObject("Hero");
     player.setPosition(playerStartX, playerStartY);
+    player.setHealth(100);
     Monster m1 = (Monster) builder.createObject("Monster");
     m1.setPosition(800, groundHeight);
     m1.setStrength(0);
@@ -52,6 +49,9 @@ public class Level1Manager {
     c2.setPosition(1500, groundHeight);
     Coin c3 = (Coin) builder.createObject("Coin");
     c3.setPosition(1750, groundHeight);
+    Potion p = (Potion) builder.createObject("Potion");
+    p.setPosition(400, groundHeight);
+
     Objects.add(player);
     Objects.add(m1);
     Objects.add(m2);
@@ -59,6 +59,7 @@ public class Level1Manager {
     Objects.add(c1);
     Objects.add(c2);
     Objects.add(c3);
+    Objects.add(p);
     if (this.difficulty == 0) {
       m2.setStates(false);
       m3.setStates(false);
@@ -67,23 +68,23 @@ public class Level1Manager {
     }
   }
 
-  public void setmaxFramesize(float x) {
-    this.maxframesize = x;
+  public void setMaxFrameSize(float x) {
+    this.maxFrameSize = x;
   }
 
-  public void setMinframesize(float x) {
-    this.minframesize = x;
+  public void setMinFrameSize(float x) {
+    this.minFrameSize = x;
   }
 
   public void rightButtonPress() {
-    if (player.getX() < this.maxframesize) {
+    if (player.getX() < this.maxFrameSize) {
       player.moveRight();
     }
     update();
   }
 
   public void leftButtonPress() {
-    if (player.getX() > this.minframesize) {
+    if (player.getX() > this.minFrameSize) {
       player.moveLeft();
     }
     update();
@@ -126,5 +127,9 @@ public class Level1Manager {
 
   public ArrayList getObjects() {
     return this.Objects;
+  }
+
+  public boolean isPlayerAlive() {
+    return player.getStates();
   }
 }

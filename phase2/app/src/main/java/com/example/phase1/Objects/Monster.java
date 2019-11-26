@@ -12,8 +12,11 @@ public class Monster extends Character {
 
   public Monster() {
     super();
-    this.player = Level1Manager.getPlayer();
     this.setSpeed(10);
+  }
+
+  public void setPlayer(Hero player) {
+    this.player = player;
   }
 
   public void update() {
