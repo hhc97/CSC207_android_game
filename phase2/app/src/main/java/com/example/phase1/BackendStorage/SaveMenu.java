@@ -118,12 +118,14 @@ public class SaveMenu extends GameManager {
   }
 
   /**
-   * Asks the player if they want to resume/start the level once the start game button is clicked.
+   * Asks the player if they want to resume/start the game once the start game button is clicked.
    *
    * @param view The button that is clicked.
    */
   public void clickStart(View view) {
-    queryResume();
+    if (canEdit()) {
+      queryResume();
+    }
   }
 
   /**
@@ -220,9 +222,6 @@ public class SaveMenu extends GameManager {
 
   /** Asks the user if they want to start the game, or resume the game that they were playing. */
   private void queryResume() {
-    if (currPlayer == -1) {
-      return;
-    }
     final String[] choices = {"Yes", "No"};
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
