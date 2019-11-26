@@ -34,7 +34,7 @@ public class SetCharacterName extends AppCompatActivity {
     if (message.equals("")) {
       return;
     }
-    message = message.replace(",", "_");
+    message = message.replace(",", ".");
     intent.putExtra(SaveMenu.sendName, message);
     setResult(RESULT_OK, intent);
     finish();

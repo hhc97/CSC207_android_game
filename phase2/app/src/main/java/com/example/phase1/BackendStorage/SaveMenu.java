@@ -55,11 +55,10 @@ public class SaveMenu extends GameManager {
     if (!has_file) {
       startFile();
     }
-    String[] scores = readFromFile().split("\n");
-    for (int i = 0; i < scores.length; i++) {
+    for (int i = 0; i < buttons.length; i++) {
       currPlayer = i;
       Button b = buttons[i];
-      if (!scores[i].equals(defaultScore)) {
+      if (getSaveStatus()) {
         b.setText(getName());
       } else {
         b.setText(emptySlot);
@@ -85,7 +84,7 @@ public class SaveMenu extends GameManager {
         currButton.getBackground().clearColorFilter();
       }
     }
-    if (b.getText().toString().equals(emptySlot)) {
+    if (!getSaveStatus()) {
       Intent intent = new Intent(this, SetCharacterName.class);
       startActivityForResult(intent, 1);
     } else {
@@ -102,7 +101,7 @@ public class SaveMenu extends GameManager {
     if (currPlayer == -1) {
       return false;
     }
-    return !buttons[currPlayer].getText().toString().equals(emptySlot);
+    return getSaveStatus();
   }
 
   /**
@@ -143,7 +142,7 @@ public class SaveMenu extends GameManager {
   /** Updates the TextView with the stats of the current player. */
   private void updatePlayerInfo() {
     TextView display = findViewById(R.id.textView);
-    if (currPlayer != -1 && !getName().equals("NAME")) {
+    if (currPlayer != -1 && getSaveStatus()) {
       int score = getScore();
       int health = getHealth();
       int coin = getCoin();
@@ -208,6 +207,7 @@ public class SaveMenu extends GameManager {
       if (resultCode == RESULT_OK) {
         String userName = data.getStringExtra(sendName);
         setName(userName);
+        setSaveStatus(true);
         setPreferences();
       }
     }

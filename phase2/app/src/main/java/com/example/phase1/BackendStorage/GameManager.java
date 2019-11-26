@@ -16,8 +16,8 @@ import com.example.phase1.Level3Game.Level3Activity;
 public abstract class GameManager extends FileReadWriter {
   public static final String sendPlayer = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
-  //    score, health, coin, day/night, difficulty, character, current level, player name
-  final String defaultScore = "0,3,0,0,0,0,1,NAME";
+  //    score, health, coin, day/night, difficulty, character, current level, player name, status
+  final String defaultScore = "0,3,0,0,0,0,1,NAME,0";
   int currPlayer = -1;
 
   //  indexes of the player statistics
@@ -29,6 +29,7 @@ public abstract class GameManager extends FileReadWriter {
   private int character = 5;
   private int currentLevel = 6;
   private int playerName = 7;
+  private int saveStatus = 8;
 
   /**
    * Returns the requested stat of the current player in String form.
@@ -177,6 +178,16 @@ public abstract class GameManager extends FileReadWriter {
     setStat(c, character);
   }
 
+  // for save status
+  boolean getSaveStatus() {
+    return getStat(saveStatus) == 1;
+  }
+
+  void setSaveStatus(boolean b) {
+    int status = (b) ? 1 : 0;
+    setStat(status, saveStatus);
+  }
+
   /**
    * Starts the game, depending on which level the player was previously on. Starts at level 1 if
    * it's a new player.
@@ -216,9 +227,9 @@ public abstract class GameManager extends FileReadWriter {
 
   /** If no save file exists, create a new one with default values. */
   void startFile() {
-    writeToFile("0,3,0,0,2,0,1,Level 1");
-    writeToFile(readFromFile() + "0,3,0,0,2,0,2,Level 2");
-    writeToFile(readFromFile() + "0,3,0,0,2,0,3,Level 3");
+    writeToFile("0,3,0,0,0,0,1,Level 1,1");
+    writeToFile(readFromFile() + "0,3,0,0,1,0,2,Level 2,1");
+    writeToFile(readFromFile() + "0,3,0,0,2,0,3,Level 3,1");
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
