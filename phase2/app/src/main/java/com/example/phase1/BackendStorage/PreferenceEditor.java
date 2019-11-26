@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -22,8 +23,8 @@ public class PreferenceEditor extends GameManager {
     super.onCreate(savedInstanceState);
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
-            .setFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        .setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -81,9 +82,20 @@ public class PreferenceEditor extends GameManager {
     }
   }
 
-  public void clickKnight(View view) {
-    setCharacter(1);
-    updatePlayerInfo();
+  public void clickCharSwitch(View view) {
+
+    ImageView hero = findViewById(R.id.hero);
+    TextView ch = findViewById(R.id.cname);
+
+    if (getCharacter() == 0) {
+        hero.setImageResource(R.drawable.run1);
+        ch.setText("Knight");
+        setCharacter(1);
+    } else{
+        hero.setImageResource(R.drawable.run2);
+        ch.setText("Rogue");
+        setCharacter(0);
+    }
   }
 
   public void clickRogue(View view) {
@@ -117,19 +129,35 @@ public class PreferenceEditor extends GameManager {
 
   /** Restores to the previous state of switches and backgrounds based on users old preference */
   public void restoreState() {
-    Switch daynightswitch= findViewById(R.id.daynight);
-      RadioButton easy = findViewById(R.id.easy);
-      RadioButton normal = findViewById(R.id.normal);
-      RadioButton hard = findViewById(R.id.hard);
+    Switch daynightswitch = findViewById(R.id.daynight);
+    RadioButton easy = findViewById(R.id.easy);
+    RadioButton normal = findViewById(R.id.normal);
+    RadioButton hard = findViewById(R.id.hard);
+    ImageView hero = findViewById(R.id.hero);
+    TextView ch = findViewById(R.id.cname);
+    Switch cswitch = findViewById(R.id.cswitch);
+
     if (getDayOrNight() == 1) {
       daynightswitch.setChecked(true);
       findViewById(R.id.day).setVisibility(View.VISIBLE);
       findViewById(R.id.night).setVisibility(View.INVISIBLE);
-      }
+    }
 
-    if (getDifficulty() == 0){easy.setChecked(true);}
-    else if(getDifficulty() == 1){normal.setChecked(true);}
-    else {hard.setChecked(true);}
+    if (getDifficulty() == 0) {
+      easy.setChecked(true);
+    } else if (getDifficulty() == 1) {
+      normal.setChecked(true);
+    } else {
+      hard.setChecked(true);
+    }
+
+    if (getCharacter() == 1) {
+        cswitch.setChecked(true);
+      hero.setImageResource(R.drawable.run1);
+      ch.setText("Knight");
+    }
+    else{cswitch.setChecked(false);
+        hero.setImageResource(R.drawable.run2);
+        ch.setText("Rogue");}
   }
-
 }
