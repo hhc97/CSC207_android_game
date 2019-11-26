@@ -18,14 +18,34 @@ public class Level1Manager {
   private int dayOrNight = 0; // default background
   private float maxframesize = 1800;
   private float minframesize = -50;
+  private ObjectBuilder builder;
+
+  public Level1Manager(int difficulty) {
+    this.difficulty = difficulty;
+    builder = new ObjectBuilder(this.difficulty);
+    setupObjects();
+  }
 
   public Level1Manager() {
-    ObjectBuilder builder = new ObjectBuilder(this.difficulty);
+    builder = new ObjectBuilder(this.difficulty);
+    setupObjects();
+  }
+
+  private void setupObjects() {
     player = (Hero) builder.createObject("Hero");
     player.setPosition(playerStartX, playerStartY);
     Monster m1 = (Monster) builder.createObject("Monster");
     m1.setPosition(800, groundHeight);
     m1.setStrength(0);
+    m1.setSpeed(10);
+    Monster m2 = (Monster) builder.createObject("Monster");
+    m2.setPosition(1250, groundHeight);
+    m2.setStrength(0);
+    m2.setSpeed(20);
+    Monster m3 = (Monster) builder.createObject("Monster");
+    m3.setPosition(1750, groundHeight);
+    m3.setStrength(0);
+    m3.setSpeed(30);
     Coin c1 = (Coin) builder.createObject("Coin");
     c1.setPosition(1000, groundHeight);
     Coin c2 = (Coin) builder.createObject("Coin");
@@ -34,17 +54,24 @@ public class Level1Manager {
     c3.setPosition(1750, groundHeight);
     Objects.add(player);
     Objects.add(m1);
+    Objects.add(m2);
+    Objects.add(m3);
     Objects.add(c1);
     Objects.add(c2);
     Objects.add(c3);
+    if (this.difficulty == 0) {
+      m2.setStates(false);
+      m3.setStates(false);
+    } else if (this.difficulty == 1) {
+      m3.setStates(false);
+    }
   }
 
-
-  public void setmaxFramesize(float x){
+  public void setmaxFramesize(float x) {
     this.maxframesize = x;
   }
 
-  public void setMinframesize(float x){
+  public void setMinframesize(float x) {
     this.minframesize = x;
   }
 

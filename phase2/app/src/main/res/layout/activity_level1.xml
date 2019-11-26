@@ -195,7 +195,7 @@
         android:layout_marginTop="133dp"
         android:scaleX="1"
         android:src="@drawable/mage"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/enemy3"
@@ -210,7 +210,7 @@
         android:layout_marginEnd="19dp"
         android:scaleX="-1"
         android:src="@drawable/mage"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/hero"

@@ -14,10 +14,9 @@ import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Monster;
 import com.example.phase1.R;
 import java.lang.reflect.Array;
-import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.Timer;
+import java.util.logging.Level;
+
 import pl.droidsonroids.gif.GifImageView;
 
 public class Level1Activity extends GameManager {
@@ -27,7 +26,9 @@ public class Level1Activity extends GameManager {
   private GifImageView coin0;
   private GifImageView coin1;
   private GifImageView coin2;
-  private GifImageView enemy;
+  private GifImageView enemy0;
+  private GifImageView enemy1;
+  private GifImageView enemy2;
   private int activityLevel; // Day or Night background.
   private int[] heroAction = new int[4]; // Animations for hero, stand, walk, hurt and attack.
   private int[] enemyAction = new int[4]; // Animations for enemy, stand, walk, hurt and attack.
@@ -36,7 +37,7 @@ public class Level1Activity extends GameManager {
   private int difficulty = 0; // default difficulty
   private int dayOrNight = 0; // default difficulty
   private ArrayList<GameObject> Objects;
-  private Timer timer;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -51,7 +52,6 @@ public class Level1Activity extends GameManager {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     // calling initial setup methods.
-    manager = new Level1Manager();
     setup();
     nullAction();
     setHeroStatus();
@@ -79,8 +79,8 @@ public class Level1Activity extends GameManager {
     Button left = findViewById(R.id.left);
     left.setOnTouchListener(
         new RepeatListener(
-            400,
             100,
+            50,
             new View.OnClickListener() {
               @Override
               public void onClick(View view) {
@@ -98,8 +98,8 @@ public class Level1Activity extends GameManager {
     Button right = findViewById(R.id.right);
     right.setOnTouchListener(
         new RepeatListener(
-            400,
             100,
+            50,
             new View.OnClickListener() {
               @Override
               public void onClick(View view) {
@@ -163,24 +163,28 @@ public class Level1Activity extends GameManager {
     updateImage();
     nullAction();
     heroAttackAnimation();
-    enemyHurtAnimation();
+    for (int i = 1; i <= 3; i++) {
+      if (((Monster) Objects.get(i)).isGetHit()) enemyHurtAnimation(i);
+    }
   }
 
   public void jumpAction() {}
 
   private void nullAction() {
 
-    if (((Monster) Objects.get(1)).isMoveLeft()) {
-      enemyFacingLeft();
-    } else {
-      enemyFacingRight();
-    }
+    for (int i = 1; i <= 3; i++) {
+      if (((Monster) Objects.get(i)).isMoveLeft()) {
+        enemyFacingLeft(i);
+      } else {
+        enemyFacingRight(i);
+      }
 
-    if (((Monster) Objects.get(1)).isAttack() && enemy.isShown()) {
-      enemyAttackAnimation();
-      heroHurtAnimation();
-    } else {
-      enemyWalkAnimation();
+      if (((Monster) Objects.get(i)).isAttack() && Objects.get(i).getStates()) {
+        enemyAttackAnimation(i);
+        heroHurtAnimation();
+      } else {
+        enemyWalkAnimation(i);
+      }
     }
   }
 
@@ -197,32 +201,38 @@ public class Level1Activity extends GameManager {
 
   // Reference to all front end objects from back
   private void setup() {
-    this.Objects = manager.getObjects();
     this.difficulty = getDifficulty();
     this.dayOrNight = getDayOrNight();
-    timer = new Timer();
+    manager = new Level1Manager(this.difficulty);
     manager.setDayOrNight(this.dayOrNight);
     manager.setDifficulty(this.difficulty);
+    this.Objects = manager.getObjects();
     setActivityLevel();
     setContentView(activityLevel);
     hero = findViewById(R.id.hero);
     Objects.get(0).setImage(hero);
-    enemy = findViewById(R.id.enemy);
-    Objects.get(1).setImage(enemy);
+    enemy0 = findViewById(R.id.enemy);
+    Objects.get(1).setImage(enemy0);
+    enemy1 = findViewById(R.id.enemy2);
+    Objects.get(2).setImage(enemy1);
+    enemy2 = findViewById(R.id.enemy3);
+    Objects.get(3).setImage(enemy2);
     coin0 = findViewById(R.id.c1);
-    Objects.get(2).setImage(coin0);
+    Objects.get(4).setImage(coin0);
     coin1 = findViewById(R.id.c2);
-    Objects.get(3).setImage(coin1);
+    Objects.get(5).setImage(coin1);
     coin2 = findViewById(R.id.c3);
-    Objects.get(4).setImage(coin2);
+    Objects.get(6).setImage(coin2);
     scoreLabel = (TextView) findViewById(R.id.score2);
     healthLabel = (TextView) findViewById(R.id.health2);
     setHeroAction();
     setEnemyAction();
     scoreLabel.setText("Score: " + getScore());
     healthLabel.setText("Health: " + getHealth());
+    setAllObjectsToVisible();
+    updateImage();
+    nullAction();
     heroStandAnimation();
-    enemyStandAnimation();
   }
 
   // Set the day or night layout depending on user choice from Game Manager.
@@ -289,35 +299,45 @@ public class Level1Activity extends GameManager {
   }
 
   // Set default standing animation for the Enemy.
-  private void enemyStandAnimation() {
-    enemy.setImageResource(enemyAction[0]);
+  private void enemyStandAnimation(int index) {
+    Objects.get(index).getImage().setImageResource(enemyAction[0]);
   }
 
   // Set the walking animation for enemy sprite.
-  private void enemyWalkAnimation() {
-    enemy.setImageResource(enemyAction[1]);
+  private void enemyWalkAnimation(int index) {
+    Objects.get(index).getImage().setImageResource(enemyAction[1]);
   }
 
   // Show enemy getting hurt when hit by enemy.
-  private void enemyHurtAnimation() {
-    enemy.setImageResource(enemyAction[2]);
+  private void enemyHurtAnimation(int index) {
+    Objects.get(index).getImage().setImageResource(enemyAction[2]);
   }
 
   // Show enemy moving weapon and attacking hero.
-  private void enemyAttackAnimation() {
-    enemy.setImageResource(enemyAction[3]);
+  private void enemyAttackAnimation(int index) {
+    Objects.get(index).getImage().setImageResource(enemyAction[3]);
   }
 
   // Flip enemy sprite left.
-  private void enemyFacingLeft() {
-    enemy.setScaleX(-1f);
+  private void enemyFacingLeft(int index) {
+    Objects.get(index).getImage().setScaleX(-1f);
   }
   // Flip enemy sprite right.
-  private void enemyFacingRight() {
-    enemy.setScaleX(1f);
+  private void enemyFacingRight(int index) {
+    Objects.get(index).getImage().setScaleX(1f);
   }
   // Set gif to invisible.
   private void imageInvisible(GifImageView image) {
     image.setVisibility(View.INVISIBLE);
+  }
+  // Set gif to visible
+  private void imageVisible(GifImageView image) {
+    image.setVisibility(View.VISIBLE);
+  }
+  // Make sure every image of the object is visible before the game
+  private void setAllObjectsToVisible() {
+    for (GameObject obj : Objects) {
+      imageVisible(obj.getImage());
+    }
   }
 }

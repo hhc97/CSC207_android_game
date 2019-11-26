@@ -33,7 +33,7 @@ public class Monster extends Character {
     }
   }
 
-  private boolean isGetHit() { // Check is the monster is get hit by Hero or not
+  public boolean isGetHit() { // Check is the monster is get hit by Hero or not
     float[] xRange = player.getAttackRangeX();
     // get the x coordinate range of AttackRange
     float[] yRange = player.getAttackRangeY();
