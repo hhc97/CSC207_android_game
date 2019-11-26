@@ -9,30 +9,34 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Monster;
 import com.example.phase1.R;
-
 import java.lang.reflect.Array;
-
+import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.Timer;
 import pl.droidsonroids.gif.GifImageView;
 
 public class Level1Activity extends GameManager {
+
+  private Level1Manager manager;
   private GifImageView hero;
   private GifImageView coin0;
   private GifImageView coin1;
   private GifImageView coin2;
   private GifImageView enemy;
-  private Level1Manager manager;
   private int activityLevel; // Day or Night background.
   private int[] heroAction = new int[4]; // Animations for hero, stand, walk, hurt and attack.
   private int[] enemyAction = new int[4]; // Animations for enemy, stand, walk, hurt and attack.
   private TextView scoreLabel;
   private TextView healthLabel;
-  private int difficulty = 0;
-
+  private int difficulty = 0; // default difficulty
+  private int dayOrNight = 0; // default difficulty
+  private ArrayList<GameObject> Objects;
+  private Timer timer;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -47,18 +51,184 @@ public class Level1Activity extends GameManager {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     // calling initial setup methods.
+    manager = new Level1Manager();
     setup();
     nullAction();
+    setHeroStatus();
     setLeftButton();
     setRightButton();
     setAttackButton();
+    setJumpButton();
+  }
+
+  // Set health and coin statistics for the hero.
+  private void setHeroStatus() {
+    manager.getPlayer().setHealth(getHealth());
+    manager.getPlayer().setCoins(getCoin());
+  }
+
+  // Update states in Game Manager Class.
+  private void updateStatesToGameManager() {
+    setHealth(manager.getPlayer().getHealth());
+    setCoin(manager.getPlayer().getCoins());
+    setScore(manager.getPlayer().getScore());
+  }
+
+  // Create and set event listener for left button.
+  private void setLeftButton() {
+    Button left = findViewById(R.id.left);
+    left.setOnTouchListener(
+        new RepeatListener(
+            400,
+            100,
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                manager.leftButtonPress();
+                leftAction();
+                updateStatesToGameManager();
+                checkIsWinning();
+              }
+            }));
+  }
+
+  // Create and set event listener for right button
+  @SuppressLint("ClickableViewAccessibility")
+  private void setRightButton() {
+    Button right = findViewById(R.id.right);
+    right.setOnTouchListener(
+        new RepeatListener(
+            400,
+            100,
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                // the code to execute repeatedly
+                manager.rightButtonPress();
+                rightAction();
+                updateStatesToGameManager();
+                checkIsWinning();
+              }
+            }));
+  }
+  // Create and set event listener for attack button
+  @SuppressLint("ClickableViewAccessibility")
+  private void setAttackButton() {
+    final Button attack = findViewById(R.id.attack);
+    attack.setOnTouchListener(
+        new View.OnTouchListener() {
+          public boolean onTouch(View v, MotionEvent event) {
+            int action = event.getActionMasked();
+            switch (action) {
+              case MotionEvent.ACTION_DOWN:
+                manager.attackButtonPress();
+                attackAction();
+                updateStatesToGameManager();
+                checkIsWinning();
+              case MotionEvent.ACTION_UP:
+            }
+            // ... Respond to touch events
+            return true;
+          }
+        });
+  }
+
+  private void setJumpButton() {}
+
+  private void checkIsWinning() {
+    if (manager.isWinning()) {
+      startNextLevel();
+      finish();
+    }
+  }
+
+  // Move right when right button pressed
+  public void rightAction() {
+    updateImage();
+    heroFacingRight();
+    heroWalkAnimation();
+    nullAction();
+  }
+
+  // Move left when left button pressed
+  public void leftAction() {
+    updateImage();
+    heroFacingLeft();
+    heroWalkAnimation();
+    nullAction();
+  }
+
+  // Attack when attack button is pressed
+  public void attackAction() {
+    updateImage();
+    nullAction();
+    heroAttackAnimation();
+    enemyHurtAnimation();
+  }
+
+  public void jumpAction() {}
+
+  private void nullAction() {
+
+    if (((Monster) Objects.get(1)).isMoveLeft()) {
+      enemyFacingLeft();
+    } else {
+      enemyFacingRight();
+    }
+
+    if (((Monster) Objects.get(1)).isAttack() && enemy.isShown()) {
+      enemyAttackAnimation();
+      heroHurtAnimation();
+    } else {
+      enemyWalkAnimation();
+    }
+  }
+
+  private void updateImage() {
+    scoreLabel.setText("Score: " + getScore());
+    healthLabel.setText("Health: " + getHealth());
+    for (GameObject obj : Objects) {
+      obj.getImage().setX(obj.getX());
+      if (!obj.getStates()) {
+        imageInvisible(obj.getImage());
+      }
+    }
+  }
+
+  // Reference to all front end objects from back
+  private void setup() {
+    this.Objects = manager.getObjects();
+    this.difficulty = getDifficulty();
+    this.dayOrNight = getDayOrNight();
+    timer = new Timer();
+    manager.setDayOrNight(this.dayOrNight);
+    manager.setDifficulty(this.difficulty);
+    setActivityLevel();
+    setContentView(activityLevel);
+    hero = findViewById(R.id.hero);
+    Objects.get(0).setImage(hero);
+    enemy = findViewById(R.id.enemy);
+    Objects.get(1).setImage(enemy);
+    coin0 = findViewById(R.id.c1);
+    Objects.get(2).setImage(coin0);
+    coin1 = findViewById(R.id.c2);
+    Objects.get(3).setImage(coin1);
+    coin2 = findViewById(R.id.c3);
+    Objects.get(4).setImage(coin2);
+    scoreLabel = (TextView) findViewById(R.id.score2);
+    healthLabel = (TextView) findViewById(R.id.health2);
+    setHeroAction();
+    setEnemyAction();
+    scoreLabel.setText("Score: " + getScore());
+    healthLabel.setText("Health: " + getHealth());
+    heroStandAnimation();
+    enemyStandAnimation();
   }
 
   // Set the day or night layout depending on user choice from Game Manager.
   private void setActivityLevel() {
-    int DayOrNight = getDayOrNight();
-    if (DayOrNight == 0) activityLevel = R.layout.n_activity_level1;
-    else if (DayOrNight == 1) activityLevel = R.layout.activity_level1;
+    if (dayOrNight == 0) activityLevel = R.layout.n_activity_level1;
+    else if (dayOrNight == 1) activityLevel = R.layout.activity_level1;
   }
 
   // Set the hero sprites based on user choice from Game Manager.
@@ -149,186 +319,5 @@ public class Level1Activity extends GameManager {
   // Set gif to invisible.
   private void imageInvisible(GifImageView image) {
     image.setVisibility(View.INVISIBLE);
-  }
-
-  // Set health and coin statistics for the hero.
-  private void setHeroStatus() {
-    Level1Manager.getPlayer().setHealth(getHealth());
-    Level1Manager.getPlayer().setCoins(getCoin());
-  }
-
-  // Update states in Game Manager Class.
-  private void updateStatesToGameManager() {
-    setHealth(Level1Manager.getPlayer().getHealth());
-    setCoin(Level1Manager.getPlayer().getCoins());
-    setScore(Level1Manager.getPlayer().getScore());
-  }
-
-  // Create and set event listener for left button.
-  @SuppressLint("ClickableViewAccessibility")
-  private void setLeftButton() {
-    Button left = findViewById(R.id.left);
-    left.setOnTouchListener(
-        new View.OnTouchListener() {
-          public boolean onTouch(View v, MotionEvent event) {
-            int action = event.getActionMasked();
-            switch (action) {
-              case MotionEvent.ACTION_DOWN:
-                leftAction();
-              case MotionEvent.ACTION_UP:
-            }
-            // Respond to touch events.
-            return true;
-          }
-        });
-  }
-
-  // Create and set event listener for right button
-  @SuppressLint("ClickableViewAccessibility")
-  private void setRightButton() {
-    Button right = findViewById(R.id.right);
-    right.setOnTouchListener(
-        new View.OnTouchListener() {
-          public boolean onTouch(View v, MotionEvent event) {
-            int action = event.getActionMasked();
-            switch (action) {
-              case MotionEvent.ACTION_DOWN:
-                rightAction();
-              case MotionEvent.ACTION_UP:
-            }
-            // ... Respond to touch events
-            return true;
-          }
-        });
-  }
-  // Create and set event listener for attack button
-  @SuppressLint("ClickableViewAccessibility")
-  private void setAttackButton() {
-    Button attack = findViewById(R.id.attack);
-    attack.setOnTouchListener(
-        new View.OnTouchListener() {
-          public boolean onTouch(View v, MotionEvent event) {
-            int action = event.getActionMasked();
-            switch (action) {
-              case MotionEvent.ACTION_DOWN:
-                attackAction();
-              case MotionEvent.ACTION_UP:
-                Level1Manager.getPlayer().notAttack();
-            }
-            // ... Respond to touch events
-            return true;
-          }
-        });
-  }
-
-  private void setJumpButton() {}
-
-  // Move right when right button pressed
-  private void rightAction() {
-    heroFacingRight();
-    hero.setX(manager.heroMoveRight());
-    heroWalkAnimation();
-    nullAction();
-  }
-
-  // Move left when left button pressed
-  private void leftAction() {
-    hero.setX(manager.heroMoveLeft());
-    heroFacingLeft();
-    heroWalkAnimation();
-    nullAction();
-  }
-
-  // Attack when attack button is pressed
-  private void attackAction() {
-    Level1Manager.getPlayer().attack();
-    manager.update();
-    nullAction();
-    heroAttackAnimation();
-    enemyHurtAnimation();
-  }
-
-  private void nullAction() {
-    manager.update();
-    if (((Monster) manager.Objects.get(0)).isMoveLeft()) {
-      enemyFacingLeft();
-    } else {
-      enemyFacingRight();
-    }
-
-    if (((Monster) manager.Objects.get(0)).isAttack() && enemy.isShown()) {
-      enemyAttackAnimation();
-      heroHurtAnimation();
-    } else {
-      enemyWalkAnimation();
-      heroWalkAnimation();
-    }
-    manager.update();
-    updateImage();
-    updateStatesToGameManager();
-    checkIsWinning();
-  }
-
-  // Check if user is winning the game
-  private void checkIsWinning() {
-    boolean isWon = true;
-    for (GameObject obj : manager.Objects) { // if all the GameObjects are dead
-      if (obj.getStates()) isWon = false; // if any of them isn't, isWon = false
-    }
-    if (isWon) {
-      startNextLevel();
-      finish();
-    }
-  }
-
-  private void updateImage() {
-    scoreLabel.setText("Score: " + getScore());
-    healthLabel.setText("Health: " + getHealth());
-    for (GameObject obj : manager.Objects) {
-      obj.getImage().setX(obj.getX());
-      if (!obj.getStates()) {
-        imageInvisible(obj.getImage());
-      }
-    }
-  }
-
-  // Reference to all front end objects from back
-  private void setup() {
-    setActivityLevel();
-    setContentView(activityLevel);
-    manager = new Level1Manager();
-    hero = findViewById(R.id.hero);
-    Level1Manager.getPlayer().setImage(hero);
-    enemy = findViewById(R.id.enemy);
-    manager.Objects.get(0).setImage(enemy);
-    coin0 = findViewById(R.id.c1);
-    manager.Objects.get(1).setImage(coin0);
-    coin1 = findViewById(R.id.c2);
-    manager.Objects.get(2).setImage(coin1);
-    coin2 = findViewById(R.id.c3);
-    manager.Objects.get(3).setImage(coin2);
-    scoreLabel = (TextView) findViewById(R.id.score2);
-    healthLabel = (TextView) findViewById(R.id.health2);
-    setHeroAction();
-    setHeroStatus();
-    setEnemyAction();
-    setLevelDifficulty();
-    scoreLabel.setText("Score: " + getScore());
-    healthLabel.setText("Health: " + getHealth());
-  }
-
-  // Setting the level difficulty
-  private void setLevelDifficulty() {
-    this.difficulty = getDifficulty();
-    if (this.difficulty == 0) {
-      ((Monster) manager.Objects.get(0)).setHealth(1);
-      ((Monster) manager.Objects.get(0)).setWorth(100);
-    } else if (this.difficulty == 1) {
-      ((Monster) manager.Objects.get(0)).setHealth(5);
-      ((Monster) manager.Objects.get(0)).setWorth(200);
-    } else if (this.difficulty == 2) {
-      ((Monster) manager.Objects.get(0)).setHealth(10);
-      ((Monster) manager.Objects.get(0)).setWorth(500);
-    }
   }
 }

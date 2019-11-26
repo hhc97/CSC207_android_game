@@ -2,6 +2,9 @@ package com.example.phase1.BackendStorage;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.phase1.R;
@@ -16,17 +19,21 @@ public class PreferenceEditor extends GameManager {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    // Set our window to fullscreen without the bar at the top.
+    this.getWindow()
+            .setFlags(
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+    // Remove the title.
+    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.activity_preference_editor);
     currPlayer = getIntent().getIntExtra(sendPlayer, 0);
-    TextView header = findViewById(R.id.textView3);
-    String string = "Configure preferences for \"" + getName() + "\"";
-    header.setText(string);
     updatePlayerInfo();
+    restoreState();
   }
 
   /** Updates the textView in the activity to show current preferences. */
   private void updatePlayerInfo() {
-    TextView display = findViewById(R.id.textView4);
 
     String character;
     if (getCharacter() == 0) {
@@ -58,18 +65,19 @@ public class PreferenceEditor extends GameManager {
             + difficulty
             + "\nCharacter: "
             + character;
-    display.setText(stats);
   }
 
   // setters for each button
-  public void clickDay(View view) {
-    setDayOrNight(1);
-    updatePlayerInfo();
-  }
-
-  public void clickNight(View view) {
-    setDayOrNight(0);
-    updatePlayerInfo();
+  public void clickDaySwitch(View view) {
+    if (getDayOrNight() == 0) {
+      findViewById(R.id.day).setVisibility(View.VISIBLE);
+      findViewById(R.id.night).setVisibility(View.INVISIBLE);
+      setDayOrNight(1);
+    } else {
+      findViewById(R.id.day).setVisibility(View.INVISIBLE);
+      findViewById(R.id.night).setVisibility(View.VISIBLE);
+      setDayOrNight(0);
+    }
   }
 
   public void clickKnight(View view) {
@@ -105,4 +113,15 @@ public class PreferenceEditor extends GameManager {
   public void clickFinish(View view) {
     finish();
   }
+
+  /** Restores to the previous state of switches and backgrounds based on users old preference */
+  public void restoreState() {
+    Switch daynightswitch= findViewById(R.id.daynight);
+    if (getDayOrNight() == 1) {
+      daynightswitch.setChecked(true);
+      findViewById(R.id.day).setVisibility(View.VISIBLE);
+      findViewById(R.id.night).setVisibility(View.INVISIBLE);
+      }
+  }
+
 }
