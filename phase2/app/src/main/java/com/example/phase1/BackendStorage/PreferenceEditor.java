@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -117,11 +118,18 @@ public class PreferenceEditor extends GameManager {
   /** Restores to the previous state of switches and backgrounds based on users old preference */
   public void restoreState() {
     Switch daynightswitch= findViewById(R.id.daynight);
+      RadioButton easy = findViewById(R.id.easy);
+      RadioButton normal = findViewById(R.id.normal);
+      RadioButton hard = findViewById(R.id.hard);
     if (getDayOrNight() == 1) {
       daynightswitch.setChecked(true);
       findViewById(R.id.day).setVisibility(View.VISIBLE);
       findViewById(R.id.night).setVisibility(View.INVISIBLE);
       }
+
+    if (getDifficulty() == 0){easy.setChecked(true);}
+    else if(getDifficulty() == 1){normal.setChecked(true);}
+    else {hard.setChecked(true);}
   }
 
 }

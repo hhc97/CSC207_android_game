@@ -22,6 +22,8 @@
         android:id="@+id/day"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="@drawable/day"
         app:srcCompat="@drawable/day" />
 
@@ -43,8 +45,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="264dp"
-        android:layout_marginBottom="183dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginBottom="274dp"
         android:background="#726A6A"
         android:backgroundTint="#292828"
         android:backgroundTintMode="add"
@@ -60,8 +62,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="434dp"
-        android:layout_marginBottom="147dp"
+        android:layout_marginStart="448dp"
+        android:layout_marginBottom="240dp"
         android:buttonTint="@color/colorAccent"
         android:checked="false"
         android:onClick="clickDaySwitch"
@@ -69,5 +71,75 @@
         android:splitTrack="true"
         android:textOff="Night"
         android:textOn="Day" />
+
+    <TextView
+        android:id="@+id/dif"
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginBottom="272dp"
+        android:background="#726A6A"
+        android:backgroundTint="#292828"
+        android:backgroundTintMode="add"
+        android:text="Difficulty Level"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="150dp"
+        android:baselineAligned="false">
+
+        <RadioButton
+            android:id="@+id/easy"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#726A6A"
+            android:onClick="clickEasy"
+            android:text="@string/set_easy"
+            android:textColor="#F1ECEC"
+            tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="75dp"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="153dp" />
+
+        <RadioButton
+            android:id="@+id/normal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#726A6A"
+            android:onClick="clickNormal"
+            android:text="@string/set_normal"
+            android:textColor="#F1ECEC"
+            tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="93dp"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <RadioButton
+            android:id="@+id/hard"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#726A6A"
+            android:checked="true"
+            android:onClick="clickHard"
+            android:text="@string/set_hard"
+            android:textColor="#F1ECEC"
+            android:textColorHighlight="#C8FF8F00"
+            android:textColorLink="#F9A825"
+            tools:layout_conversion_absoluteHeight="0dp"
+            tools:layout_conversion_absoluteWidth="87dp"
+            tools:layout_editor_absoluteX="129dp"
+            tools:layout_editor_absoluteY="349dp" />
+    </RadioGroup>
 
 </RelativeLayout>
