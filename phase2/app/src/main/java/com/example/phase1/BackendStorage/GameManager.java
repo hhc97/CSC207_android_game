@@ -18,7 +18,7 @@ public abstract class GameManager extends FileReadWriter {
 
   // score, health, coin, night/day, difficulty, character, potion, current level, player name,
   // status
-  final String defaultScore = "0,3,0,0,0,0,0,1,NAME,0";
+  final String defaultScore = "0,100,0,0,0,0,0,1,NAME,0";
   int currPlayer = -1;
 
   //  indexes of the player statistics
@@ -238,9 +238,9 @@ public abstract class GameManager extends FileReadWriter {
 
   /** If no save file exists, create a new one with default values. */
   void startFile() {
-    writeToFile("0,3,0,0,0,0,0,1,Level 1,1");
-    writeToFile(readFromFile() + "0,3,0,0,1,0,0,2,Level 2,1");
-    writeToFile(readFromFile() + "0,3,0,0,2,0,0,3,Level 3,1");
+    writeToFile("0,100,0,0,0,0,0,1,Level 1,1");
+    writeToFile(readFromFile() + "0,100,0,0,1,0,0,2,Level 2,1");
+    writeToFile(readFromFile() + "0,100,0,0,2,0,0,3,Level 3,1");
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
