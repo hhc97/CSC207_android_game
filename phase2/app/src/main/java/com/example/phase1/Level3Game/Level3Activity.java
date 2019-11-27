@@ -21,9 +21,8 @@ import java.util.TimerTask;
 public class Level3Activity extends GameManager implements View.OnClickListener {
 
   private Level3Manager Level3 = new Level3Manager(); // Current level
-  private Button[] buttons = new Button[4]; // Array of buttons for the current layout
+  private DisplayHandler displayHandler = new DisplayHandler();
   private Timer timer = new Timer("Timer"); // Timer
-  private TextView out;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +54,15 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
       hero.setVisibility(View.INVISIBLE);
     }
 
+    Button[] buttons = new Button[4];
     // initialise button components
-    buttons[0] = findViewById(R.id.b1);
-    buttons[1] = findViewById(R.id.b2);
-    buttons[2] = findViewById(R.id.b3);
-    buttons[3] = findViewById(R.id.b4);
+    buttons[0]= findViewById(R.id.b1);
+    buttons[1]= findViewById(R.id.b2);
+    buttons[2]= findViewById(R.id.b3);
+    buttons[3]= findViewById(R.id.b4);
 
-    out = findViewById(R.id.pstat);
+    displayHandler.setButtons(buttons);
+    displayHandler.setOut((TextView)findViewById(R.id.pstat));
   }
 
   /** Override for Activity.onStart. Displays the Sequence. */
@@ -76,10 +77,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    */
   @SuppressLint("SetTextI18n")
   public void displaySequence() {
-    disable_buttons(); // disable the buttons while the sequence is displaying
-    set_buttons_invisible();
-    out.setText("Wait for the sequence to display");
-    out.setVisibility(View.VISIBLE);
+    displayHandler.startSequence();
     final Iterator<Integer> sequence = Level3.getSequence().iterator();
 
     TimerTask task = new TimerTask() { // create TimerTask
@@ -92,7 +90,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                     new Runnable() { // force task to run on UI Thread
                       @Override
                       public void run() {
-                        buttons[i].setVisibility(View.VISIBLE); // Make button Visible
+                        displayHandler.setButtonVisibile(i); // Make button Visible
                       }
                     });
               }
@@ -103,9 +101,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
           }
         };
     timer.schedule(task, 1000L, 1000L); // schedule the task to execute every second
-    enable_buttons(); // enable buttons after sequence is displayed
-    out.setText("Start!");
-    out.setVisibility(View.VISIBLE);
+    displayHandler.endSequence();
   }
 
   /**
@@ -115,16 +111,16 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    */
   @Override
   public void onClick(View v) {
-    if (v.getId() == buttons[0].getId()) { // Top left button clicked
+    if (v.getId() == DisplayHandler.getButton(0).getId()) { // Top left button clicked
       Level3.setUserInput(0);
     }
-    if (v.getId() == buttons[1].getId()) { // Bottom left button clicked
+    if (v.getId() == DisplayHandler.getButton(1).getId()) { // Bottom left button clicked
       Level3.setUserInput(1);
     }
-    if (v.getId() == buttons[2].getId()) { // Bottom right button clicked
+    if (v.getId() == DisplayHandler.getButton(2).getId()) { // Bottom right button clicked
       Level3.setUserInput(2);
     }
-    if (v.getId() == buttons[3].getId()) { // Top right button clicked
+    if (v.getId() == DisplayHandler.getButton(3).getId()) { // Top right button clicked
       Level3.setUserInput(3);
     }
     if (Level3.checkConditions() == 1) { // User did not input correct sequence
@@ -135,40 +131,9 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     }
   }
 
-
-  /** Set all Button.Enabled and Clickable properties to true */
-  private void enable_buttons() {
-    runOnUiThread(
-        new Runnable() { // force task to run on UI Thread
-          @Override
-          public void run() {
-            for (Button button : buttons) {
-              button.setEnabled(true);
-              button.setClickable(true);
-            }
-          }
-        });
-  }
-
-  /** Set all Button.Visible properties to INVISIBLE* */
-  private void set_buttons_invisible() {
-    runOnUiThread(
-        new Runnable() { // force task to run on UI Thread
-          @Override
-          public void run() {
-            for (Button button : buttons) {
-              button.setVisibility(View.INVISIBLE);
-            }
-          }
-        });
-  }
-
   /** Set all Button.Enabled and Clickable properties to false* */
   private void disable_buttons() {
-    for (Button button : buttons) {
-      button.setEnabled(false);
-      button.setClickable(false);
-    }
+    DisplayHandler.set_buttons_invisible();
   }
 
   /** Set Text for Textview out and change Textview out.Visible property to VISIBLE* */
@@ -177,8 +142,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
         new Runnable() { // force task to run on UI Thread
           @Override
           public void run() {
-            out.setText(s);
-            out.setVisibility(View.VISIBLE);
+            DisplayHandler.set_text(s);
           }
         });
   }
