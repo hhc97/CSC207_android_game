@@ -210,6 +210,7 @@ public class Level2Activity extends GameManager {
   // Starts the actual game for Level 2.
   public void tapStart(View view) {
     System.out.println("clicked");
+    levelStart.setVisibility(View.INVISIBLE);
     backgroundAnimate();
     gameRun();
     view.setClickable(false);
