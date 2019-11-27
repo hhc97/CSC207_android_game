@@ -5,15 +5,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 class DisplayHandler {
     private static Button[] buttons = new Button[4];
+    @SuppressLint("StaticFieldLeak")
     private static TextView out;
 
-    static void setButtons(Button[] b){
+    DisplayHandler(Button[] b, TextView o){
         buttons = b;
+        out = o;
     }
-
 
     @SuppressLint("SetTextI18n")
     void startSequence(){
@@ -28,9 +28,6 @@ class DisplayHandler {
         enable_buttons(); // enable buttons after sequence is displayed
         out.setText("Start!");
         out.setVisibility(View.VISIBLE);
-    }
-    void setOut(TextView t){
-        out = t;
     }
 
     void setButtonVisibile(int i){
@@ -66,4 +63,5 @@ class DisplayHandler {
     static Button getButton(int i){
         return buttons[i];
     }
+
 }

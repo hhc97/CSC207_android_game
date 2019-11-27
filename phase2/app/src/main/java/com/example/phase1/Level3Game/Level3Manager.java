@@ -9,10 +9,10 @@ import java.util.Iterator;
  */
 class Level3Manager {
 
-  private ArrayList<Integer> sequence;
-  int attempts = 0;
+  private static ArrayList<Integer> sequence;
+  static int attempts = 0;
   // button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
-  private ArrayList<Integer> input = new ArrayList<>();
+  private static ArrayList<Integer> input = new ArrayList<>();
 
   /** Constructor initializes sequence. */
   Level3Manager() {
@@ -24,7 +24,7 @@ class Level3Manager {
    *
    * @return The stored sequence
    */
-  ArrayList<Integer> getSequence() {
+  static ArrayList<Integer> getSequence() {
     return sequence;
   }
   //  /**
@@ -41,11 +41,11 @@ class Level3Manager {
    *
    * @param pressed the button which was pressed
    */
-  void setUserInput(int pressed) {
+  static void setUserInput(int pressed) {
     input.add(pressed);
   }
 
-  void clearInput() {
+  static void clearInput() {
     input.clear();
   }
 
@@ -54,7 +54,7 @@ class Level3Manager {
    *
    * @return 1 if user input does not match sequence, 2 if the user has won, else 0
    */
-  int checkConditions() {
+  static int checkConditions() {
     Iterator<Integer> seq = sequence.iterator();
     Iterator<Integer> in = input.iterator();
 
