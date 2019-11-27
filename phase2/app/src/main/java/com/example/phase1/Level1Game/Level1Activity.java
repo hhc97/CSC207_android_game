@@ -29,7 +29,7 @@ public class Level1Activity extends GameManager {
   private GifImageView enemy2;
   private GifImageView potion;
   private int activityLevel; // Day or Night background.
-  private int[] heroAction = new int[4]; // Animations for hero, stand, walk, hurt and attack.
+  private int[] heroAction = new int[5]; // Animations for hero, stand, walk, hurt, attack and die.
   private int[] enemyAction = new int[4]; // Animations for enemy, stand, walk, hurt and attack.
   private TextView scoreLabel;
   private TextView healthLabel;
@@ -86,6 +86,7 @@ public class Level1Activity extends GameManager {
                 leftAction();
                 updateStatesToGameManager();
                 checkIsWinning();
+                checkIsLosing();
               }
             }));
   }
@@ -106,6 +107,7 @@ public class Level1Activity extends GameManager {
                 rightAction();
                 updateStatesToGameManager();
                 checkIsWinning();
+                checkIsLosing();
               }
             }));
   }
@@ -123,6 +125,7 @@ public class Level1Activity extends GameManager {
                 attackAction();
                 updateStatesToGameManager();
                 checkIsWinning();
+                checkIsLosing();
               case MotionEvent.ACTION_UP:
             }
             // ... Respond to touch events
@@ -140,6 +143,15 @@ public class Level1Activity extends GameManager {
     }
   }
 
+  private void checkIsLosing() {
+    if (!manager.isPlayerAlive()) {
+      gameOver();
+    }
+  }
+
+  private void gameOver() {
+    heroDieAnimation();
+  }
   // Move right when right button pressed
   public void rightAction() {
     updateImage();
@@ -191,8 +203,10 @@ public class Level1Activity extends GameManager {
     healthLabel.setText("Health: " + getHealth());
     for (GameObject obj : Objects) {
       obj.getImage().setX(obj.getX());
-      if (!obj.getStates()) {
-        imageInvisible(obj.getImage());
+    }
+    for (int i = 1; i < Objects.size(); i++) {
+      if (!Objects.get(i).getStates()) {
+        imageInvisible(Objects.get(i).getImage());
       }
     }
   }
@@ -249,11 +263,13 @@ public class Level1Activity extends GameManager {
       Array.set(heroAction, 1, R.drawable.walk1); // walk animation
       Array.set(heroAction, 2, R.drawable.hurt1); // get hurt animation
       Array.set(heroAction, 3, R.drawable.attack1); // attack animation
+      Array.set(heroAction, 4, R.drawable.hurt1); // attack animation
     } else if (heroType == 1) {
       Array.set(heroAction, 0, R.drawable.knight); // stand/unmoved
       Array.set(heroAction, 1, R.drawable.walk); // walk animation
       Array.set(heroAction, 2, R.drawable.hurt2); // get hurt animation
       Array.set(heroAction, 3, R.drawable.attack); // attack animation
+      Array.set(heroAction, 4, R.drawable.hurt2); // attack animation
     }
   }
 
@@ -286,6 +302,11 @@ public class Level1Activity extends GameManager {
   // Show the hero move his weapon when attacking.
   private void heroAttackAnimation() {
     hero.setImageResource(heroAction[3]);
+  }
+
+  // Show when hero die
+  private void heroDieAnimation() {
+    hero.setImageResource(heroAction[4]);
   }
 
   // Flip the hero sprite left.
