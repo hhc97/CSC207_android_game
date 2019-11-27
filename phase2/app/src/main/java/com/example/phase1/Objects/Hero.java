@@ -84,4 +84,6 @@ public class Hero extends Character {
   public int getScore() {
     return this.score;
   }
+
+  public void setScore(int score){this.score = score;}
 }

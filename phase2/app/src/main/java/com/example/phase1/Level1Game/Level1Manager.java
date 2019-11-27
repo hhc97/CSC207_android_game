@@ -64,9 +64,12 @@ public class Level1Manager {
     Objects.add(p);
     if (this.difficulty == 0) {
       m2.setStates(false);
+      m2.setWorth(0);
       m3.setStates(false);
+      m3.setWorth(0);
     } else if (this.difficulty == 1) {
       m3.setStates(false);
+      m3.setWorth(0);
     }
   }
 

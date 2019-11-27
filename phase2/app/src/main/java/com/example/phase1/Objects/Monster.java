@@ -125,6 +125,8 @@ public class Monster extends Character {
     this.tracingHero = isTracing;
   }
 
+
+
   private void moveRandomly() {
     if (moveLength == currentLength) {
       moveLength = random.nextInt(maxMoveLength * 2 + 1) - maxMoveLength;

@@ -63,6 +63,7 @@ public class Level1Activity extends GameManager {
   private void setHeroStatus() {
     manager.getPlayer().setHealth(getHealth());
     manager.getPlayer().setCoins(getCoin());
+    manager.getPlayer().setScore(getScore());
   }
 
   // Update states in Game Manager Class.
@@ -239,6 +240,7 @@ public class Level1Activity extends GameManager {
     Objects.get(7).setImage(potion);
     scoreLabel = (TextView) findViewById(R.id.score2);
     healthLabel = (TextView) findViewById(R.id.health2);
+    setHeroStatus();
     setHeroAction();
     setEnemyAction();
     scoreLabel.setText("Score: " + getScore());
