@@ -21,7 +21,6 @@ import com.example.phase1.R;
  */
 public class SaveMenu extends GameManager {
   private Button[] buttons;
-  private final String emptySlot = "Empty save slot";
   static final String sendName = "com.example.phase1.BackendStorage.SEND_NAME";
 
   @Override
@@ -61,7 +60,7 @@ public class SaveMenu extends GameManager {
       if (getSaveStatus()) {
         b.setText(getName());
       } else {
-        b.setText(emptySlot);
+        b.setText(R.string.empty_save);
       }
     }
     currPlayer = initialPlayer;

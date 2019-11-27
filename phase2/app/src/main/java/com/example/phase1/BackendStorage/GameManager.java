@@ -16,8 +16,9 @@ import com.example.phase1.Level3Game.Level3Activity;
 public abstract class GameManager extends FileReadWriter {
   public static final String sendPlayer = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
-  //    score, health, coin, night/day, difficulty, character, current level, player name, status
-  final String defaultScore = "0,3,0,0,0,0,1,NAME,0";
+  // score, health, coin, night/day, difficulty, character, potion, bonus keys, current level,
+  // player name, status
+  final String defaultScore = "0,100,0,0,0,0,0,0,1,NAME,0";
   int currPlayer = -1;
 
   //  indexes of the player statistics
@@ -27,9 +28,11 @@ public abstract class GameManager extends FileReadWriter {
   private int dayOrNight = 3;
   private int difficulty = 4;
   private int character = 5;
-  private int currentLevel = 6;
-  private int playerName = 7;
-  private int saveStatus = 8;
+  private int potion = 6;
+  private int bonusKeys = 7;
+  private int currentLevel = 8;
+  private int playerName = 9;
+  private int saveStatus = 10;
 
   /**
    * Returns the requested stat of the current player in String form.
@@ -178,6 +181,24 @@ public abstract class GameManager extends FileReadWriter {
     setStat(c, character);
   }
 
+  //  for potion
+  public int getPotion() {
+    return getStat(potion);
+  }
+
+  public void setPotion(int p) {
+    setStat(p, potion);
+  }
+
+  //  for bonus keys
+  public int getBonusKeys() {
+    return getStat(bonusKeys);
+  }
+
+  public void setBonusKeys(int k) {
+    setStat(k, bonusKeys);
+  }
+
   // for save status
   boolean getSaveStatus() {
     return getStat(saveStatus) == 1;
@@ -227,9 +248,9 @@ public abstract class GameManager extends FileReadWriter {
 
   /** If no save file exists, create a new one with default values. */
   void startFile() {
-    writeToFile("0,3,0,0,0,0,1,Level 1,1");
-    writeToFile(readFromFile() + "0,3,0,0,1,0,2,Level 2,1");
-    writeToFile(readFromFile() + "0,3,0,0,2,0,3,Level 3,1");
+    writeToFile("0,100,0,0,0,0,0,0,1,Level 1,1");
+    writeToFile(readFromFile() + "0,100,0,0,1,0,0,0,2,Level 2,1");
+    writeToFile(readFromFile() + "0,100,0,0,2,0,0,0,3,Level 3,1");
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);

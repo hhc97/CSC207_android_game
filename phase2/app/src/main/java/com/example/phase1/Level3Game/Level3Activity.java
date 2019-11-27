@@ -40,27 +40,26 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
 
     if (getDayOrNight() == 0) {
       setContentView(R.layout.n_activity_level3);
-    }
-    else{
+    } else {
       setContentView(R.layout.activity_level3);
     }
     // Set static hero near door
     final ImageView hero = findViewById(R.id.hero);
     if (getCharacter() == 0) {
       hero.setVisibility(View.VISIBLE);
-    }
-    else {
+    } else {
       hero.setVisibility(View.INVISIBLE);
     }
 
     Button[] buttons = new Button[4];
     // initialise button components
-    buttons[0]= findViewById(R.id.b1);
-    buttons[1]= findViewById(R.id.b2);
-    buttons[2]= findViewById(R.id.b3);
-    buttons[3]= findViewById(R.id.b4);
+    buttons[0] = findViewById(R.id.b1);
+    buttons[1] = findViewById(R.id.b2);
+    buttons[2] = findViewById(R.id.b3);
+    buttons[3] = findViewById(R.id.b4);
 
-    level3Facade.setDisplayHandler(new DisplayHandler(buttons, (TextView)findViewById(R.id.pstat)));
+    level3Facade.setDisplayHandler(
+        new DisplayHandler(buttons, (TextView) findViewById(R.id.pstat)));
     level3Facade.setLevel3(new Level3Manager());
   }
 
@@ -145,39 +144,42 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    * To be called when a sequence is incorrectly inputted. Deducts lives and displays sequence again
    * if the player has any remaining lives, else it restarts the game.
    */
-  private void on_bad_input(){
+  private void on_bad_input() {
     if (Level3Facade.getAttempts() == 3) { // User made 3 attempts (out of attempts)
       deductHealth(1); // deduct a life
       set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
       Level3Facade.setAttempts(0);
       new Handler()
-              .postDelayed(
-                      new Runnable() { // delay the task by 5 seconds
-                        @Override
-                        public void run() {
-                          if (getHealth() == 0) // restart game if they run out of lives
-                          {
-                            startAgain();
-                          }
-                          onStart(); // restart level if they still have lives remaining
-                        }
-                      },
-                      5000); // 5000ms = 5 seconds
+          .postDelayed(
+              new Runnable() { // delay the task by 5 seconds
+                @Override
+                public void run() {
+                  if (getHealth() == 0) // restart game if they run out of lives
+                  {
+                    startAgain();
+                  }
+                  onStart(); // restart level if they still have lives remaining
+                }
+              },
+              5000); // 5000ms = 5 seconds
 
     } else { // User input incorrect sequence but still has remaining attempts
       set_text(
-              "Incorrect Pattern! " + (3 - Level3Facade.getAttempts()) + " remaining! " + "Displaying Sequence");
+          "Incorrect Pattern! "
+              + (3 - Level3Facade.getAttempts())
+              + " remaining! "
+              + "Displaying Sequence");
       Level3Facade.clearInput(); // clear input for next attempt
       Level3Facade.disable_buttons();
       new Handler()
-              .postDelayed(
-                      new Runnable() { // delay the task by 2 seconds
-                        @Override
-                        public void run() {
-                          displaySequence();
-                        }
-                      },
-                      2000); // 2000ms = 2 seconds
+          .postDelayed(
+              new Runnable() { // delay the task by 2 seconds
+                @Override
+                public void run() {
+                  displaySequence();
+                }
+              },
+              2000); // 2000ms = 2 seconds
     }
   }
 
@@ -188,13 +190,13 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     Level3Facade.disable_buttons();
     set_text("Correct Pattern!, You win! Returning to the Save Menu");
     new Handler()
-            .postDelayed(
-                    new Runnable() { // delay the task by 3 seconds
-                      @Override
-                      public void run() {
-                        finish();
-                      }
-                    },
-                    3000); // 3000ms = 3 seconds
+        .postDelayed(
+            new Runnable() { // delay the task by 3 seconds
+              @Override
+              public void run() {
+                finish();
+              }
+            },
+            3000); // 3000ms = 3 seconds
   }
 }
