@@ -33,16 +33,16 @@ public class Level1Manager {
     player.setHealth(100);
     Monster m1 = (Monster) builder.createObject("Monster");
     m1.setPosition(800, groundHeight);
-    m1.setStrength(0);
+    m1.setStrength(1);
     m1.setSpeed(20);
     Monster m2 = (Monster) builder.createObject("Monster");
     m2.setPosition(1250, groundHeight);
-    m2.setStrength(0);
+    m2.setStrength(1);
     m2.setSpeed(20);
     m2.setTracingHero(false);
     Monster m3 = (Monster) builder.createObject("Monster");
     m3.setPosition(1750, groundHeight);
-    m3.setStrength(0);
+    m3.setStrength(1);
     m3.setSpeed(30);
     m3.setTracingHero(false);
     Coin c1 = (Coin) builder.createObject("Coin");
@@ -64,9 +64,12 @@ public class Level1Manager {
     Objects.add(p);
     if (this.difficulty == 0) {
       m2.setStates(false);
+      m2.setWorth(0);
       m3.setStates(false);
+      m3.setWorth(0);
     } else if (this.difficulty == 1) {
       m3.setStates(false);
+      m3.setWorth(0);
     }
   }
 
