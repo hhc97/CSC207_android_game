@@ -223,4 +223,63 @@
         android:layout_marginTop="139dp"
         android:src="@drawable/knight" />
 
+    <TextView
+        android:id="@+id/endtext"
+        android:layout_width="117dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="332dp"
+        android:layout_marginBottom="273dp"
+        android:text="You Died !"
+        android:textSize="24sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/endtext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="282dp"
+        android:layout_marginBottom="251dp"
+        android:text="Use a health potion to revive"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/menu"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="102dp"
+        android:layout_marginEnd="242dp"
+        android:background="@drawable/main"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/potion"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="241dp"
+        android:layout_marginBottom="247dp"
+        android:background="@drawable/potion1"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/endtext3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="301dp"
+        android:layout_marginBottom="218dp"
+        android:text="Go back to main menu"
+        android:visibility="invisible" />
+
 </RelativeLayout>
