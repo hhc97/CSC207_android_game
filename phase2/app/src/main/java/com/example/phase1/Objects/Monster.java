@@ -43,7 +43,7 @@ public class Monster extends Character {
     }
     if (tracingHero == true) traceHero();
     else moveRandomly();
-    if (isTouchHero()) {
+    if (isTouchHero()&&getStates()) {
       player.damaged(getStrength());
     }
   }
