@@ -25,7 +25,6 @@ public class Level2Activity extends GameManager {
   private Timer timer = new Timer();
   private TextView scoreLabel;
   private TextView healthLabel;
-  private TextView levelStart;
   private TextView levelOver;
 
   ValueAnimator animator;
@@ -77,8 +76,6 @@ public class Level2Activity extends GameManager {
       addHealth(1);
     }
 
-    // Text with instructions before the game starts.
-    levelStart = findViewById(R.id.Level2Start);
 
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
@@ -210,7 +207,6 @@ public class Level2Activity extends GameManager {
   // Starts the actual game for Level 2.
   public void tapStart(View view) {
     System.out.println("clicked");
-    levelStart.setVisibility(View.INVISIBLE);
     backgroundAnimate();
     gameRun();
     view.setClickable(false);
