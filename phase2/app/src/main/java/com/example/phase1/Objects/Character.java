@@ -24,6 +24,7 @@ public class Character extends GameObject {
   }
 
   public void update() { // if character's health is 0, then die
+    if (this.health <= 0) this.health = 0;
     if (this.health <= 0) die();
   }
 
@@ -44,7 +45,8 @@ public class Character extends GameObject {
   }
 
   public void damaged(int damage) {
-    this.health = this.health - damage;
+    if (this.health - damage <= 0) this.health = 0;
+    else this.health = this.health - damage;
   }
 
   public void setSpeed(int speed) {

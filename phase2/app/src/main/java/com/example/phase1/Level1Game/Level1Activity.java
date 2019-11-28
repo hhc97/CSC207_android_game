@@ -19,6 +19,8 @@ import pl.droidsonroids.gif.GifImageView;
 
 public class Level1Activity extends GameManager {
 
+  private Button toMenuButton;
+  private Button usePotionButton;
   private Level1Manager manager;
   private GifImageView hero;
   private GifImageView coin0;
@@ -27,12 +29,16 @@ public class Level1Activity extends GameManager {
   private GifImageView enemy0;
   private GifImageView enemy1;
   private GifImageView enemy2;
-  private GifImageView potion;
+  private GifImageView healthPotion;
   private int activityLevel; // Day or Night background.
-  private int[] heroAction = new int[5]; // Animations for hero, stand, walk, hurt, attack and die.
+  private int[] heroAction = new int[4]; // Animations for hero, stand, walk, hurt, attack and die.
   private int[] enemyAction = new int[4]; // Animations for enemy, stand, walk, hurt and attack.
   private TextView scoreLabel;
   private TextView healthLabel;
+  private TextView potionLabel;
+  private TextView gameOverLabel;
+  private TextView returnToMenuText;
+  private TextView usePotionText;
   private int difficulty = 0; // default difficulty
   private int dayOrNight = 0; // default difficulty
   private ArrayList<GameObject> Objects;
@@ -57,6 +63,8 @@ public class Level1Activity extends GameManager {
     setRightButton();
     setAttackButton();
     setJumpButton();
+    setUsePotionButton();
+    setReturnToMenuButton();
   }
 
   // Set health and coin statistics for the hero.
@@ -64,6 +72,7 @@ public class Level1Activity extends GameManager {
     manager.getPlayer().setHealth(getHealth());
     manager.getPlayer().setCoins(getCoin());
     manager.getPlayer().setScore(getScore());
+    manager.getPlayer().setPotion(getPotion());
   }
 
   // Update states in Game Manager Class.
@@ -71,6 +80,7 @@ public class Level1Activity extends GameManager {
     setHealth(manager.getPlayer().getHealth());
     setCoin(manager.getPlayer().getCoins());
     setScore(manager.getPlayer().getScore());
+    setPotion(manager.getPlayer().getPotion());
   }
 
   // Create and set event listener for left button.
@@ -135,6 +145,50 @@ public class Level1Activity extends GameManager {
         });
   }
 
+  private void setUsePotionButton() {
+    usePotionButton = findViewById(R.id.potionbutton);
+    usePotionButton.setVisibility(View.INVISIBLE);
+    usePotionButton.setClickable(false);
+    usePotionButton.setOnTouchListener(
+        new View.OnTouchListener() {
+          public boolean onTouch(View v, MotionEvent event) {
+            int action = event.getActionMasked();
+            switch (action) {
+              case MotionEvent.ACTION_DOWN:
+                if (getPotion() > 0) {
+                  usePotionAction();
+                  updateStatesToGameManager();
+                  updateImage();
+                } else {
+                  usePotionText.setText("No Enough Potion");
+                }
+              case MotionEvent.ACTION_UP:
+            }
+            // ... Respond to touch events
+            return true;
+          }
+        });
+  }
+
+  private void setReturnToMenuButton() {
+    toMenuButton = findViewById(R.id.menu);
+    toMenuButton.setVisibility(View.INVISIBLE);
+    toMenuButton.setClickable(false);
+    toMenuButton.setOnTouchListener(
+        new View.OnTouchListener() {
+          public boolean onTouch(View v, MotionEvent event) {
+            int action = event.getActionMasked();
+            switch (action) {
+              case MotionEvent.ACTION_DOWN:
+                finish();
+              case MotionEvent.ACTION_UP:
+            }
+            // ... Respond to touch events
+            return true;
+          }
+        });
+  }
+
   private void setJumpButton() {}
 
   private void checkIsWinning() {
@@ -151,7 +205,20 @@ public class Level1Activity extends GameManager {
   }
 
   private void gameOver() {
-    heroDieAnimation();
+    imageInvisible(manager.getPlayer().getImage());
+    showEndText();
+  }
+
+  private void showEndText() {
+    gameOverLabel.setVisibility(View.VISIBLE);
+    returnToMenuText.setVisibility(View.VISIBLE);
+    usePotionText.setVisibility(View.VISIBLE);
+    returnToMenuText.setVisibility(View.VISIBLE);
+    toMenuButton.setVisibility(View.VISIBLE);
+    toMenuButton.setClickable(true);
+    usePotionText.setVisibility(View.VISIBLE);
+    usePotionButton.setVisibility(View.VISIBLE);
+    usePotionButton.setClickable(true);
   }
   // Move right when right button pressed
   public void rightAction() {
@@ -179,6 +246,19 @@ public class Level1Activity extends GameManager {
     }
   }
 
+  public void usePotionAction() {
+    usePotionText.setText("Use a health potion to revive");
+    usePotionText.setVisibility(View.INVISIBLE);
+    usePotionButton.setVisibility(View.INVISIBLE);
+    usePotionButton.setClickable(false);
+    returnToMenuText.setVisibility(View.INVISIBLE);
+    toMenuButton.setVisibility(View.INVISIBLE);
+    toMenuButton.setClickable(false);
+    gameOverLabel.setVisibility(View.INVISIBLE);
+    manager.usePotionButtonPress();
+    imageVisible(manager.getPlayer().getImage());
+  }
+
   public void jumpAction() {}
 
   private void nullAction() {
@@ -202,6 +282,7 @@ public class Level1Activity extends GameManager {
   private void updateImage() {
     scoreLabel.setText("Score: " + getScore());
     healthLabel.setText("Health: " + getHealth());
+    potionLabel.setText("Potion: " + getPotion());
     for (GameObject obj : Objects) {
       obj.getImage().setX(obj.getX());
     }
@@ -236,15 +317,23 @@ public class Level1Activity extends GameManager {
     Objects.get(5).setImage(coin1);
     coin2 = findViewById(R.id.c3);
     Objects.get(6).setImage(coin2);
-    potion = findViewById(R.id.potion);
-    Objects.get(7).setImage(potion);
+    healthPotion = findViewById(R.id.potion);
+    Objects.get(7).setImage(healthPotion);
     scoreLabel = (TextView) findViewById(R.id.score2);
     healthLabel = (TextView) findViewById(R.id.health2);
+    potionLabel = (TextView) findViewById(R.id.potions);
+    gameOverLabel = (TextView) findViewById(R.id.endtext);
+    returnToMenuText = (TextView) findViewById(R.id.endtext3);
+    usePotionText = (TextView) findViewById(R.id.endtext2);
     setHeroStatus();
     setHeroAction();
     setEnemyAction();
+    gameOverLabel.setVisibility(View.INVISIBLE);
+    returnToMenuText.setVisibility(View.INVISIBLE);
+    usePotionText.setVisibility(View.INVISIBLE);
     scoreLabel.setText("Score: " + getScore());
     healthLabel.setText("Health: " + getHealth());
+    potionLabel.setText("Potions:" + getPotion());
     setAllObjectsToVisible();
     updateImage();
     nullAction();
@@ -265,13 +354,11 @@ public class Level1Activity extends GameManager {
       Array.set(heroAction, 1, R.drawable.walk1); // walk animation
       Array.set(heroAction, 2, R.drawable.hurt1); // get hurt animation
       Array.set(heroAction, 3, R.drawable.attack1); // attack animation
-      Array.set(heroAction, 4, R.drawable.hurt1); // attack animation
     } else if (heroType == 1) {
       Array.set(heroAction, 0, R.drawable.knight); // stand/unmoved
       Array.set(heroAction, 1, R.drawable.walk); // walk animation
       Array.set(heroAction, 2, R.drawable.hurt2); // get hurt animation
       Array.set(heroAction, 3, R.drawable.attack); // attack animation
-      Array.set(heroAction, 4, R.drawable.hurt2); // attack animation
     }
   }
 
@@ -304,11 +391,6 @@ public class Level1Activity extends GameManager {
   // Show the hero move his weapon when attacking.
   private void heroAttackAnimation() {
     hero.setImageResource(heroAction[3]);
-  }
-
-  // Show when hero die
-  private void heroDieAnimation() {
-    hero.setImageResource(heroAction[4]);
   }
 
   // Flip the hero sprite left.

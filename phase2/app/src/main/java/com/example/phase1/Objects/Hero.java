@@ -9,6 +9,7 @@ public class Hero extends Character {
   private int coins = 0;
   private int score = 0;
   private int potion = 0;
+  private int healthAfterPotion = 100;
 
   public Hero() {
     super();
@@ -85,5 +86,15 @@ public class Hero extends Character {
     return this.score;
   }
 
-  public void setScore(int score){this.score = score;}
+  public void setScore(int score) {
+    this.score = score;
+  }
+
+  public void usePotion() {
+    if (potion > 0) {
+      potion--;
+      setStates(true);
+      setHealth(healthAfterPotion);
+    }
+  }
 }

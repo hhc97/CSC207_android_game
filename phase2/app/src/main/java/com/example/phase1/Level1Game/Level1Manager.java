@@ -63,44 +63,54 @@ public class Level1Manager {
     Objects.add(c3);
     Objects.add(p);
     if (this.difficulty == 0) {
-      m2.setStates(false);
+      m2.die();
       m2.setWorth(0);
-      m3.setStates(false);
+      m3.die();
       m3.setWorth(0);
     } else if (this.difficulty == 1) {
-      m3.setStates(false);
+      m3.die();
       m3.setWorth(0);
     }
   }
 
   public void setMaxFrameSize(float x) {
     this.maxFrameSize = x;
-    for (GameObject obj: Objects){
-        obj.setMaxFrameSize(this.maxFrameSize);
+    for (GameObject obj : Objects) {
+      obj.setMaxFrameSize(this.maxFrameSize);
     }
   }
 
   public void setMinFrameSize(float x) {
     this.minFrameSize = x;
-    for(GameObject obj: Objects){
-        obj.setMinFrameSize(this.minFrameSize);
+    for (GameObject obj : Objects) {
+      obj.setMinFrameSize(this.minFrameSize);
     }
   }
 
   public void rightButtonPress() {
-    player.moveRight();
-    update();
+    if (player.getStates()) {
+      player.moveRight();
+      update();
+    }
   }
 
   public void leftButtonPress() {
-    player.moveLeft();
-    update();
+    if (player.getStates()) {
+      player.moveLeft();
+      update();
+    }
   }
 
   public void attackButtonPress() {
-    player.attack();
-    update();
-    player.notAttack();
+    if (player.getStates()) {
+      player.attack();
+      update();
+      player.notAttack();
+    }
+  }
+
+  public void usePotionButtonPress() {
+    player.usePotion();
   }
 
   public void jumpButtonPress() {}

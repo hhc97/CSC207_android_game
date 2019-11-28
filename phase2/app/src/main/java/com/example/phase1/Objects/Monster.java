@@ -43,7 +43,7 @@ public class Monster extends Character {
     }
     if (tracingHero == true) traceHero();
     else moveRandomly();
-    if (isTouchHero()&&getStates()) {
+    if (isTouchHero() && getStates()) {
       player.damaged(getStrength());
     }
   }
@@ -105,7 +105,8 @@ public class Monster extends Character {
   }
 
   public boolean isAttack() {
-    return isTouchHero();
+
+    return (isTouchHero() && player.getStates());
   }
 
   public boolean isMoveLeft() {
@@ -124,8 +125,6 @@ public class Monster extends Character {
   public void setTracingHero(boolean isTracing) {
     this.tracingHero = isTracing;
   }
-
-
 
   private void moveRandomly() {
     if (moveLength == currentLength) {
