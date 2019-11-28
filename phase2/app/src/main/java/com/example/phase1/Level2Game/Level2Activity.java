@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
@@ -26,6 +27,8 @@ public class Level2Activity extends GameManager {
   private TextView scoreLabel;
   private TextView healthLabel;
   private TextView levelOver;
+
+  private RelativeLayout screen;
 
   ValueAnimator animator;
 
@@ -79,6 +82,16 @@ public class Level2Activity extends GameManager {
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
+
+    screen = findViewById(R.id.n_2_layout);
+    screen.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        tapStart();
+      }
+    });
+
+
   }
 
   // Runs the game.
@@ -208,12 +221,12 @@ public class Level2Activity extends GameManager {
         500);
   }
 
-  // Starts the actual game for Level 2.
-  public void tapStart(View view) {
+  // Starts the actual game for Level 2 if screen is clicked.
+  public void tapStart() {
     System.out.println("clicked");
     backgroundAnimate();
     gameRun();
-    view.setClickable(false);
+    screen.setClickable(false);
   }
 
   // A 3 second delay before starting Level 3.

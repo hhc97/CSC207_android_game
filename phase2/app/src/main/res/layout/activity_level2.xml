@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/lvl_2_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@drawable/hills_layer_1">
+        android:background="@drawable/hills_layer_1"
+        android:clickable="true"
+        android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/vegetation"
-        android:layout_width="match_parent"
-        android:layout_height="241dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/hills_layer_04" />
+            android:id="@+id/vegetation"
+            android:layout_width="match_parent"
+            android:layout_height="241dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/hills_layer_04" />
 
     <ImageView
-        android:id="@+id/vegetation2"
-        android:layout_width="match_parent"
-        android:layout_height="241dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/hills_layer_04" />
+            android:id="@+id/vegetation2"
+            android:layout_width="match_parent"
+            android:layout_height="241dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/hills_layer_04" />
 
     <Button
-        android:id="@+id/left"
-        android:layout_width="56dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="51dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/lbut" />
+            android:id="@+id/left"
+            android:layout_width="56dp"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="51dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/lbut" />
 
     <Button
-        android:id="@+id/right"
-        android:layout_width="56dp"
-        android:layout_height="42dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="113dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/rbut" />
+            android:id="@+id/right"
+            android:layout_width="56dp"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="113dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rbut" />
 
     <Button
-        android:id="@+id/jump"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="580dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/jbut"
-        android:onClick="tapScreen" />
+            android:id="@+id/jump"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="580dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/jbut"
+            android:onClick="tapScreen" />
 
     <Button
             android:id="@+id/attack"
@@ -71,167 +73,167 @@
             android:onClick="tapStart" />
 
     <ImageView
-        android:id="@+id/tree1_c"
-        android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="431dp"
-        android:layout_marginTop="183dp"
-        app:srcCompat="@drawable/tree_2" />
+            android:id="@+id/tree1_c"
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="431dp"
+            android:layout_marginTop="183dp"
+            app:srcCompat="@drawable/tree_2" />
 
     <ImageView
-        android:id="@+id/tree"
-        android:layout_width="wrap_content"
-        android:layout_height="63dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="431dp"
-        android:layout_marginTop="183dp"
-        app:srcCompat="@drawable/tree_2" />
+            android:id="@+id/tree"
+            android:layout_width="wrap_content"
+            android:layout_height="63dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="431dp"
+            android:layout_marginTop="183dp"
+            app:srcCompat="@drawable/tree_2" />
 
     <ImageView
-        android:id="@+id/rock1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="182dp"
-        android:layout_marginTop="209dp"
-        app:srcCompat="@drawable/rock2" />
+            android:id="@+id/rock1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="182dp"
+            android:layout_marginTop="209dp"
+            app:srcCompat="@drawable/rock2" />
 
     <ImageView
-        android:id="@+id/rock1_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="182dp"
-        android:layout_marginTop="209dp"
-        app:srcCompat="@drawable/rock2" />
+            android:id="@+id/rock1_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="182dp"
+            android:layout_marginTop="209dp"
+            app:srcCompat="@drawable/rock2" />
 
     <ImageView
-        android:id="@+id/tree2"
-        android:layout_width="93dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="608dp"
-        android:layout_marginTop="178dp"
-        app:srcCompat="@drawable/tree" />
+            android:id="@+id/tree2"
+            android:layout_width="93dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="608dp"
+            android:layout_marginTop="178dp"
+            app:srcCompat="@drawable/tree" />
 
     <ImageView
-        android:id="@+id/tree2_c"
-        android:layout_width="93dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="608dp"
-        android:layout_marginTop="178dp"
-        app:srcCompat="@drawable/tree" />
+            android:id="@+id/tree2_c"
+            android:layout_width="93dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="608dp"
+            android:layout_marginTop="178dp"
+            app:srcCompat="@drawable/tree" />
 
     <ImageView
-        android:id="@+id/grass1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/hills_layer_5" />
+            android:id="@+id/grass1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/hills_layer_5" />
 
     <ImageView
-        android:id="@+id/grass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/hills_layer_5" />
+            android:id="@+id/grass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/hills_layer_5" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/hero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="132dp"
-        android:src="@drawable/run1" />
+            android:id="@+id/hero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="69dp"
+            android:layout_marginTop="132dp"
+            android:src="@drawable/run1" />
 
     <TextView
-        android:id="@+id/endtext"
-        android:layout_width="117dp"
-        android:layout_height="40dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="332dp"
-        android:layout_marginBottom="273dp"
-        android:text="You Died !"
-        android:textSize="24sp"
-        android:visibility="invisible" />
+            android:id="@+id/endtext"
+            android:layout_width="117dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="332dp"
+            android:layout_marginBottom="273dp"
+            android:text="You Died !"
+            android:textSize="24sp"
+            android:visibility="invisible" />
 
     <TextView
-        android:id="@+id/endtext1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="282dp"
-        android:layout_marginBottom="251dp"
-        android:text="Use a health potion to revive"
-        android:visibility="invisible" />
+            android:id="@+id/endtext1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="282dp"
+            android:layout_marginBottom="251dp"
+            android:text="Use a health potion to revive"
+            android:visibility="invisible" />
 
     <TextView
-        android:id="@+id/endtext2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="301dp"
-        android:layout_marginBottom="218dp"
-        android:text="Go back to main menu"
-        android:visibility="invisible" />
+            android:id="@+id/endtext2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="301dp"
+            android:layout_marginBottom="218dp"
+            android:text="Go back to main menu"
+            android:visibility="invisible" />
 
     <Button
-        android:id="@+id/menu"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="102dp"
-        android:layout_marginEnd="242dp"
-        android:background="@drawable/main"
-        android:visibility="invisible" />
+            android:id="@+id/menu"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="102dp"
+            android:layout_marginEnd="242dp"
+            android:background="@drawable/main"
+            android:visibility="invisible" />
 
     <Button
-        android:id="@+id/potionbutton"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="241dp"
-        android:layout_marginBottom="247dp"
-        android:background="@drawable/potion1"
-        android:textColor="#FFFFFF"
-        android:visibility="invisible" />
+            android:id="@+id/potionbutton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="241dp"
+            android:layout_marginBottom="247dp"
+            android:background="@drawable/potion1"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible" />
 
     <TextView
             android:id="@+id/score"
             android:layout_width="98dp"
             android:layout_height="37dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             android:text="Score"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
