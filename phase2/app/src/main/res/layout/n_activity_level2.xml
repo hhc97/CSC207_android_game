@@ -248,18 +248,4 @@
             android:textColor="#F8F7F7"
             android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/end"
-        android:layout_width="145dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="323dp"
-        android:layout_marginBottom="48dp"
-        android:text="GAME OVER"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:visibility="invisible" />
-
 </RelativeLayout>

@@ -76,13 +76,9 @@ public class Level2Activity extends GameManager {
       addHealth(1);
     }
 
-
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
-
-    // Text with message when game ends.
-    levelOver = findViewById(R.id.end);
   }
 
   // Runs the game.
@@ -104,7 +100,15 @@ public class Level2Activity extends GameManager {
                     // The level is over, so pause the auto-update to check collision and
                     // animation.
                     if (getHealth() == 0) {
-                      levelOver.setVisibility(View.VISIBLE);
+
+                      // make the end screen visible
+                      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
+                      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
+                      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
+                      findViewById(R.id.menu).setVisibility(View.VISIBLE);
+                      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
+
+                      // end the animation
                       animator.cancel();
                       timer.cancel();
                       levelEndDelay();
