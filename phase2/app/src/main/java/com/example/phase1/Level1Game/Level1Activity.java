@@ -49,7 +49,7 @@ public class Level1Activity extends GameManager {
   private ArrayList<GameObject> Objects;
   private Timer timer;
   private Handler handler = new Handler();
-  private boolean isRuning = true;
+  private boolean isRunning = true;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +77,13 @@ public class Level1Activity extends GameManager {
   }
 
   private void startGame() {
-    isRuning = true;
+    isRunning = true;
     timer = new Timer();
     timer.schedule(
         new TimerTask() {
           @Override
           public void run() {
-            if (isRuning) {
+            if (isRunning) {
               handler.post(
                   new Runnable() {
                     @Override
@@ -260,9 +260,8 @@ public class Level1Activity extends GameManager {
   }
 
   private void gameOver() {
-    isRuning = false;
+    isRunning = false;
     timer.cancel();
-    timer = null;
     imageInvisible(manager.getPlayer().getImage());
     showEndText();
   }

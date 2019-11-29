@@ -40,10 +40,6 @@ public class Character extends GameObject {
     this.strength = strength;
   }
 
-  public int getStrenght() {
-    return this.strength;
-  }
-
   public void damaged(int damage) {
     if (this.health - damage <= 0) this.health = 0;
     else this.health = this.health - damage;

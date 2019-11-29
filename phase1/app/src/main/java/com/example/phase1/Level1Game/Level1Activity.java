@@ -19,6 +19,13 @@ import java.lang.reflect.Array;
 
 import pl.droidsonroids.gif.GifImageView;
 
+/**
+ *
+ *
+ *
+ *
+ *
+ */
 public class Level1Activity extends GameManager {
   private GifImageView hero;
   private GifImageView coin0;
@@ -33,6 +40,10 @@ public class Level1Activity extends GameManager {
   private TextView healthLabel;
   private int difficulty = 0;
 
+  /**
+   *
+   * @param savedInstanceState
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

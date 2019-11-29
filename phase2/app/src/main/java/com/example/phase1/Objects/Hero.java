@@ -16,11 +16,6 @@ public class Hero extends Character {
     this.isAttack = false;
   }
 
-  public void update() {
-    super.update();
-    this.isAttack = false;
-  }
-
   public void attack() {
     this.isAttack = true;
   }
@@ -54,6 +49,8 @@ public class Hero extends Character {
     attackRangeY[0] = y;
     attackRangeY[1] = y + HEIGHT;
   }
+
+  public void notAttack() {this.isAttack = false;}
 
   public int getCoins() {
     return coins;

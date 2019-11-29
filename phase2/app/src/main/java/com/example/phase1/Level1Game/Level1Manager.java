@@ -124,6 +124,9 @@ public class Level1Manager {
     for (GameObject obj : Objects) {
       obj.update();
     }
+    if (player.isAttack()) {
+      player.notAttack();
+    }
   }
 
   public static Hero getPlayer() {
