@@ -16,16 +16,17 @@ public class Hero extends Character {
     this.isAttack = false;
   }
 
+  public void update() {
+    super.update();
+    this.isAttack = false;
+  }
+
   public void attack() {
     this.isAttack = true;
   }
 
   public boolean isAttack() {
     return isAttack;
-  }
-
-  public void notAttack() {
-    this.isAttack = false;
   }
 
   public float[] getAttackRangeX() {

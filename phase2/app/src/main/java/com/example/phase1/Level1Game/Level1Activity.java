@@ -2,6 +2,7 @@ package com.example.phase1.Level1Game;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -13,7 +14,10 @@ import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Monster;
 import com.example.phase1.R;
 import java.lang.reflect.Array;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -42,6 +46,9 @@ public class Level1Activity extends GameManager {
   private int difficulty = 0; // default difficulty
   private int dayOrNight = 0; // default difficulty
   private ArrayList<GameObject> Objects;
+  private Timer timer;
+  private Handler handler = new Handler();
+  private boolean isRuning = true;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,29 @@ public class Level1Activity extends GameManager {
     setJumpButton();
     setUsePotionButton();
     setReturnToMenuButton();
+    startGame();
+  }
+
+  private void startGame() {
+    isRuning = true;
+    timer = new Timer();
+    timer.schedule(
+        new TimerTask() {
+          @Override
+          public void run() {
+            if (isRuning) {
+              handler.post(
+                  new Runnable() {
+                    @Override
+                    public void run() {
+                      gameLoopAction();
+                    }
+                  });
+            }
+          }
+        },
+        5,
+        100);
   }
 
   // Set health and coin statistics for the hero.
@@ -93,11 +123,7 @@ public class Level1Activity extends GameManager {
             new View.OnClickListener() {
               @Override
               public void onClick(View view) {
-                manager.leftButtonPress();
                 leftAction();
-                updateStatesToGameManager();
-                checkIsWinning();
-                checkIsLosing();
               }
             }));
   }
@@ -114,11 +140,7 @@ public class Level1Activity extends GameManager {
               @Override
               public void onClick(View view) {
                 // the code to execute repeatedly
-                manager.rightButtonPress();
                 rightAction();
-                updateStatesToGameManager();
-                checkIsWinning();
-                checkIsLosing();
               }
             }));
   }
@@ -132,11 +154,7 @@ public class Level1Activity extends GameManager {
             int action = event.getActionMasked();
             switch (action) {
               case MotionEvent.ACTION_DOWN:
-                manager.attackButtonPress();
                 attackAction();
-                updateStatesToGameManager();
-                checkIsWinning();
-                checkIsLosing();
               case MotionEvent.ACTION_UP:
             }
             // ... Respond to touch events
@@ -155,13 +173,7 @@ public class Level1Activity extends GameManager {
             int action = event.getActionMasked();
             switch (action) {
               case MotionEvent.ACTION_DOWN:
-                if (getPotion() > 0) {
-                  usePotionAction();
-                  updateStatesToGameManager();
-                  updateImage();
-                } else {
-                  usePotionText.setText("No Enough Potion");
-                }
+                usePotionAction();
               case MotionEvent.ACTION_UP:
             }
             // ... Respond to touch events
@@ -180,7 +192,7 @@ public class Level1Activity extends GameManager {
             int action = event.getActionMasked();
             switch (action) {
               case MotionEvent.ACTION_DOWN:
-                finish();
+                returnToMenuAction();
               case MotionEvent.ACTION_UP:
             }
             // ... Respond to touch events
@@ -190,108 +202,6 @@ public class Level1Activity extends GameManager {
   }
 
   private void setJumpButton() {}
-
-  private void checkIsWinning() {
-    if (manager.isWinning()) {
-      startNextLevel();
-      finish();
-    }
-  }
-
-  private void checkIsLosing() {
-    if (!manager.isPlayerAlive()) {
-      gameOver();
-    }
-  }
-
-  private void gameOver() {
-    imageInvisible(manager.getPlayer().getImage());
-    showEndText();
-  }
-
-  private void showEndText() {
-    gameOverLabel.setVisibility(View.VISIBLE);
-    returnToMenuText.setVisibility(View.VISIBLE);
-    usePotionText.setVisibility(View.VISIBLE);
-    returnToMenuText.setVisibility(View.VISIBLE);
-    toMenuButton.setVisibility(View.VISIBLE);
-    toMenuButton.setClickable(true);
-    usePotionText.setVisibility(View.VISIBLE);
-    usePotionButton.setVisibility(View.VISIBLE);
-    usePotionButton.setClickable(true);
-  }
-  // Move right when right button pressed
-  public void rightAction() {
-    updateImage();
-    heroFacingRight();
-    heroWalkAnimation();
-    nullAction();
-  }
-
-  // Move left when left button pressed
-  public void leftAction() {
-    updateImage();
-    heroFacingLeft();
-    heroWalkAnimation();
-    nullAction();
-  }
-
-  // Attack when attack button is pressed
-  public void attackAction() {
-    updateImage();
-    nullAction();
-    heroAttackAnimation();
-    for (int i = 1; i <= 3; i++) {
-      if (((Monster) Objects.get(i)).isGetHit()) enemyHurtAnimation(i);
-    }
-  }
-
-  public void usePotionAction() {
-    usePotionText.setText("Use a health potion to revive");
-    usePotionText.setVisibility(View.INVISIBLE);
-    usePotionButton.setVisibility(View.INVISIBLE);
-    usePotionButton.setClickable(false);
-    returnToMenuText.setVisibility(View.INVISIBLE);
-    toMenuButton.setVisibility(View.INVISIBLE);
-    toMenuButton.setClickable(false);
-    gameOverLabel.setVisibility(View.INVISIBLE);
-    manager.usePotionButtonPress();
-    imageVisible(manager.getPlayer().getImage());
-  }
-
-  public void jumpAction() {}
-
-  private void nullAction() {
-
-    for (int i = 1; i <= 3; i++) {
-      if (((Monster) Objects.get(i)).isMoveLeft()) {
-        enemyFacingLeft(i);
-      } else {
-        enemyFacingRight(i);
-      }
-
-      if (((Monster) Objects.get(i)).isAttack() && Objects.get(i).getStates()) {
-        enemyAttackAnimation(i);
-        heroHurtAnimation();
-      } else {
-        enemyWalkAnimation(i);
-      }
-    }
-  }
-
-  private void updateImage() {
-    scoreLabel.setText("Score: " + getScore());
-    healthLabel.setText("Health: " + getHealth());
-    potionLabel.setText("Potion: " + getPotion());
-    for (GameObject obj : Objects) {
-      obj.getImage().setX(obj.getX());
-    }
-    for (int i = 1; i < Objects.size(); i++) {
-      if (!Objects.get(i).getStates()) {
-        imageInvisible(Objects.get(i).getImage());
-      }
-    }
-  }
 
   // Reference to all front end objects from back
   private void setup() {
@@ -328,16 +238,133 @@ public class Level1Activity extends GameManager {
     setHeroStatus();
     setHeroAction();
     setEnemyAction();
-    gameOverLabel.setVisibility(View.INVISIBLE);
-    returnToMenuText.setVisibility(View.INVISIBLE);
-    usePotionText.setVisibility(View.INVISIBLE);
-    scoreLabel.setText("Score: " + getScore());
-    healthLabel.setText("Health: " + getHealth());
-    potionLabel.setText("Potions:" + getPotion());
+
     setAllObjectsToVisible();
     updateImage();
     nullAction();
     heroStandAnimation();
+  }
+
+  private void checkIsWinning() {
+    if (manager.isWinning()) {
+      startNextLevel();
+      finish();
+    }
+  }
+
+  private void checkIsLosing() {
+    if (!manager.isPlayerAlive()) {
+      gameOver();
+    }
+  }
+
+  private void gameOver() {
+    isRuning = false;
+    timer.cancel();
+    timer = null;
+    imageInvisible(manager.getPlayer().getImage());
+    showEndText();
+  }
+
+  private void showEndText() {
+    gameOverLabel.setVisibility(View.VISIBLE);
+    returnToMenuText.setVisibility(View.VISIBLE);
+    usePotionText.setVisibility(View.VISIBLE);
+    returnToMenuText.setVisibility(View.VISIBLE);
+    toMenuButton.setVisibility(View.VISIBLE);
+    toMenuButton.setClickable(true);
+    usePotionText.setVisibility(View.VISIBLE);
+    usePotionButton.setVisibility(View.VISIBLE);
+    usePotionButton.setClickable(true);
+  }
+  // Move right when right button pressed
+  private void rightAction() {
+    manager.rightButtonPress();
+    heroFacingRight();
+    heroWalkAnimation();
+  }
+
+  // Move left when left button pressed
+  private void leftAction() {
+    manager.leftButtonPress();
+    heroFacingLeft();
+    heroWalkAnimation();
+  }
+
+  // Attack when attack button is pressed
+  private void attackAction() {
+    manager.attackButtonPress();
+    nullAction();
+    heroAttackAnimation();
+    for (int i = 1; i <= 3; i++) {
+      if (((Monster) Objects.get(i)).isGetHit()) enemyHurtAnimation(i);
+    }
+  }
+
+  private void usePotionAction() {
+    if (getPotion() > 0) {
+      usePotionText.setText("Use a health potion to revive");
+      usePotionText.setVisibility(View.INVISIBLE);
+      usePotionButton.setVisibility(View.INVISIBLE);
+      usePotionButton.setClickable(false);
+      returnToMenuText.setVisibility(View.INVISIBLE);
+      toMenuButton.setVisibility(View.INVISIBLE);
+      toMenuButton.setClickable(false);
+      gameOverLabel.setVisibility(View.INVISIBLE);
+      manager.usePotionButtonPress();
+      imageVisible(manager.getPlayer().getImage());
+      updateStatesToGameManager();
+      startGame();
+    } else {
+      usePotionText.setText("No Enough Potion");
+    }
+  }
+
+  private void gameLoopAction() {
+    manager.update();
+    nullAction();
+    updateStatesToGameManager();
+    updateImage();
+    checkIsWinning();
+    checkIsLosing();
+  }
+
+  private void returnToMenuAction() {
+    finish();
+  }
+
+  private void jumpAction() {}
+
+  private void nullAction() {
+
+    for (int i = 1; i <= 3; i++) {
+      if (((Monster) Objects.get(i)).isMoveLeft()) {
+        enemyFacingLeft(i);
+      } else {
+        enemyFacingRight(i);
+      }
+
+      if (((Monster) Objects.get(i)).isAttack() && Objects.get(i).getStates()) {
+        enemyAttackAnimation(i);
+        heroHurtAnimation();
+      } else {
+        enemyWalkAnimation(i);
+      }
+    }
+  }
+
+  private void updateImage() {
+    scoreLabel.setText("Score: " + manager.getPlayer().getScore());
+    healthLabel.setText("Health: " + manager.getPlayer().getHealth());
+    potionLabel.setText("Potions:" + manager.getPlayer().getPotion());
+    for (GameObject obj : Objects) {
+      obj.getImage().setX(obj.getX());
+    }
+    for (int i = 1; i < Objects.size(); i++) {
+      if (!Objects.get(i).getStates()) {
+        imageInvisible(Objects.get(i).getImage());
+      }
+    }
   }
 
   // Set the day or night layout depending on user choice from Game Manager.

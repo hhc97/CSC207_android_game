@@ -34,16 +34,16 @@ public class Level1Manager {
     Monster m1 = (Monster) builder.createObject("Monster");
     m1.setPosition(800, groundHeight);
     m1.setStrength(1);
-    m1.setSpeed(20);
+    m1.setSpeed(5);
     Monster m2 = (Monster) builder.createObject("Monster");
     m2.setPosition(1250, groundHeight);
     m2.setStrength(1);
-    m2.setSpeed(20);
+    m2.setSpeed(5);
     m2.setTracingHero(false);
     Monster m3 = (Monster) builder.createObject("Monster");
     m3.setPosition(1750, groundHeight);
     m3.setStrength(1);
-    m3.setSpeed(30);
+    m3.setSpeed(10);
     m3.setTracingHero(false);
     Coin c1 = (Coin) builder.createObject("Coin");
     c1.setPosition(1000, groundHeight);
@@ -90,22 +90,18 @@ public class Level1Manager {
   public void rightButtonPress() {
     if (player.getStates()) {
       player.moveRight();
-      update();
     }
   }
 
   public void leftButtonPress() {
     if (player.getStates()) {
       player.moveLeft();
-      update();
     }
   }
 
   public void attackButtonPress() {
     if (player.getStates()) {
       player.attack();
-      update();
-      player.notAttack();
     }
   }
 
@@ -123,7 +119,7 @@ public class Level1Manager {
     return isWon;
   }
   // Update every object in the array list.
-  private void update() {
+  public void update() {
     // Update every object in the array list.
     for (GameObject obj : Objects) {
       obj.update();
