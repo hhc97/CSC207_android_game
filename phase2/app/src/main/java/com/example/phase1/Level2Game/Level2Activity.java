@@ -3,7 +3,6 @@ package com.example.phase1.Level2Game;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -26,19 +25,23 @@ public class Level2Activity extends GameManager {
   private Timer timer = new Timer();
   private TextView scoreLabel;
   private TextView healthLabel;
-  private TextView levelOver;
+  private TextView message;
 
   private RelativeLayout screen;
 
   ValueAnimator animator;
 
-  // COMMENTED OUT. WE WILL BE USING THIS IN PHASE 2.
-  //  // Sizes. Note that in landscape, width > height.
-  //  private int screenWidth;
-  //  private int screenHeight;
-  //
-  //  // Speed
-  //  private int rockSpeed;
+  // Images in the layout for Level 2.
+  ImageView backgroundOne;
+  ImageView backgroundTwo;
+  ImageView backgroundThree;
+  ImageView backgroundFour;
+  ImageView oakTree;
+  ImageView oakTreeCopy;
+  ImageView pineTree;
+  ImageView pineTreeCopy;
+  ImageView rock;
+  ImageView rockCopy;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,6 @@ public class Level2Activity extends GameManager {
     super.onCreate(savedInstanceState);
     setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
     level2Manager.setParent(this);
-
 
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
@@ -85,14 +87,16 @@ public class Level2Activity extends GameManager {
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
-    screen.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        tapStart();
-      }
-    });
 
+    message = findViewById(R.id.endtext);
 
+    screen.setOnClickListener(
+        new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            tapStart();
+          }
+        });
   }
 
   // Runs the game.
@@ -126,7 +130,8 @@ public class Level2Activity extends GameManager {
                       // end the animation
                       animator.cancel();
                       timer.cancel();
-//                      levelEndDelay();
+                      message.setVisibility(View.VISIBLE);
+                      //                      levelEndDelay();
                     }
                   }
                 });
@@ -138,17 +143,16 @@ public class Level2Activity extends GameManager {
 
   public void backgroundSetup() {
 
-    // Images in the layout for Level 2.
-    final ImageView backgroundOne = findViewById(R.id.grass);
-    final ImageView backgroundTwo = findViewById(R.id.grass1);
-    final ImageView backgroundThree = findViewById(R.id.vegetation);
-    final ImageView backgroundFour = findViewById(R.id.vegetation2);
-    final ImageView backgroundFive = findViewById(R.id.tree);
-    final ImageView backgroundSix = findViewById(R.id.rock1);
-    final ImageView backgroundSeven = findViewById(R.id.tree2);
-    final ImageView backgroundEight = findViewById(R.id.tree1_c);
-    final ImageView backgroundNine = findViewById(R.id.rock1_c);
-    final ImageView backgroundTen = findViewById(R.id.tree2_c);
+    backgroundOne = findViewById(R.id.grass);
+    backgroundTwo = findViewById(R.id.grass1);
+    backgroundThree = findViewById(R.id.vegetation);
+    backgroundFour = findViewById(R.id.vegetation2);
+    oakTree = findViewById(R.id.tree);
+    rock = findViewById(R.id.rock1);
+    pineTree = findViewById(R.id.tree2);
+    oakTreeCopy = findViewById(R.id.tree1_c);
+    rockCopy = findViewById(R.id.rock1_c);
+    pineTreeCopy = findViewById(R.id.tree2_c);
 
     // Move the two copies of the front background image, continuously.
     animator = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -168,19 +172,18 @@ public class Level2Activity extends GameManager {
             backgroundTwo.setTranslationX(-translationX1 + width1);
             backgroundThree.setTranslationX(-translationX2);
             backgroundFour.setTranslationX(-translationX2 + width2);
-            backgroundFive.setTranslationX(-translationX1);
-            backgroundSix.setTranslationX(-translationX1 + width1);
-            backgroundSeven.setTranslationX(-translationX2);
-            backgroundEight.setTranslationX(-translationX2 + width2);
-            backgroundNine.setTranslationX(-translationX1);
-            backgroundTen.setTranslationX(-translationX1 + width1);
+            rock.setTranslationX(-translationX1);
+            rockCopy.setTranslationX(-translationX1 + width1);
+            oakTree.setTranslationX(-translationX2);
+            oakTreeCopy.setTranslationX(-translationX2 + width2);
+            pineTree.setTranslationX(-translationX1);
+            pineTreeCopy.setTranslationX(-translationX1 + width1);
           }
         });
   }
 
   // Visually show that the hero is jumping.
   public void tapScreen(View view) {
-    System.out.println("i just jumped");
     preventTwoClick(view);
     final ImageView heroCharacter = findViewById(R.id.hero);
     final ObjectAnimator animationUp =
@@ -226,6 +229,8 @@ public class Level2Activity extends GameManager {
   public void tapStart() {
     gameRun();
     screen.setClickable(false);
+    message.setVisibility(View.INVISIBLE);
+    message.setText(getResources().getString(R.string.lose_message));
   }
 
   public void restartLevel() {
@@ -233,16 +238,18 @@ public class Level2Activity extends GameManager {
     gameRun();
   }
 
-//  // A 3 second delay before starting Level 3.
-//  private void levelEndDelay() {
-//    handler.postDelayed(
-//        new Runnable() {
-//          @Override
-//          public void run() {
-//            startNextLevel();
-//            finish();
-//          }
-//        },
-//        3000);
-//  }
+  public void collectPhase() {}
+
+  //  // A 3 second delay before starting Level 3.
+  //  private void levelEndDelay() {
+  //    handler.postDelayed(
+  //        new Runnable() {
+  //          @Override
+  //          public void run() {
+  //            startNextLevel();
+  //            finish();
+  //          }
+  //        },
+  //        3000);
+  //  }
 }

@@ -25,4 +25,6 @@
     <string name="text_character">Character:</string>
     <string name="toggle_scene">Toggle Between Night/Day:</string>
     <string name="toggle_character">Toggle Between Characters:</string>
+    <string name="level2_instructions">You can now jump! Tap the screen to start the game.</string>
+    <string name="lose_message">You died!</string>
 </resources>
