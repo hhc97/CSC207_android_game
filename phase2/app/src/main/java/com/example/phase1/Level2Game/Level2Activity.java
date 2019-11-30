@@ -58,8 +58,10 @@ public class Level2Activity extends GameManager {
     // Change the background theme to either day or night based on the user's choice.
     if (getDayOrNight() == 0) {
       setContentView(R.layout.n_activity_level2);
+      screen = findViewById(R.id.n_2_layout);
     } else if (getDayOrNight() == 1) {
       setContentView(R.layout.activity_level2);
+      screen = findViewById(R.id.lvl_2_layout);
     }
 
     // Change the hero's appearance based on the user's choice.
@@ -82,8 +84,6 @@ public class Level2Activity extends GameManager {
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
-
-    screen = findViewById(R.id.n_2_layout);
     screen.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
