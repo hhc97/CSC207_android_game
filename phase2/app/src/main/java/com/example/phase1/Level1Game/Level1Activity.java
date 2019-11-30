@@ -10,12 +10,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.Controls.*;
 import com.example.phase1.Controls.RepeatListener;
 import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Monster;
 import com.example.phase1.R;
 import java.lang.reflect.Array;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,6 +50,7 @@ public class Level1Activity extends GameManager {
   private Timer timer;
   private Handler handler = new Handler();
   private boolean isRunning = true;
+  private ControlSchemeOne controlScheme;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class Level1Activity extends GameManager {
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    this.controlScheme = new ControlSchemeOne();
 
     // calling initial setup methods.
     setup();
@@ -116,52 +118,17 @@ public class Level1Activity extends GameManager {
 
   // Create and set event listener for left button.
   private void setLeftButton() {
-    Button left = findViewById(R.id.left);
-    left.setOnTouchListener(
-        new RepeatListener(
-            100,
-            50,
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                leftAction();
-              }
-            }));
+    controlScheme.setLeftButton(this);
   }
 
   // Create and set event listener for right button
-  @SuppressLint("ClickableViewAccessibility")
   private void setRightButton() {
-    Button right = findViewById(R.id.right);
-    right.setOnTouchListener(
-        new RepeatListener(
-            100,
-            50,
-            new View.OnClickListener() {
-              @Override
-              public void onClick(View view) {
-                // the code to execute repeatedly
-                rightAction();
-              }
-            }));
+    controlScheme.setRightButton(this);
   }
   // Create and set event listener for attack button
   @SuppressLint("ClickableViewAccessibility")
   private void setAttackButton() {
-    final Button attack = findViewById(R.id.attack);
-    attack.setOnTouchListener(
-        new View.OnTouchListener() {
-          public boolean onTouch(View v, MotionEvent event) {
-            int action = event.getActionMasked();
-            switch (action) {
-              case MotionEvent.ACTION_DOWN:
-                attackAction();
-              case MotionEvent.ACTION_UP:
-            }
-            // ... Respond to touch events
-            return true;
-          }
-        });
+    controlScheme.setAttackButton(this);
   }
 
   private void setUsePotionButton() {
@@ -278,21 +245,21 @@ public class Level1Activity extends GameManager {
     usePotionButton.setClickable(true);
   }
   // Move right when right button pressed
-  private void rightAction() {
+  public void rightAction() {
     manager.rightButtonPress();
     heroFacingRight();
     heroWalkAnimation();
   }
 
   // Move left when left button pressed
-  private void leftAction() {
+  public void leftAction() {
     manager.leftButtonPress();
     heroFacingLeft();
     heroWalkAnimation();
   }
 
   // Attack when attack button is pressed
-  private void attackAction() {
+  public void attackAction() {
     manager.attackButtonPress();
     nullAction();
     heroAttackAnimation();
@@ -333,7 +300,7 @@ public class Level1Activity extends GameManager {
     finish();
   }
 
-  private void jumpAction() {}
+  public void jumpAction() {}
 
   private void nullAction() {
 

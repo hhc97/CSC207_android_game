@@ -10,10 +10,55 @@ import android.widget.ImageView;
 
 import com.example.phase1.Animations.IAnimator;
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.Level1Game.Level1Activity;
 import com.example.phase1.R;
 
 public class ControlSchemeOne extends GameManager implements IController {
 
+    public void setLeftButton(final Level1Activity level) {
+        Button left = level.findViewById(R.id.left);
+        left.setOnTouchListener(
+                new RepeatListener(
+                        100,
+                        50,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                level.leftAction();
+                            }
+                        }));
+    }
+
+    public void setRightButton(final Level1Activity level) {
+        Button right = level.findViewById(R.id.right);
+        right.setOnTouchListener(
+                new RepeatListener(
+                        100,
+                        50,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                level.rightAction();
+                            }
+                        }));
+    }
+
+    public void setAttackButton(final Level1Activity level) {
+        Button attack = level.findViewById(R.id.attack);
+        attack.setOnTouchListener(
+                new View.OnTouchListener() {
+                    public boolean onTouch(View v, MotionEvent event) {
+                        int action = event.getActionMasked();
+                        switch (action) {
+                            case MotionEvent.ACTION_DOWN:
+                                level.attackAction();
+                            case MotionEvent.ACTION_UP:
+                        }
+                        // ... Respond to touch events
+                        return true;
+                    }
+                });
+    }
     @SuppressLint("ClickableViewAccessibility")
     public void moveLeft(final IAnimator animator){
         Button left = findViewById(R.id.left);
