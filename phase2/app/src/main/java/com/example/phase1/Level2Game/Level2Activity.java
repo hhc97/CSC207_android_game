@@ -47,6 +47,7 @@ public class Level2Activity extends GameManager {
     setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
     level2Manager.setParent(this);
 
+
     // Set our window to fullscreen without the bar at the top.
     this.getWindow()
         .setFlags(
@@ -96,7 +97,8 @@ public class Level2Activity extends GameManager {
 
   // Runs the game.
   public void gameRun() {
-    backgroundAnimate();
+    backgroundSetup();
+    animator.start();
     timer.schedule(
         new TimerTask() {
           @Override
@@ -112,7 +114,7 @@ public class Level2Activity extends GameManager {
 
                     // The level is over, so pause the auto-update to check collision and
                     // animation.
-                    if (getHealth() == 0) {
+                    if (getHealth() <= 0) {
 
                       // make the end screen visible
                       findViewById(R.id.endtext).setVisibility(View.VISIBLE);
@@ -124,7 +126,7 @@ public class Level2Activity extends GameManager {
                       // end the animation
                       animator.cancel();
                       timer.cancel();
-                      levelEndDelay();
+//                      levelEndDelay();
                     }
                   }
                 });
@@ -134,7 +136,7 @@ public class Level2Activity extends GameManager {
         20);
   }
 
-  public void backgroundAnimate() {
+  public void backgroundSetup() {
 
     // Images in the layout for Level 2.
     final ImageView backgroundOne = findViewById(R.id.grass);
@@ -174,7 +176,6 @@ public class Level2Activity extends GameManager {
             backgroundTen.setTranslationX(-translationX1 + width1);
           }
         });
-    animator.start();
   }
 
   // Visually show that the hero is jumping.
@@ -223,22 +224,25 @@ public class Level2Activity extends GameManager {
 
   // Starts the actual game for Level 2 if screen is clicked.
   public void tapStart() {
-    System.out.println("clicked");
-    backgroundAnimate();
     gameRun();
     screen.setClickable(false);
   }
 
-  // A 3 second delay before starting Level 3.
-  private void levelEndDelay() {
-    handler.postDelayed(
-        new Runnable() {
-          @Override
-          public void run() {
-            startNextLevel();
-            finish();
-          }
-        },
-        3000);
+  public void restartLevel() {
+    setHealth(100);
+    gameRun();
   }
+
+//  // A 3 second delay before starting Level 3.
+//  private void levelEndDelay() {
+//    handler.postDelayed(
+//        new Runnable() {
+//          @Override
+//          public void run() {
+//            startNextLevel();
+//            finish();
+//          }
+//        },
+//        3000);
+//  }
 }

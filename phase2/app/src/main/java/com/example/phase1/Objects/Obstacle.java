@@ -11,7 +11,7 @@ public class Obstacle extends GameObject {
   public void update() {
     this.x -= 6.28;
 
-    if (this.x <= 0) {
+    if (this.x < 0) {
       this.x = 785;
       this.hasPassed = false;
     }

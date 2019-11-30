@@ -14,6 +14,7 @@ public class Level2Manager {
   private float playerStartY = GROUND_HEIGHT;
   private Level2Activity parent;
   private ObjectBuilder builder;
+  private int difficulty;
 
   Level2Manager() {
     builder = new ObjectBuilder();
@@ -32,8 +33,23 @@ public class Level2Manager {
     Obstacles.add(rock3);
   }
 
+  void setDifficulty(int difficulty) {
+    this.difficulty = difficulty;
+  }
   void setParent(Level2Activity p) {
     parent = p;
+  }
+
+  void updateHealth() {
+    if (difficulty == 0) {
+      parent.deductHealth(30);
+    }
+    else if (difficulty ==1) {
+      parent.deductHealth(40);
+    }
+    else {
+      parent.deductHealth(50);
+    }
   }
 
   // Updates player's health and score based on interactions with obstacles.
@@ -46,7 +62,7 @@ public class Level2Manager {
         if (playerStartY == 1) {
           parent.addScore(100);
         } else {
-          parent.deductHealth(1);
+          updateHealth();
         }
       }
     }
