@@ -18,6 +18,11 @@ public class TradingScreen extends GameManager {
     setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
   }
 
+  /**
+   * Buys a potion, if the buy potion button is clicked and the player has enough coins.
+   *
+   * @param view The buy potion button.
+   */
   public void buyPotion(View view) {
     int potionPrice = 3;
     if (getCoin() >= potionPrice) {
@@ -25,7 +30,11 @@ public class TradingScreen extends GameManager {
       addPotion();
     }
   }
-
+  /**
+   * Buys a key, if the buy key button is clicked and the player has enough coins.
+   *
+   * @param view The buy key button.
+   */
   public void buyKey(View view) {
     int keyPrice = 3;
     if (getCoin() >= keyPrice) {
