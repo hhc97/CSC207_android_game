@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 class DisplayHandler {
-    private Button[] buttons = new Button[4];
+    private Button[] buttons;
     @SuppressLint("StaticFieldLeak")
     private TextView out;
 
