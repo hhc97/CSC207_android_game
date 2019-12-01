@@ -90,7 +90,7 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/keybutton4"
+        android:id="@+id/keybutton"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:layout_alignParentEnd="true"

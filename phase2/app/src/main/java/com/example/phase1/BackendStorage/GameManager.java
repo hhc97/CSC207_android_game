@@ -190,6 +190,10 @@ public abstract class GameManager extends FileReadWriter {
     setStat(p, potion);
   }
 
+  public void addPotion() {
+    setPotion(getPotion() + 1);
+  }
+
   //  for bonus keys
   public int getBonusKeys() {
     return getStat(bonusKeys);
@@ -197,6 +201,10 @@ public abstract class GameManager extends FileReadWriter {
 
   public void setBonusKeys(int k) {
     setStat(k, bonusKeys);
+  }
+
+  public void addKey() {
+    setBonusKeys(getBonusKeys() + 1);
   }
 
   // for save status
