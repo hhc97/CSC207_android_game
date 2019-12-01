@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BackendStorage.TradingScreen">
+    tools:context="com.example.phase2.BackendStorage.TradingScreen">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

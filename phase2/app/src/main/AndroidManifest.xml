@@ -11,30 +11,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".BackendStorage.TradingScreen"
+            android:name="com.example.phase2.BackendStorage.TradingScreen"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".BackendStorage.PreferenceEditor"
+            android:name="com.example.phase2.BackendStorage.PreferenceEditor"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Level3Game.Level3Activity"
+            android:name="com.example.phase2.Level3Game.Level3Activity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".BackendStorage.SetCharacterName"
-            android:parentActivityName=".BackendStorage.SaveMenu"
+            android:name="com.example.phase2.BackendStorage.SetCharacterName"
+            android:parentActivityName="com.example.phase2.BackendStorage.SaveMenu"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Level1Game.Level1Activity"
+            android:name="com.example.phase2.Level1Game.Level1Activity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Level2Game.Level2Activity"
+            android:name="com.example.phase2.Level2Game.Level2Activity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".BackendStorage.SaveMenu"
-            android:parentActivityName=".MainActivity"
+            android:name="com.example.phase2.BackendStorage.SaveMenu"
+            android:parentActivityName="com.example.phase2.MainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.phase2.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
