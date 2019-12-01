@@ -14,6 +14,7 @@ class Level3Manager {
   // button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
   private static ArrayList<Integer> input = new ArrayList<>();
 
+  static void setAttempts(int i){attempts = i;}
   /** Constructor initializes sequence. */
   Level3Manager() {
     sequence = Sequence.getSequence(); // get a new Sequence from Sequence class

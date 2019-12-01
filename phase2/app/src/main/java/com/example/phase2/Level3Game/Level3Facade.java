@@ -10,12 +10,10 @@ class Level3Facade {
   @SuppressLint("StaticFieldLeak")
   private static DisplayHandler displayHandler;
 
-  static void setAttempts(int i) {
-    Level3Manager.attempts = 0;
-  }
+  static void setAttempts(int i) { Level3Manager.setAttempts(i); }
 
   static void setButtonVisible(int i) {
-    displayHandler.setButtonVisibile(i);
+    displayHandler.setButtonVisible(i);
   }
 
   void setDisplayHandler(DisplayHandler displayHandler) {
@@ -27,23 +25,27 @@ class Level3Facade {
   }
 
   void setLevel3(Level3Manager level3) {
-    Level3 = level3;
+    this.Level3 = level3;
   }
 
   static void startSequence() {
     displayHandler.startSequence();
   }
 
-  static void endSequence() {
-    displayHandler.endSequence();
+  static void endSequence() { displayHandler.endSequence(); }
+
+  static void disableButtons() {
+    DisplayHandler.disableButtons();
   }
 
-  static void disable_buttons() {
-    DisplayHandler.set_buttons_invisible();
-  }
+  static void setButtonsVisible(){DisplayHandler.setButtonsVisible();}
 
-  static void set_text(String s) {
-    DisplayHandler.set_text(s);
+  static void setButtonsInvisible(){DisplayHandler.setButtonsInvisible();}
+
+  static void enableButtons(){DisplayHandler.enableButtons();}
+
+  static void setText(String s) {
+    DisplayHandler.setText(s);
   }
 
   static ArrayList<Integer> getSequence() {

@@ -17,45 +17,51 @@ class DisplayHandler {
 
     @SuppressLint("SetTextI18n")
     void startSequence(){
-        disable_buttons(); // disable the buttons while the sequence is displaying
-        set_buttons_invisible();
+        disableButtons(); // disable the buttons while the sequence is displaying
+        setButtonsInvisible();
         out.setText("Wait for the sequence to display");
         out.setVisibility(View.VISIBLE);
     }
 
     @SuppressLint("SetTextI18n")
     void endSequence(){
-        enable_buttons(); // enable buttons after sequence is displayed
+        enableButtons(); // enable buttons after sequence is displayed
         out.setText("Start!");
         out.setVisibility(View.VISIBLE);
     }
 
-    void setButtonVisibile(int i){
+    void setButtonVisible(int i){
         buttons[i].setVisibility(View.VISIBLE);
     }
 
     /** Set all Button.Enabled and Clickable properties to true */
-    private static void enable_buttons(){
+    static void enableButtons(){
         for (Button button : buttons) {
             button.setEnabled(true);
             button.setClickable(true);
         }
     }
 
-    private void disable_buttons(){
+    static void disableButtons(){
         for (Button button : buttons) {
             button.setEnabled(false);
             button.setClickable(false);
         }
     }
 
-    static void set_buttons_invisible(){
+    static void setButtonsVisible(){
+        for (Button button : buttons) {
+            button.setVisibility(View.VISIBLE);
+        }
+    }
+
+    static void setButtonsInvisible(){
         for (Button button : buttons) {
             button.setVisibility(View.INVISIBLE);
         }
     }
 
-    static void set_text(String s){
+    static void setText(String s){
         out.setText(s);
         out.setVisibility(View.VISIBLE);
     }

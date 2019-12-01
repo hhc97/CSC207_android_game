@@ -122,20 +122,20 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
       Level3Facade.setUserInput(3);
     }
     if (Level3Facade.checkConditions() == 1) { // User did not input correct sequence
-      on_bad_input();
+      onBadInput();
     }
     if (Level3Facade.checkConditions() == 2) { // User successfully inputs correct sequence
-      on_win();
+      onWin();
     }
   }
 
   /** Set Text for Textview out and change Textview out.Visible property to VISIBLE* */
-  private void set_text(final String s) {
+  private void setText(final String s) {
     runOnUiThread(
         new Runnable() { // force task to run on UI Thread
           @Override
           public void run() {
-            Level3Facade.set_text(s);
+            Level3Facade.setText(s);
           }
         });
   }
@@ -144,10 +144,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    * To be called when a sequence is incorrectly inputted. Deducts lives and displays sequence again
    * if the player has any remaining lives, else it restarts the game.
    */
-  private void on_bad_input() {
+  private void onBadInput() {
     if (Level3Facade.getAttempts() == 3) { // User made 3 attempts (out of attempts)
       deductHealth(1); // deduct a life
-      set_text("Incorrect Pattern! You ran out of attempts, -1 lives");
+      setText("Incorrect Pattern! You ran out of attempts, -1 lives");
       Level3Facade.setAttempts(0);
       new Handler()
           .postDelayed(
@@ -164,13 +164,13 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
               5000); // 5000ms = 5 seconds
 
     } else { // User input incorrect sequence but still has remaining attempts
-      set_text(
+      setText(
           "Incorrect Pattern! "
               + (3 - Level3Facade.getAttempts())
               + " remaining! "
               + "Displaying Sequence");
       Level3Facade.clearInput(); // clear input for next attempt
-      Level3Facade.disable_buttons();
+      Level3Facade.disableButtons();
       new Handler()
           .postDelayed(
               new Runnable() { // delay the task by 2 seconds
@@ -186,9 +186,9 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
   /**
    * To be called when the correct sequence has been inputted. Displays a message and ends the game.
    */
-  private void on_win() {
-    Level3Facade.disable_buttons();
-    set_text("Correct Pattern!, You win! Returning to the Save Menu");
+  private void onWin() {
+    Level3Facade.disableButtons();
+    setText("Correct Pattern!, You win! Returning to the Save Menu");
     new Handler()
         .postDelayed(
             new Runnable() { // delay the task by 3 seconds
