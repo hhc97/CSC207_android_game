@@ -62,13 +62,15 @@
         android:background="@drawable/hbut" />
 
     <ImageView
-        android:id="@+id/grass1"
+        android:id="@+id/grass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="29dp"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/hills_layer_5" />
+        android:src="@drawable/hills_layer_5" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/potion"
@@ -77,21 +79,93 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="405dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginStart="406dp"
+        android:layout_marginTop="241dp"
         android:src="@drawable/potion"
         android:visibility="visible"
         tools:visibility="visible" />
 
-    <ImageView
-        android:id="@+id/grass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c2"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/hills_layer_5" />
+        android:layout_centerVertical="true"
+        android:layout_marginStart="596dp"
+        android:layout_marginTop="244dp"
+        android:src="@drawable/coin" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c3"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="699dp"
+        android:layout_marginTop="243dp"
+        android:src="@drawable/coin" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c1"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="226dp"
+        android:layout_marginTop="245dp"
+        android:src="@drawable/coin" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/enemy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="294dp"
+        android:layout_marginTop="168dp"
+        android:scaleX="-1"
+        android:src="@drawable/mage" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/enemy2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="581dp"
+        android:layout_marginTop="168dp"
+        android:scaleX="-1"
+        android:src="@drawable/mage"
+        android:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/enemy3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="442dp"
+        android:layout_marginTop="168dp"
+        android:scaleX="1"
+        android:src="@drawable/mage"
+        android:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/hero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="168dp"
+        android:src="@drawable/knight" />
 
     <TextView
         android:id="@+id/health2"
@@ -129,88 +203,6 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/c1"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="225dp"
-        android:layout_marginTop="216dp"
-        android:src="@drawable/coin" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/c2"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="595dp"
-        android:layout_marginTop="215dp"
-        android:src="@drawable/coin" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/c3"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="698dp"
-        android:layout_marginTop="214dp"
-        android:src="@drawable/coin" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/enemy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="293dp"
-        android:layout_marginTop="139dp"
-        android:scaleX="-1"
-        android:src="@drawable/mage" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/enemy2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="580dp"
-        android:layout_marginTop="139dp"
-        android:scaleX="-1"
-        android:src="@drawable/mage"
-        android:visibility="invisible" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/enemy3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="441dp"
-        android:layout_marginTop="139dp"
-        android:scaleX="1"
-        android:src="@drawable/mage"
-        android:visibility="invisible" />
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/hero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="139dp"
-        android:src="@drawable/knight" />
-
     <TextView
         android:id="@+id/endtext"
         android:layout_width="117dp"
@@ -218,24 +210,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="332dp"
-        android:layout_marginBottom="273dp"
+        android:layout_marginStart="330dp"
+        android:layout_marginBottom="289dp"
         android:text="You Died !"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/endtext2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="282dp"
-        android:layout_marginBottom="251dp"
-        android:text="Use a health potion to revive"
-        android:textColor="#FFFFFF"
         android:visibility="invisible" />
 
     <Button
@@ -244,8 +223,8 @@
         android:layout_height="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="102dp"
-        android:layout_marginEnd="242dp"
+        android:layout_marginTop="133dp"
+        android:layout_marginEnd="240dp"
         android:background="@drawable/main"
         android:textColor="#FFFFFF"
         android:visibility="invisible" />
@@ -256,8 +235,8 @@
         android:layout_height="25dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="241dp"
-        android:layout_marginBottom="247dp"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="267dp"
         android:background="@drawable/potion1"
         android:textColor="#FFFFFF"
         android:visibility="invisible" />
@@ -269,9 +248,22 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="301dp"
-        android:layout_marginBottom="218dp"
+        android:layout_marginStart="305dp"
+        android:layout_marginBottom="243dp"
         android:text="Go back to main menu"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/endtext2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="285dp"
+        android:layout_marginBottom="271dp"
+        android:text="Use a health potion to revive"
         android:textColor="#FFFFFF"
         android:visibility="invisible" />
 
