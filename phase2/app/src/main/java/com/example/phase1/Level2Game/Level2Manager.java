@@ -15,7 +15,7 @@ public class Level2Manager {
   private Level2Activity parent;
   private ObjectBuilder builder;
   private int difficulty;
-  private Hero player;///////////////////////////////////////////////////////////////////////////////////
+  private Hero player;
 
   Level2Manager() {
     builder = new ObjectBuilder();
@@ -82,10 +82,10 @@ public class Level2Manager {
 
 
   //Hero object move right
-  public void rightAction(){/////////////////////////////////////////////////////////
+  public void rightAction(){
     player.moveRight();
   }
-  public Hero getPlayer(){/////////////////////////////////////////////////////////
+  public Hero getPlayer(){
     return this.player;
   }
 }
