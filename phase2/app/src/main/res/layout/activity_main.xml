@@ -7,7 +7,7 @@
     android:background="@drawable/nbg"
     android:clickable="true"
     android:onClick="runIntro"
-    tools:context="com.example.phase2.MainActivity">
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/vegetation"
