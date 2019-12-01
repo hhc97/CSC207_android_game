@@ -120,18 +120,21 @@ public class Level2Activity extends GameManager {
                     // animation.
                     if (getHealth() <= 0) {
 
-                      // make the end screen visible
+                      // Make the end-game text visible
                       findViewById(R.id.endtext).setVisibility(View.VISIBLE);
                       findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
                       findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
                       findViewById(R.id.menu).setVisibility(View.VISIBLE);
                       findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
+                      message.setVisibility(View.VISIBLE);
 
-                      // end the animation
+                      // End the animation
                       animator.cancel();
                       timer.cancel();
-                      message.setVisibility(View.VISIBLE);
                       //                      levelEndDelay();
+                    }
+                    else if (getScore() >= 2000) {
+                      collectPhase();
                     }
                   }
                 });
@@ -141,6 +144,7 @@ public class Level2Activity extends GameManager {
         20);
   }
 
+  // Sets up all the information necessary for background animation.
   public void backgroundSetup() {
 
     backgroundOne = findViewById(R.id.grass);
@@ -225,7 +229,7 @@ public class Level2Activity extends GameManager {
         500);
   }
 
-  // Starts the actual game for Level 2 if screen is clicked.
+  // Starts the actual "running" component for Level 2 if screen is clicked.
   public void tapStart() {
     gameRun();
     screen.setClickable(false);
@@ -233,12 +237,14 @@ public class Level2Activity extends GameManager {
     message.setText(getResources().getString(R.string.lose_message));
   }
 
+  // Restarts the level if the player has used a revive potion.
   public void restartLevel() {
     message.setVisibility(View.INVISIBLE);
     setHealth(100);
     gameRun();
   }
 
+  // Switches to the ending phase of Level 2.
   public void collectPhase() {}
 
   //  // A 3 second delay before starting Level 3.

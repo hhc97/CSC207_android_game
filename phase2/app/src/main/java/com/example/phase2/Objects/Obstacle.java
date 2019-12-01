@@ -3,7 +3,7 @@ package com.example.phase2.Objects;
 public class Obstacle extends GameObject {
   private boolean hasPassed = false;
 
-  public Obstacle() {
+  Obstacle() {
     super();
   }
 
