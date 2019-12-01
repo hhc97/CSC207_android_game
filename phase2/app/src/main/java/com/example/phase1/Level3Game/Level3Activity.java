@@ -57,9 +57,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     buttons[1] = findViewById(R.id.b2);
     buttons[2] = findViewById(R.id.b3);
     buttons[3] = findViewById(R.id.b4);
+    Button key = findViewById(R.id.keybutton);
 
     level3Facade.setDisplayHandler(
-        new DisplayHandler(buttons, (TextView) findViewById(R.id.pstat)));
+        new DisplayHandler(buttons, (TextView)findViewById(R.id.pstat), (TextView)findViewById(R.id.magic_text), key));
     level3Facade.setLevel3(new Level3Manager(getDifficulty()));
   }
 
@@ -118,6 +119,11 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
               @Override
               public void run() {
                 level3Facade.endSequence();
+                if(getBonusKeys() > 0){
+                    level3Facade.showKeyButton();
+                    level3Facade.enableKeyButton();
+                    level3Facade.showKeyText();
+                }
               }
             },
             (level3Facade.getLength() * 1000) + 500);
@@ -126,9 +132,11 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
   public void useBonusKey(View v) {
     if (getBonusKeys() > 0) {
         setBonusKeys(getBonusKeys() - 1);
-        level3Facade.completeSequence();
+        level3Facade.disableKeyButton();
+        onCorrectSequence();
     }
     else{
+        level3Facade.disableKeyButton();
         setText("You don't have any bonus keys. Please input the sequence.");
     }
   }
