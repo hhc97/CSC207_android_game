@@ -20,7 +20,7 @@ public abstract class GameManager extends FileReadWriter {
   public static final String sendPlayer = "com.example.phase1.BackendStorage.SEND_PLAYER";
 
   // score, health, coin, night/day, difficulty, character, potion, bonus keys, current level,
-  // player name, status
+  // player name, save status, high score, high score time
   final String defaultScore = "0,100,0,0,0,0,0,0,1,NAME,0,0,(time)";
   int currPlayer = -1;
 
