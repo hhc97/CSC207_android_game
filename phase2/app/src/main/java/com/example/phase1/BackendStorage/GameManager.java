@@ -25,14 +25,14 @@ public abstract class GameManager extends FileReadWriter {
   private int score = 0;
   private int health = 1;
   private int coin = 2;
-  private int dayOrNight = 3;
-  private int difficulty = 4;
-  private int character = 5;
+  private int dayOrNight = 3; // 0: night, 1: day
+  private int difficulty = 4; // 0: easy, 1: normal, 2: hard
+  private int character = 5; // 0: rogue, 1: knight
   private int potion = 6;
   private int bonusKeys = 7;
-  private int currentLevel = 8;
+  private int currentLevel = 8; // 1: level 1, 2: level 2, 3: level 3
   private int playerName = 9;
-  private int saveStatus = 10;
+  private int saveStatus = 10; // 0: empty slot, 1: slot has data
 
   /**
    * Returns the requested stat of the current player in String form.
