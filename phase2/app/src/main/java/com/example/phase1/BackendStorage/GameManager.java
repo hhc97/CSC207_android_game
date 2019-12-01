@@ -201,7 +201,10 @@ public abstract class GameManager extends FileReadWriter {
 
   // for save status
   boolean getSaveStatus() {
-    return getStat(saveStatus) == 1;
+    if (currPlayer != -1) {
+      return getStat(saveStatus) == 1;
+    }
+    return false;
   }
 
   void setSaveStatus(boolean b) {
