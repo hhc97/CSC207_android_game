@@ -6,6 +6,9 @@ import com.example.phase1.Level1Game.Level1Activity;
 import com.example.phase1.Level2Game.Level2Activity;
 import com.example.phase1.Level3Game.Level3Activity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * This class extends FileReadWriter, and is responsible for retrieving and manipulating the data
  * that is stored. Individual activities will extend this class to gain access to its methods for
@@ -18,7 +21,7 @@ public abstract class GameManager extends FileReadWriter {
 
   // score, health, coin, night/day, difficulty, character, potion, bonus keys, current level,
   // player name, status
-  final String defaultScore = "0,100,0,0,0,0,0,0,1,NAME,0";
+  final String defaultScore = "0,100,0,0,0,0,0,0,1,NAME,0,0,(time)";
   int currPlayer = -1;
 
   //  indexes of the player statistics
@@ -33,6 +36,8 @@ public abstract class GameManager extends FileReadWriter {
   private int currentLevel = 8; // 1: level 1, 2: level 2, 3: level 3
   private int playerName = 9;
   private int saveStatus = 10; // 0: empty slot, 1: slot has data
+  private int highScore = 11;
+  private int highScoreTime = 12;
 
   /**
    * Returns the requested stat of the current player in String form.
@@ -100,6 +105,13 @@ public abstract class GameManager extends FileReadWriter {
   }
 
   public void setScore(int s) {
+    if (s > getHighScore()) {
+      setHighScore(s);
+      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+      LocalDateTime now = LocalDateTime.now();
+      String timeNow = dtf.format(now);
+      setHighScoreTime(timeNow);
+    }
     setStat(s, score);
   }
 
@@ -217,6 +229,24 @@ public abstract class GameManager extends FileReadWriter {
     setStat(status, saveStatus);
   }
 
+  // for high score
+  private int getHighScore() {
+    return getStat(highScore);
+  }
+
+  private void setHighScore(int hs) {
+    setStat(hs, highScore);
+  }
+
+  // for high score time
+  String getHighScoreTime() {
+    return getStringStat(highScoreTime);
+  }
+
+  private void setHighScoreTime(String hst) {
+    setStringStat(hst, highScoreTime);
+  }
+
   /**
    * Starts the game, depending on which level the player was previously on. Starts at level 1 if
    * it's a new player.
@@ -273,9 +303,9 @@ public abstract class GameManager extends FileReadWriter {
 
   /** If no save file exists, create a new one with default values. */
   void startFile() {
-    writeToFile("0,100,0,0,0,0,0,0,1,Level 1,1");
-    writeToFile(readFromFile() + "0,100,0,0,1,0,0,0,2,Level 2,1");
-    writeToFile(readFromFile() + "0,100,0,0,2,0,0,0,3,Level 3,1");
+    writeToFile("0,100,0,0,0,0,0,0,1,Level 1,1,0,xd");
+    writeToFile(readFromFile() + "0,100,0,0,1,0,0,0,2,Level 2,1,0,xd");
+    writeToFile(readFromFile() + "0,100,0,0,2,0,0,0,3,Level 3,1,0,xd");
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
     writeToFile(readFromFile() + defaultScore);
