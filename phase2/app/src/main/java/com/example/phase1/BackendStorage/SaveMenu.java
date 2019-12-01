@@ -57,7 +57,7 @@ public class SaveMenu extends GameManager {
     for (int i = 0; i < buttons.length; i++) {
       currPlayer = i;
       Button b = buttons[i];
-      if (getSaveStatus()) {
+      if (hasSavedFile()) {
         b.setText(getName());
       } else {
         b.setText(R.string.empty_save);
@@ -83,24 +83,12 @@ public class SaveMenu extends GameManager {
         currButton.getBackground().clearColorFilter();
       }
     }
-    if (!getSaveStatus()) {
+    if (!hasSavedFile()) {
       Intent intent = new Intent(this, SetCharacterName.class);
       startActivityForResult(intent, 1);
     } else {
       updatePlayerInfo();
     }
-  }
-
-  /**
-   * Checks if the current selected save slot has any data saved.
-   *
-   * @return Returns true if the save slot contains data, false otherwise.
-   */
-  private boolean canEdit() {
-    if (currPlayer == -1) {
-      return false;
-    }
-    return getSaveStatus();
   }
 
   /**
@@ -110,8 +98,14 @@ public class SaveMenu extends GameManager {
    * @param view The delete button.
    */
   public void clickDelete(View view) {
-    startActivity(new Intent(this, TradingScreen.class)); // temporary!
-    if (canEdit()) {
+    // temporary!
+    if (hasSavedFile()) {
+      Intent intent = new Intent(this, TradingScreen.class);
+      intent.putExtra(sendPlayer, currPlayer);
+      startActivity(intent);
+    }
+    // ^^
+    if (hasSavedFile()) {
       queryDelete();
     }
   }
@@ -122,7 +116,7 @@ public class SaveMenu extends GameManager {
    * @param view The button that is clicked.
    */
   public void clickStart(View view) {
-    if (canEdit()) {
+    if (hasSavedFile()) {
       queryResume();
     }
   }
@@ -134,7 +128,7 @@ public class SaveMenu extends GameManager {
    * @param view The edit preferences button.
    */
   public void clickEdit(View view) {
-    if (canEdit()) {
+    if (hasSavedFile()) {
       setPreferences();
     }
   }
@@ -142,7 +136,7 @@ public class SaveMenu extends GameManager {
   /** Updates the TextView with the stats of the current player. */
   private void updatePlayerInfo() {
     TextView display = findViewById(R.id.textView);
-    if (currPlayer != -1 && getSaveStatus()) {
+    if (hasSavedFile()) {
       int score = getScore();
       int health = getHealth();
       int coin = getCoin();
