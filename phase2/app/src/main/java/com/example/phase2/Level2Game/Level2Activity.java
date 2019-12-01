@@ -237,11 +237,13 @@ public class Level2Activity extends GameManager {
     message.setText(getResources().getString(R.string.lose_message));
   }
 
-  // Restarts the level if the player has used a revive potion.
-  public void restartLevel() {
-    message.setVisibility(View.INVISIBLE);
-    setHealth(100);
-    gameRun();
+  // Restarts the level if the player has clicked the button, but only if they have health potions.
+  public void restartLevel(View view) {
+    if (getPotion() > 0) {
+      message.setVisibility(View.INVISIBLE);
+      setHealth(100);
+      gameRun();
+    }
   }
 
   // Switches to the ending phase of Level 2.
