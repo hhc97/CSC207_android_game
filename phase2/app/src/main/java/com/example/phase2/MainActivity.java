@@ -1,10 +1,13 @@
 package com.example.phase2;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,7 +31,35 @@ public class MainActivity extends AppCompatActivity {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.activity_main);
 
+
+    // Move the two copies of the front background image, continuously.
+
+    final ImageView backgroundOne = findViewById(R.id.grass);
+    final ImageView backgroundTwo = findViewById(R.id.grass1);
+    final ImageView backgroundThree = findViewById(R.id.vegetation);
+    final ImageView backgroundFour = findViewById(R.id.vegetation2);
+    ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+    animator.setRepeatCount(ValueAnimator.INFINITE);
+    animator.setInterpolator(new LinearInterpolator());
+    animator.setDuration(10000L);
+    animator.addUpdateListener(
+            new ValueAnimator.AnimatorUpdateListener() {
+              @Override
+              public void onAnimationUpdate(ValueAnimator animation) {
+                final float progress = (float) animation.getAnimatedValue();
+                final float width1 = backgroundOne.getWidth();
+                final float width2 = backgroundThree.getWidth();
+                final float translationX1 = width1 * progress;
+                final float translationX2 = width2 * progress - 10;
+                backgroundOne.setTranslationX(-translationX1);
+                backgroundTwo.setTranslationX(-translationX1 + width1);
+                backgroundThree.setTranslationX(-translationX2);
+                backgroundFour.setTranslationX(-translationX2 + width2);
+              }
+            });
+animator.start();
   }
+
 
   /**
    * Load into the save menu when the start game button is clicked.

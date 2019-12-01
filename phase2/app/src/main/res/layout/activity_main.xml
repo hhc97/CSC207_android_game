@@ -10,21 +10,31 @@
     tools:context="com.example.phase2.MainActivity">
 
     <ImageView
-        android:id="@+id/vegetation3"
+        android:id="@+id/vegetation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         app:srcCompat="@drawable/forestd" />
 
     <ImageView
-        android:id="@+id/vegetation4"
+        android:id="@+id/vegetation2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/forestd" />
 
     <ImageView
-        android:id="@+id/grass2"
+        android:id="@+id/imageView"
+        android:layout_width="738dp"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:onClick="startGame"
+        app:srcCompat="@drawable/main_bg" />
+
+    <ImageView
+        android:id="@+id/grass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -37,7 +47,7 @@
         android:src="@drawable/hills_layer_5" />
 
     <ImageView
-        android:id="@+id/grass3"
+        android:id="@+id/grass1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -46,12 +56,5 @@
         android:layout_marginTop="28dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/hills_layer_5" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="742dp"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        app:srcCompat="@drawable/main_bg" />
 
 </RelativeLayout>
