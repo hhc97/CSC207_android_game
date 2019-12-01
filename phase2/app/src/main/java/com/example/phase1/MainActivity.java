@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.hero).setVisibility(View.VISIBLE);
           }
         },
-        6000);
+        5000);
 
     handler.postDelayed(
         new Runnable() {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.t3).setVisibility(View.VISIBLE);
           }
         },
-        10000);
+        8000);
 
     handler.postDelayed(
         new Runnable() {
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.t4).setVisibility(View.VISIBLE);
           }
         },
-        14000);
+        12000);
 
     handler.postDelayed(
         new Runnable() {
@@ -123,6 +123,6 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.t5).setVisibility(View.VISIBLE);
           }
         },
-        20000);
+        15000);
   }
 }
