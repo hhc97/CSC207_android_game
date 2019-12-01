@@ -300,4 +300,16 @@
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/potions"
+        android:layout_width="98dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="61dp"
+        android:text="Potions"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
 </RelativeLayout>
