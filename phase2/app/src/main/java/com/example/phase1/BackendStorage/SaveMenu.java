@@ -110,6 +110,7 @@ public class SaveMenu extends GameManager {
    * @param view The delete button.
    */
   public void clickDelete(View view) {
+    startActivity(new Intent(this, TradingScreen.class)); // temporary!
     if (canEdit()) {
       queryDelete();
     }
