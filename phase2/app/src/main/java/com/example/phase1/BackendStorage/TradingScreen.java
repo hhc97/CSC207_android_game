@@ -15,7 +15,7 @@ public class TradingScreen extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_trading_screen);
-    setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
+    currPlayer = getIntent().getIntExtra(sendPlayer, 0);
   }
 
   /**
