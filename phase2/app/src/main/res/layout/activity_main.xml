@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/nbg"
     android:clickable="true"
-    android:onClick="startGame"
+    android:onClick="start"
     tools:context="com.example.phase2.MainActivity">
 
     <ImageView
@@ -24,16 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/forestd" />
-
-    <ImageView
-        android:id="@+id/title"
-        android:layout_width="738dp"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:onClick="startGame"
-        android:visibility="visible"
-        app:srcCompat="@drawable/main_bg"
-        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/grass"
@@ -118,8 +108,20 @@
         android:id="@+id/t6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="startGame"
         android:visibility="invisible"
         app:srcCompat="@drawable/t6"
         tools:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="738dp"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:onClick="start"
+        android:visibility="visible"
+        app:srcCompat="@drawable/main_bg"
+        tools:visibility="visible" />
 
 </RelativeLayout>
