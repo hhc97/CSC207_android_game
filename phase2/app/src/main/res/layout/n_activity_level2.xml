@@ -41,7 +41,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="113dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/rbut" />
+            android:background="@drawable/rbut"
+            android:onClick="moveRight" />
 
     <Button
             android:id="@+id/jump"
@@ -248,16 +249,17 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/menu"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="133dp"
-        android:layout_marginEnd="240dp"
-        android:background="@drawable/main"
-        android:textColor="#FFFFFF"
-        android:visibility="invisible" />
+            android:id="@+id/menu"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="133dp"
+            android:layout_marginEnd="240dp"
+            android:background="@drawable/main"
+            android:onClick="returnMenu"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible" />
 
     <TextView
         android:id="@+id/endtext1"

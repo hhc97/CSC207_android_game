@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,12 +25,15 @@ import java.util.TimerTask;
 import pl.droidsonroids.gif.GifImageView;
 
 public class Level2Activity extends LevelActivity {
+
   Level2Manager level2Manager = new Level2Manager();
   private Handler handler = new Handler();
   private Timer timer = new Timer();
   private TextView scoreLabel;
   private TextView healthLabel;
   private TextView potionLabel;
+  private Button rightButton;
+
 //  private TextView message;
   private RelativeLayout screen;
   ValueAnimator animator;
@@ -65,6 +69,9 @@ public class Level2Activity extends LevelActivity {
 
     getPreferences();
 
+    rightButton = findViewById(R.id.right);
+    rightButton.setEnabled(false);
+
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
@@ -74,10 +81,10 @@ public class Level2Activity extends LevelActivity {
 
 //    message = findViewById(R.id.endtext);
 
-    this.controlSchemeOne = new ControlSchemeOne(this);/////////////////////////////////////////////////////////
-    controlSchemeOne.setRightButton();/////////////////////////////////////////////////////////
-    GifImageView heroCharacter = findViewById(R.id.hero);/////////////////////////////////////////////////////////
-    level2Manager.getPlayer().setImage(heroCharacter);/////////////////////////////////////////////////////////
+    this.controlSchemeOne = new ControlSchemeOne(this);
+    controlSchemeOne.setRightButton();
+    GifImageView heroCharacter = findViewById(R.id.hero);
+    level2Manager.getPlayer().setImage(heroCharacter);
     screen.setOnClickListener(
         new View.OnClickListener() {
           @Override
@@ -123,6 +130,7 @@ public class Level2Activity extends LevelActivity {
                       //                      levelEndDelay();
                     }
                     else if (getScore() >= 2000) {
+                      rightButton.setEnabled(true);
                       collectPhase();
                     }
                   }
@@ -152,6 +160,7 @@ public class Level2Activity extends LevelActivity {
     animator.setRepeatCount(ValueAnimator.INFINITE);
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(5000L);
+
     animator.addUpdateListener(
         new ValueAnimator.AnimatorUpdateListener() {
           @Override
@@ -178,7 +187,7 @@ public class Level2Activity extends LevelActivity {
   // Visually show that the hero is jumping.
   public void tapScreen(View view) {
     preventTwoClick(view);
-    final GifImageView heroCharacter = findViewById(R.id.hero);///////////////////////////////////////////////////////// Changed ImageView to GifImageView
+    final GifImageView heroCharacter = findViewById(R.id.hero);
     final ObjectAnimator animationUp =
         ObjectAnimator.ofFloat(
             heroCharacter, "translationY", 0f, -100, -200f, -250f, -200f, -100f, 0f);
@@ -235,6 +244,10 @@ public class Level2Activity extends LevelActivity {
     }
   }
 
+  public void returnMenu(View view) {
+    finish();
+  }
+
   private void updateLabels() {
     scoreLabel.setText("Score: " + getScore());
     healthLabel.setText("Health: " + getHealth());
@@ -271,8 +284,11 @@ public class Level2Activity extends LevelActivity {
     }
   }
 
+  public void moveRight(View view) {
+    rightAction();
+  }
 
-  public void rightAction(){///////////////////////////////////////////////////////////////////////////////////
+  public void rightAction() {
     level2Manager.rightAction();
     (level2Manager.getPlayer().getImage()).setX(level2Manager.getPlayer().getX());
   }
