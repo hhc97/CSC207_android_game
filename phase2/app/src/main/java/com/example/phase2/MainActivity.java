@@ -15,9 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.phase2.BackendStorage.SaveMenu;
 import com.example.phase1.R;
 
-/** The main activity that starts the game and loads into the save menu. */
+/**
+ * The main activity that starts the game and loads into the save menu. An intro animation is played
+ * each time, but can be skipped.
+ */
 public class MainActivity extends AppCompatActivity {
-  boolean new_install = true;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     // Move the two copies of the front background image, continuously.
-
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
     final ImageView backgroundThree = findViewById(R.id.vegetation);
@@ -61,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   /**
-   * Load into the save menu when old user clicks anywhere on screen, else show the introduction
-   * screen
+   * Load into the save menu when the user clicks anywhere on screen, else play the animation.
    *
    * @param view The start game button.
    */
@@ -71,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
     startActivity(intent);
   }
 
+  /**
+   * Runs the intro animation when the starting screen is clicked.
+   *
+   * @param view The starting screen button.
+   */
   public void runIntro(View view) {
     findViewById(R.id.title).setVisibility(View.INVISIBLE);
     findViewById(R.id.t6).setVisibility(View.VISIBLE);
