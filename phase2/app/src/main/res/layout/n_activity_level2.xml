@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/n_2_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/n_2_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/nbg"
@@ -130,6 +131,55 @@
             android:layout_marginTop="178dp"
             android:layout_marginEnd="0dp"
             app:srcCompat="@drawable/tree" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="279dp"
+        android:layout_marginTop="217dp"
+        android:src="@drawable/coin"
+        tools:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c1"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="595dp"
+        android:layout_marginTop="215dp"
+        android:src="@drawable/coin"
+        tools:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/potion"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="405dp"
+        android:layout_marginTop="212dp"
+        android:src="@drawable/potion"
+        android:visibility="visible"
+        tools:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c2"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="698dp"
+        android:layout_marginTop="214dp"
+        android:src="@drawable/coin"
+        tools:visibility="invisible" />
 
     <ImageView
             android:id="@+id/grass1"
