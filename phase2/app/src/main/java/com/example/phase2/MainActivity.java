@@ -3,6 +3,7 @@ package com.example.phase2;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,7 +17,7 @@ import com.example.phase1.R;
 
 /** The main activity that starts the game and loads into the save menu. */
 public class MainActivity extends AppCompatActivity {
-
+    boolean new_install = false;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -62,12 +63,79 @@ animator.start();
 
 
   /**
-   * Load into the save menu when the start game button is clicked.
+   * Load into the save menu when old user clicks anywhere on screen,
+   * else show the introduction screen
    *
    * @param view The start game button.
    */
-  public void startGame(View view) {
-    Intent intent = new Intent(this, SaveMenu.class);
-    startActivity(intent);
+  public void start(View view) {
+
+
+
+      for (String s : fileList()) {
+          if (s.equals("stats.txt")) {
+              new_install = true;
+          }
+      }
+
+      if(new_install){runIntro();}
+      else{startGame(view);}
   }
+
+  public void startGame(View view){
+      Intent intent = new Intent(this, SaveMenu.class);
+      startActivity(intent);
+  }
+
+  public void runIntro(){
+      findViewById(R.id.title).setVisibility(View.INVISIBLE);
+      Handler handler = new Handler();
+      handler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+              findViewById(R.id.t1).setVisibility(View.VISIBLE);
+          }
+      }, 1600);
+
+      handler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+              findViewById(R.id.t2).setVisibility(View.VISIBLE);
+              findViewById(R.id.hero).setVisibility(View.VISIBLE);
+          }
+      }, 6000);
+
+      handler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+              findViewById(R.id.t3).setVisibility(View.VISIBLE);
+          }
+      }, 10000);
+
+      handler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+              findViewById(R.id.t4).setVisibility(View.VISIBLE);
+          }
+      }, 14000);
+
+      handler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+              findViewById(R.id.t5).setVisibility(View.VISIBLE);
+          }
+      }, 20000);
+
+      handler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+
+              findViewById(R.id.t6).setVisibility(View.VISIBLE);
+          }
+      }, 22000);
+
+  }
+
+
+
 }
