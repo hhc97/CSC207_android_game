@@ -40,7 +40,7 @@ public class Level2Manager {
     parent = p;
   }
 
-  void updateHealth() {
+  private void updateHealth() {
     if (difficulty == 0) {
       parent.deductHealth(30);
     }
