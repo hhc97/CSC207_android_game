@@ -99,7 +99,7 @@
         android:layout_marginBottom="31dp"
         android:background="@drawable/potion1"
         android:onClick="useBonusKey"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/magic_text"
@@ -112,7 +112,7 @@
         android:layout_marginBottom="33dp"
         android:text="Use Magic Key to Unlock"
         android:textColor="#FFFFFF"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/health"

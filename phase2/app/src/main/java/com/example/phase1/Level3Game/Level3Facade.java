@@ -77,6 +77,15 @@ class Level3Facade {
 
   int getLength(){return level3.getLength();}
 
-  int getDifficulty() {return level3.getDifficulty();
-  }
+  int getDifficulty() {return level3.getDifficulty();}
+
+  void enableKeyButton(){displayHandler.enableKeyButton();}
+
+  void disableKeyButton(){displayHandler.disableButtons();}
+
+  void showKeyButton(){displayHandler.showKeyButton();}
+
+  void hideKeyButton(){displayHandler.hideKeyButton();}
+
+  void showKeyText(){displayHandler.showKeyText();}
 }
