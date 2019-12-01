@@ -90,13 +90,11 @@
         android:id="@+id/tree"
         android:layout_width="wrap_content"
         android:layout_height="63dp"
-        android:layout_alignEnd="@+id/tree1_c"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_marginStart="430dp"
         android:layout_marginTop="206dp"
-        android:layout_marginEnd="0dp"
         app:srcCompat="@drawable/tree_2" />
 
     <ImageView
@@ -297,7 +295,7 @@
             android:layout_marginEnd="240dp"
             android:layout_marginBottom="267dp"
             android:background="@drawable/potion1"
-            android:onClick="restartLevel"
+            android:onClick="resumeLevel"
             android:textColor="#FFFFFF"
             android:visibility="invisible" />
 

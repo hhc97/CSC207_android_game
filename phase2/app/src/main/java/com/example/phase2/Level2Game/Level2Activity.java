@@ -25,7 +25,8 @@ public class Level2Activity extends GameManager {
   private Timer timer = new Timer();
   private TextView scoreLabel;
   private TextView healthLabel;
-  private TextView message;
+  private TextView potionLabel;
+//  private TextView message;
 
   private RelativeLayout screen;
 
@@ -58,37 +59,16 @@ public class Level2Activity extends GameManager {
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-    // Change the background theme to either day or night based on the user's choice.
-    if (getDayOrNight() == 0) {
-      setContentView(R.layout.n_activity_level2);
-      screen = findViewById(R.id.n_2_layout);
-    } else if (getDayOrNight() == 1) {
-      setContentView(R.layout.activity_level2);
-      screen = findViewById(R.id.lvl_2_layout);
-    }
-
-    // Change the hero's appearance based on the user's choice.
-    final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
-    if (getCharacter() == 0) {
-      hero.setImageResource(R.drawable.run2);
-    } else if (getCharacter() == 1) {
-      hero.setImageResource(R.drawable.run1);
-    }
-
-    // Change health depending on the chosen difficulty level.
-    if (getDifficulty() == 0) {
-      addHealth(3);
-    } else if (getDifficulty() == 1) {
-      addHealth(2);
-    } else if (getDifficulty() == 2) {
-      addHealth(1);
-    }
+    getPreferences();
 
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
     healthLabel = findViewById(R.id.health);
+    potionLabel = findViewById(R.id.potions);
 
-    message = findViewById(R.id.endtext);
+    updateLabels();
+
+//    message = findViewById(R.id.endtext);
 
     screen.setOnClickListener(
         new View.OnClickListener() {
@@ -113,12 +93,13 @@ public class Level2Activity extends GameManager {
                   public void run() {
                     // Update coordinates of the moving obstacles, as well as the score.
                     level2Manager.update();
-                    scoreLabel.setText("Score: " + getScore());
-                    healthLabel.setText("Health: " + getHealth());
+                    updateLabels();
 
                     // The level is over, so pause the auto-update to check collision and
                     // animation.
                     if (getHealth() <= 0) {
+                      setPotion(1);
+                      healthLabel.setText("Health: 0");
 
                       // Make the end-game text visible
                       findViewById(R.id.endtext).setVisibility(View.VISIBLE);
@@ -126,7 +107,7 @@ public class Level2Activity extends GameManager {
                       findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
                       findViewById(R.id.menu).setVisibility(View.VISIBLE);
                       findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
-                      message.setVisibility(View.VISIBLE);
+//                      message.setVisibility(View.VISIBLE);
 
                       // End the animation
                       animator.cancel();
@@ -233,21 +214,54 @@ public class Level2Activity extends GameManager {
   public void tapStart() {
     gameRun();
     screen.setClickable(false);
-    message.setVisibility(View.INVISIBLE);
-    message.setText(getResources().getString(R.string.lose_message));
+//    message.setVisibility(View.INVISIBLE);
+//    message.setText(getResources().getString(R.string.lose_message));
   }
 
   // Restarts the level if the player has clicked the button, but only if they have health potions.
-  public void restartLevel(View view) {
+  public void resumeLevel(View view) {
     if (getPotion() > 0) {
-      message.setVisibility(View.INVISIBLE);
+//      message.setVisibility(View.INVISIBLE);
       setHealth(100);
-      gameRun();
+      restartLevel();
     }
   }
 
+  private void updateLabels() {
+    scoreLabel.setText("Score: " + getScore());
+    healthLabel.setText("Health: " + getHealth());
+    potionLabel.setText("Potions: " + getPotion());
+  }
   // Switches to the ending phase of Level 2.
   public void collectPhase() {}
+
+  private void getPreferences() {
+    // Change the background theme to either day or night based on the user's choice.
+    if (getDayOrNight() == 0) {
+      setContentView(R.layout.n_activity_level2);
+      screen = findViewById(R.id.n_2_layout);
+    } else if (getDayOrNight() == 1) {
+      setContentView(R.layout.activity_level2);
+      screen = findViewById(R.id.lvl_2_layout);
+    }
+
+    // Change the hero's appearance based on the user's choice.
+    final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
+    if (getCharacter() == 0) {
+      hero.setImageResource(R.drawable.run2);
+    } else if (getCharacter() == 1) {
+      hero.setImageResource(R.drawable.run1);
+    }
+
+    // Change health depending on the chosen difficulty level.
+    if (getDifficulty() == 0) {
+      addHealth(3);
+    } else if (getDifficulty() == 1) {
+      addHealth(2);
+    } else if (getDifficulty() == 2) {
+      addHealth(1);
+    }
+  }
 
   //  // A 3 second delay before starting Level 3.
   //  private void levelEndDelay() {
