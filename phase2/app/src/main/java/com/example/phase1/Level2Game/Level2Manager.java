@@ -15,11 +15,13 @@ public class Level2Manager {
   private Level2Activity parent;
   private ObjectBuilder builder;
   private int difficulty;
+  private Hero player;///////////////////////////////////////////////////////////////////////////////////
 
   Level2Manager() {
     builder = new ObjectBuilder();
     Hero player = (Hero) builder.createObject("Hero");
     player.setPosition(playerStartX, playerStartY);
+    this.player =player;
 
     Obstacle rock1 = (Obstacle) builder.createObject("Obstacle");
     rock1.setPosition(185, GROUND_HEIGHT);
@@ -56,6 +58,7 @@ public class Level2Manager {
   public void update() {
     for (Obstacle obstacle : Obstacles) {
       obstacle.update();
+      player.update();
       if (obstacle.getX() <= this.playerStartX && !(obstacle.getPassed())) {
         obstacle.setPassed(true);
 
@@ -75,5 +78,14 @@ public class Level2Manager {
     } else {
       this.playerStartY = 0;
     }
+  }
+
+
+  //Hero object move right
+  public void rightAction(){/////////////////////////////////////////////////////////
+    player.moveRight();
+  }
+  public Hero getPlayer(){/////////////////////////////////////////////////////////
+    return this.player;
   }
 }

@@ -14,12 +14,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.phase1.BackendStorage.GameManager;
+import com.example.phase1.BackendStorage.LevelActivity;
+import com.example.phase1.Controls.ControlSchemeOne;
 import com.example.phase1.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Level2Activity extends GameManager {
+import pl.droidsonroids.gif.GifImageView;
+
+public class Level2Activity extends LevelActivity {
   Level2Manager level2Manager = new Level2Manager();
   private Handler handler = new Handler();
   private Timer timer = new Timer();
@@ -27,9 +31,7 @@ public class Level2Activity extends GameManager {
   private TextView healthLabel;
   private TextView potionLabel;
 //  private TextView message;
-
   private RelativeLayout screen;
-
   ValueAnimator animator;
 
   // Images in the layout for Level 2.
@@ -43,6 +45,8 @@ public class Level2Activity extends GameManager {
   ImageView pineTreeCopy;
   ImageView rock;
   ImageView rockCopy;
+
+  private ControlSchemeOne controlSchemeOne;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,10 @@ public class Level2Activity extends GameManager {
 
 //    message = findViewById(R.id.endtext);
 
+    this.controlSchemeOne = new ControlSchemeOne(this);/////////////////////////////////////////////////////////
+    controlSchemeOne.setRightButton();/////////////////////////////////////////////////////////
+    GifImageView heroCharacter = findViewById(R.id.hero);/////////////////////////////////////////////////////////
+    level2Manager.getPlayer().setImage(heroCharacter);/////////////////////////////////////////////////////////
     screen.setOnClickListener(
         new View.OnClickListener() {
           @Override
@@ -170,7 +178,7 @@ public class Level2Activity extends GameManager {
   // Visually show that the hero is jumping.
   public void tapScreen(View view) {
     preventTwoClick(view);
-    final ImageView heroCharacter = findViewById(R.id.hero);
+    final GifImageView heroCharacter = findViewById(R.id.hero);///////////////////////////////////////////////////////// Changed ImageView to GifImageView
     final ObjectAnimator animationUp =
         ObjectAnimator.ofFloat(
             heroCharacter, "translationY", 0f, -100, -200f, -250f, -200f, -100f, 0f);
@@ -261,6 +269,12 @@ public class Level2Activity extends GameManager {
     } else if (getDifficulty() == 2) {
       addHealth(1);
     }
+  }
+
+
+  public void rightAction(){///////////////////////////////////////////////////////////////////////////////////
+    level2Manager.rightAction();
+    (level2Manager.getPlayer().getImage()).setX(level2Manager.getPlayer().getX());
   }
 
   //  // A 3 second delay before starting Level 3.
