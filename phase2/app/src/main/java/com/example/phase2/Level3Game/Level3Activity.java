@@ -60,7 +60,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
 
     level3Facade.setDisplayHandler(
         new DisplayHandler(buttons, (TextView) findViewById(R.id.pstat)));
-    level3Facade.setLevel3(new Level3Manager());
+    level3Facade.setLevel3(new Level3Manager(getDifficulty()));
   }
 
   /** Override for Activity.onStart. Displays the Sequence. */
@@ -75,8 +75,8 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    */
   @SuppressLint("SetTextI18n")
   public void displaySequence() {
-    Level3Facade.startSequence();
-    final Iterator<Integer> sequence = Level3Facade.getSequence().iterator();
+    level3Facade.startSequence();
+    final Iterator<Integer> sequence = level3Facade.getSequence().iterator();
 
     TimerTask task = new TimerTask() { // create TimerTask
           @Override
@@ -88,7 +88,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                     new Runnable() { // force task to run on UI Thread
                       @Override
                       public void run() {
-                        Level3Facade.setButtonInvisible(i); // Make button Visible
+                        level3Facade.setButtonInvisible(i); // Make button Visible
                       }
                     });
               }
@@ -105,14 +105,14 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                               new Runnable() { // force task to run on UI Thread
                                   @Override
                                   public void run() {
-                                      Level3Facade.setButtonsVisible(); // Make button Visible
+                                      level3Facade.setButtonsVisible(); // Make button Visible
                                   }
                               });
           }
       };
     timer.schedule(task, 500L, 1000L); // schedule the task to execute every second
     timer.schedule(task1, 1000L, 1000L);
-    Level3Facade.endSequence();
+    level3Facade.endSequence();
   }
 
   /**
@@ -122,22 +122,22 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    */
   @Override
   public void onClick(View v) {
-    if (v.getId() == DisplayHandler.getButton(0).getId()) { // Top left button clicked
-      Level3Facade.setUserInput(0);
+    if (v.getId() == level3Facade.getButton(0).getId()) { // Top left button clicked
+      level3Facade.setUserInput(0);
     }
-    if (v.getId() == DisplayHandler.getButton(1).getId()) { // Bottom left button clicked
-      Level3Facade.setUserInput(1);
+    if (v.getId() == level3Facade.getButton(1).getId()) { // Bottom left button clicked
+      level3Facade.setUserInput(1);
     }
-    if (v.getId() == DisplayHandler.getButton(2).getId()) { // Bottom right button clicked
-      Level3Facade.setUserInput(2);
+    if (v.getId() == level3Facade.getButton(2).getId()) { // Bottom right button clicked
+      level3Facade.setUserInput(2);
     }
-    if (v.getId() == DisplayHandler.getButton(3).getId()) { // Top right button clicked
-      Level3Facade.setUserInput(3);
+    if (v.getId() == level3Facade.getButton(3).getId()) { // Top right button clicked
+      level3Facade.setUserInput(3);
     }
-    if (Level3Facade.checkConditions() == 1) { // User did not input correct sequence
+    if (level3Facade.checkConditions() == 1) { // User did not input correct sequence
       onBadInput();
     }
-    if (Level3Facade.checkConditions() == 2) { // User successfully inputs correct sequence
+    if (level3Facade.checkConditions() == 2) { // User successfully inputs correct sequence
       onWin();
     }
   }
@@ -148,7 +148,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
         new Runnable() { // force task to run on UI Thread
           @Override
           public void run() {
-            Level3Facade.setText(s);
+            level3Facade.setText(s);
           }
         });
   }
@@ -158,10 +158,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    * if the player has any remaining lives, else it restarts the game.
    */
   private void onBadInput() {
-    if (Level3Facade.getAttempts() == 3) { // User made 3 attempts (out of attempts)
+    if (level3Facade.getAttempts() == 3) { // User made 3 attempts (out of attempts)
       deductHealth(1); // deduct a life
       setText("Incorrect Pattern! You ran out of attempts, -1 lives");
-      Level3Facade.setAttempts(0);
+      level3Facade.setAttempts(0);
       new Handler()
           .postDelayed(
               new Runnable() { // delay the task by 5 seconds
@@ -179,11 +179,11 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     } else { // User input incorrect sequence but still has remaining attempts
       setText(
           "Incorrect Pattern! "
-              + (3 - Level3Facade.getAttempts())
+              + (3 - level3Facade.getAttempts())
               + " remaining! "
               + "Displaying Sequence");
-      Level3Facade.clearInput(); // clear input for next attempt
-      Level3Facade.disableButtons();
+      level3Facade.clearInput(); // clear input for next attempt
+      level3Facade.disableButtons();
       new Handler()
           .postDelayed(
               new Runnable() { // delay the task by 2 seconds
@@ -200,7 +200,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    * To be called when the correct sequence has been inputted. Displays a message and ends the game.
    */
   private void onWin() {
-    Level3Facade.disableButtons();
+    level3Facade.disableButtons();
     setText("Correct Pattern!, You win! Returning to the Save Menu");
     new Handler()
         .postDelayed(

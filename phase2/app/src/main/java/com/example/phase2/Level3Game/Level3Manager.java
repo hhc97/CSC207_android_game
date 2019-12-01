@@ -9,15 +9,16 @@ import java.util.Iterator;
  */
 class Level3Manager {
 
-  private static ArrayList<Integer> sequence;
-  static int attempts = 0;
+  private ArrayList<Integer> sequence;
+  int attempts = 0;
   // button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
   private static ArrayList<Integer> input = new ArrayList<>();
 
-  static void setAttempts(int i){attempts = i;}
+  void setAttempts(int i){attempts = i;}
   /** Constructor initializes sequence. */
-  Level3Manager() {
-    sequence = Sequence.getSequence(); // get a new Sequence from Sequence class
+  Level3Manager(int i) {
+    Sequence seq = new Sequence(); // get a new Sequence from Sequence class
+    sequence = seq.getSequence(i);
   }
 
   /**
@@ -25,7 +26,8 @@ class Level3Manager {
    *
    * @return The stored sequence
    */
-  static ArrayList<Integer> getSequence() {
+  ArrayList<Integer> getSequence()
+  {
     return sequence;
   }
   //  /**
@@ -42,11 +44,11 @@ class Level3Manager {
    *
    * @param pressed the button which was pressed
    */
-  static void setUserInput(int pressed) {
+  void setUserInput(int pressed) {
     input.add(pressed);
   }
 
-  static void clearInput() {
+  void clearInput() {
     input.clear();
   }
 
@@ -55,7 +57,7 @@ class Level3Manager {
    *
    * @return 1 if user input does not match sequence, 2 if the user has won, else 0
    */
-  static int checkConditions() {
+  int checkConditions() {
     Iterator<Integer> seq = sequence.iterator();
     Iterator<Integer> in = input.iterator();
 
@@ -71,5 +73,9 @@ class Level3Manager {
       }
     }
     return 0;
+  }
+
+  int getAttempts() {
+    return attempts;
   }
 }

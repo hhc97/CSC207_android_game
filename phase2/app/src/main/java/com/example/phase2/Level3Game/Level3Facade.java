@@ -1,6 +1,7 @@
 package com.example.phase2.Level3Game;
 
 import android.annotation.SuppressLint;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -8,62 +9,65 @@ class Level3Facade {
   private Level3Manager Level3;
 
   @SuppressLint("StaticFieldLeak")
-  private static DisplayHandler displayHandler;
+  private DisplayHandler displayHandler;
 
-  static void setAttempts(int i) { Level3Manager.setAttempts(i); }
+  void setAttempts(int i) { Level3.setAttempts(i); }
 
-  static void setButtonVisible(int i) {
+  void setButtonVisible(int i) {
     displayHandler.setButtonVisible(i);
   }
-    static void setButtonInvisible(int i) {
-        displayHandler.setButtonInvisible(i);
-    }
 
-  void setDisplayHandler(DisplayHandler displayHandler) {
-    Level3Facade.displayHandler = displayHandler;
+  void setButtonInvisible(int i) {
+        displayHandler.setButtonInvisible(i);
   }
 
-  static int getAttempts() {
-    return Level3Manager.attempts;
+  void setDisplayHandler(DisplayHandler displayHandler) {
+    this.displayHandler = displayHandler;
+  }
+
+  int getAttempts() {
+    return Level3.getAttempts();
   }
 
   void setLevel3(Level3Manager level3) {
     this.Level3 = level3;
   }
 
-  static void startSequence() {
+  void startSequence() {
     displayHandler.startSequence();
   }
 
-  static void endSequence() { displayHandler.endSequence(); }
+  void endSequence() { displayHandler.endSequence(); }
 
-  static void disableButtons() {
-    DisplayHandler.disableButtons();
+  void disableButtons() {
+    displayHandler.disableButtons();
   }
 
-  static void setButtonsVisible(){DisplayHandler.setButtonsVisible();}
+  void setButtonsVisible(){displayHandler.setButtonsVisible();}
 
-  static void setButtonsInvisible(){DisplayHandler.setButtonsInvisible();}
+  void setButtonsInvisible(){displayHandler.setButtonsInvisible();}
 
-  static void enableButtons(){DisplayHandler.enableButtons();}
+  void enableButtons(){displayHandler.enableButtons();}
 
-  static void setText(String s) {
-    DisplayHandler.setText(s);
+  void setText(String s) {
+    displayHandler.setText(s);
   }
 
-  static ArrayList<Integer> getSequence() {
-    return Level3Manager.getSequence();
+  ArrayList<Integer> getSequence() {
+    return Level3.getSequence();
   }
 
-  static void setUserInput(int pressed) {
-    Level3Manager.setUserInput(pressed);
+  void setUserInput(int pressed) {
+    Level3.setUserInput(pressed);
   }
 
-  static void clearInput() {
-    Level3Manager.clearInput();
+  void clearInput() {
+    Level3.clearInput();
   }
 
-  static int checkConditions() {
-    return Level3Manager.checkConditions();
+  int checkConditions() {
+    return Level3.checkConditions();
   }
+
+  Button getButton(int i){return displayHandler.getButton(i);}
 }

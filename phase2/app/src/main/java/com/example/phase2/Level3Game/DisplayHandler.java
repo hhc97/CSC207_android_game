@@ -6,9 +6,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 class DisplayHandler {
-    private static Button[] buttons = new Button[4];
+    private Button[] buttons = new Button[4];
     @SuppressLint("StaticFieldLeak")
-    private static TextView out;
+    private TextView out;
 
     DisplayHandler(Button[] b, TextView o){
         buttons = b;
@@ -39,38 +39,38 @@ class DisplayHandler {
     }
 
     /** Set all Button.Enabled and Clickable properties to true */
-    static void enableButtons(){
+    void enableButtons(){
         for (Button button : buttons) {
             button.setEnabled(true);
             button.setClickable(true);
         }
     }
 
-    static void disableButtons(){
+    void disableButtons(){
         for (Button button : buttons) {
             button.setEnabled(false);
             button.setClickable(false);
         }
     }
 
-    static void setButtonsVisible(){
+    void setButtonsVisible(){
         for (Button button : buttons) {
             button.setVisibility(View.VISIBLE);
         }
     }
 
-    static void setButtonsInvisible(){
+    void setButtonsInvisible(){
         for (Button button : buttons) {
             button.setVisibility(View.INVISIBLE);
         }
     }
 
-    static void setText(String s){
+    void setText(String s){
         out.setText(s);
         out.setVisibility(View.VISIBLE);
     }
 
-    static Button getButton(int i){
+    Button getButton(int i){
         return buttons[i];
     }
 
