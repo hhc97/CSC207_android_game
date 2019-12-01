@@ -243,6 +243,18 @@ public abstract class GameManager extends FileReadWriter {
     }
   }
 
+  /**
+   * Starts a specified level, for when the player can skip levels.
+   *
+   * @param level The level that is to be started.
+   */
+  public void startSpecifiedLevel(int level) {
+    if (level >= 1 && level <= 3) {
+      setLevel(level);
+      startGame();
+    }
+  }
+
   /** Starts the game again, if the player loses all their lives. */
   public void startAgain() {
     setLevel(1);
