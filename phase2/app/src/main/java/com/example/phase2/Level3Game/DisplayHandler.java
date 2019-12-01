@@ -18,7 +18,7 @@ class DisplayHandler {
     @SuppressLint("SetTextI18n")
     void startSequence(){
         disableButtons(); // disable the buttons while the sequence is displaying
-        setButtonsInvisible();
+        setButtonsVisible();
         out.setText("Wait for the sequence to display");
         out.setVisibility(View.VISIBLE);
     }
@@ -32,6 +32,10 @@ class DisplayHandler {
 
     void setButtonVisible(int i){
         buttons[i].setVisibility(View.VISIBLE);
+    }
+
+    void setButtonInvisible(int i){
+        buttons[i].setVisibility(View.INVISIBLE);
     }
 
     /** Set all Button.Enabled and Clickable properties to true */

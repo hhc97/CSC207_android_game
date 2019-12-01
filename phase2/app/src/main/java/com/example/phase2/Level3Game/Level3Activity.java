@@ -88,7 +88,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                     new Runnable() { // force task to run on UI Thread
                       @Override
                       public void run() {
-                        Level3Facade.setButtonVisible(i); // Make button Visible
+                        Level3Facade.setButtonInvisible(i); // Make button Visible
                       }
                     });
               }
@@ -98,7 +98,20 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             }
           }
         };
-    timer.schedule(task, 1000L, 1000L); // schedule the task to execute every second
+      TimerTask task1 = new TimerTask() { // create TimerTask
+          @Override
+          public void run() {
+                      runOnUiThread(
+                              new Runnable() { // force task to run on UI Thread
+                                  @Override
+                                  public void run() {
+                                      Level3Facade.setButtonsVisible(); // Make button Visible
+                                  }
+                              });
+          }
+      };
+    timer.schedule(task, 500L, 1000L); // schedule the task to execute every second
+    timer.schedule(task1, 1000L, 1000L);
     Level3Facade.endSequence();
   }
 

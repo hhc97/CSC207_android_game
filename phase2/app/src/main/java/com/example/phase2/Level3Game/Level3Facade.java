@@ -15,6 +15,9 @@ class Level3Facade {
   static void setButtonVisible(int i) {
     displayHandler.setButtonVisible(i);
   }
+    static void setButtonInvisible(int i) {
+        displayHandler.setButtonInvisible(i);
+    }
 
   void setDisplayHandler(DisplayHandler displayHandler) {
     Level3Facade.displayHandler = displayHandler;
