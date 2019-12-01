@@ -234,6 +234,7 @@ public class Level2Activity extends GameManager {
   }
 
   public void restartLevel() {
+    message.setVisibility(View.INVISIBLE);
     setHealth(100);
     gameRun();
   }

@@ -225,7 +225,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="332dp"
             android:layout_marginBottom="273dp"
-            android:text="You Died !"
+            android:text="@string/level2_instructions"
             android:textSize="24sp"
             android:visibility="invisible" />
 
