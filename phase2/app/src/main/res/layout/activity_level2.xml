@@ -48,8 +48,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="666dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/hbut"
-            android:onClick="tapStart" />
+            android:background="@drawable/hbut" />
 
     <ImageView
         android:id="@+id/grass1"
