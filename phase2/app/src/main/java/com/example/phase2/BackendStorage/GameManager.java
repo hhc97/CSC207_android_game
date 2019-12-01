@@ -230,6 +230,11 @@ public abstract class GameManager extends FileReadWriter {
     }
   }
 
+  /** Restarts the level. */
+  public void restartLevel() {
+    startGame();
+  }
+
   /** Starts the next level, if current level is not the final level. */
   public void startNextLevel() {
     if (getLevel() < 3) {
