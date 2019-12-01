@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/nbg"
     android:clickable="true"
-    android:onClick="start"
+    android:onClick="runIntro"
     tools:context="com.example.phase2.MainActivity">
 
     <ImageView
@@ -119,7 +119,7 @@
         android:layout_width="738dp"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:onClick="start"
+        android:onClick="runIntro"
         android:visibility="visible"
         app:srcCompat="@drawable/main_bg"
         tools:visibility="visible" />
