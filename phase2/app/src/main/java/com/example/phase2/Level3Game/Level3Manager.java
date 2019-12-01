@@ -10,7 +10,7 @@ import java.util.Iterator;
 class Level3Manager {
 
   private ArrayList<Integer> sequence;
-  int attempts = 0;
+  private int attempts = 0;
   // button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
   private static ArrayList<Integer> input = new ArrayList<>();
 

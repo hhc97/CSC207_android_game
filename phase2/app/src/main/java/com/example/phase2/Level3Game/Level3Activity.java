@@ -78,7 +78,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     level3Facade.startSequence();
     final Iterator<Integer> sequence = level3Facade.getSequence().iterator();
 
-    TimerTask task = new TimerTask() { // create TimerTask
+    final TimerTask task = new TimerTask() { // create TimerTask
           @Override
           public void run() {
             if (sequence.hasNext()) { // check that the iterator has more items.
@@ -98,7 +98,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             }
           }
         };
-      TimerTask task1 = new TimerTask() { // create TimerTask
+      final TimerTask task1 = new TimerTask() { // create TimerTask
           @Override
           public void run() {
                       runOnUiThread(
@@ -110,9 +110,17 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                               });
           }
       };
-    timer.schedule(task, 500L, 1000L); // schedule the task to execute every second
-    timer.schedule(task1, 1000L, 1000L);
-    level3Facade.endSequence();
+      timer.schedule(task, 500L, 1000L); // schedule the task to execute every second
+      timer.schedule(task1, 1000L, 1000L);
+      new Handler()
+              .postDelayed(
+                      new Runnable() { // delay the task by 5 seconds
+                          @Override
+                          public void run() {
+                              level3Facade.endSequence();
+                          }
+                      },
+                      ((getDifficulty() + 1)*1000*5) + 1000);
   }
 
   /**
@@ -159,7 +167,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    */
   private void onBadInput() {
     if (level3Facade.getAttempts() == 3) { // User made 3 attempts (out of attempts)
-      deductHealth(1); // deduct a life
+      deductHealth(30); // deduct a life
       setText("Incorrect Pattern! You ran out of attempts, -1 lives");
       level3Facade.setAttempts(0);
       new Handler()

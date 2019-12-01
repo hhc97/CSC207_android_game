@@ -10,8 +10,11 @@ class Sequence {
   void setDifficulty(int i){
     switch(i){
       case 0: this.difficulty = 5;
+              break;
       case 1: this.difficulty = 10;
+              break;
       case 2: this.difficulty = 15;
+              break;
     }
   }
   /**
@@ -20,7 +23,7 @@ class Sequence {
    * @return the random sequence of integers
    */
   ArrayList<Integer> getSequence(int j) {
-    this.setDifficulty(j);
+    setDifficulty(j);
     Random random = new Random();
     ArrayList<Integer> sequence = new ArrayList<>();
     for (int i = 0; i < difficulty; i++) {
