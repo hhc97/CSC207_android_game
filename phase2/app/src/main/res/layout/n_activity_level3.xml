@@ -16,7 +16,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="43dp"
-        android:layout_marginBottom="94dp"
+        android:layout_marginBottom="111dp"
         app:srcCompat="@drawable/hero1" />
 
     <Button
