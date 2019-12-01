@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Level1Manager {
   ArrayList<GameObject> Objects = new ArrayList<>();
-  private static Hero player;
+  private Hero player;
   private float playerStartX = 50; // temp, the x coordinate of character.
   private float groundHeight = 20; // temp, the height of the ground.
   private float playerStartY = groundHeight;
@@ -21,6 +21,7 @@ public class Level1Manager {
   private float maxFrameSize = 1800;
   private float minFrameSize = -50;
   private ObjectBuilder builder;
+  private boolean hasGetTheEasterEgg = false;
 
   public Level1Manager(int difficulty) {
     this.difficulty = difficulty;
@@ -133,9 +134,10 @@ public class Level1Manager {
     if (player.isAttack()) {
       player.notAttack();
     }
+    checkEasterEgg();
   }
 
-  public static Hero getPlayer() {
+  public Hero getPlayer() {
     return player;
   }
 
@@ -153,5 +155,29 @@ public class Level1Manager {
 
   public boolean isPlayerAlive() {
     return player.getStates();
+  }
+
+  private void checkEasterEgg() {
+    if (easterEggCondition()) {
+      easterEgg();
+    }
+  }
+
+  private boolean easterEggCondition() {
+    if (difficulty == 2 && !hasGetTheEasterEgg) {
+      if (player.getStates() && player.getHealth() <= 10) {
+        for (int i = 4; i <= 6; i++) {
+          if (!Objects.get(i).getStates()) return false;
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
+  private void easterEgg() {
+    hasGetTheEasterEgg = true;
+    player.addPotion();
+    player.addScore(500);
   }
 }

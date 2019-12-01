@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.phase2.BackendStorage.GameManager;
+import com.example.phase2.BackendStorage.LevelActivity;
 import com.example.phase2.Controls.*;
 import com.example.phase2.Controls.ControlSchemeOne;
 import com.example.phase2.Objects.GameObject;
@@ -22,7 +23,7 @@ import java.util.TimerTask;
 
 import pl.droidsonroids.gif.GifImageView;
 
-public class Level1Activity extends GameManager {
+public class Level1Activity extends LevelActivity {
 
   private Button toMenuButton;
   private Button usePotionButton;
@@ -63,7 +64,7 @@ public class Level1Activity extends GameManager {
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-    this.controlScheme = new ControlSchemeOne();
+    this.controlScheme = new ControlSchemeOne(this);
 
     // calling initial setup methods.
     setup();
@@ -118,17 +119,16 @@ public class Level1Activity extends GameManager {
 
   // Create and set event listener for left button.
   private void setLeftButton() {
-    controlScheme.setLeftButton(this);
+    controlScheme.setLeftButton();
   }
 
   // Create and set event listener for right button
   private void setRightButton() {
-    controlScheme.setRightButton(this);
+    controlScheme.setRightButton();
   }
   // Create and set event listener for attack button
-  @SuppressLint("ClickableViewAccessibility")
   private void setAttackButton() {
-    controlScheme.setAttackButton(this);
+    controlScheme.setAttackButton();
   }
 
   private void setUsePotionButton() {
@@ -206,7 +206,6 @@ public class Level1Activity extends GameManager {
     setHeroStatus();
     setHeroAction();
     setEnemyAction();
-
     setAllObjectsToVisible();
     updateImage();
     nullAction();
@@ -214,7 +213,8 @@ public class Level1Activity extends GameManager {
   }
 
   private void checkIsWinning() {
-    if (manager.isWinning()) {
+    if (manager.isWinning() && isRunning) {
+      isRunning = false;
       startNextLevel();
       finish();
     }
@@ -270,7 +270,6 @@ public class Level1Activity extends GameManager {
 
   private void usePotionAction() {
     if (getPotion() > 0) {
-      usePotionText.setText("Use a health potion to revive");
       usePotionText.setVisibility(View.INVISIBLE);
       usePotionButton.setVisibility(View.INVISIBLE);
       usePotionButton.setClickable(false);
@@ -282,8 +281,6 @@ public class Level1Activity extends GameManager {
       imageVisible(manager.getPlayer().getImage());
       updateStatesToGameManager();
       startGame();
-    } else {
-      usePotionText.setText("No Enough Potion");
     }
   }
 
