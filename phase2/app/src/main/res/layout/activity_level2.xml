@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/lvl_2_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lvl_2_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/hills_layer_1"
@@ -136,24 +137,63 @@
             android:layout_marginTop="178dp"
             app:srcCompat="@drawable/tree" />
 
-    <ImageView
-            android:id="@+id/grass1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/hills_layer_5" />
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="279dp"
+        android:layout_marginTop="217dp"
+        android:src="@drawable/coin"
+        tools:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c1"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="595dp"
+        android:layout_marginTop="215dp"
+        android:src="@drawable/coin"
+        tools:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/potion"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="405dp"
+        android:layout_marginTop="212dp"
+        android:src="@drawable/potion"
+        android:visibility="visible"
+        tools:visibility="invisible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/c2"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="698dp"
+        android:layout_marginTop="214dp"
+        android:src="@drawable/coin"
+        tools:visibility="invisible" />
 
     <ImageView
-            android:id="@+id/grass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/hills_layer_5" />
+        android:id="@+id/grass1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/hills_layer_5" />
 
     <pl.droidsonroids.gif.GifImageView
             android:id="@+id/hero"
@@ -165,6 +205,16 @@
             android:layout_marginStart="69dp"
             android:layout_marginTop="132dp"
             android:src="@drawable/run1" />
+
+    <ImageView
+        android:id="@+id/grass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/hills_layer_5" />
 
     <TextView
             android:id="@+id/endtext"
