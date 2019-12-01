@@ -230,7 +230,7 @@ public abstract class GameManager extends FileReadWriter {
   }
 
   // for high score
-  private int getHighScore() {
+  int getHighScore() {
     return getStat(highScore);
   }
 
