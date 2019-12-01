@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="46dp"
+        android:layout_marginBottom="54dp"
         android:text="Incorrect Pattern !"
         android:textColor="#FFFFFF"
         android:visibility="visible" />
@@ -145,7 +145,5 @@
         android:text="Potions"
         android:textColor="#FFFFFF"
         android:textSize="14sp" />
-
-    x
 
 </RelativeLayout>
