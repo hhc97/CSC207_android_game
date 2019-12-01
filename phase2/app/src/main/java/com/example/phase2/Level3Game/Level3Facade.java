@@ -6,12 +6,12 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 class Level3Facade {
-  private Level3Manager Level3;
+  private Level3Manager level3;
 
   @SuppressLint("StaticFieldLeak")
   private DisplayHandler displayHandler;
 
-  void setAttempts(int i) { Level3.setAttempts(i); }
+  void setAttempts(int i) { level3.setAttempts(i); }
 
   void setButtonVisible(int i) {
     displayHandler.setButtonVisible(i);
@@ -26,11 +26,11 @@ class Level3Facade {
   }
 
   int getAttempts() {
-    return Level3.getAttempts();
+    return level3.getAttempts();
   }
 
   void setLevel3(Level3Manager level3) {
-    this.Level3 = level3;
+    this.level3 = level3;
   }
 
   void startSequence() {
@@ -54,20 +54,29 @@ class Level3Facade {
   }
 
   ArrayList<Integer> getSequence() {
-    return Level3.getSequence();
+    return level3.getSequence();
   }
 
   void setUserInput(int pressed) {
-    Level3.setUserInput(pressed);
+    level3.setUserInput(pressed);
   }
 
   void clearInput() {
-    Level3.clearInput();
+    level3.clearInput();
   }
 
   int checkConditions() {
-    return Level3.checkConditions();
+    return level3.checkConditions();
   }
 
   Button getButton(int i){return displayHandler.getButton(i);}
+
+  int getToComplete(){ return level3.getToComplete();}
+
+  void completeSequence(){level3.completeSequence();}
+
+  int getLength(){return level3.getLength();}
+
+  int getDifficulty() {return level3.getDifficulty();
+  }
 }

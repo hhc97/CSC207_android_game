@@ -25,9 +25,9 @@ class DisplayHandler {
 
     @SuppressLint("SetTextI18n")
     void endSequence(){
-        enableButtons(); // enable buttons after sequence is displayed
         out.setText("Start!");
         out.setVisibility(View.VISIBLE);
+        enableButtons(); // enable buttons after sequence is displayed
     }
 
     void setButtonVisible(int i){

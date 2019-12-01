@@ -10,15 +10,20 @@ import java.util.Iterator;
 class Level3Manager {
 
   private ArrayList<Integer> sequence;
+  private Sequence seq;
   private int attempts = 0;
   // button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
   private static ArrayList<Integer> input = new ArrayList<>();
 
+  int getToComplete(){
+    return seq.getToComplete();
+  }
+
   void setAttempts(int i){attempts = i;}
   /** Constructor initializes sequence. */
   Level3Manager(int i) {
-    Sequence seq = new Sequence(); // get a new Sequence from Sequence class
-    sequence = seq.getSequence(i);
+    seq = new Sequence(i); // get a new Sequence from Sequence class
+    sequence = seq.getSequence();
   }
 
   /**
@@ -77,5 +82,13 @@ class Level3Manager {
 
   int getAttempts() {
     return attempts;
+  }
+  int getLength(){return seq.getLength();}
+  void completeSequence() {
+    seq.complete();
+    sequence = seq.getSequence();
+  }
+
+  int getDifficulty() {return seq.getDifficulty();
   }
 }

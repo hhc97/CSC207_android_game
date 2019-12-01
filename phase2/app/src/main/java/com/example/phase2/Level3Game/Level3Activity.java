@@ -98,31 +98,40 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             }
           }
         };
-      final TimerTask task1 = new TimerTask() { // create TimerTask
+    final TimerTask task1 = new TimerTask() { // create TimerTask
           @Override
           public void run() {
-                      runOnUiThread(
-                              new Runnable() { // force task to run on UI Thread
-                                  @Override
-                                  public void run() {
-                                      level3Facade.setButtonsVisible(); // Make button Visible
-                                  }
-                              });
+            runOnUiThread(
+                new Runnable() { // force task to run on UI Thread
+                  @Override
+                  public void run() {
+                    level3Facade.setButtonsVisible(); // Make button Visible
+                  }
+                });
           }
-      };
-      timer.schedule(task, 500L, 1000L); // schedule the task to execute every second
-      timer.schedule(task1, 1000L, 1000L);
-      new Handler()
-              .postDelayed(
-                      new Runnable() { // delay the task by 5 seconds
-                          @Override
-                          public void run() {
-                              level3Facade.endSequence();
-                          }
-                      },
-                      ((getDifficulty() + 1)*1000*5) + 1000);
+        };
+    timer.schedule(task, 500L, 1000L); // schedule the task to execute every second
+    timer.schedule(task1, 1000L, 1000L);
+    new Handler()
+        .postDelayed(
+            new Runnable() { // delay the task by 5 seconds
+              @Override
+              public void run() {
+                level3Facade.endSequence();
+              }
+            },
+            (level3Facade.getLength() * 1000) + 500);
   }
 
+  public void useBonusKey(View v) {
+    if (getBonusKeys() > 0) {
+        setBonusKeys(getBonusKeys() - 1);
+        level3Facade.completeSequence();
+    }
+    else{
+        setText("You don't have any bonus keys. Please input the sequence.");
+    }
+  }
   /**
    * Sends user input to the Level3Manager. Executes error and win conditional tasks.
    *
@@ -146,7 +155,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
       onBadInput();
     }
     if (level3Facade.checkConditions() == 2) { // User successfully inputs correct sequence
-      onWin();
+      onCorrectSequence();
     }
   }
 
@@ -166,29 +175,43 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    * if the player has any remaining lives, else it restarts the game.
    */
   private void onBadInput() {
-    if (level3Facade.getAttempts() == 3) { // User made 3 attempts (out of attempts)
-      deductHealth(30); // deduct a life
-      setText("Incorrect Pattern! You ran out of attempts, -1 lives");
+    level3Facade.disableButtons();
+    if (level3Facade.getAttempts()
+        == 3 - level3Facade.getDifficulty()) { // User made 3 attempts (out of attempts)
+      int x = (level3Facade.getDifficulty() + 3) * 10;
+      deductHealth(x); // deduct hp
+      setText(
+          "Incorrect Pattern! You ran out of attempts, -"
+              + x
+              + " Health. You have "
+              + getHealth()
+              + " Health remaining.");
       level3Facade.setAttempts(0);
       new Handler()
           .postDelayed(
               new Runnable() { // delay the task by 5 seconds
                 @Override
                 public void run() {
-                  if (getHealth() == 0) // restart game if they run out of lives
+                  if (getHealth() <= 0) // restart game if they run out of lives
                   {
+                    if (getPotion() > 0) {
+                      level3Facade.setAttempts(0);
+                      setText("Using a potion. " + getPotion() + "Potions remaining.");
+                      displaySequence();
+                    }
                     startAgain();
                   }
-                  onStart(); // restart level if they still have lives remaining
+                  level3Facade.setAttempts(0);
+                  displaySequence(); // display sequence if they still have lives remaining
                 }
               },
-              5000); // 5000ms = 5 seconds
+              2000);
 
     } else { // User input incorrect sequence but still has remaining attempts
       setText(
           "Incorrect Pattern! "
               + (3 - level3Facade.getAttempts())
-              + " remaining! "
+              + "attempts remaining! "
               + "Displaying Sequence");
       level3Facade.clearInput(); // clear input for next attempt
       level3Facade.disableButtons();
@@ -200,24 +223,40 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                   displaySequence();
                 }
               },
-              2000); // 2000ms = 2 seconds
+              2000);
     }
   }
 
   /**
    * To be called when the correct sequence has been inputted. Displays a message and ends the game.
    */
-  private void onWin() {
+  private void onCorrectSequence() {
     level3Facade.disableButtons();
-    setText("Correct Pattern!, You win! Returning to the Save Menu");
-    new Handler()
-        .postDelayed(
-            new Runnable() { // delay the task by 3 seconds
-              @Override
-              public void run() {
-                finish();
-              }
-            },
-            3000); // 3000ms = 3 seconds
+    level3Facade.completeSequence();
+    if (level3Facade.getToComplete() == 0) { // User wins
+      setText("Correct Pattern! You win! Returning to the Save Menu");
+      new Handler()
+          .postDelayed(
+              new Runnable() { // delay the task by 3 seconds
+                @Override
+                public void run() {
+                  finish();
+                }
+              },
+              3000); // 3000ms = 3 seconds
+    } else {
+      setText(
+          "Correct Pattern! You have "
+              + level3Facade.getToComplete()
+              + " patterns left to complete.");
+      new Handler()
+          .postDelayed(
+              new Runnable() {
+                public void run() {
+                  displaySequence();
+                }
+              },
+              2000);
+    }
   }
 }
