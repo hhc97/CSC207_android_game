@@ -1,6 +1,7 @@
 package com.example.phase1.BackendStorage;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.phase1.R;
 
@@ -15,5 +16,21 @@ public class TradingScreen extends GameManager {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_trading_screen);
     setCurrPlayer(getIntent().getIntExtra(sendPlayer, 0));
+  }
+
+  public void buyPotion(View view) {
+    int potionPrice = 3;
+    if (getCoin() >= potionPrice) {
+      deductCoin(potionPrice);
+      addPotion();
+    }
+  }
+
+  public void buyKey(View view) {
+    int keyPrice = 3;
+    if (getCoin() >= keyPrice) {
+      deductCoin(keyPrice);
+      addKey();
+    }
   }
 }
