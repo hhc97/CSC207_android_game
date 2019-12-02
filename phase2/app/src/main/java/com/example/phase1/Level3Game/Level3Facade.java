@@ -87,5 +87,19 @@ class Level3Facade {
 
   void hideKeyButton(){displayHandler.hideKeyButton();}
 
+  void hideKeyText(){displayHandler.hideKeyText();}
+
   void showKeyText(){displayHandler.showKeyText();}
+
+  void updateHealth(int i){
+    displayHandler.updateHealth(i);
+  }
+
+  void updatePotions(int i){
+    displayHandler.updatePotions(i);
+  }
+
+  void updateScore(int i){
+    displayHandler.updateScore(i);
+  }
 }
