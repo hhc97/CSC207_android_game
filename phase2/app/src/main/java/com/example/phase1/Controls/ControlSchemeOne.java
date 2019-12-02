@@ -1,6 +1,5 @@
 package com.example.phase1.Controls;
 
-import android.annotation.SuppressLint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,6 @@ public class ControlSchemeOne extends GameManager {
     this.level = level;
   }
 
-  @SuppressLint("ClickableViewAccessibility")
   public void setLeftButton() {
     Button left = level.findViewById(R.id.left);
     left.setOnTouchListener(
@@ -31,7 +29,6 @@ public class ControlSchemeOne extends GameManager {
             }));
   }
 
-  @SuppressLint("ClickableViewAccessibility")
   public void setRightButton() {
     Button right = level.findViewById(R.id.right);
     right.setOnTouchListener(
@@ -46,7 +43,6 @@ public class ControlSchemeOne extends GameManager {
             }));
   }
 
-  @SuppressLint("ClickableViewAccessibility")
   public void setAttackButton() {
     Button attack = level.findViewById(R.id.attack);
     attack.setOnTouchListener(
@@ -64,7 +60,6 @@ public class ControlSchemeOne extends GameManager {
         });
   }
 
-  @SuppressLint("ClickableViewAccessibility")
   public void setJumpButton() {
     Button jump = level.findViewById(R.id.jump);
     jump.setOnTouchListener(
