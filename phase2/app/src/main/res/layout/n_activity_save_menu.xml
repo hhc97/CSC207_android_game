@@ -159,7 +159,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="64dp"
         android:layout_marginTop="12dp"
-        android:lines="9"
+        android:lines="12"
         android:text="@string/no_player"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"

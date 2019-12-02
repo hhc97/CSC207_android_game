@@ -130,13 +130,6 @@ public class SaveMenu extends GameManager {
    * @param view The delete button.
    */
   public void clickDelete(View view) {
-    // temporary!
-    if (hasSavedFile()) {
-      Intent intent = new Intent(this, TradingScreen.class);
-      intent.putExtra(sendPlayer, currPlayer);
-      startActivity(intent);
-    }
-    // ^^
     if (hasSavedFile()) {
       queryDelete();
     }
@@ -216,6 +209,9 @@ public class SaveMenu extends GameManager {
               + difficulty
               + "\nCharacter: "
               + character;
+      if (getHighScore() > 0) {
+        stats += "\n\nHighscore: " + getHighScore() + "\nObtained on: " + getHighScoreTime();
+      }
       display.setText(stats);
     } else {
       findViewById(R.id.delete_a).setVisibility(View.INVISIBLE);
@@ -255,6 +251,7 @@ public class SaveMenu extends GameManager {
   /** Asks the user if they want to start the game, or resume the game that they were playing. */
   private void queryResume() {
     final String[] choices = {"Yes", "No"};
+    final Intent intent = new Intent(this, TradingScreen.class);
 
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     if (getScore() == 0) {
@@ -268,7 +265,12 @@ public class SaveMenu extends GameManager {
           @Override
           public void onClick(DialogInterface dialog, int which) {
             if (which == 0) {
-              startGame();
+              if (getScore() > 0) {
+                intent.putExtra(sendPlayer, currPlayer);
+                startActivity(intent);
+              } else {
+                startGame();
+              }
             }
           }
         });

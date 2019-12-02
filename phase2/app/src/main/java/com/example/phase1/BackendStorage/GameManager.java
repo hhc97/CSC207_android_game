@@ -297,7 +297,7 @@ public abstract class GameManager extends FileReadWriter {
   public void startAgain() {
     setLevel(1);
     setScore(0);
-    setHealth(3);
+    setHealth(100);
     startGame();
   }
 
