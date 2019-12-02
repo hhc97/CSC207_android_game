@@ -10,23 +10,15 @@ public abstract class LevelActivity extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
   }
-  /**
-   * Do when the left button is pressed
-   */
+  /** Do when the left button is pressed */
   public void leftAction() {};
 
-  /**
-   * Do when the right button is pressed
-   */
+  /** Do when the right button is pressed */
   public void rightAction() {};
 
-  /**
-   * Do when the  jump button is pressed
-   */
+  /** Do when the jump button is pressed */
   public void jumpAction() {};
 
-  /**
-   * Do when the attack button is pressed
-   */
+  /** Do when the attack button is pressed */
   public void attackAction() {};
 }
