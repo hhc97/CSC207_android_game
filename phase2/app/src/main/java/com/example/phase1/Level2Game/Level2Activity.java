@@ -49,6 +49,10 @@ public class Level2Activity extends LevelActivity {
   ImageView pineTreeCopy;
   ImageView rock;
   ImageView rockCopy;
+  ImageView coin1;
+  ImageView coin2;
+  ImageView coin3;
+  ImageView potion;
 
   private ControlSchemeOne controlSchemeOne;
 
@@ -69,6 +73,10 @@ public class Level2Activity extends LevelActivity {
 
     getPreferences();
 
+    coin1 = findViewById(R.id.c);
+    coin2 = findViewById(R.id.c1);
+    coin3 = findViewById(R.id.c2);
+    potion = findViewById(R.id.potion);
     rightButton = findViewById(R.id.right);
     rightButton.setEnabled(false);
 
@@ -112,26 +120,30 @@ public class Level2Activity extends LevelActivity {
 
                     // The level is over, so pause the auto-update to check collision and
                     // animation.
+//                    if (getHealth() <= 0) {
+//                      setPotion(1);
+//                      healthLabel.setText("Health: 0");
+//
+//                      // Make the end-game text visible
+//                      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
+//                      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
+//                      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
+//                      findViewById(R.id.menu).setVisibility(View.VISIBLE);
+//                      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
+////                      message.setVisibility(View.VISIBLE);
+//
+//                      // End the animation
+//                      animator.cancel();
+//                      timer.cancel();
+//                    }
+//                    else if (getScore() >= 2000) {
                     if (getHealth() <= 0) {
-                      setPotion(1);
-                      healthLabel.setText("Health: 0");
-
-                      // Make the end-game text visible
-                      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
-                      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
-                      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
-                      findViewById(R.id.menu).setVisibility(View.VISIBLE);
-                      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
-//                      message.setVisibility(View.VISIBLE);
+                      rightButton.setEnabled(true);
+                      collectPhase();
 
                       // End the animation
                       animator.cancel();
                       timer.cancel();
-                      //                      levelEndDelay();
-                    }
-                    else if (getScore() >= 2000) {
-                      rightButton.setEnabled(true);
-                      collectPhase();
                     }
                   }
                 });
@@ -192,7 +204,6 @@ public class Level2Activity extends LevelActivity {
         ObjectAnimator.ofFloat(
             heroCharacter, "translationY", 0f, -100, -200f, -250f, -200f, -100f, 0f);
     animationUp.setDuration(1200L);
-
     // Add a listener that checks if the hero is jumping, and tells the Level2Manager.
     animationUp.addListener(
         new Animator.AnimatorListener() {
@@ -239,7 +250,7 @@ public class Level2Activity extends LevelActivity {
   public void resumeLevel(View view) {
     if (getPotion() > 0) {
 //      message.setVisibility(View.INVISIBLE);
-      setHealth(100);
+      setHealth(98);
       restartLevel();
     }
   }
@@ -250,11 +261,30 @@ public class Level2Activity extends LevelActivity {
 
   private void updateLabels() {
     scoreLabel.setText("Score: " + getScore());
-    healthLabel.setText("Health: " + getHealth());
+    System.out.println((getHealth()));
+//    healthLabel.setText("Health: " + getHealth());
     potionLabel.setText("Potions: " + getPotion());
   }
+
   // Switches to the ending phase of Level 2.
-  public void collectPhase() {}
+  public void collectPhase() {
+
+    coin1.setVisibility(View.VISIBLE);
+    coin2.setVisibility(View.VISIBLE);
+    coin3.setVisibility(View.VISIBLE);
+    potion.setVisibility(View.VISIBLE);
+    rock.setVisibility(View.INVISIBLE);
+    rockCopy.setVisibility(View.INVISIBLE);
+    oakTree.setVisibility(View.INVISIBLE);
+    oakTreeCopy.setVisibility(View.INVISIBLE);
+    pineTree.setVisibility(View.INVISIBLE);
+    pineTreeCopy.setVisibility(View.INVISIBLE);
+    findViewById(R.id.endtext).setVisibility(View.INVISIBLE);
+    findViewById(R.id.endtext1).setVisibility(View.INVISIBLE);
+    findViewById(R.id.endtext2).setVisibility(View.INVISIBLE);
+    findViewById(R.id.menu).setVisibility(View.INVISIBLE);
+    findViewById(R.id.potionbutton).setVisibility(View.INVISIBLE);
+  }
 
   private void getPreferences() {
     // Change the background theme to either day or night based on the user's choice.
