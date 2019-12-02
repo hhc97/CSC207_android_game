@@ -1,5 +1,6 @@
 package com.example.phase1.Level1Game;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -21,6 +22,9 @@ import java.util.TimerTask;
 
 import pl.droidsonroids.gif.GifImageView;
 
+/**
+ *
+ */
 public class Level1Activity extends LevelActivity {
 
   private Button toMenuButton;
@@ -129,6 +133,8 @@ public class Level1Activity extends LevelActivity {
     controlScheme.setAttackButton();
   }
 
+
+  @SuppressLint("ClickableViewAccessibility")
   private void setUsePotionButton() {
     usePotionButton = findViewById(R.id.potionbutton);
     usePotionButton.setVisibility(View.INVISIBLE);
@@ -148,6 +154,7 @@ public class Level1Activity extends LevelActivity {
         });
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setReturnToMenuButton() {
     toMenuButton = findViewById(R.id.menu);
     toMenuButton.setVisibility(View.INVISIBLE);
@@ -212,9 +219,10 @@ public class Level1Activity extends LevelActivity {
   private void checkIsWinning() {
     if (manager.isWinning() && isRunning) {
       isRunning = false;
-      if (manager.hasGotTheEasterEgg()) {
+      if(manager.hasGotTheEasterEgg()){
         startSpecifiedLevel(3);
-      } else {
+      }
+      else{
         startNextLevel();
       }
       finish();
@@ -229,7 +237,7 @@ public class Level1Activity extends LevelActivity {
 
   private void gameOver() {
     isRunning = false;
-    timer.cancel(); // cancel timer to prevent crashing
+    timer.cancel(); //cancel timer to prevent crashing
     imageInvisible(manager.getPlayer().getImage());
     showEndText();
   }
@@ -245,21 +253,29 @@ public class Level1Activity extends LevelActivity {
     usePotionButton.setVisibility(View.VISIBLE);
     usePotionButton.setClickable(true);
   }
-  // Move right when right button pressed
+
+  /**
+   *
+   * sequences of method calls to resolve move right when right button is pressed
+   */
   public void rightAction() {
     manager.rightButtonPress();
     heroFacingRight();
     heroWalkAnimation();
   }
 
-  // Move left when left button pressed
+  /**
+   * sequences of method calls to resolve move left when left button is pressed
+   */
   public void leftAction() {
     manager.leftButtonPress();
     heroFacingLeft();
     heroWalkAnimation();
   }
 
-  // Attack when attack button is pressed
+  /**
+   * sequences of method calls to resolve attack when attack button is pressed
+   */
   public void attackAction() {
     manager.attackButtonPress();
     nullAction();
@@ -269,8 +285,9 @@ public class Level1Activity extends LevelActivity {
     }
   }
 
+
   private void usePotionAction() {
-    if (getPotion() > 0) { // if there are any potions left
+    if (getPotion() > 0) { //if there are any potions left
       usePotionText.setVisibility(View.INVISIBLE);
       usePotionButton.setVisibility(View.INVISIBLE);
       usePotionButton.setClickable(false);
@@ -280,7 +297,7 @@ public class Level1Activity extends LevelActivity {
       gameOverLabel.setVisibility(View.INVISIBLE);
       manager.usePotionButtonPress();
       imageVisible(manager.getPlayer().getImage());
-      updateStatesToGameManager(); // reset the game to before it started
+      updateStatesToGameManager(); //reset the game to before it started
       startGame();
     }
   }
@@ -298,11 +315,15 @@ public class Level1Activity extends LevelActivity {
     finish();
   }
 
+  /**
+   * resolve jump button being pressed, not currently used.
+   */
   public void jumpAction() {}
 
-  private void nullAction() { // animation updates when nothing is pressed
+  private void nullAction() { //animation updates when nothing is pressed
 
-    for (int i = 1; i <= 3; i++) { // for each one of the 3 monsters objects
+
+    for (int i = 1; i <= 3; i++) {  //for each one of the 3 monsters objects
       if (((Monster) Objects.get(i)).isMoveLeft()) {
         enemyFacingLeft(i);
       } else {
@@ -310,7 +331,7 @@ public class Level1Activity extends LevelActivity {
       }
 
       if (((Monster) Objects.get(i)).isAttack() && Objects.get(i).getStates()) {
-        // if the monster is attacking and is still alive
+        //if the monster is attacking and is still alive
         enemyAttackAnimation(i);
         heroHurtAnimation();
       } else {

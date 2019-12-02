@@ -150,6 +150,15 @@ public abstract class GameManager extends FileReadWriter {
     setScore(getScore() + s);
   }
 
+  /**
+   * Deducts the input value from the current player's score.
+   *
+   * @param s The value to decrease score by.
+   */
+  public void deductScore(int s) {
+    setScore(getScore() - s);
+  }
+
   // for health
   /**
    * Returns the health of the current player.
@@ -167,6 +176,15 @@ public abstract class GameManager extends FileReadWriter {
    */
   public void setHealth(int h) {
     setStat(h, health);
+  }
+
+  /**
+   * Increases the current player's health by the input value.
+   *
+   * @param h Amount to increase health by.
+   */
+  public void addHealth(int h) {
+    setHealth(getHealth() + h);
   }
 
   /**
@@ -195,6 +213,15 @@ public abstract class GameManager extends FileReadWriter {
    */
   public void setCoin(int c) {
     setStat(c, coin);
+  }
+
+  /**
+   * Adds c number of coins to the current player's inventory.
+   *
+   * @param c The number of coins to add.
+   */
+  public void addCoin(int c) {
+    setCoin(getCoin() + c);
   }
 
   /**
@@ -450,15 +477,9 @@ public abstract class GameManager extends FileReadWriter {
 
   /** If no save file exists, create a new one with default values. */
   void startFile() {
-    writeToFile("0,100,0,0,0,0,0,0,1,Level 1,1,0,xd");
-    writeToFile(readFromFile() + "0,100,0,0,1,0,0,0,2,Level 2,1,0,xd");
-    writeToFile(readFromFile() + "0,100,0,0,2,0,0,0,3,Level 3,1,0,xd");
-    writeToFile(readFromFile() + defaultScore);
-    writeToFile(readFromFile() + defaultScore);
-    writeToFile(readFromFile() + defaultScore);
-    //    writeToFile(defaultScore);
-    //    for (int i = 0; i < 5; i++) {
-    //      writeToFile(readFromFile() + defaultScore);
-    //    }
+    writeToFile(defaultScore);
+    for (int i = 0; i < 5; i++) {
+      writeToFile(readFromFile() + defaultScore);
+    }
   }
 }

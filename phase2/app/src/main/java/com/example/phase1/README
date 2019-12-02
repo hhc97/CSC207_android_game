@@ -34,6 +34,9 @@ they must be clicked in the same order to win the game.
 13. Once the game is won, you can use the coins you've earned to purchase keys and potions, which
 will help in getting a better high score.
 
+14. There is an easter egg in level 1 where if you have less than 25 health in the highest difficulty
+and hasn't collected any coins, you will get a potion and 500 points.
+
 
 == LEVEL 2 README ==
 
@@ -48,3 +51,7 @@ will help in getting a better high score.
 
 - The user will pass the level once 2000 points is reached. Jumping over 1 obstacle gives
   100 points, so this is equivalent to 20 successful jumps.
+
+- If you wish to be able to bypass the 2000 point requirement to make finishing Level 2 easier,
+  go to gameLoopAction() method in Level2Activity and change the "else if" statement to
+  getScore() >= 100. This way making one successful jump will win the level for you.
