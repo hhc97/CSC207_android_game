@@ -13,16 +13,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.example.phase1.BackendStorage.GameManager;
 import com.example.phase1.BackendStorage.LevelActivity;
 import com.example.phase1.Controls.ControlSchemeOne;
+import com.example.phase1.Objects.GameObject;
 import com.example.phase1.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import pl.droidsonroids.gif.GifImageView;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Level2Activity extends LevelActivity {
 
@@ -32,9 +34,10 @@ public class Level2Activity extends LevelActivity {
   private TextView scoreLabel;
   private TextView healthLabel;
   private TextView potionLabel;
-  private Button rightButton;
-
-//  private TextView message;
+  private List<GameObject> gameObjects;
+  private boolean isRunning = true;
+  private boolean playerMovable = false;
+  //  private TextView message;
   private RelativeLayout screen;
   ValueAnimator animator;
 
@@ -72,13 +75,15 @@ public class Level2Activity extends LevelActivity {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     getPreferences();
-
+    this.gameObjects = level2Manager.getGameObjects();
     coin1 = findViewById(R.id.c);
+    gameObjects.get(0).setImage((GifImageView) coin1);
     coin2 = findViewById(R.id.c1);
+    gameObjects.get(1).setImage((GifImageView) coin2);
     coin3 = findViewById(R.id.c2);
+    gameObjects.get(2).setImage((GifImageView) coin3);
     potion = findViewById(R.id.potion);
-    rightButton = findViewById(R.id.right);
-    rightButton.setEnabled(false);
+    gameObjects.get(3).setImage((GifImageView) potion);
 
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
@@ -87,10 +92,12 @@ public class Level2Activity extends LevelActivity {
 
     updateLabels();
 
-//    message = findViewById(R.id.endtext);
+    //    message = findViewById(R.id.endtext);
 
     this.controlSchemeOne = new ControlSchemeOne(this);
     controlSchemeOne.setRightButton();
+    controlSchemeOne.setLeftButton();
+
     GifImageView heroCharacter = findViewById(R.id.hero);
     level2Manager.getPlayer().setImage(heroCharacter);
     screen.setOnClickListener(
@@ -102,57 +109,29 @@ public class Level2Activity extends LevelActivity {
         });
   }
 
-  // Runs the game.
-  public void gameRun() {
+  private void gameRun() {
+    isRunning = true;
     backgroundSetup();
     animator.start();
+    timer = new Timer();
     timer.schedule(
         new TimerTask() {
           @Override
           public void run() {
-            handler.post(
-                new Runnable() {
-                  @Override
-                  public void run() {
-                    // Update coordinates of the moving obstacles, as well as the score.
-                    level2Manager.update();
-                    updateLabels();
-
-                    // The level is over, so pause the auto-update to check collision and
-                    // animation.
-//                    if (getHealth() <= 0) {
-//                      setPotion(1);
-//                      healthLabel.setText("Health: 0");
-//
-//                      // Make the end-game text visible
-//                      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
-//                      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
-//                      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
-//                      findViewById(R.id.menu).setVisibility(View.VISIBLE);
-//                      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
-////                      message.setVisibility(View.VISIBLE);
-//
-//                      // End the animation
-//                      animator.cancel();
-//                      timer.cancel();
-//                    }
-//                    else if (getScore() >= 2000) {
-                    if (getHealth() <= 0) {
-                      rightButton.setEnabled(true);
-                      collectPhase();
-
-                      // End the animation
-                      animator.cancel();
-                      timer.cancel();
+            if (isRunning) {
+              handler.post(
+                  new Runnable() {
+                    @Override
+                    public void run() {
+                      gameLoopAction();
                     }
-                  }
-                });
+                  });
+            }
           }
         },
         0,
         20);
   }
-
   // Sets up all the information necessary for background animation.
   public void backgroundSetup() {
 
@@ -242,14 +221,14 @@ public class Level2Activity extends LevelActivity {
   public void tapStart() {
     gameRun();
     screen.setClickable(false);
-//    message.setVisibility(View.INVISIBLE);
-//    message.setText(getResources().getString(R.string.lose_message));
+    //    message.setVisibility(View.INVISIBLE);
+    //    message.setText(getResources().getString(R.string.lose_message));
   }
 
   // Restarts the level if the player has clicked the button, but only if they have health potions.
   public void resumeLevel(View view) {
     if (getPotion() > 0) {
-//      message.setVisibility(View.INVISIBLE);
+      //      message.setVisibility(View.INVISIBLE);
       setHealth(98);
       restartLevel();
     }
@@ -260,15 +239,16 @@ public class Level2Activity extends LevelActivity {
   }
 
   private void updateLabels() {
+    healthLabel.setText("Health: " + getHealth());
     scoreLabel.setText("Score: " + getScore());
     System.out.println((getHealth()));
-//    healthLabel.setText("Health: " + getHealth());
+    //    healthLabel.setText("Health: " + getHealth());
     potionLabel.setText("Potions: " + getPotion());
   }
 
   // Switches to the ending phase of Level 2.
   public void collectPhase() {
-
+    level2Manager.playerAlive();
     coin1.setVisibility(View.VISIBLE);
     coin2.setVisibility(View.VISIBLE);
     coin3.setVisibility(View.VISIBLE);
@@ -284,6 +264,15 @@ public class Level2Activity extends LevelActivity {
     findViewById(R.id.endtext2).setVisibility(View.INVISIBLE);
     findViewById(R.id.menu).setVisibility(View.INVISIBLE);
     findViewById(R.id.potionbutton).setVisibility(View.INVISIBLE);
+  }
+
+  private void updateGameObjectsImage() {
+    for (GameObject obj : gameObjects) {
+      obj.getImage().setX(obj.getX());
+      if (!obj.getStates()) {
+        imageInvisible(obj.getImage());
+      }
+    }
   }
 
   private void getPreferences() {
@@ -319,8 +308,81 @@ public class Level2Activity extends LevelActivity {
   }
 
   public void rightAction() {
-    level2Manager.rightAction();
-    (level2Manager.getPlayer().getImage()).setX(level2Manager.getPlayer().getX());
+    if (playerMovable) {
+      heroFacingRight();
+      level2Manager.rightAction();
+      (level2Manager.getPlayer().getImage()).setX(level2Manager.getPlayer().getX());
+      level2Manager.update();
+      updateGameObjectsImage();
+      updateStatesToGameManager();
+    }
+  }
+
+  public void leftAction() {
+    if (playerMovable) {
+      heroFacingLeft();
+      level2Manager.leftAction();
+      (level2Manager.getPlayer().getImage()).setX(level2Manager.getPlayer().getX());
+      updateGameObjectsImage();
+      level2Manager.update();
+      updateGameObjectsImage();
+      updateStatesToGameManager();
+    }
+  }
+
+  private void imageInvisible(GifImageView image) {
+    image.setVisibility(View.INVISIBLE);
+  }
+
+  // Update states in Game Manager Class.
+  private void updateStatesToGameManager() {
+    setHealth(level2Manager.getPlayer().getHealth());
+    setCoin(level2Manager.getPlayer().getCoins());
+    setScore(level2Manager.getPlayer().getScore());
+    setPotion(level2Manager.getPlayer().getPotion());
+  }
+
+  private void gameLoopAction() {
+    level2Manager.update();
+    updateLabels();
+
+    // The level is over, so pause the auto-update to check collision and
+    // animation.
+    //                    if (getHealth() <= 0) {
+    //                      setPotion(1);
+    //                      healthLabel.setText("Health: 0");
+    //
+    //                      // Make the end-game text visible
+    //                      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
+    //                      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
+    //                      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
+    //                      findViewById(R.id.menu).setVisibility(View.VISIBLE);
+    //                      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
+    ////                      message.setVisibility(View.VISIBLE);
+    //
+    //                      // End the animation
+    //                      animator.cancel();
+    //                      timer.cancel();
+    //                    }
+    //                    else if (getScore() >= 2000) {
+    if (getHealth() <= 0) {
+      isRunning = false;
+      playerMovable = true;
+      collectPhase();
+
+      // End the animation
+      animator.cancel();
+      timer.cancel();
+    }
+  }
+  // Flip the hero sprite left.
+  private void heroFacingLeft() {
+    level2Manager.getPlayer().getImage().setScaleX(-1f);
+  }
+
+  // Flip the hero sprite right.
+  private void heroFacingRight() {
+    level2Manager.getPlayer().getImage().setScaleX(1f);
   }
 
   //  // A 3 second delay before starting Level 3.
