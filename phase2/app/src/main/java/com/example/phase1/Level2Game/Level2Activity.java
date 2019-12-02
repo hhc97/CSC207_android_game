@@ -75,6 +75,7 @@ public class Level2Activity extends LevelActivity {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     getPreferences();
+
     this.gameObjects = level2Manager.getGameObjects();
     coin1 = findViewById(R.id.c);
     gameObjects.get(0).setImage((GifImageView) coin1);
@@ -84,6 +85,7 @@ public class Level2Activity extends LevelActivity {
     gameObjects.get(2).setImage((GifImageView) coin3);
     potion = findViewById(R.id.potion);
     gameObjects.get(3).setImage((GifImageView) potion);
+    setHeroStates();
 
     // Text of the score and health.
     scoreLabel = findViewById(R.id.score);
@@ -296,15 +298,6 @@ public class Level2Activity extends LevelActivity {
     } else if (getCharacter() == 1) {
       hero.setImageResource(R.drawable.run1);
     }
-
-    // Change health depending on the chosen difficulty level.
-    if (getDifficulty() == 0) {
-      addHealth(3);
-    } else if (getDifficulty() == 1) {
-      addHealth(2);
-    } else if (getDifficulty() == 2) {
-      addHealth(1);
-    }
   }
 
   public void moveRight(View view) {
@@ -409,5 +402,12 @@ public class Level2Activity extends LevelActivity {
           }
         },
         3000);
+  }
+
+  private void setHeroStates() {
+    level2Manager.getPlayer().setStates(true);
+    level2Manager.getPlayer().setHealth(getHealth());
+    level2Manager.getPlayer().setScore(getScore());
+    level2Manager.getPlayer().setPotion(getPotion());
   }
 }
