@@ -1,7 +1,6 @@
 package com.example.phase1.Level3Game;
 
 import android.annotation.SuppressLint;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,19 +36,22 @@ class DisplayHandler {
     this.score = score;
   }
 
+  @SuppressLint("SetTextI18n")
   void updateHealth(int i) {
     health.setText("Health: " + i);
   }
 
+  @SuppressLint("SetTextI18n")
   void updatePotions(int i) {
     potions.setText("Potions: " + i);
   }
 
+  @SuppressLint("SetTextI18n")
   void updateScore(int i) {
     score.setText("Score: " + i);
   }
 
-  void hideKeyText() {
+  private void hideKeyText() {
     keyText.setVisibility(INVISIBLE);
   }
 
@@ -61,7 +63,7 @@ class DisplayHandler {
     keyButton.setVisibility(VISIBLE);
   }
 
-  void hideKeyButton() {
+  private void hideKeyButton() {
     keyButton.setVisibility(INVISIBLE);
   }
 
@@ -70,11 +72,14 @@ class DisplayHandler {
     keyButton.setClickable(true);
   }
 
-  void disableKeyButton() {
+  private void disableKeyButton() {
     keyButton.setEnabled(false);
     keyButton.setClickable(false);
   }
 
+  /**
+   * The initialization before displaying a sequence
+   */
   @SuppressLint("SetTextI18n")
   void startSequence() {
     disableButtons(); // disable the buttons while the sequence is displaying
@@ -86,6 +91,9 @@ class DisplayHandler {
     out.setVisibility(VISIBLE);
   }
 
+  /**
+   * The tasks to be executed after displaying a sequence.
+   */
   @SuppressLint("SetTextI18n")
   void endSequence() {
     out.setText("Start!");
@@ -93,16 +101,12 @@ class DisplayHandler {
     enableButtons(); // enable buttons after sequence is displayed
   }
 
-  void setButtonVisible(int i) {
-    buttons[i].setVisibility(VISIBLE);
-  }
-
   void setButtonInvisible(int i) {
     buttons[i].setVisibility(INVISIBLE);
   }
 
   /** Set all Button.Enabled and Clickable properties to true */
-  void enableButtons() {
+  private void enableButtons() {
     for (Button button : buttons) {
       button.setEnabled(true);
       button.setClickable(true);
@@ -116,15 +120,10 @@ class DisplayHandler {
     }
   }
 
+  /** Make all sequence buttons visible*/
   void setButtonsVisible() {
     for (Button button : buttons) {
       button.setVisibility(VISIBLE);
-    }
-  }
-
-  void setButtonsInvisible() {
-    for (Button button : buttons) {
-      button.setVisibility(INVISIBLE);
     }
   }
 
