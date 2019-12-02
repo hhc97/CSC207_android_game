@@ -29,8 +29,6 @@ public class SaveMenu extends GameManager {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    startFile(); // for testing, resets save activity each time app is launched. Comment it out to
-    // test save functionality.
     this.getWindow()
         .setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

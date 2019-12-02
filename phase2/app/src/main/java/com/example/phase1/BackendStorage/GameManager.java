@@ -477,15 +477,9 @@ public abstract class GameManager extends FileReadWriter {
 
   /** If no save file exists, create a new one with default values. */
   void startFile() {
-    writeToFile("0,100,0,0,0,0,0,0,1,Level 1,1,0,xd");
-    writeToFile(readFromFile() + "0,100,0,0,1,0,0,0,2,Level 2,1,0,xd");
-    writeToFile(readFromFile() + "0,100,0,0,2,0,0,0,3,Level 3,1,0,xd");
-    writeToFile(readFromFile() + defaultScore);
-    writeToFile(readFromFile() + defaultScore);
-    writeToFile(readFromFile() + defaultScore);
-    //    writeToFile(defaultScore);
-    //    for (int i = 0; i < 5; i++) {
-    //      writeToFile(readFromFile() + defaultScore);
-    //    }
+    writeToFile(defaultScore);
+    for (int i = 0; i < 5; i++) {
+      writeToFile(readFromFile() + defaultScore);
+    }
   }
 }
