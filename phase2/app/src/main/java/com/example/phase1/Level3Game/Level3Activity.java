@@ -198,7 +198,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     final int x = (level3Facade.getDifficulty() + 3) * 10;
     if (level3Facade.getAttempts()
         >= 3 - level3Facade.getDifficulty()) { // User made maximum unpunishable attempts
-      deductHealth(x); // deduct hp
+      deductHealth(99); // deduct hp
+      if (getHealth() <= 0) {
+        setHealth(0);
+      }
       level3Facade.updateHealth(getHealth());
       if (getHealth() <= 0) // restart game if they run out of lives
       {
@@ -301,9 +304,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
               2000);
     }
   }
-  private void updateTextLabels(){
-      score.setText("Score: "+getScore());
-      health.setText("Health: "+getHealth());
-      potions.setText("Potions: "+getPotion());
+
+  private void updateTextLabels() {
+    score.setText("Score: " + getScore());
+    health.setText("Health: " + getHealth());
+    potions.setText("Potions: " + getPotion());
   }
 }
