@@ -213,7 +213,12 @@ public class Level1Activity extends LevelActivity {
   private void checkIsWinning() {
     if (manager.isWinning() && isRunning) {
       isRunning = false;
-      startNextLevel();
+      if(manager.hasGotTheEasterEgg()){
+        startSpecifiedLevel(3);
+      }
+      else{
+        startNextLevel();
+      }
       finish();
     }
   }

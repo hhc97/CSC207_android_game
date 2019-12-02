@@ -20,7 +20,7 @@ public class Level1Manager {
   private float maxFrameSize = 1800;
   private float minFrameSize = -50;
   private ObjectBuilder builder;
-  private boolean hasGetTheEasterEgg = false;
+  private boolean hasGotTheEasterEgg = false;
 
   public Level1Manager(int difficulty) {
     this.difficulty = difficulty;
@@ -163,7 +163,7 @@ public class Level1Manager {
   }
 
   private boolean easterEggCondition() {
-    if (difficulty == 2 && !hasGetTheEasterEgg) {
+    if (difficulty == 2 && !hasGotTheEasterEgg) {
       if (player.getStates() && player.getHealth() <= 10) {
         for (int i = 4; i <= 6; i++) {
           if (!Objects.get(i).getStates()) return false;
@@ -175,8 +175,11 @@ public class Level1Manager {
   }
 
   private void easterEgg() {
-    hasGetTheEasterEgg = true;
+    hasGotTheEasterEgg = true;
     player.addPotion();
     player.addScore(500);
+  }
+  public boolean hasGotTheEasterEgg(){
+    return hasGotTheEasterEgg;
   }
 }
