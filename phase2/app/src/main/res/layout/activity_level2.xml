@@ -84,6 +84,27 @@
         app:srcCompat="@drawable/hills_layer_04" />
 
     <ImageView
+        android:id="@+id/tut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/b_tut3" />
+
+    <ImageView
+        android:id="@+id/tut1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/b_tut1" />
+
+    <ImageView
+        android:id="@+id/tut2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/b_tut2"
+        tools:visibility="invisible" />
+
+    <ImageView
         android:id="@+id/tree1_c"
         android:layout_width="wrap_content"
         android:layout_height="63dp"
