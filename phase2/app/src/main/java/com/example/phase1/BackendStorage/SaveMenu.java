@@ -1,12 +1,17 @@
 package com.example.phase1.BackendStorage;
 
+import android.animation.ValueAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -28,16 +33,50 @@ public class SaveMenu extends GameManager {
     super.onCreate(savedInstanceState);
     startFile(); // for testing, resets save activity each time app is launched. Comment it out to
     // test save functionality.
-    setContentView(R.layout.activity_save_menu);
+    this.getWindow()
+            .setFlags(
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+    // Remove the title.
+    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+    setContentView(R.layout.n_activity_save_menu);
     Button save1 = findViewById(R.id.button3);
-    Button save2 = findViewById(R.id.button4);
-    Button save3 = findViewById(R.id.button5);
-    Button save4 = findViewById(R.id.button6);
-    Button save5 = findViewById(R.id.button7);
-    Button save6 = findViewById(R.id.button8);
-    buttons = new Button[] {save1, save2, save3, save4, save5, save6};
+Button save2 = findViewById(R.id.button4);
+  Button save3 = findViewById(R.id.button5);
+ Button save4 = findViewById(R.id.button6);
+ Button save5 = findViewById(R.id.button7);
+Button save6 = findViewById(R.id.button8);
+    buttons = new Button[] {save1,save2,save3,save4,save5,save6};
     updateButtons();
+
+
+    // Move the two copies of the front background image, continuously.
+    final ImageView backgroundOne = findViewById(R.id.grass);
+    final ImageView backgroundTwo = findViewById(R.id.grass1);
+    final ImageView backgroundThree = findViewById(R.id.vegetation);
+    final ImageView backgroundFour = findViewById(R.id.vegetation2);
+    ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+    animator.setRepeatCount(ValueAnimator.INFINITE);
+    animator.setInterpolator(new LinearInterpolator());
+    animator.setDuration(10000L);
+    animator.addUpdateListener(
+            new ValueAnimator.AnimatorUpdateListener() {
+              @Override
+              public void onAnimationUpdate(ValueAnimator animation) {
+                final float progress = (float) animation.getAnimatedValue();
+                final float width1 = backgroundOne.getWidth();
+                final float width2 = backgroundThree.getWidth();
+                final float translationX1 = width1 * progress;
+                final float translationX2 = width2 * progress - 10;
+                backgroundOne.setTranslationX(-translationX1);
+                backgroundTwo.setTranslationX(-translationX1 + width1);
+                backgroundThree.setTranslationX(-translationX2);
+                backgroundFour.setTranslationX(-translationX2 + width2);
+              }
+            });
+    animator.start();
   }
+
 
   /**
    * Updates the names of the save slot buttons, depending on whether if there is any data saved
@@ -78,9 +117,6 @@ public class SaveMenu extends GameManager {
       Button currButton = buttons[i];
       if (currButton == b) {
         currPlayer = i;
-        currButton.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
-      } else {
-        currButton.getBackground().clearColorFilter();
       }
     }
     if (!hasSavedFile()) {
@@ -140,6 +176,9 @@ public class SaveMenu extends GameManager {
       int score = getScore();
       int health = getHealth();
       int coin = getCoin();
+      findViewById(R.id.delete_a).setVisibility(View.VISIBLE);
+      findViewById(R.id.delete_but).setVisibility(View.VISIBLE);
+      findViewById(R.id.delt).setVisibility(View.VISIBLE);
 
       String character;
       if (getCharacter() == 0) {
@@ -183,6 +222,9 @@ public class SaveMenu extends GameManager {
               + character;
       display.setText(stats);
     } else {
+      findViewById(R.id.delete_a).setVisibility(View.INVISIBLE);
+      findViewById(R.id.delete_but).setVisibility(View.INVISIBLE);
+      findViewById(R.id.delt).setVisibility(View.INVISIBLE);
       display.setText(R.string.no_player);
     }
   }
