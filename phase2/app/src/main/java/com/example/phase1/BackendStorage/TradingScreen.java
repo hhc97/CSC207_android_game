@@ -21,8 +21,8 @@ public class TradingScreen extends GameManager {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.getWindow()
-            .setFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        .setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -85,9 +85,10 @@ public class TradingScreen extends GameManager {
    */
   public void clickFinish(View view) {
     startAgain();
+    finish();
   }
 
-  public void moveBackground(){
+  public void moveBackground() {
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
     final ImageView backgroundThree = findViewById(R.id.vegetation);
@@ -97,21 +98,20 @@ public class TradingScreen extends GameManager {
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(10000L);
     animator.addUpdateListener(
-            new ValueAnimator.AnimatorUpdateListener() {
-              @Override
-              public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width1 = backgroundOne.getWidth();
-                final float width2 = backgroundThree.getWidth();
-                final float translationX1 = width1 * progress;
-                final float translationX2 = width2 * progress - 10;
-                backgroundOne.setTranslationX(-translationX1);
-                backgroundTwo.setTranslationX(-translationX1 + width1);
-                backgroundThree.setTranslationX(-translationX2);
-                backgroundFour.setTranslationX(-translationX2 + width2);
-              }
-            });
+        new ValueAnimator.AnimatorUpdateListener() {
+          @Override
+          public void onAnimationUpdate(ValueAnimator animation) {
+            final float progress = (float) animation.getAnimatedValue();
+            final float width1 = backgroundOne.getWidth();
+            final float width2 = backgroundThree.getWidth();
+            final float translationX1 = width1 * progress;
+            final float translationX2 = width2 * progress - 10;
+            backgroundOne.setTranslationX(-translationX1);
+            backgroundTwo.setTranslationX(-translationX1 + width1);
+            backgroundThree.setTranslationX(-translationX2);
+            backgroundFour.setTranslationX(-translationX2 + width2);
+          }
+        });
     animator.start();
   }
-  }
-
+}
