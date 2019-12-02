@@ -90,6 +90,7 @@ public class TradingScreen extends GameManager {
     finish();
   }
 
+  /** Moves the background. */
   public void moveBackground() {
     final ImageView backgroundOne = findViewById(R.id.grass);
     final ImageView backgroundTwo = findViewById(R.id.grass1);
