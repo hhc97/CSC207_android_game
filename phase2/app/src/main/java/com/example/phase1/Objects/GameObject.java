@@ -1,7 +1,5 @@
 package com.example.phase1.Objects;
 
-import android.graphics.Bitmap;
-
 import pl.droidsonroids.gif.GifImageView;
 
 public class GameObject {
