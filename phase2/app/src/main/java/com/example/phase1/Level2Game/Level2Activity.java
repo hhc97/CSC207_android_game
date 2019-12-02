@@ -75,6 +75,7 @@ public class Level2Activity extends LevelActivity {
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     getPreferences();
+    runIntro();
 
     this.gameObjects = level2Manager.getGameObjects();
     coin1 = findViewById(R.id.c);
@@ -115,6 +116,9 @@ public class Level2Activity extends LevelActivity {
     isRunning = true;
     backgroundSetup();
     animator.start();
+    findViewById(R.id.tut1).setVisibility(View.INVISIBLE);
+    findViewById(R.id.tut2).setVisibility(View.INVISIBLE);
+    findViewById(R.id.tut).setVisibility(View.INVISIBLE);
     timer = new Timer();
     timer.schedule(
         new TimerTask() {
@@ -412,4 +416,28 @@ public class Level2Activity extends LevelActivity {
     level2Manager.getPlayer().setScore(getScore());
     level2Manager.getPlayer().setPotion(getPotion());
   }
-}
+
+  public void runIntro() {
+    findViewById(R.id.tut2).setVisibility(View.VISIBLE);
+    Handler handler = new Handler();
+    handler.postDelayed(
+            new Runnable() {
+              @Override
+              public void run() {
+                findViewById(R.id.tut1).setVisibility(View.VISIBLE);
+              }
+            },
+            1600);
+
+    handler.postDelayed(
+            new Runnable() {
+              @Override
+              public void run() {
+                findViewById(R.id.tut1).setVisibility(View.INVISIBLE);
+                findViewById(R.id.tut).setVisibility(View.VISIBLE);
+              }
+            },
+            5000);
+
+
+  }}

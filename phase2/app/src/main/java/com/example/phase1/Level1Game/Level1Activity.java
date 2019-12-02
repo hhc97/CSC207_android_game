@@ -1,5 +1,6 @@
 package com.example.phase1.Level1Game;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -21,6 +22,9 @@ import java.util.TimerTask;
 
 import pl.droidsonroids.gif.GifImageView;
 
+/**
+ *
+ */
 public class Level1Activity extends LevelActivity {
 
   private Button toMenuButton;
@@ -129,6 +133,8 @@ public class Level1Activity extends LevelActivity {
     controlScheme.setAttackButton();
   }
 
+
+  @SuppressLint("ClickableViewAccessibility")
   private void setUsePotionButton() {
     usePotionButton = findViewById(R.id.potionbutton);
     usePotionButton.setVisibility(View.INVISIBLE);
@@ -148,6 +154,7 @@ public class Level1Activity extends LevelActivity {
         });
   }
 
+  @SuppressLint("ClickableViewAccessibility")
   private void setReturnToMenuButton() {
     toMenuButton = findViewById(R.id.menu);
     toMenuButton.setVisibility(View.INVISIBLE);
@@ -246,21 +253,29 @@ public class Level1Activity extends LevelActivity {
     usePotionButton.setVisibility(View.VISIBLE);
     usePotionButton.setClickable(true);
   }
-  // Move right when right button pressed
+
+  /**
+   *
+   * sequences of method calls to resolve move right when right button is pressed
+   */
   public void rightAction() {
     manager.rightButtonPress();
     heroFacingRight();
     heroWalkAnimation();
   }
 
-  // Move left when left button pressed
+  /**
+   * sequences of method calls to resolve move left when left button is pressed
+   */
   public void leftAction() {
     manager.leftButtonPress();
     heroFacingLeft();
     heroWalkAnimation();
   }
 
-  // Attack when attack button is pressed
+  /**
+   * sequences of method calls to resolve attack when attack button is pressed
+   */
   public void attackAction() {
     manager.attackButtonPress();
     nullAction();
@@ -269,6 +284,7 @@ public class Level1Activity extends LevelActivity {
       if (((Monster) Objects.get(i)).isGetHit()) enemyHurtAnimation(i);
     }
   }
+
 
   private void usePotionAction() {
     if (getPotion() > 0) { //if there are any potions left
@@ -299,6 +315,9 @@ public class Level1Activity extends LevelActivity {
     finish();
   }
 
+  /**
+   * resolve jump button being pressed, not currently used.
+   */
   public void jumpAction() {}
 
   private void nullAction() { //animation updates when nothing is pressed

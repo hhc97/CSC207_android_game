@@ -23,6 +23,27 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/forestd" />
 
+    <ImageView
+        android:id="@+id/tut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/t6" />
+
+    <ImageView
+        android:id="@+id/tut1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/tut1" />
+
+    <ImageView
+        android:id="@+id/tut2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/tut2"
+        tools:visibility="invisible" />
+
     <Button
             android:id="@+id/left"
             android:layout_width="56dp"
