@@ -9,31 +9,35 @@ class Sequence {
   private int length;
   private int toComplete;
 
-  Sequence(int i){
+  Sequence(int i) {
     difficulty = i;
     setLength();
     toComplete = i + 1;
   }
-  void complete(){
+
+  void complete() {
     toComplete -= 1;
   }
 
-  int getLength(){
+  int getLength() {
     return length;
   }
 
-  int getToComplete(){
+  int getToComplete() {
     return toComplete;
   }
 
-  private void setLength(){
-    switch(difficulty){
-      case 0: length = 4;
-              break;
-      case 1: length = 6;
-              break;
-      case 2: length = 12;
-              break;
+  private void setLength() {
+    switch (difficulty) {
+      case 0:
+        length = 4;
+        break;
+      case 1:
+        length = 6;
+        break;
+      case 2:
+        length = 12;
+        break;
     }
   }
   /**
@@ -51,6 +55,7 @@ class Sequence {
     return sequence;
   }
 
-  int getDifficulty() {return difficulty;
+  int getDifficulty() {
+    return difficulty;
   }
 }

@@ -11,7 +11,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ArrayList;
 
-
 public class Level2Manager {
   private static final float GROUND_HEIGHT = 0;
   private List<Obstacle> Obstacles = new ArrayList<>();
@@ -45,7 +44,6 @@ public class Level2Manager {
     Potion p = (Potion) builder.createObject("Potion");
     p.setPosition(400, GROUND_HEIGHT);
 
-
     Obstacles.add(rock1);
     Obstacles.add(rock2);
     Obstacles.add(rock3);
@@ -66,11 +64,9 @@ public class Level2Manager {
   private void updateHealth() {
     if (difficulty == 0) {
       parent.deductHealth(30);
-    }
-    else if (difficulty == 1) {
+    } else if (difficulty == 1) {
       parent.deductHealth(40);
-    }
-    else if (difficulty == 2){
+    } else if (difficulty == 2) {
       parent.deductHealth(50);
     }
   }
@@ -82,7 +78,7 @@ public class Level2Manager {
     updateGameObjects();
   }
 
-  private void updateObstacles(){
+  private void updateObstacles() {
     for (Obstacle obstacle : Obstacles) {
       obstacle.update();
       if (obstacle.getX() <= this.playerStartX && !(obstacle.getPassed())) {
@@ -101,8 +97,9 @@ public class Level2Manager {
       }
     }
   }
-  private void updateGameObjects(){
-    for(GameObject obj: gameObjects){
+
+  private void updateGameObjects() {
+    for (GameObject obj : gameObjects) {
       obj.update();
     }
   }
@@ -116,33 +113,32 @@ public class Level2Manager {
     }
   }
 
-
-  //Hero object move right
-  void rightAction(){
+  // Hero object move right
+  void rightAction() {
     player.moveRight();
   }
 
-  //Hero object move right
-  void leftAction(){
+  // Hero object move right
+  void leftAction() {
     player.moveLeft();
   }
 
-  public Hero getPlayer(){
+  public Hero getPlayer() {
     return this.player;
   }
 
-  List<GameObject> getGameObjects(){
+  List<GameObject> getGameObjects() {
     return gameObjects;
   }
 
-  void playerAlive(){
+  void playerAlive() {
     player.setStates(true);
   }
-  public boolean checkIsWinning(){
+
+  public boolean checkIsWinning() {
     boolean isWon = true;
-    for(GameObject obj: gameObjects){
-      if (obj.getStates())
-        isWon = false;
+    for (GameObject obj : gameObjects) {
+      if (obj.getStates()) isWon = false;
     }
     return isWon;
   }
