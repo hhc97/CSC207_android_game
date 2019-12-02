@@ -236,6 +236,7 @@ public class Level2Activity extends LevelActivity {
       setPotion(getPotion() - 1);
       setHealth(100);
       restartLevel();
+      finish();
     }
   }
 
@@ -365,6 +366,7 @@ public class Level2Activity extends LevelActivity {
       // End the animation
       animator.cancel();
       timer.cancel();
+
     } else if (getScore() >= 2000) {
       isRunning = false;
       playerMovable = true;
@@ -375,6 +377,7 @@ public class Level2Activity extends LevelActivity {
       timer.cancel();
     }
   }
+
   // Flip the hero sprite left.
   private void heroFacingLeft() {
     level2Manager.getPlayer().getImage().setScaleX(-1f);
