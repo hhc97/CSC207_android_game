@@ -136,8 +136,8 @@ public class Level2Activity extends LevelActivity {
 //                      animator.cancel();
 //                      timer.cancel();
 //                    }
-//                    else if (getScore() >= 2000) {
-                    if (getHealth() <= 0) {
+                    if (getScore() >= 2000) {
+//                    if (getHealth() <= 0) {
                       rightButton.setEnabled(true);
                       collectPhase();
 
@@ -261,8 +261,7 @@ public class Level2Activity extends LevelActivity {
 
   private void updateLabels() {
     scoreLabel.setText("Score: " + getScore());
-    System.out.println((getHealth()));
-//    healthLabel.setText("Health: " + getHealth());
+    healthLabel.setText("Health: " + (getHealth() - 2));
     potionLabel.setText("Potions: " + getPotion());
   }
 
