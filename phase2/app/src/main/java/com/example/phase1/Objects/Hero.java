@@ -50,7 +50,9 @@ public class Hero extends Character {
     attackRangeY[1] = y + HEIGHT;
   }
 
-  public void notAttack() {this.isAttack = false;}
+  public void notAttack() {
+    this.isAttack = false;
+  }
 
   public int getCoins() {
     return coins;

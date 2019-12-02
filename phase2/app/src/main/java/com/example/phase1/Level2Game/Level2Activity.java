@@ -31,15 +31,17 @@ public class Level2Activity extends LevelActivity {
   Level2Manager level2Manager = new Level2Manager();
   private Handler handler = new Handler();
   private Timer timer = new Timer();
+  private ValueAnimator animator;
   private TextView scoreLabel;
   private TextView healthLabel;
   private TextView potionLabel;
+  private Button rightButton;
   private List<GameObject> gameObjects;
   private boolean isRunning = true;
   private boolean playerMovable = false;
   //  private TextView message;
   private RelativeLayout screen;
-  ValueAnimator animator;
+  private ControlSchemeOne controlSchemeOne;
 
   // Images in the layout for Level 2.
   ImageView backgroundOne;
@@ -57,8 +59,6 @@ public class Level2Activity extends LevelActivity {
   ImageView coin3;
   ImageView potion;
 
-  private ControlSchemeOne controlSchemeOne;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
 
@@ -71,7 +71,7 @@ public class Level2Activity extends LevelActivity {
         .setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-    // Remove the title.
+    // Remove the title bar.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
     getPreferences();
@@ -134,6 +134,7 @@ public class Level2Activity extends LevelActivity {
         0,
         20);
   }
+
   // Sets up all the information necessary for background animation.
   public void backgroundSetup() {
 
@@ -177,7 +178,7 @@ public class Level2Activity extends LevelActivity {
         });
   }
 
-  // Visually show that the hero is jumping.
+  // Visually show that the hero is jumping, if jump button is pressed.
   public void tapScreen(View view) {
     preventTwoClick(view);
     final GifImageView heroCharacter = findViewById(R.id.hero);
@@ -185,7 +186,8 @@ public class Level2Activity extends LevelActivity {
         ObjectAnimator.ofFloat(
             heroCharacter, "translationY", 0f, -100, -200f, -250f, -200f, -100f, 0f);
     animationUp.setDuration(1200L);
-    // Add a listener that checks if the hero is jumping, and tells the Level2Manager.
+
+    // Adds a listener that checks if the hero is currently jumping, and tells the Level2Manager.
     animationUp.addListener(
         new Animator.AnimatorListener() {
           @Override
@@ -231,7 +233,8 @@ public class Level2Activity extends LevelActivity {
   public void resumeLevel(View view) {
     if (getPotion() > 0) {
       //      message.setVisibility(View.INVISIBLE);
-      setHealth(98);
+      setPotion(getPotion() - 1);
+      setHealth(100);
       restartLevel();
     }
   }
@@ -241,10 +244,8 @@ public class Level2Activity extends LevelActivity {
   }
 
   private void updateLabels() {
-    healthLabel.setText("Health: " + getHealth());
     scoreLabel.setText("Score: " + getScore());
-    System.out.println((getHealth()));
-    //    healthLabel.setText("Health: " + getHealth());
+    healthLabel.setText("Health: " + (getHealth()));
     potionLabel.setText("Potions: " + getPotion());
   }
 
@@ -281,8 +282,9 @@ public class Level2Activity extends LevelActivity {
     }
   }
 
+  // Customizes level based on what the user chose.
   private void getPreferences() {
-    // Change the background theme to either day or night based on the user's choice.
+    // Changes background theme.
     if (getDayOrNight() == 0) {
       setContentView(R.layout.n_activity_level2);
       screen = findViewById(R.id.n_2_layout);
@@ -291,7 +293,7 @@ public class Level2Activity extends LevelActivity {
       screen = findViewById(R.id.lvl_2_layout);
     }
 
-    // Change the hero's appearance based on the user's choice.
+    // Changes the hero's appearance.
     final pl.droidsonroids.gif.GifImageView hero = findViewById(R.id.hero);
     if (getCharacter() == 0) {
       hero.setImageResource(R.drawable.run2);
@@ -347,26 +349,23 @@ public class Level2Activity extends LevelActivity {
     level2Manager.update();
     updateLabels();
 
-    // The level is over, so pause the auto-update to check collision and
-    // animation.
-    //                    if (getHealth() <= 0) {
-    //                      setPotion(1);
-    //                      healthLabel.setText("Health: 0");
-    //
-    //                      // Make the end-game text visible
-    //                      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
-    //                      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
-    //                      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
-    //                      findViewById(R.id.menu).setVisibility(View.VISIBLE);
-    //                      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
-    ////                      message.setVisibility(View.VISIBLE);
-    //
-    //                      // End the animation
-    //                      animator.cancel();
-    //                      timer.cancel();
-    //                    }
-    //                    else if (getScore() >= 2000) {
+    //    The level is over, so pause the auto-update to check collision and
+    //    animation.
     if (getHealth() <= 0) {
+      healthLabel.setText("Health: 0");
+
+      // Make the end-game text visible
+      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
+      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
+      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
+      findViewById(R.id.menu).setVisibility(View.VISIBLE);
+      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
+      //                      message.setVisibility(View.VISIBLE);
+
+      // End the animation
+      animator.cancel();
+      timer.cancel();
+    } else if (getScore() >= 2000) {
       isRunning = false;
       playerMovable = true;
       collectPhase();
