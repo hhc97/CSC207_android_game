@@ -131,11 +131,11 @@ public class SaveMenu extends GameManager {
    */
   public void clickDelete(View view) {
     // temporary!
-    if (hasSavedFile()) {
-      Intent intent = new Intent(this, TradingScreen.class);
-      intent.putExtra(sendPlayer, currPlayer);
-      startActivity(intent);
-    }
+//    if (hasSavedFile()) {
+//      Intent intent = new Intent(this, TradingScreen.class);
+//      intent.putExtra(sendPlayer, currPlayer);
+//      startActivity(intent);
+//    }
     // ^^
     if (hasSavedFile()) {
       queryDelete();
@@ -216,6 +216,9 @@ public class SaveMenu extends GameManager {
               + difficulty
               + "\nCharacter: "
               + character;
+      if (getHighScore() > 0) {
+        stats += "\n\nHighscore: " + getHighScore() + "\nObtained on: " + getHighScoreTime();
+      }
       display.setText(stats);
     } else {
       findViewById(R.id.delete_a).setVisibility(View.INVISIBLE);
