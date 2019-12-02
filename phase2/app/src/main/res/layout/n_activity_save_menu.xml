@@ -69,7 +69,7 @@
         android:background="@drawable/but_custom"
         android:fontFamily="@font/montserrat_subrayada"
         android:onClick="clickSave"
-        android:text="Button"
+        android:text="@string/empty_save"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -85,7 +85,7 @@
         android:background="@drawable/but_custom"
         android:fontFamily="@font/montserrat_subrayada"
         android:onClick="clickSave"
-        android:text="Button"
+        android:text="@string/empty_save"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -101,7 +101,7 @@
         android:background="@drawable/but_custom"
         android:fontFamily="@font/montserrat_subrayada"
         android:onClick="clickSave"
-        android:text="Button"
+        android:text="@string/empty_save"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -117,7 +117,7 @@
         android:background="@drawable/but_custom"
         android:fontFamily="@font/montserrat_subrayada"
         android:onClick="clickSave"
-        android:text="Button"
+        android:text="@string/empty_save"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -133,7 +133,7 @@
         android:background="@drawable/but_custom"
         android:fontFamily="@font/montserrat_subrayada"
         android:onClick="clickSave"
-        android:text="Button"
+        android:text="@string/empty_save"
         android:textColor="#FFFFFF" />
 
     <Button
@@ -149,7 +149,7 @@
         android:background="@drawable/but_custom"
         android:fontFamily="@font/montserrat_subrayada"
         android:onClick="clickSave"
-        android:text="Button"
+        android:text="@string/empty_save"
         android:textColor="#FFFFFF" />
 
     <TextView
