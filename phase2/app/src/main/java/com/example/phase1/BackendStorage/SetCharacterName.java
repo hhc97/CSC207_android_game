@@ -35,6 +35,9 @@ public class SetCharacterName extends AppCompatActivity {
       return;
     }
     message = message.replace(",", ".");
+    if (message.length() > 9) {
+      message = message.substring(0, 9);
+    }
     intent.putExtra(SaveMenu.sendName, message);
     setResult(RESULT_OK, intent);
     finish();
