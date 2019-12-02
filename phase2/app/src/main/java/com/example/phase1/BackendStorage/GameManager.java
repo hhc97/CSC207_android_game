@@ -84,6 +84,11 @@ public abstract class GameManager extends FileReadWriter {
   }
 
   // getters and setters for all the stats
+  /**
+   * Sets the current player to i, if the current player is not valid.
+   *
+   * @param i The value to set current player to.
+   */
   public void setCurrPlayer(int i) {
     if (currPlayer == -1) {
       currPlayer = i;
@@ -91,19 +96,40 @@ public abstract class GameManager extends FileReadWriter {
   }
 
   // for name
+  /**
+   * Sets the current player's name to name.
+   *
+   * @param name The name that is to be set.
+   */
   void setName(String name) {
     setStringStat(name, playerName);
   }
 
+  /**
+   * Returns the name of the current player.
+   *
+   * @return The name of the current player.
+   */
   String getName() {
     return getStringStat(playerName);
   }
 
   // for score
+  /**
+   * Returns the score of the current player.
+   *
+   * @return The score of the current player.
+   */
   public int getScore() {
     return getStat(score);
   }
 
+  /**
+   * Sets the score of the current player. If the score is higher than the highscore, update the
+   * highscore and the time and date which it was achieved.
+   *
+   * @param s The score to be set.
+   */
   public void setScore(int s) {
     if (s > getHighScore()) {
       setHighScore(s);
@@ -115,134 +141,276 @@ public abstract class GameManager extends FileReadWriter {
     setStat(s, score);
   }
 
+  /**
+   * Adds the input value to the current player's score.
+   *
+   * @param s The value to increase score by.
+   */
   public void addScore(int s) {
     setScore(getScore() + s);
   }
 
+  /**
+   * Deducts the input value from the current player's score.
+   *
+   * @param s The value to decrease score by.
+   */
   public void deductScore(int s) {
     setScore(getScore() - s);
   }
 
   // for health
+  /**
+   * Returns the health of the current player.
+   *
+   * @return The health of the current player.
+   */
   public int getHealth() {
     return getStat(health);
   }
 
+  /**
+   * Sets the current player's health to the input value.
+   *
+   * @param h The value to set the health to.
+   */
   public void setHealth(int h) {
     setStat(h, health);
   }
 
+  /**
+   * Increases the current player's health by the input value.
+   *
+   * @param h Amount to increase health by.
+   */
   public void addHealth(int h) {
     setHealth(getHealth() + h);
   }
 
+  /**
+   * Decreases the current player's health by the input value.
+   *
+   * @param h Amount to decrease health by.
+   */
   public void deductHealth(int h) {
     setHealth(getHealth() - h);
   }
 
   // for coin
+  /**
+   * Returns the number of coins the current player has.
+   *
+   * @return The number of coins.
+   */
   public int getCoin() {
     return getStat(coin);
   }
 
+  /**
+   * Sets the current player's coin to c.
+   *
+   * @param c The value to set coin to.
+   */
   public void setCoin(int c) {
     setStat(c, coin);
   }
 
+  /**
+   * Adds c number of coins to the current player's inventory.
+   *
+   * @param c The number of coins to add.
+   */
   public void addCoin(int c) {
     setCoin(getCoin() + c);
   }
 
+  /**
+   * Deducts c number of coins from the current player's inventory.
+   *
+   * @param c The number of coins to deduct.
+   */
   public void deductCoin(int c) {
     setCoin(getCoin() - c);
   }
 
   // for level
+  /**
+   * Returns the current level.
+   *
+   * @return The current level.
+   */
   private int getLevel() {
     return getStat(currentLevel);
   }
 
+  /**
+   * Sets the current level to the input value.
+   *
+   * @param level The value to set current level to.
+   */
   private void setLevel(int level) {
     setStat(level, currentLevel);
   }
 
   // for day or night
+  /**
+   * Returns the current player's day/night preference.
+   *
+   * @return An int representing the day/night preference.
+   */
   public int getDayOrNight() {
     return getStat(dayOrNight);
   }
 
+  /**
+   * Sets the day/night preference of the current player to the input value.
+   *
+   * @param day The value to set day/night to.
+   */
   void setDayOrNight(int day) {
     setStat(day, dayOrNight);
   }
 
   // for difficulty
+  /**
+   * Returns the difficulty setting of the current player.
+   *
+   * @return The difficulty setting.
+   */
   public int getDifficulty() {
     return getStat(difficulty);
   }
 
+  /**
+   * Sets the difficulty setting to the input value.
+   *
+   * @param d The value to set difficulty to.
+   */
   void setDifficulty(int d) {
     setStat(d, difficulty);
   }
 
   // for character
+  /**
+   * Gets the current player's character preference.
+   *
+   * @return The character preference.
+   */
   public int getCharacter() {
     return getStat(character);
   }
 
+  /**
+   * Sets the character preference of the current player to the input value.
+   *
+   * @param c The value to set character preference to.
+   */
   void setCharacter(int c) {
     setStat(c, character);
   }
 
   //  for potion
+  /**
+   * Returns the number of potions the current player has.
+   *
+   * @return The number of potions the current player has.
+   */
   public int getPotion() {
     return getStat(potion);
   }
 
+  /**
+   * Sets the number of potions that the current player has to the input value.
+   *
+   * @param p The value to set potions to.
+   */
   public void setPotion(int p) {
     setStat(p, potion);
   }
 
+  /** Adds one potion to the number of potions the current player has. */
   public void addPotion() {
     setPotion(getPotion() + 1);
   }
 
   //  for bonus keys
+  /**
+   * Returns the number of keys the current player has.
+   *
+   * @return The number of keys the current player has.
+   */
   public int getBonusKeys() {
     return getStat(bonusKeys);
   }
 
+  /**
+   * Sets the current player's number of keys to the input value.
+   *
+   * @param k The value to set keys to.
+   */
   public void setBonusKeys(int k) {
     setStat(k, bonusKeys);
   }
 
+  /** Add one to the number of keys the current player has. */
   public void addKey() {
     setBonusKeys(getBonusKeys() + 1);
   }
 
   // for save status
+  /**
+   * Returns true if the current save slot is occupied.
+   *
+   * @return true if occupied, false if not.
+   */
   boolean hasSavedFile() {
     return currPlayer != -1 && getStat(saveStatus) == 1;
   }
 
+  /**
+   * Sets the save status of the current slot to true or false, depending on the input.
+   *
+   * @param b The value to set save status to.
+   */
   void setSaveStatus(boolean b) {
     int status = (b) ? 1 : 0;
     setStat(status, saveStatus);
   }
 
   // for high score
+  /**
+   * Returns the current player's all time high score.
+   *
+   * @return The current player's all time high score.
+   */
   int getHighScore() {
     return getStat(highScore);
   }
 
+  /**
+   * Gets called when the player's score exceeds their all time best.
+   *
+   * @param hs The new all time best score to set highscore to.
+   */
   private void setHighScore(int hs) {
     setStat(hs, highScore);
   }
 
   // for high score time
+  /**
+   * Returns the time of which the all time best score was obtained.
+   *
+   * @return The time of which the all time best score was obtained.
+   */
   String getHighScoreTime() {
     return getStringStat(highScoreTime);
   }
 
+  /**
+   * Sets the time which the all time best score was obtained to the input value.
+   *
+   * @param hst The time which the all time best score was obtained.
+   */
   private void setHighScoreTime(String hst) {
     setStringStat(hst, highScoreTime);
   }
