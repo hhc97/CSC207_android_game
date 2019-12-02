@@ -233,6 +233,7 @@ public class Level2Activity extends LevelActivity {
   public void resumeLevel(View view) {
     if (getPotion() > 0) {
       //      message.setVisibility(View.INVISIBLE);
+      setPotion(getPotion() - 1);
       setHealth(100);
       restartLevel();
     }
