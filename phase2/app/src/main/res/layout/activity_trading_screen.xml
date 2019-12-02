@@ -107,7 +107,7 @@
         android:layout_marginEnd="270dp"
         android:background="@drawable/but_custom"
         android:fontFamily="@font/montserrat_subrayada"
-        android:onClick="buyKey"
+        android:onClick="buyPotion"
         android:text="buy potion"
         android:textColor="#FFFFFF" />
 
