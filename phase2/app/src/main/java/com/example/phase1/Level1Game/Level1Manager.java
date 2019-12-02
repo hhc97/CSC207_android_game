@@ -9,6 +9,9 @@ import com.example.phase1.Objects.Potion;
 
 import java.util.ArrayList;
 
+/**
+ * a manager for level1 that resolves calculations occurred in the gameplay.
+ */
 public class Level1Manager {
   ArrayList<GameObject> Objects = new ArrayList<>();
   private Hero player;
@@ -22,13 +25,20 @@ public class Level1Manager {
   private ObjectBuilder builder;
   private boolean hasGotTheEasterEgg = false;
 
+  /**
+   *
+   * @param difficulty int value to represent difficulty
+   */
   public Level1Manager(int difficulty) {
     this.difficulty = difficulty;
     builder = new ObjectBuilder(this.difficulty);
     setupObjects();
   }
 
-  public Level1Manager() { // a default constructor
+  /**
+   * default constructor with no parameter
+   */
+  public Level1Manager() {
     builder = new ObjectBuilder(this.difficulty);
     setupObjects();
   }
@@ -79,38 +89,58 @@ public class Level1Manager {
     }
   }
 
+  /**
+   * setter for maximum framesize x for all GameObjects
+   * @param x the maximum x value of the frame
+   */
   public void setMaxFrameSize(float x) {
-    this.maxFrameSize = x; // setter for maximum framesize x for all GameObjects
+    this.maxFrameSize = x;
     for (GameObject obj : Objects) {
       obj.setMaxFrameSize(this.maxFrameSize);
     }
   }
 
+  /**
+   * etter for minimum framesize x for all GameObjects
+   * @param x the minimum x value of the frame
+   */
   public void setMinFrameSize(float x) {
-    this.minFrameSize = x; // setter for minimum framesize x for all GameObjects
+    this.minFrameSize = x;
     for (GameObject obj : Objects) {
       obj.setMinFrameSize(this.minFrameSize);
     }
   }
 
+  /**
+   * resolve move right action in player class
+   */
   public void rightButtonPress() {
     if (isPlayerAlive()) {
       player.moveRight(); // resolve moving right in player class
     }
   }
 
+  /**
+   * resolve move left action in player class
+   */
   public void leftButtonPress() {
     if (isPlayerAlive()) {
       player.moveLeft(); // resolve moving left in player class
     }
   }
 
+  /**
+   * resolve attack action in player class
+   */
   public void attackButtonPress() {
     if (isPlayerAlive()) { // if player is alive
       player.attack(); // resolve attack in player class
     }
   }
 
+  /**
+   * resolve potion usage in player class
+   */
   public void usePotionButtonPress() {
     player.usePotion();
   }
@@ -135,20 +165,35 @@ public class Level1Manager {
     checkEasterEgg();
   }
 
+  /**
+   * getter for player
+   * @return instance of Hero class used as player for the current level
+   */
   public Hero getPlayer() {
     return player;
-  } // getter for player
+  }
 
+  /**
+   * setter for difficulty, 0 = easy, 1 = medium, 2 = hard
+   * @param difficulty int variable to represent difficulty
+   */
   public void setDifficulty(int difficulty) {
     this.difficulty = difficulty;
   }
   // setter for difficulty
 
+  /**
+   * getter for list Objects
+   * @return ArrayList of GameObjects Objects in this class
+   */
   public ArrayList getObjects() {
     return this.Objects;
   }
-  // getter for objects
 
+  /**
+   *
+   * @return if player is alive or not
+   */
   public boolean isPlayerAlive() {
     return player.getStates();
   }
@@ -179,6 +224,10 @@ public class Level1Manager {
     player.addScore(500);
   }
 
+  /**
+   *
+   * @return if player has already gotten the easter egg or not
+   */
   public boolean hasGotTheEasterEgg() {
     return hasGotTheEasterEgg;
   }
