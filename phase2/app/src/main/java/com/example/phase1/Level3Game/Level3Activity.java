@@ -22,6 +22,9 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
 
   private Timer timer = new Timer("Timer"); // Timer
   private Level3Facade level3Facade = new Level3Facade();
+  private TextView health;
+  private TextView potions;
+  private TextView score;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +63,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     Button key = findViewById(R.id.keybutton);
     TextView magicText = findViewById(R.id.magic_text);
     TextView pstat = findViewById(R.id.pstat);
-    TextView health = findViewById(R.id.health);
-    TextView potions = findViewById(R.id.potions);
-    TextView score = findViewById(R.id.score);
+    health = findViewById(R.id.health);
+    potions = findViewById(R.id.potions);
+    score = findViewById(R.id.score);
+    updateTextLabels();
 
     level3Facade.setDisplayHandler(
         new DisplayHandler(buttons, pstat, magicText, key, health, potions, score));
@@ -193,46 +197,45 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     level3Facade.disableButtons();
     final int x = (level3Facade.getDifficulty() + 3) * 10;
     if (level3Facade.getAttempts()
-            >= 3 - level3Facade.getDifficulty()) { // User made maximum unpunishable attempts
+        >= 3 - level3Facade.getDifficulty()) { // User made maximum unpunishable attempts
       deductHealth(x); // deduct hp
       level3Facade.updateHealth(getHealth());
       if (getHealth() <= 0) // restart game if they run out of lives
       {
-          if (getPotion() > 0) {
-              level3Facade.setAttempts(0);
-              setPotion(getPotion() - 1);
-              level3Facade.updatePotions(getPotion());
-              setText("Using a potion. " + getPotion() + "Potions remaining.");
-              new Handler()
-                      .postDelayed(
-                              new Runnable() { // delay the task by 5 seconds
-                                  @Override
-                                  public void run() {
-                                      displaySequence();
-                                  }
-                              },
-                              2000);
-          }
-          setText("You have 0 potions and 0 health remaining. You have died. Restarting game.");
+        if (getPotion() > 0) {
+          level3Facade.setAttempts(0);
+          setPotion(getPotion() - 1);
+          level3Facade.updatePotions(getPotion());
+          setText("Using a potion. " + getPotion() + "Potions remaining.");
           new Handler()
-                  .postDelayed(
-                          new Runnable() { // delay the task by 5 seconds
-                              @Override
-                              public void run() {
-                                  finish();
-                              }
-                          },
-                          2000);
-
+              .postDelayed(
+                  new Runnable() { // delay the task by 5 seconds
+                    @Override
+                    public void run() {
+                      displaySequence();
+                    }
+                  },
+                  2000);
+        }
+        setText("You have 0 potions and 0 health remaining. You have died. Restarting game.");
+        new Handler()
+            .postDelayed(
+                new Runnable() { // delay the task by 5 seconds
+                  @Override
+                  public void run() {
+                    finish();
+                  }
+                },
+                2000);
 
       } else {
-          setText(
-                  "Incorrect Pattern! You ran out of attempts, -"
-                          + x
-                          + " Health. You have "
-                          + getHealth()
-                          + " Health remaining.");
-          level3Facade.setAttempts(0);
+        setText(
+            "Incorrect Pattern! You ran out of attempts, -"
+                + x
+                + " Health. You have "
+                + getHealth()
+                + " Health remaining.");
+        level3Facade.setAttempts(0);
         new Handler()
             .postDelayed(
                 new Runnable() { // delay the task by 5 seconds
@@ -297,5 +300,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
               },
               2000);
     }
+  }
+  private void updateTextLabels(){
+      score.setText("Score: "+getScore());
+      health.setText("Health: "+getHealth());
+      potions.setText("Potions: "+getPotion());
   }
 }
