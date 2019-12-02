@@ -32,4 +32,19 @@ short amount of time to collect the items that will appear on screen.
 they must be clicked in the same order to win the game.
 
 13. Once the game is won, you can use the coins you've earned to purchase keys and potions, which
-will help in getting a better highscore.
+will help in getting a better high score.
+
+
+== LEVEL 2 README ==
+
+- There is a significant lag on the virtual device. When coding Level 2, we used a team member's
+  android phone, without any lag, as a basis for the speed of the obstacles (how fast their x
+  coordinate changes). As such, there will be a big discrepancy between the visual feed of the hero
+  touching the obstacle and the code behind it. During presentation, we will be demonstrating this
+  level on an android phone instead of the virtual device.
+
+- You may notice that the first obstacle doesn't affect the health points of the hero. This is
+  intentional, as we wanted to give a second for the player to adjust to the speed.
+
+- The user will pass the level once 2000 points is reached. Jumping over 1 obstacle gives
+  100 points, so this is equivalent to 20 successful jumps.
