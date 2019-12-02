@@ -8,3 +8,10 @@
 
 3. Once you click on the intro animation, you will enter the save menu. This is the activity where
 the save slots are managed.
+
+4. Upon clicking on an empty save slot, you will be taken to a screen to set your character name.
+
+5. Once a name is set, you will be taken to a screen to set the character preferences, where you can
+toggle the difficult, character, and day/night preferences.
+
+6. Upon clicking finish, your account will be saved in the slot you clicked on.
