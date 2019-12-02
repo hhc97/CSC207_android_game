@@ -14,6 +14,8 @@ import com.example.phase1.R;
 /**
  * An activity that allows players to trade their coins for items after they finish their first run
  * of the game.
+ *
+ * @author Haocheng Hu, Nayan Saxena
  */
 public class TradingScreen extends GameManager {
 
