@@ -420,6 +420,9 @@ public abstract class GameManager extends FileReadWriter {
    * it's a new player.
    */
   void startGame() {
+    if (getHealth() <= 0) {
+      startAgain();
+    }
     int level = getLevel();
     if (level == 1) {
       Intent intent = new Intent(this, Level1Activity.class);
@@ -465,6 +468,9 @@ public abstract class GameManager extends FileReadWriter {
   public void startAgain() {
     setLevel(1);
     setScore(0);
+    setPotion(0);
+    setBonusKeys(0);
+    setCoin(0);
     setHealth(100);
     startGame();
   }
