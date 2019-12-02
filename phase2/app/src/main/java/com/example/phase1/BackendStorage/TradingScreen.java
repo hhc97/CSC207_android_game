@@ -1,7 +1,12 @@
 package com.example.phase1.BackendStorage;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.phase1.R;
@@ -15,9 +20,16 @@ public class TradingScreen extends GameManager {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    this.getWindow()
+            .setFlags(
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+    // Remove the title.
+    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.activity_trading_screen);
     currPlayer = getIntent().getIntExtra(sendPlayer, 0);
     updateInventory();
+    moveBackground();
   }
 
   /**
@@ -55,7 +67,7 @@ public class TradingScreen extends GameManager {
     TextView display = findViewById(R.id.textView2);
     String inventory =
         "Current inventory:\n"
-            + "Coins: "
+            + "\nCoins: "
             + getCoin()
             + "\nPoints: "
             + getScore()
@@ -74,4 +86,32 @@ public class TradingScreen extends GameManager {
   public void clickFinish(View view) {
     startAgain();
   }
-}
+
+  public void moveBackground(){
+    final ImageView backgroundOne = findViewById(R.id.grass);
+    final ImageView backgroundTwo = findViewById(R.id.grass1);
+    final ImageView backgroundThree = findViewById(R.id.vegetation);
+    final ImageView backgroundFour = findViewById(R.id.vegetation2);
+    ValueAnimator animator = ValueAnimator.ofFloat(0.0f, 1.0f);
+    animator.setRepeatCount(ValueAnimator.INFINITE);
+    animator.setInterpolator(new LinearInterpolator());
+    animator.setDuration(10000L);
+    animator.addUpdateListener(
+            new ValueAnimator.AnimatorUpdateListener() {
+              @Override
+              public void onAnimationUpdate(ValueAnimator animation) {
+                final float progress = (float) animation.getAnimatedValue();
+                final float width1 = backgroundOne.getWidth();
+                final float width2 = backgroundThree.getWidth();
+                final float translationX1 = width1 * progress;
+                final float translationX2 = width2 * progress - 10;
+                backgroundOne.setTranslationX(-translationX1);
+                backgroundTwo.setTranslationX(-translationX1 + width1);
+                backgroundThree.setTranslationX(-translationX2);
+                backgroundFour.setTranslationX(-translationX2 + width2);
+              }
+            });
+    animator.start();
+  }
+  }
+
