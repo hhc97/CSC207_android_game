@@ -11,16 +11,10 @@ class Level3Facade {
   @SuppressLint("StaticFieldLeak")
   private DisplayHandler displayHandler;
 
-  void setAttempts(int i) {
-    level3.setAttempts(i);
-  }
-
-  void setButtonVisible(int i) {
-    displayHandler.setButtonVisible(i);
-  }
+  void setAttempts(int i) { level3.setAttempts(i); }
 
   void setButtonInvisible(int i) {
-    displayHandler.setButtonInvisible(i);
+        displayHandler.setButtonInvisible(i);
   }
 
   void setDisplayHandler(DisplayHandler displayHandler) {
@@ -39,25 +33,13 @@ class Level3Facade {
     displayHandler.startSequence();
   }
 
-  void endSequence() {
-    displayHandler.endSequence();
-  }
+  void endSequence() { displayHandler.endSequence(); }
 
   void disableButtons() {
     displayHandler.disableButtons();
   }
 
-  void setButtonsVisible() {
-    displayHandler.setButtonsVisible();
-  }
-
-  void setButtonsInvisible() {
-    displayHandler.setButtonsInvisible();
-  }
-
-  void enableButtons() {
-    displayHandler.enableButtons();
-  }
+  void setButtonsVisible(){displayHandler.setButtonsVisible();}
 
   void setText(String s) {
     displayHandler.setText(s);
@@ -79,59 +61,33 @@ class Level3Facade {
     return level3.checkConditions();
   }
 
-  Button getButton(int i) {
-    return displayHandler.getButton(i);
-  }
+  Button getButton(int i){return displayHandler.getButton(i);}
 
-  int getToComplete() {
-    return level3.getToComplete();
-  }
+  int getToComplete(){ return level3.getToComplete();}
 
-  void completeSequence() {
-    level3.completeSequence();
-  }
+  void completeSequence(){level3.completeSequence();}
 
-  int getLength() {
-    return level3.getLength();
-  }
+  int getLength(){return level3.getLength();}
 
-  int getDifficulty() {
-    return level3.getDifficulty();
-  }
+  int getDifficulty() {return level3.getDifficulty();}
 
-  void enableKeyButton() {
-    displayHandler.enableKeyButton();
-  }
+  void enableKeyButton(){displayHandler.enableKeyButton();}
 
-  void disableKeyButton() {
-    displayHandler.disableButtons();
-  }
+  void disableKeyButton(){displayHandler.disableButtons();}
 
-  void showKeyButton() {
-    displayHandler.showKeyButton();
-  }
+  void showKeyButton(){displayHandler.showKeyButton();}
 
-  void hideKeyButton() {
-    displayHandler.hideKeyButton();
-  }
+  void showKeyText(){displayHandler.showKeyText();}
 
-  void hideKeyText() {
-    displayHandler.hideKeyText();
-  }
-
-  void showKeyText() {
-    displayHandler.showKeyText();
-  }
-
-  void updateHealth(int i) {
+  void updateHealth(int i){
     displayHandler.updateHealth(i);
   }
 
-  void updatePotions(int i) {
+  void updatePotions(int i){
     displayHandler.updatePotions(i);
   }
 
-  void updateScore(int i) {
+  void updateScore(int i){
     displayHandler.updateScore(i);
   }
 }
