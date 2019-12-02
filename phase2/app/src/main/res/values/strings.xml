@@ -2,7 +2,7 @@
     <string name="app_name">Everside Adventures</string>
     <string name="button_send">Confirm</string>
     <string name="game_start">Start game</string>
-    <string name="empty_save">Empty save slot</string>
+    <string name="empty_save">Empty</string>
     <string name="save_slots">Save slots</string>
     <string name="edit_name">Enter your desired username</string>
     <string name="game_level2">Level 2</string>
