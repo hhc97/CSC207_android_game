@@ -12,7 +12,7 @@ public class Coin extends GameObject {
   }
   // Update the hero's status
   public void update() {
-    if (isTouchHero() && states) {
+    if (isTouchHero() && getStates()) {
       player.addCoins();
       setStates(false);
     }

@@ -1,15 +1,21 @@
 package com.example.phase1.Level2Game;
 
+import com.example.phase1.Objects.GameObject;
 import com.example.phase1.Objects.Hero;
 import com.example.phase1.Objects.ObjectBuilder;
 import com.example.phase1.Objects.Obstacle;
+import com.example.phase1.Objects.Coin;
+import com.example.phase1.Objects.Potion;
 
-import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.ArrayList;
+
 
 public class Level2Manager {
   private static final float GROUND_HEIGHT = 0;
   private List<Obstacle> Obstacles = new ArrayList<>();
+  private List<GameObject> gameObjects = new ArrayList<>();
   private float playerStartX = 138;
   private float playerStartY = GROUND_HEIGHT;
   private Level2Activity parent;
@@ -29,10 +35,23 @@ public class Level2Manager {
     rock2.setPosition(433, GROUND_HEIGHT);
     Obstacle rock3 = (Obstacle) builder.createObject("Obstacle");
     rock3.setPosition(638, GROUND_HEIGHT);
+    Coin c1 = (Coin) builder.createObject("Coin");
+    c1.setPosition(1000, GROUND_HEIGHT);
+    Coin c2 = (Coin) builder.createObject("Coin");
+    c2.setPosition(1500, GROUND_HEIGHT);
+    Coin c3 = (Coin) builder.createObject("Coin");
+    c3.setPosition(1750, GROUND_HEIGHT);
+    Potion p = (Potion) builder.createObject("Potion");
+    p.setPosition(400, GROUND_HEIGHT);
+
 
     Obstacles.add(rock1);
     Obstacles.add(rock2);
     Obstacles.add(rock3);
+    gameObjects.add(c1);
+    gameObjects.add(c2);
+    gameObjects.add(c3);
+    gameObjects.add(p);
   }
 
   void setDifficulty(int difficulty) {
@@ -56,9 +75,13 @@ public class Level2Manager {
 
   // Updates player's health and score based on interactions with obstacles.
   public void update() {
+    player.update();
+    updateObstacles();
+    updateGameObjects();
+  }
+  private void updateObstacles(){
     for (Obstacle obstacle : Obstacles) {
       obstacle.update();
-      player.update();
       if (obstacle.getX() <= this.playerStartX && !(obstacle.getPassed())) {
         obstacle.setPassed(true);
 
@@ -68,6 +91,11 @@ public class Level2Manager {
           updateHealth();
         }
       }
+    }
+  }
+  private void updateGameObjects(){
+    for(GameObject obj: gameObjects){
+      obj.update();
     }
   }
 
@@ -85,7 +113,27 @@ public class Level2Manager {
   public void rightAction(){
     player.moveRight();
   }
+
+  //Hero object move right
+  public void leftAction(){
+    player.moveLeft();
+  }
   public Hero getPlayer(){
     return this.player;
+  }
+  public List<GameObject> getGameObjects(){
+    return gameObjects;
+  }
+  public void playerAlive(){
+    player.setHealth(1);
+    player.setStates(true);
+  }
+  public boolean checkIsWinning(){
+    boolean isWon = true;
+    for(GameObject obj: gameObjects){
+      if (obj.getStates())
+        isWon = false;
+    }
+    return isWon;
   }
 }

@@ -2,6 +2,7 @@ package com.example.phase1.BackendStorage;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.phase1.R;
 
@@ -16,6 +17,7 @@ public class TradingScreen extends GameManager {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_trading_screen);
     currPlayer = getIntent().getIntExtra(sendPlayer, 0);
+    updateInventory();
   }
 
   /**
@@ -29,6 +31,7 @@ public class TradingScreen extends GameManager {
       deductCoin(potionPrice);
       addPotion();
     }
+    updateInventory();
   }
   /**
    * Buys a key, if the buy key button is clicked and the player has enough coins.
@@ -41,5 +44,34 @@ public class TradingScreen extends GameManager {
       deductCoin(keyPrice);
       addKey();
     }
+    updateInventory();
+  }
+
+  /**
+   * Updates the TextView to display the current inventory at the beginning, and also after every
+   * transaction.
+   */
+  private void updateInventory() {
+    TextView display = findViewById(R.id.textView2);
+    String inventory =
+        "Current inventory:\n"
+            + "Coins: "
+            + getCoin()
+            + "\nPoints: "
+            + getScore()
+            + "\n\nPotions: "
+            + getPotion()
+            + "\nKeys: "
+            + getBonusKeys();
+    display.setText(inventory);
+  }
+
+  /**
+   * After the user has finished trading and clicks finish, start the game again.
+   *
+   * @param view The finish button that is clicked.
+   */
+  public void clickFinish(View view) {
+    startAgain();
   }
 }

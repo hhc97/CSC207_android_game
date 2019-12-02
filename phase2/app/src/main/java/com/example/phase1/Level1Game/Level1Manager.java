@@ -164,8 +164,8 @@ public class Level1Manager {
   private boolean easterEggCondition() {
     if (difficulty == 2 && !hasGotTheEasterEgg) {
       //if difficulty is hard and easteregg hasn't triggered in this game yet
-      if (isPlayerAlive() && player.getHealth() <= 10) {
-        //if player has less than 10 health
+      if (isPlayerAlive() && player.getHealth() <= 25) {
+        //if player has less than 25 health
         for (int i = 4; i <= 6; i++) {  //and none of the coins are collected
           if (!Objects.get(i).getStates()) return false;
         }
