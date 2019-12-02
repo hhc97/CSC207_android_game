@@ -249,6 +249,10 @@ public class Level2Activity extends LevelActivity {
   // Switches to the ending phase of Level 2.
   public void collectPhase() {
     level2Manager.playerAlive();
+    level2Manager.update();
+    updateGameObjectsImage();
+    updateStatesToGameManager();
+    updateLabels();
     coin1.setVisibility(View.VISIBLE);
     coin2.setVisibility(View.VISIBLE);
     coin3.setVisibility(View.VISIBLE);
@@ -315,6 +319,8 @@ public class Level2Activity extends LevelActivity {
       level2Manager.update();
       updateGameObjectsImage();
       updateStatesToGameManager();
+      updateLabels();
+      checkIsWinning();
     }
   }
 
@@ -327,6 +333,8 @@ public class Level2Activity extends LevelActivity {
       level2Manager.update();
       updateGameObjectsImage();
       updateStatesToGameManager();
+      updateLabels();
+      checkIsWinning();
     }
   }
 
@@ -385,16 +393,21 @@ public class Level2Activity extends LevelActivity {
     level2Manager.getPlayer().getImage().setScaleX(1f);
   }
 
+  private void checkIsWinning() {
+    if (level2Manager.checkIsWinning()) {
+      levelEndDelay();
+    }
+  }
   //  // A 3 second delay before starting Level 3.
-  //  private void levelEndDelay() {
-  //    handler.postDelayed(
-  //        new Runnable() {
-  //          @Override
-  //          public void run() {
-  //            startNextLevel();
-  //            finish();
-  //          }
-  //        },
-  //        3000);
-  //  }
+  private void levelEndDelay() {
+    handler.postDelayed(
+        new Runnable() {
+          @Override
+          public void run() {
+            startNextLevel();
+            finish();
+          }
+        },
+        3000);
+  }
 }

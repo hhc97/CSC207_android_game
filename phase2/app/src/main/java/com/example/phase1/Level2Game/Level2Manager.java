@@ -128,5 +128,12 @@ public class Level2Manager {
     player.setHealth(1);
     player.setStates(true);
   }
-
+  public boolean checkIsWinning(){
+    boolean isWon = true;
+    for(GameObject obj: gameObjects){
+      if (obj.getStates())
+        isWon = false;
+    }
+    return isWon;
+  }
 }
