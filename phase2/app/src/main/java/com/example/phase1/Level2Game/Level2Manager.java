@@ -22,6 +22,7 @@ public class Level2Manager {
   private ObjectBuilder builder;
   private int difficulty;
   private Hero player;
+  private boolean freebie = true;
 
   Level2Manager() {
     builder = new ObjectBuilder();
@@ -86,6 +87,11 @@ public class Level2Manager {
       obstacle.update();
       if (obstacle.getX() <= this.playerStartX && !(obstacle.getPassed())) {
         obstacle.setPassed(true);
+
+        if (freebie) {
+          freebie = false;
+          continue;
+        }
 
         if (playerStartY == 1) {
           parent.addScore(100);
