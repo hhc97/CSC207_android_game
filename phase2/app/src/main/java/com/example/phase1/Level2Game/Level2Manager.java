@@ -27,7 +27,7 @@ public class Level2Manager {
     builder = new ObjectBuilder();
     Hero player = (Hero) builder.createObject("Hero");
     player.setPosition(playerStartX, playerStartY);
-    this.player =player;
+    this.player = player;
 
     Obstacle rock1 = (Obstacle) builder.createObject("Obstacle");
     rock1.setPosition(185, GROUND_HEIGHT);
@@ -57,6 +57,7 @@ public class Level2Manager {
   void setDifficulty(int difficulty) {
     this.difficulty = difficulty;
   }
+
   void setParent(Level2Activity p) {
     parent = p;
   }
@@ -65,10 +66,10 @@ public class Level2Manager {
     if (difficulty == 0) {
       parent.deductHealth(30);
     }
-    else if (difficulty ==1) {
+    else if (difficulty == 1) {
       parent.deductHealth(40);
     }
-    else {
+    else if (difficulty == 2){
       parent.deductHealth(50);
     }
   }
@@ -79,6 +80,7 @@ public class Level2Manager {
     updateObstacles();
     updateGameObjects();
   }
+
   private void updateObstacles(){
     for (Obstacle obstacle : Obstacles) {
       obstacle.update();
@@ -110,22 +112,24 @@ public class Level2Manager {
 
 
   //Hero object move right
-  public void rightAction(){
+  void rightAction(){
     player.moveRight();
   }
 
   //Hero object move right
-  public void leftAction(){
+  void leftAction(){
     player.moveLeft();
   }
+
   public Hero getPlayer(){
     return this.player;
   }
-  public List<GameObject> getGameObjects(){
+
+  List<GameObject> getGameObjects(){
     return gameObjects;
   }
-  public void playerAlive(){
-    player.setHealth(1);
+
+  void playerAlive(){
     player.setStates(true);
   }
   public boolean checkIsWinning(){
