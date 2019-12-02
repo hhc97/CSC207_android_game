@@ -219,7 +219,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                           new Runnable() { // delay the task by 5 seconds
                               @Override
                               public void run() {
-                                  startAgain();
+                                  finish();
                               }
                           },
                           2000);
