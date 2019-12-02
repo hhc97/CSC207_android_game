@@ -34,21 +34,20 @@ public class SaveMenu extends GameManager {
     startFile(); // for testing, resets save activity each time app is launched. Comment it out to
     // test save functionality.
     this.getWindow()
-            .setFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        .setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     // Remove the title.
     this.requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.n_activity_save_menu);
     Button save1 = findViewById(R.id.button3);
-Button save2 = findViewById(R.id.button4);
-  Button save3 = findViewById(R.id.button5);
- Button save4 = findViewById(R.id.button6);
- Button save5 = findViewById(R.id.button7);
-Button save6 = findViewById(R.id.button8);
-    buttons = new Button[] {save1,save2,save3,save4,save5,save6};
+    Button save2 = findViewById(R.id.button4);
+    Button save3 = findViewById(R.id.button5);
+    Button save4 = findViewById(R.id.button6);
+    Button save5 = findViewById(R.id.button7);
+    Button save6 = findViewById(R.id.button8);
+    buttons = new Button[] {save1, save2, save3, save4, save5, save6};
     updateButtons();
-
 
     // Move the two copies of the front background image, continuously.
     final ImageView backgroundOne = findViewById(R.id.grass);
@@ -60,23 +59,22 @@ Button save6 = findViewById(R.id.button8);
     animator.setInterpolator(new LinearInterpolator());
     animator.setDuration(10000L);
     animator.addUpdateListener(
-            new ValueAnimator.AnimatorUpdateListener() {
-              @Override
-              public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width1 = backgroundOne.getWidth();
-                final float width2 = backgroundThree.getWidth();
-                final float translationX1 = width1 * progress;
-                final float translationX2 = width2 * progress - 10;
-                backgroundOne.setTranslationX(-translationX1);
-                backgroundTwo.setTranslationX(-translationX1 + width1);
-                backgroundThree.setTranslationX(-translationX2);
-                backgroundFour.setTranslationX(-translationX2 + width2);
-              }
-            });
+        new ValueAnimator.AnimatorUpdateListener() {
+          @Override
+          public void onAnimationUpdate(ValueAnimator animation) {
+            final float progress = (float) animation.getAnimatedValue();
+            final float width1 = backgroundOne.getWidth();
+            final float width2 = backgroundThree.getWidth();
+            final float translationX1 = width1 * progress;
+            final float translationX2 = width2 * progress - 10;
+            backgroundOne.setTranslationX(-translationX1);
+            backgroundTwo.setTranslationX(-translationX1 + width1);
+            backgroundThree.setTranslationX(-translationX2);
+            backgroundFour.setTranslationX(-translationX2 + width2);
+          }
+        });
     animator.start();
   }
-
 
   /**
    * Updates the names of the save slot buttons, depending on whether if there is any data saved
