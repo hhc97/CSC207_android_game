@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/nbg"
+    tools:context=".BackendStorage.SaveMenu">
+
+    <ImageView
+        android:id="@+id/vegetation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/forestd" />
+
+    <ImageView
+        android:id="@+id/vegetation2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        app:srcCompat="@drawable/forestd" />
+
+    <ImageView
+        android:id="@+id/grass1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="1dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/hills_layer_5" />
+
+    <ImageView
+        android:id="@+id/grass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginTop="28dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/hills_layer_5" />
+
+    <ImageView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        app:srcCompat="@drawable/day_save" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="154dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="73dp"
+        android:background="@drawable/but_custom"
+        android:fontFamily="@font/montserrat_subrayada"
+        android:onClick="clickSave"
+        android:text="Button"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button4"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="154dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="155dp"
+        android:layout_marginEnd="71dp"
+        android:background="@drawable/but_custom"
+        android:fontFamily="@font/montserrat_subrayada"
+        android:onClick="clickSave"
+        android:text="Button"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button5"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="154dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:layout_marginEnd="71dp"
+        android:background="@drawable/but_custom"
+        android:fontFamily="@font/montserrat_subrayada"
+        android:onClick="clickSave"
+        android:text="Button"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button6"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="154dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="242dp"
+        android:layout_marginEnd="251dp"
+        android:background="@drawable/but_custom"
+        android:fontFamily="@font/montserrat_subrayada"
+        android:onClick="clickSave"
+        android:text="Button"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button7"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="154dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="161dp"
+        android:layout_marginEnd="251dp"
+        android:background="@drawable/but_custom"
+        android:fontFamily="@font/montserrat_subrayada"
+        android:onClick="clickSave"
+        android:text="Button"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button8"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="154dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="252dp"
+        android:background="@drawable/but_custom"
+        android:fontFamily="@font/montserrat_subrayada"
+        android:onClick="clickSave"
+        android:text="Button"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="12dp"
+        android:lines="9"
+        android:text="@string/no_player"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/setting_b1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="31dp"
+        android:clickable="true"
+        android:onClick="clickEdit"
+        android:src="@drawable/settings" />
+
+    <TextView
+        android:id="@+id/setting_a"
+        android:layout_width="152dp"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="9dp"
+        android:clickable="true"
+        android:onClick="clickEdit" />
+
+    <ImageView
+        android:id="@+id/delt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="visible"
+        app:srcCompat="@drawable/del_w" />
+
+    <TextView
+        android:id="@+id/delete_a"
+        android:layout_width="148dp"
+        android:layout_height="38dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="338dp"
+        android:layout_marginBottom="18dp"
+        android:clickable="true"
+        android:onClick="clickDelete"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/delete_but"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="686dp"
+        android:layout_marginBottom="27dp"
+        android:background="@drawable/deletebut"
+        android:onClick="clickDelete"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/start_area"
+        android:layout_width="279dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="386dp"
+        android:layout_marginTop="332dp"
+        android:layout_marginBottom="14dp"
+        android:clickable="true"
+        android:onClick="clickStart"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+</RelativeLayout>
