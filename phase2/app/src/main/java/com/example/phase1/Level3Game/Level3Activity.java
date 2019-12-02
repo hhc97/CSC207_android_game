@@ -58,10 +58,18 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     buttons[2] = findViewById(R.id.b3);
     buttons[3] = findViewById(R.id.b4);
     Button key = findViewById(R.id.keybutton);
+    TextView magicText = findViewById(R.id.magic_text);
+    TextView pstat = findViewById(R.id.pstat);
+    TextView health = findViewById(R.id.health);
+    TextView potions = findViewById(R.id.potions);
+    TextView score = findViewById(R.id.score);
 
     level3Facade.setDisplayHandler(
-        new DisplayHandler(buttons, (TextView)findViewById(R.id.pstat), (TextView)findViewById(R.id.magic_text), key));
+        new DisplayHandler(buttons, pstat, magicText, key, health, potions, score));
     level3Facade.setLevel3(new Level3Manager(getDifficulty()));
+    level3Facade.updateHealth(getHealth());
+    level3Facade.updatePotions(getPotion());
+    level3Facade.updateScore(getScore());
   }
 
   /** Override for Activity.onStart. Displays the Sequence. */
@@ -119,10 +127,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
               @Override
               public void run() {
                 level3Facade.endSequence();
-                if(getBonusKeys() > 0){
-                    level3Facade.showKeyButton();
-                    level3Facade.enableKeyButton();
-                    level3Facade.showKeyText();
+                if (getBonusKeys() > 0) {
+                  level3Facade.showKeyButton();
+                  level3Facade.enableKeyButton();
+                  level3Facade.showKeyText();
                 }
               }
             },
@@ -131,13 +139,12 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
 
   public void useBonusKey(View v) {
     if (getBonusKeys() > 0) {
-        setBonusKeys(getBonusKeys() - 1);
-        level3Facade.disableKeyButton();
-        onCorrectSequence();
-    }
-    else{
-        level3Facade.disableKeyButton();
-        setText("You don't have any bonus keys. Please input the sequence.");
+      setBonusKeys(getBonusKeys() - 1);
+      level3Facade.disableKeyButton();
+      onCorrectSequence();
+    } else {
+      level3Facade.disableKeyButton();
+      setText("You don't have any bonus keys. Please input the sequence.");
     }
   }
   /**
@@ -184,36 +191,58 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    */
   private void onBadInput() {
     level3Facade.disableButtons();
+    final int x = (level3Facade.getDifficulty() + 3) * 10;
     if (level3Facade.getAttempts()
-        == 3 - level3Facade.getDifficulty()) { // User made 3 attempts (out of attempts)
-      int x = (level3Facade.getDifficulty() + 3) * 10;
+            >= 3 - level3Facade.getDifficulty()) { // User made maximum unpunishable attempts
       deductHealth(x); // deduct hp
-      setText(
-          "Incorrect Pattern! You ran out of attempts, -"
-              + x
-              + " Health. You have "
-              + getHealth()
-              + " Health remaining.");
-      level3Facade.setAttempts(0);
-      new Handler()
-          .postDelayed(
-              new Runnable() { // delay the task by 5 seconds
-                @Override
-                public void run() {
-                  if (getHealth() <= 0) // restart game if they run out of lives
-                  {
-                    if (getPotion() > 0) {
-                      level3Facade.setAttempts(0);
-                      setText("Using a potion. " + getPotion() + "Potions remaining.");
-                      displaySequence();
-                    }
-                    startAgain();
+      level3Facade.updateHealth(getHealth());
+      if (getHealth() <= 0) // restart game if they run out of lives
+      {
+          if (getPotion() > 0) {
+              level3Facade.setAttempts(0);
+              setPotion(getPotion() - 1);
+              level3Facade.updatePotions(getPotion());
+              setText("Using a potion. " + getPotion() + "Potions remaining.");
+              new Handler()
+                      .postDelayed(
+                              new Runnable() { // delay the task by 5 seconds
+                                  @Override
+                                  public void run() {
+                                      displaySequence();
+                                  }
+                              },
+                              2000);
+          }
+          setText("You have 0 potions and 0 health remaining. You have died. Restarting game.");
+          new Handler()
+                  .postDelayed(
+                          new Runnable() { // delay the task by 5 seconds
+                              @Override
+                              public void run() {
+                                  startAgain();
+                              }
+                          },
+                          2000);
+
+
+      } else {
+          setText(
+                  "Incorrect Pattern! You ran out of attempts, -"
+                          + x
+                          + " Health. You have "
+                          + getHealth()
+                          + " Health remaining.");
+          level3Facade.setAttempts(0);
+        new Handler()
+            .postDelayed(
+                new Runnable() { // delay the task by 5 seconds
+                  @Override
+                  public void run() {
+                    displaySequence(); // display sequence if they still have lives remaining
                   }
-                  level3Facade.setAttempts(0);
-                  displaySequence(); // display sequence if they still have lives remaining
-                }
-              },
-              2000);
+                },
+                2000);
+      }
 
     } else { // User input incorrect sequence but still has remaining attempts
       setText(
@@ -257,6 +286,8 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
           "Correct Pattern! You have "
               + level3Facade.getToComplete()
               + " patterns left to complete.");
+      addScore(10 * level3Facade.getLength());
+      level3Facade.updateScore(getScore());
       new Handler()
           .postDelayed(
               new Runnable() {
