@@ -13,10 +13,6 @@ class Level3Facade {
 
   void setAttempts(int i) { level3.setAttempts(i); }
 
-  void setButtonVisible(int i) {
-    displayHandler.setButtonVisible(i);
-  }
-
   void setButtonInvisible(int i) {
         displayHandler.setButtonInvisible(i);
   }
@@ -44,10 +40,6 @@ class Level3Facade {
   }
 
   void setButtonsVisible(){displayHandler.setButtonsVisible();}
-
-  void setButtonsInvisible(){displayHandler.setButtonsInvisible();}
-
-  void enableButtons(){displayHandler.enableButtons();}
 
   void setText(String s) {
     displayHandler.setText(s);
@@ -84,10 +76,6 @@ class Level3Facade {
   void disableKeyButton(){displayHandler.disableButtons();}
 
   void showKeyButton(){displayHandler.showKeyButton();}
-
-  void hideKeyButton(){displayHandler.hideKeyButton();}
-
-  void hideKeyText(){displayHandler.hideKeyText();}
 
   void showKeyText(){displayHandler.showKeyText();}
 

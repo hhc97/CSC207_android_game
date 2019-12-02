@@ -52,7 +52,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     }
 
     Button[] buttons = new Button[4];
-    // initialise button components
+    // initialise components
     buttons[0] = findViewById(R.id.b1);
     buttons[1] = findViewById(R.id.b2);
     buttons[2] = findViewById(R.id.b3);
@@ -83,7 +83,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    * button.
    */
   @SuppressLint("SetTextI18n")
-  public void displaySequence() {
+  void displaySequence() {
     level3Facade.startSequence();
     final Iterator<Integer> sequence = level3Facade.getSequence().iterator();
 
@@ -137,6 +137,10 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             (level3Facade.getLength() * 1000) + 500);
   }
 
+    /**
+     * Allows users to use bonus keys if they have any
+     * @param v Bonus key button
+     */
   public void useBonusKey(View v) {
     if (getBonusKeys() > 0) {
       setBonusKeys(getBonusKeys() - 1);
@@ -150,7 +154,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
   /**
    * Sends user input to the Level3Manager. Executes error and win conditional tasks.
    *
-   * @param v Any button that is clicked
+   * @param v Sequence button that is clicked
    */
   @Override
   public void onClick(View v) {
@@ -191,51 +195,51 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
    */
   private void onBadInput() {
     level3Facade.disableButtons();
-    final int x = (level3Facade.getDifficulty() + 3) * 10;
+
     if (level3Facade.getAttempts()
-            >= 3 - level3Facade.getDifficulty()) { // User made maximum unpunishable attempts
+        >= 3 - level3Facade.getDifficulty()) { // User made maximum unpunishable attempts
+      int x = (level3Facade.getDifficulty() + 3) * 10; // Amount of health to deduct
       deductHealth(x); // deduct hp
       level3Facade.updateHealth(getHealth());
       if (getHealth() <= 0) // restart game if they run out of lives
       {
-          if (getPotion() > 0) {
-              level3Facade.setAttempts(0);
-              setPotion(getPotion() - 1);
-              level3Facade.updatePotions(getPotion());
-              setText("Using a potion. " + getPotion() + "Potions remaining.");
-              new Handler()
-                      .postDelayed(
-                              new Runnable() { // delay the task by 5 seconds
-                                  @Override
-                                  public void run() {
-                                      displaySequence();
-                                  }
-                              },
-                              2000);
-          }
-          setText("You have 0 potions and 0 health remaining. You have died. Restarting game.");
-          new Handler()
-                  .postDelayed(
-                          new Runnable() { // delay the task by 5 seconds
-                              @Override
-                              public void run() {
-                                  finish();
-                              }
-                          },
-                          2000);
-
-
-      } else {
-          setText(
-                  "Incorrect Pattern! You ran out of attempts, -"
-                          + x
-                          + " Health. You have "
-                          + getHealth()
-                          + " Health remaining.");
+        if (getPotion() > 0) {
           level3Facade.setAttempts(0);
+          setPotion(getPotion() - 1);
+          level3Facade.updatePotions(getPotion());
+          setText("Using a potion. " + getPotion() + "Potions remaining.");
+          new Handler()
+              .postDelayed(
+                  new Runnable() { // delay the task by 2 seconds
+                    @Override
+                    public void run() {
+                      displaySequence();
+                    }
+                  },
+                  2000);
+        }
+        setText("You have 0 potions and 0 health remaining. You have died. Restarting game.");
         new Handler()
             .postDelayed(
-                new Runnable() { // delay the task by 5 seconds
+                new Runnable() { // delay the task by 2 seconds
+                  @Override
+                  public void run() {
+                    finish();
+                  }
+                },
+                2000);
+
+      } else {
+        setText(
+            "Incorrect Pattern! You ran out of attempts, -"
+                + x
+                + " Health. You have "
+                + getHealth()
+                + " Health remaining.");
+        level3Facade.setAttempts(0);
+        new Handler()
+            .postDelayed(
+                new Runnable() { // delay the task by 2 seconds
                   @Override
                   public void run() {
                     displaySequence(); // display sequence if they still have lives remaining

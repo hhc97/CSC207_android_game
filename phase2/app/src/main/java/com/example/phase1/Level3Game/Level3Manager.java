@@ -35,14 +35,6 @@ class Level3Manager {
   {
     return sequence;
   }
-  //  /**
-  //   * An alternative constructor with a specified difficulty level for future use.
-  //   *
-  //   * @param difficulty Difficulty level of current game
-  //   */
-  //  public Level3Manager(int difficulty) {
-  //    sequence = Sequence.getSequence(difficulty);
-  //  }
 
   /**
    * add a user input to ArrayList input
@@ -83,7 +75,11 @@ class Level3Manager {
   int getAttempts() {
     return attempts;
   }
+
   int getLength(){return seq.getLength();}
+  /**
+   * Gets a new sequence of numbers when the sequence is completed.
+   **/
   void completeSequence() {
     seq.complete();
     sequence = seq.getSequence();
