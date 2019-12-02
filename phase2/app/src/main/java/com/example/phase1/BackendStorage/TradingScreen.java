@@ -65,4 +65,13 @@ public class TradingScreen extends GameManager {
             + getBonusKeys();
     display.setText(inventory);
   }
+
+  /**
+   * After the user has finished trading and clicks finish, start the game again.
+   *
+   * @param view The finish button that is clicked.
+   */
+  public void clickFinish(View view) {
+    startAgain();
+  }
 }
