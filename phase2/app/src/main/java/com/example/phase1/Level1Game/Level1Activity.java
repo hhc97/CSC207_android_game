@@ -174,7 +174,6 @@ public class Level1Activity extends LevelActivity {
     this.difficulty = getDifficulty();
     this.dayOrNight = getDayOrNight();
     manager = new Level1Manager(this.difficulty);
-    manager.setDayOrNight(this.dayOrNight);
     manager.setDifficulty(this.difficulty);
     this.Objects = manager.getObjects();
     setActivityLevel();
@@ -231,7 +230,7 @@ public class Level1Activity extends LevelActivity {
 
   private void gameOver() {
     isRunning = false;
-    timer.cancel();
+    timer.cancel(); //cancel timer to prevent crashing
     imageInvisible(manager.getPlayer().getImage());
     showEndText();
   }
@@ -272,7 +271,7 @@ public class Level1Activity extends LevelActivity {
   }
 
   private void usePotionAction() {
-    if (getPotion() > 0) {
+    if (getPotion() > 0) { //if there are any potions left
       usePotionText.setVisibility(View.INVISIBLE);
       usePotionButton.setVisibility(View.INVISIBLE);
       usePotionButton.setClickable(false);
@@ -282,7 +281,7 @@ public class Level1Activity extends LevelActivity {
       gameOverLabel.setVisibility(View.INVISIBLE);
       manager.usePotionButtonPress();
       imageVisible(manager.getPlayer().getImage());
-      updateStatesToGameManager();
+      updateStatesToGameManager(); //reset the game to before it started
       startGame();
     }
   }
@@ -302,9 +301,10 @@ public class Level1Activity extends LevelActivity {
 
   public void jumpAction() {}
 
-  private void nullAction() {
+  private void nullAction() { //animation updates when nothing is pressed
 
-    for (int i = 1; i <= 3; i++) {
+
+    for (int i = 1; i <= 3; i++) {  //for each one of the 3 monsters objects
       if (((Monster) Objects.get(i)).isMoveLeft()) {
         enemyFacingLeft(i);
       } else {
@@ -312,6 +312,7 @@ public class Level1Activity extends LevelActivity {
       }
 
       if (((Monster) Objects.get(i)).isAttack() && Objects.get(i).getStates()) {
+        //if the monster is attacking and is still alive
         enemyAttackAnimation(i);
         heroHurtAnimation();
       } else {
