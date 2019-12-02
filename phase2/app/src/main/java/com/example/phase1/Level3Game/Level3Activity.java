@@ -198,7 +198,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
     final int x = (level3Facade.getDifficulty() + 3) * 10;
     if (level3Facade.getAttempts()
         >= 3 - level3Facade.getDifficulty()) { // User made maximum unpunishable attempts
-      deductHealth(99); // deduct hp
+      deductHealth(x); // deduct hp
       if (getHealth() <= 0) {
         setHealth(0);
       }
