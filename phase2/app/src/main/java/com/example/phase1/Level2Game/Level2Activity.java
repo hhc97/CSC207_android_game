@@ -348,32 +348,31 @@ public class Level2Activity extends LevelActivity {
     level2Manager.update();
     updateLabels();
 
-//    The level is over, so pause the auto-update to check collision and
-//    animation.
-      if (getHealth() <= 0) {
-        healthLabel.setText("Health: 0");
+    //    The level is over, so pause the auto-update to check collision and
+    //    animation.
+    if (getHealth() <= 0) {
+      healthLabel.setText("Health: 0");
 
-        // Make the end-game text visible
-        findViewById(R.id.endtext).setVisibility(View.VISIBLE);
-        findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
-        findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
-        findViewById(R.id.menu).setVisibility(View.VISIBLE);
-        findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
-//                      message.setVisibility(View.VISIBLE);
+      // Make the end-game text visible
+      findViewById(R.id.endtext).setVisibility(View.VISIBLE);
+      findViewById(R.id.endtext1).setVisibility(View.VISIBLE);
+      findViewById(R.id.endtext2).setVisibility(View.VISIBLE);
+      findViewById(R.id.menu).setVisibility(View.VISIBLE);
+      findViewById(R.id.potionbutton).setVisibility(View.VISIBLE);
+      //                      message.setVisibility(View.VISIBLE);
 
-        // End the animation
-        animator.cancel();
-        timer.cancel();
-      }
-      else if (getScore() >= 2000) {
-        isRunning = false;
-        playerMovable = true;
-        collectPhase();
+      // End the animation
+      animator.cancel();
+      timer.cancel();
+    } else if (getScore() >= 2000) {
+      isRunning = false;
+      playerMovable = true;
+      collectPhase();
 
-        // End the animation
-        animator.cancel();
-        timer.cancel();
-      }
+      // End the animation
+      animator.cancel();
+      timer.cancel();
+    }
   }
   // Flip the hero sprite left.
   private void heroFacingLeft() {
