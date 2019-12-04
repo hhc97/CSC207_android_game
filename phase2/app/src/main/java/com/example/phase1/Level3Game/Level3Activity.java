@@ -219,6 +219,7 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
                   2000);
         }
         setText("You have 0 potions and 0 health remaining. You have died. Restarting game.");
+        level3Facade.updateHealth(0);
         new Handler()
             .postDelayed(
                 new Runnable() { // delay the task by 2 seconds

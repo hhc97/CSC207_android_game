@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Level2Manager {
+class Level2Manager {
   private static final float GROUND_HEIGHT = 0;
   private List<Obstacle> Obstacles = new ArrayList<>();
   private List<GameObject> gameObjects = new ArrayList<>();
@@ -22,12 +22,13 @@ public class Level2Manager {
   private ObjectBuilder builder;
   private int difficulty;
   private Hero player;
+  private boolean freebie = true;
 
   Level2Manager() {
     builder = new ObjectBuilder();
     Hero player = (Hero) builder.createObject("Hero");
     player.setPosition(playerStartX, playerStartY);
-    this.player =player;
+    this.player = player;
 
     Obstacle rock1 = (Obstacle) builder.createObject("Obstacle");
     rock1.setPosition(185, GROUND_HEIGHT);
@@ -57,6 +58,7 @@ public class Level2Manager {
   void setDifficulty(int difficulty) {
     this.difficulty = difficulty;
   }
+
   void setParent(Level2Activity p) {
     parent = p;
   }
@@ -79,11 +81,17 @@ public class Level2Manager {
     updateObstacles();
     updateGameObjects();
   }
-  private void updateObstacles(){
+
+  private void updateObstacles() {
     for (Obstacle obstacle : Obstacles) {
       obstacle.update();
       if (obstacle.getX() <= this.playerStartX && !(obstacle.getPassed())) {
         obstacle.setPassed(true);
+
+        if (freebie) {
+          freebie = false;
+          continue;
+        }
 
         if (playerStartY == 1) {
           parent.addScore(100);
@@ -93,8 +101,9 @@ public class Level2Manager {
       }
     }
   }
-  private void updateGameObjects(){
-    for(GameObject obj: gameObjects){
+
+  private void updateGameObjects() {
+    for (GameObject obj : gameObjects) {
       obj.update();
     }
   }
@@ -108,26 +117,29 @@ public class Level2Manager {
     }
   }
 
-
   //Hero object move right
   public void rightAction(){
     player.moveRight();
   }
 
-  //Hero object move right
+  //Hero object move left
   public void leftAction(){
     player.moveLeft();
   }
+
   public Hero getPlayer(){
     return this.player;
   }
+
   public List<GameObject> getGameObjects(){
     return gameObjects;
   }
+
   public void playerAlive(){
     player.setHealth(1);
     player.setStates(true);
   }
+
   public boolean checkIsWinning(){
     boolean isWon = true;
     for(GameObject obj: gameObjects){

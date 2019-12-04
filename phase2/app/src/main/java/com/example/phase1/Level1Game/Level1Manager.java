@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * a manager for level1 that resolves calculations occurred in the gameplay.
  */
-public class Level1Manager {
+class Level1Manager {
   ArrayList<GameObject> Objects = new ArrayList<>();
   private Hero player;
   private float playerStartX = 50; // temp, the x coordinate of character.

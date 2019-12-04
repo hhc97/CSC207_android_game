@@ -276,6 +276,7 @@ public class Level2Activity extends LevelActivity {
     findViewById(R.id.endtext2).setVisibility(View.INVISIBLE);
     findViewById(R.id.menu).setVisibility(View.INVISIBLE);
     findViewById(R.id.potionbutton).setVisibility(View.INVISIBLE);
+    findViewById(R.id.endInstructions).setVisibility(View.VISIBLE);
   }
 
   private void updateGameObjectsImage() {
@@ -344,9 +345,7 @@ public class Level2Activity extends LevelActivity {
 
   // Update states in Game Manager Class.
   private void updateStatesToGameManager() {
-    setHealth(level2Manager.getPlayer().getHealth());
     setCoin(level2Manager.getPlayer().getCoins());
-    setScore(level2Manager.getPlayer().getScore());
     setPotion(level2Manager.getPlayer().getPotion());
   }
 
@@ -371,7 +370,7 @@ public class Level2Activity extends LevelActivity {
       animator.cancel();
       timer.cancel();
 
-    } else if (getScore() >= 2000) {
+    } else if (getScore() >= 1500) {
       isRunning = false;
       playerMovable = true;
       collectPhase();
@@ -397,7 +396,7 @@ public class Level2Activity extends LevelActivity {
       levelEndDelay();
     }
   }
-  //  // A 3 second delay before starting Level 3.
+  // A 3 second delay before starting Level 3.
   private void levelEndDelay() {
     handler.postDelayed(
         new Runnable() {
@@ -407,7 +406,7 @@ public class Level2Activity extends LevelActivity {
             finish();
           }
         },
-        3000);
+        1000);
   }
 
   private void setHeroStates() {
