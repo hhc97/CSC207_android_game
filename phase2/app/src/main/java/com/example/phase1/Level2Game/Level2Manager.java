@@ -11,7 +11,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ArrayList;
 
-
 class Level2Manager {
   private static final float GROUND_HEIGHT = 0;
   private List<Obstacle> Obstacles = new ArrayList<>();
@@ -45,7 +44,6 @@ class Level2Manager {
     Potion p = (Potion) builder.createObject("Potion");
     p.setPosition(400, GROUND_HEIGHT);
 
-
     Obstacles.add(rock1);
     Obstacles.add(rock2);
     Obstacles.add(rock3);
@@ -66,11 +64,9 @@ class Level2Manager {
   private void updateHealth() {
     if (difficulty == 0) {
       parent.deductHealth(30);
-    }
-    else if (difficulty ==1) {
+    } else if (difficulty == 1) {
       parent.deductHealth(40);
-    }
-    else {
+    } else {
       parent.deductHealth(50);
     }
   }
@@ -117,34 +113,33 @@ class Level2Manager {
     }
   }
 
-  //Hero object move right
-  public void rightAction(){
+  // Hero object move right
+  public void rightAction() {
     player.moveRight();
   }
 
-  //Hero object move left
-  public void leftAction(){
+  // Hero object move left
+  public void leftAction() {
     player.moveLeft();
   }
 
-  public Hero getPlayer(){
+  public Hero getPlayer() {
     return this.player;
   }
 
-  public List<GameObject> getGameObjects(){
+  public List<GameObject> getGameObjects() {
     return gameObjects;
   }
 
-  public void playerAlive(){
+  public void playerAlive() {
     player.setHealth(1);
     player.setStates(true);
   }
 
-  public boolean checkIsWinning(){
+  public boolean checkIsWinning() {
     boolean isWon = true;
-    for(GameObject obj: gameObjects){
-      if (obj.getStates())
-        isWon = false;
+    for (GameObject obj : gameObjects) {
+      if (obj.getStates()) isWon = false;
     }
     return isWon;
   }

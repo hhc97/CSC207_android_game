@@ -137,10 +137,11 @@ public class Level3Activity extends GameManager implements View.OnClickListener 
             (level3Facade.getLength() * 1000) + 500);
   }
 
-    /**
-     * Allows users to use bonus keys if they have any
-     * @param v Bonus key button
-     */
+  /**
+   * Allows users to use bonus keys if they have any
+   *
+   * @param v Bonus key button
+   */
   public void useBonusKey(View v) {
     if (getBonusKeys() > 0) {
       setBonusKeys(getBonusKeys() - 1);

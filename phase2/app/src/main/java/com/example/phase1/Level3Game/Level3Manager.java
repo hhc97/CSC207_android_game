@@ -15,11 +15,13 @@ class Level3Manager {
   // button inputs are stored as primitive int from 0-3 inclusive in clockwise order (from 0-3)
   private static ArrayList<Integer> input = new ArrayList<>();
 
-  int getToComplete(){
+  int getToComplete() {
     return seq.getToComplete();
   }
 
-  void setAttempts(int i){attempts = i;}
+  void setAttempts(int i) {
+    attempts = i;
+  }
   /** Constructor initializes sequence. */
   Level3Manager(int i) {
     seq = new Sequence(i); // get a new Sequence from Sequence class
@@ -31,8 +33,7 @@ class Level3Manager {
    *
    * @return The stored sequence
    */
-  ArrayList<Integer> getSequence()
-  {
+  ArrayList<Integer> getSequence() {
     return sequence;
   }
 
@@ -76,15 +77,16 @@ class Level3Manager {
     return attempts;
   }
 
-  int getLength(){return seq.getLength();}
-  /**
-   * Gets a new sequence of numbers when the sequence is completed.
-   **/
+  int getLength() {
+    return seq.getLength();
+  }
+  /** Gets a new sequence of numbers when the sequence is completed. */
   void completeSequence() {
     seq.complete();
     sequence = seq.getSequence();
   }
 
-  int getDifficulty() {return seq.getDifficulty();
+  int getDifficulty() {
+    return seq.getDifficulty();
   }
 }

@@ -179,15 +179,6 @@ public abstract class GameManager extends FileReadWriter {
   }
 
   /**
-   * Increases the current player's health by the input value.
-   *
-   * @param h Amount to increase health by.
-   */
-  public void addHealth(int h) {
-    setHealth(getHealth() + h);
-  }
-
-  /**
    * Decreases the current player's health by the input value.
    *
    * @param h Amount to decrease health by.
@@ -213,15 +204,6 @@ public abstract class GameManager extends FileReadWriter {
    */
   public void setCoin(int c) {
     setStat(c, coin);
-  }
-
-  /**
-   * Adds c number of coins to the current player's inventory.
-   *
-   * @param c The number of coins to add.
-   */
-  public void addCoin(int c) {
-    setCoin(getCoin() + c);
   }
 
   /**

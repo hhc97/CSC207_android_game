@@ -420,23 +420,22 @@ public class Level2Activity extends LevelActivity {
     findViewById(R.id.tut2).setVisibility(View.VISIBLE);
     Handler handler = new Handler();
     handler.postDelayed(
-            new Runnable() {
-              @Override
-              public void run() {
-                findViewById(R.id.tut1).setVisibility(View.VISIBLE);
-              }
-            },
-            1600);
+        new Runnable() {
+          @Override
+          public void run() {
+            findViewById(R.id.tut1).setVisibility(View.VISIBLE);
+          }
+        },
+        1600);
 
     handler.postDelayed(
-            new Runnable() {
-              @Override
-              public void run() {
-                findViewById(R.id.tut1).setVisibility(View.INVISIBLE);
-                findViewById(R.id.tut).setVisibility(View.VISIBLE);
-              }
-            },
-            5000);
-
-
-  }}
+        new Runnable() {
+          @Override
+          public void run() {
+            findViewById(R.id.tut1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.tut).setVisibility(View.VISIBLE);
+          }
+        },
+        5000);
+  }
+}

@@ -9,9 +9,7 @@ import com.example.phase1.Objects.Potion;
 
 import java.util.ArrayList;
 
-/**
- * a manager for level1 that resolves calculations occurred in the gameplay.
- */
+/** a manager for level1 that resolves calculations occurred in the gameplay. */
 class Level1Manager {
   ArrayList<GameObject> Objects = new ArrayList<>();
   private Hero player;
@@ -25,19 +23,14 @@ class Level1Manager {
   private ObjectBuilder builder;
   private boolean hasGotTheEasterEgg = false;
 
-  /**
-   *
-   * @param difficulty int value to represent difficulty
-   */
+  /** @param difficulty int value to represent difficulty */
   public Level1Manager(int difficulty) {
     this.difficulty = difficulty;
     builder = new ObjectBuilder(this.difficulty);
     setupObjects();
   }
 
-  /**
-   * default constructor with no parameter
-   */
+  /** default constructor with no parameter */
   public Level1Manager() {
     builder = new ObjectBuilder(this.difficulty);
     setupObjects();
@@ -91,6 +84,7 @@ class Level1Manager {
 
   /**
    * setter for maximum framesize x for all GameObjects
+   *
    * @param x the maximum x value of the frame
    */
   public void setMaxFrameSize(float x) {
@@ -102,6 +96,7 @@ class Level1Manager {
 
   /**
    * etter for minimum framesize x for all GameObjects
+   *
    * @param x the minimum x value of the frame
    */
   public void setMinFrameSize(float x) {
@@ -111,36 +106,28 @@ class Level1Manager {
     }
   }
 
-  /**
-   * resolve move right action in player class
-   */
+  /** resolve move right action in player class */
   public void rightButtonPress() {
     if (isPlayerAlive()) {
       player.moveRight(); // resolve moving right in player class
     }
   }
 
-  /**
-   * resolve move left action in player class
-   */
+  /** resolve move left action in player class */
   public void leftButtonPress() {
     if (isPlayerAlive()) {
       player.moveLeft(); // resolve moving left in player class
     }
   }
 
-  /**
-   * resolve attack action in player class
-   */
+  /** resolve attack action in player class */
   public void attackButtonPress() {
     if (isPlayerAlive()) { // if player is alive
       player.attack(); // resolve attack in player class
     }
   }
 
-  /**
-   * resolve potion usage in player class
-   */
+  /** resolve potion usage in player class */
   public void usePotionButtonPress() {
     player.usePotion();
   }
@@ -167,6 +154,7 @@ class Level1Manager {
 
   /**
    * getter for player
+   *
    * @return instance of Hero class used as player for the current level
    */
   public Hero getPlayer() {
@@ -175,6 +163,7 @@ class Level1Manager {
 
   /**
    * setter for difficulty, 0 = easy, 1 = medium, 2 = hard
+   *
    * @param difficulty int variable to represent difficulty
    */
   public void setDifficulty(int difficulty) {
@@ -184,16 +173,14 @@ class Level1Manager {
 
   /**
    * getter for list Objects
+   *
    * @return ArrayList of GameObjects Objects in this class
    */
   public ArrayList getObjects() {
     return this.Objects;
   }
 
-  /**
-   *
-   * @return if player is alive or not
-   */
+  /** @return if player is alive or not */
   public boolean isPlayerAlive() {
     return player.getStates();
   }
@@ -224,10 +211,7 @@ class Level1Manager {
     player.addScore(500);
   }
 
-  /**
-   *
-   * @return if player has already gotten the easter egg or not
-   */
+  /** @return if player has already gotten the easter egg or not */
   public boolean hasGotTheEasterEgg() {
     return hasGotTheEasterEgg;
   }

@@ -9,10 +9,7 @@ import static android.view.View.VISIBLE;
 
 class DisplayHandler {
   private Button[] buttons;
-
-  @SuppressLint("StaticFieldLeak")
   private TextView out;
-
   private TextView keyText;
   private TextView health;
   private TextView score;
@@ -77,9 +74,7 @@ class DisplayHandler {
     keyButton.setClickable(false);
   }
 
-  /**
-   * The initialization before displaying a sequence
-   */
+  /** The initialization before displaying a sequence */
   @SuppressLint("SetTextI18n")
   void startSequence() {
     disableButtons(); // disable the buttons while the sequence is displaying
@@ -91,9 +86,7 @@ class DisplayHandler {
     out.setVisibility(VISIBLE);
   }
 
-  /**
-   * The tasks to be executed after displaying a sequence.
-   */
+  /** The tasks to be executed after displaying a sequence. */
   @SuppressLint("SetTextI18n")
   void endSequence() {
     out.setText("Start!");
@@ -120,7 +113,7 @@ class DisplayHandler {
     }
   }
 
-  /** Make all sequence buttons visible*/
+  /** Make all sequence buttons visible */
   void setButtonsVisible() {
     for (Button button : buttons) {
       button.setVisibility(VISIBLE);
