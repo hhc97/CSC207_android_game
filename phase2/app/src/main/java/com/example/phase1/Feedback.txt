@@ -1,0 +1,37 @@
+Dear group_0586
+
+This semester, we talked about MVP, the Model-View-Presenter architecture. It has many advantages, particularly when working with Android. As you can see from your project, your activity classes have methods that are specific to Android. If you encapsulate the rest of your code sufficiently, it is possible to port it to another platform simply by creating a new UI (for example, a website).
+
+Encapsulation can take on many forms. You can package your View classes together. You can ensure that your dependencies go one-way, towards the inner more abstract layers. You can incorporate SOLID principles as much as possible and design patterns where they make sense.
+Here is feedback that is specific to your project:
+
+You made good use of…
++ Inheritance and interfaces: Good job on following good OOP mechanisms!
++ Design patterns: You used Builder and Facade design patterns. Good job!
++ Following naming conventions: Your variables, classes, and methods perfectly followed Java naming conventions!
++ Visibility of variables and methods: Your variables and methods were mostly private or protected.
+
+The user sees…
++ A nice UI with pleasant graphics.
++ Different backgrounds and different difficulties.
++ Autosave feature.
++ Shopping feature to buy potions and keys.
++ One game with 3 levels.
+
+A good next step would be to…
++ Use MVP as a development technique to write your application.
++ Use more design patterns in your code.
++ Rethink some design decisions. For example, think about other ways to read and write to files without having GameManager extending FileReadWriter. In particular, extending GameManager from FileReadWriter violates SOLID principles such as the Liskov substitution principle. One alternative is to inject a FileReadWriter as a dependency of GameManager.
++ Shrinking some of your classes using different refactoring methods (Extract Class, Extract Subclass, Extract Interface, etc). For example, your GameManager class has 450 lines which seem to be a good class to start with.
++ Extract some of your methods. Some of your methods such as saveMenu are considered long methods. Minor code duplication also appeared to be present in classes handling View.
++ Make your javadocs and comments more consistent. For example, level1 and level2 almost don’t have any javadocs and comments.
++ Make your code more readable by using braces and consistent indentation.
++ Improve your database and the way you save your data. Currently, you save files without making use of serialization. Try using that to encrypt the saved data or upgrading to another database management system. 
++ Try to rethink the way you structure the data. For example, in your code, every statistic held for the game is associated with an integer number. This is not a good way of design. What if we end up adding 20 more different statistics to your game? Wouldn’t that be confusing to another programmer reading or taking over your code?
++ Extending the Facade pattern used for Level 3 to the other levels. The current graphical entity representation seemed counter-intuitive. If the current graphics implementation is preventing changes to game logic, it is a code smell that tight logical coupling is occurring, and issues with data flow may be present.
+
+We hope that you enjoyed working on this project and found it a useful learning experience.
+
+Cheers,
+The CSC207 Instructional Team
+
